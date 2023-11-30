@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-  @apply scroll-smooth
+  @apply scroll-smooth;
+}
+
+* {
+  @apply font-overpass;
 }
