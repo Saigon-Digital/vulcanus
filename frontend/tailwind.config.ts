@@ -10,11 +10,14 @@ const config: Config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: "1rem",
+        DEFAULT: "1.25rem",
         "3xl": "46.5px",
       },
     },
     extend: {
+      fontFamily: {
+        overpass: ["var(--font-overpass)"],
+      },
       screens: {
         "3xl": "1920px",
       },
@@ -41,10 +44,17 @@ const config: Config = {
         secondary: {
           offWhite: {
             main: "#E6ECF3",
+            white: "#FFF",
           },
           green: "#179C6F",
           yellow: "#F7CC5F",
         },
+      },
+      height: {
+        screen: [
+          "100vh /* fallback for Opera, IE and etc. */",
+          "100dvh",
+        ] as unknown as string,
       },
     },
   },
