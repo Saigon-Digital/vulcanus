@@ -40,7 +40,9 @@ export default async function handler(
   const embed = new EmbedBuilder()
     .setColor(state === "ready" ? "#16a34a" : "#991b1b")
     .setTitle(title)
-    .setURL(req.body.url)
+    .setURL(
+      context === "deploy-preview" ? req.body.deploy_ssl_url : req.body.url
+    )
     .setDescription(
       `Visit [build log](https://app.netlify.com/sites/${siteName}/deploys/${req.body.build_id})`
     )

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply scroll-smooth;
+  @apply bg-primary-black-background scroll-smooth text-secondary-offWhite-white;
 }
 
 * {
