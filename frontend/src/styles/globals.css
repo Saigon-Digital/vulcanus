@@ -9,3 +9,6 @@ body {
 * {
   @apply font-overpass;
 }
+.title-xl {
+  @apply font-bold text-4xl lg:text-5xl 3xl:text-[64px] 3xl:leading-[84px];
+}
