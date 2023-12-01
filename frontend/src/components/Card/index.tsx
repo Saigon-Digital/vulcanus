@@ -19,7 +19,7 @@ const Card: React.FC<TCard> = ({title, description = "", link, className}) => {
     `}>
       <CardShape
         alt="shape"
-        className="absolute right-0 top-0 opacity-0 group-hover:opacity-100"
+        className="w absolute right-0 top-0 opacity-0 group-hover:opacity-100"
         width={48}
         height={133}
       />

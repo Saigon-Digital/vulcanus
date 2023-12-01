@@ -1,10 +1,13 @@
-import React from "react";
+import React, {ReactNode} from "react";
+import Button from "../Button";
 type TProps = {
   title?: string;
   content?: {
     contentTitle?: string;
     contentBody?: string[];
   };
+  extraGraphic?: ReactNode;
+  cta?: {text?: string; link?: string};
 };
 let contentData = {
   contentTitle:
@@ -17,10 +20,13 @@ let contentData = {
 const HalfPageCotent = ({
   title = "Research & Developement",
   content = contentData,
+  extraGraphic,
+  cta,
 }: TProps) => {
   return (
     <div className="container my-14">
-      <div className="flex flex-wrap">
+      <div className="relative flex flex-wrap">
+        {extraGraphic && extraGraphic}
         <div className="w-full md:w-1/2">
           <h4 className="text-2xl font-bold">{title}</h4>
         </div>
@@ -39,6 +45,7 @@ const HalfPageCotent = ({
               </div>
             </>
           )}
+          {cta && <Button link={cta.link}>{cta.text}</Button>}
         </div>
       </div>
     </div>
