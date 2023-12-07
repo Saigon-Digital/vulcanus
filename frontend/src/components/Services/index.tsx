@@ -69,6 +69,7 @@ const Service: React.FC<TService> = ({
         {featureImage?.map((img, index) => {
           return (
             <div
+              key={index}
               className={`relative col-span-full min-h-[300px] ${
                 index === 0 ? "md:col-span-2" : "lg:col-span-1"
               }`}>

@@ -11,7 +11,13 @@ const Cards: React.FC<TProps> = ({cards}) => {
       <h3 className="title-xl mb-14">Manufacturing</h3>
       <div className="grid grid-cols-3 gap-6">
         {cards.map((ele, id) => {
-          return <Card {...ele} className="min-h-[300px] lg:min-h-[400px]" />;
+          return (
+            <Card
+              key={id}
+              {...ele}
+              className="min-h-[300px] lg:min-h-[400px]"
+            />
+          );
         })}
       </div>
     </div>

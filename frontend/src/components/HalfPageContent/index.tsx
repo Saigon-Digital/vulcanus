@@ -37,7 +37,9 @@ const HalfPageCotent = ({
               <div className="mt-6 flex flex-wrap justify-between xl:mt-8">
                 {content.contentBody?.map((ele, id) => {
                   return (
-                    <p className="w-full text-lg font-light md:w-[calc(50%-20px)]">
+                    <p
+                      key={id}
+                      className="w-full text-lg font-light md:w-[calc(50%-20px)]">
                       {ele}
                     </p>
                   );
