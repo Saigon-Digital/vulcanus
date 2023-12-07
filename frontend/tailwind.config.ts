@@ -26,8 +26,8 @@ const config: Config = {
       screens: {
         "3xl": "1920px",
       },
-      letterSpacing:{
-        tight:"-0.01em"
+      letterSpacing: {
+        tight: "-0.01em",
       },
       colors: {
         primary: {
@@ -69,10 +69,10 @@ const config: Config = {
   },
   plugins: [
     require("@tailwindcss/container-queries"),
-    plugin(function ({matchUtilities}:any) {
+    plugin(function ({matchUtilities}: any) {
       matchUtilities(
         {
-          "min-max": (value:any) => {
+          "min-max": (value: any) => {
             const arr = value.split(" ");
             if (arr.length !== 2 && arr.length !== 4) return null;
 
@@ -106,6 +106,14 @@ const config: Config = {
     }),
     plugin(function ({addComponents}) {
       addComponents({
+        ".container-fluid": {
+          width: "100%",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: "1.5rem",
+          paddingRight: "1.5rem",
+          maxWidth: "1920px",
+        },
         ".heading-2": {
           fontSize: "40px",
           fontWeight: "700",

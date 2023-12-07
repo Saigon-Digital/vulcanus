@@ -7,7 +7,7 @@ const index = ({
   title = "We are committed to innovation, quality, and meeting the evolving needs of our clients.",
 }: TText) => {
   return (
-    <section className="container relative  gap-4 py-14">
+    <section className="container-fluid relative  gap-4 py-14">
       <div className="relative grid grid-cols-12">
         <h2 className="title-xl col-span-10 md:col-span-8 lg:col-span-7">
           {title}

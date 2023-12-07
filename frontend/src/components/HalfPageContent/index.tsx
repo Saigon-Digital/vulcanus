@@ -24,7 +24,7 @@ const HalfPageCotent = ({
   cta,
 }: TProps) => {
   return (
-    <div className="container my-14">
+    <div className="container-fluid my-14">
       <div className="relative flex flex-wrap">
         {extraGraphic && extraGraphic}
         <div className="w-full md:w-1/2">
