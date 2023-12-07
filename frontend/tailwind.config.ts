@@ -26,6 +26,9 @@ const config: Config = {
       screens: {
         "3xl": "1920px",
       },
+      letterSpacing:{
+        tight:"-0.01em"
+      },
       colors: {
         primary: {
           blue: {
@@ -66,10 +69,10 @@ const config: Config = {
   },
   plugins: [
     require("@tailwindcss/container-queries"),
-    plugin(function ({matchUtilities}) {
+    plugin(function ({matchUtilities}:any) {
       matchUtilities(
         {
-          "min-max": (value) => {
+          "min-max": (value:any) => {
             const arr = value.split(" ");
             if (arr.length !== 2 && arr.length !== 4) return null;
 
