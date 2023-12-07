@@ -44,7 +44,7 @@ const Service: React.FC<TService> = ({
   featureImage = images,
 }) => {
   return (
-    <div className="container py-20">
+    <div className="container-fluid py-20">
       <h3 className="mb-14 text-3xl font-bold lg:text-6xl lg:leading-[84px] xl:text-[64px]">
         Our services
       </h3>

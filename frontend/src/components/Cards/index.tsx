@@ -7,7 +7,7 @@ type TProps = {
 
 const Cards: React.FC<TProps> = ({cards}) => {
   return (
-    <div className="container py-20">
+    <div className="container-fluid py-20">
       <h3 className="title-xl mb-14">Manufacturing</h3>
       <div className="grid grid-cols-3 gap-6">
         {cards.map((ele, id) => {
