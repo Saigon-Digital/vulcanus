@@ -10,3 +10,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     ctx,
   });
 };
+
+export const getStaticPaths: GetStaticPaths = (ctx) => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};

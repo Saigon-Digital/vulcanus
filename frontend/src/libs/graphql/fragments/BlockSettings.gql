@@ -1,0 +1,16 @@
+fragment BlockSettings on BaseBlockFieldsBlockSettings {
+  spacing {
+    mobile {
+      top
+      bottom
+    }
+    desktop {
+      top
+      bottom
+    }
+  }
+  visibility {
+    showOnMobile
+    showOnDesktop
+  }
+}

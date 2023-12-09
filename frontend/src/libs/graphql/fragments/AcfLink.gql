@@ -1,0 +1,5 @@
+fragment AcfLink on AcfLink {
+  title
+  url
+  target
+}
