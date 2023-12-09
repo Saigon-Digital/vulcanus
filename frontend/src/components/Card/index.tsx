@@ -1,17 +1,21 @@
-import React from "react";
 import parse from "html-react-parser";
 import Link from "next/link";
 import Arrow from "public/icons/arrow-box.svg";
+import React from "react";
 import CardShape from "./images/card-shape.svg";
-import Image from "next/image";
+import {CardsBlockCards, CardsBlockCards_Fields} from "@/__generated__/graphql";
 export type TCard = {
   title?: string;
   description?: string;
   link?: string;
-  shape?: boolean;
   className?: string;
 };
-const Card: React.FC<TCard> = ({title, description = "", link, className}) => {
+const Card: React.FC<CardsBlockCards_Fields & TCard> = ({
+  title,
+  description = "",
+  link,
+  className,
+}) => {
   return (
     <div
       className={`group relative flex w-full cursor-pointer  flex-col justify-between rounded-sm border border-primary-blue-main p-6 
@@ -30,12 +34,12 @@ const Card: React.FC<TCard> = ({title, description = "", link, className}) => {
       </h5>
       <div className="">
         <p className="group-hover mb-5 text-lg font-light text-white ">
-          {parse(description)}
+          {description}
         </p>
         {link && (
           <Link
             className="text-md flex items-center text-primary-blue-main transition group-hover:text-white 3xl:text-lg 3xl:leading-[24px]"
-            href={link}>
+            href={link || ""}>
             Read more
             <span className="ml-2 inline-block transition group-hover:translate-x-3">
               <Arrow />

@@ -6,17 +6,17 @@ import TitleText from "../../components/TitleText";
 import HalfPageContent from "../../components/HalfPageContent";
 import Cards from "../../components/Cards";
 import ImageBlock from "../../components/ImageBlock";
-const index = () => {
+const Reference = () => {
   return (
-    <Layout>
+    <>
       <Hero />
       <Service />
       <TitleText />
       <HalfPageContent />
       <Cards />
       <ImageBlock />
-    </Layout>
+    </>
   );
 };
 
-export default index;
+export default Reference;

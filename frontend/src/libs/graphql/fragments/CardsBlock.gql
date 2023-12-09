@@ -1,0 +1,11 @@
+fragment CardsBlock on CardsBlock_Fields {
+  __typename
+  title
+  cards {
+    title
+    description
+  }
+  blockSettings {
+    ...BlockSettings
+  }
+}

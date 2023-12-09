@@ -1,0 +1,10 @@
+fragment HeroBlock on Hero_Fields {
+  title
+  description
+  button {
+    ...AcfLink
+  }
+  blockSettings {
+    ...BlockSettings
+  }
+}

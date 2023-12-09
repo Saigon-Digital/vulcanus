@@ -1,21 +1,17 @@
+import {CardsBlock_Fields} from "@/__generated__/graphql";
 import React from "react";
-import {TCard} from "../Card";
 import Card from "../Card";
-type TProps = {
-  cards: TCard[];
-};
-
-const Cards: React.FC<TProps> = ({cards}) => {
+const Cards: React.FC<CardsBlock_Fields> = (props) => {
   return (
-    <div className="container-fluid py-20">
-      <h3 className="title-xl mb-14">Manufacturing</h3>
+    <div className="container-fluid">
+      <h3 className="title-xl mb-14">{props?.title}</h3>
       <div className="grid grid-cols-3 gap-6">
-        {cards.map((ele, id) => {
+        {props?.cards?.map((card, id) => {
           return (
             <Card
               key={id}
-              {...ele}
-              className="min-h-[300px] lg:min-h-[400px]"
+              title={card?.title ?? ""}
+              description={card?.description ?? ""}
             />
           );
         })}

@@ -1,19 +1,25 @@
+import Layout from "@/components/Layout";
 import "@/styles/globals.css";
-import clsx from "clsx";
+import {FaustProvider} from "@faustwp/core";
 import type {AppProps} from "next/app";
-
-import {Overpass} from "next/font/google";
-
-const overpass = Overpass({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-overpass",
-});
+import {useRouter} from "next/router";
+import "../../faust.config";
 
 export default function App({Component, pageProps}: AppProps) {
+  const router = useRouter();
   return (
-    <main className={clsx(overpass.variable, "overflow-x-clip")}>
-      <Component {...pageProps} />
-    </main>
+    <FaustProvider pageProps={pageProps}>
+      <Layout>
+        <Component {...pageProps} key={router.asPath} />
+      </Layout>
+    </FaustProvider>
   );
 }
+
+App.getInitialProps = async () => {
+  return {
+    pageProps: {
+      data: "Header data",
+    },
+  };
+};
