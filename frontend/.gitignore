@@ -40,3 +40,6 @@ next-env.d.ts
 
 # faust
 possibleTypes.json
+
+# graphql-codegen
+/src/__generated__
