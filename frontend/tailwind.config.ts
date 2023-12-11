@@ -65,7 +65,7 @@ const config: Config = {
       height: {
         screen: [
           "100vh /* fallback for Opera, IE and etc. */",
-          "100dvh",
+          "100svh",
         ] as unknown as string,
       },
     },
@@ -76,7 +76,7 @@ const config: Config = {
     plugin(function ({matchUtilities}) {
       matchUtilities(
         {
-          "min-max": (value: any) => {
+          "min-max": (value) => {
             const arr = value.split(" ");
             if (arr.length !== 2 && arr.length !== 4) return null;
 
@@ -127,6 +127,9 @@ const config: Config = {
           fontWeight: "700",
           lineHeight: "140%",
           letterSpacing: "-0.01em",
+          "@screen lg": {
+            fontSize: "48px",
+          },
           "@screen xl": {
             fontSize: "64px",
           },

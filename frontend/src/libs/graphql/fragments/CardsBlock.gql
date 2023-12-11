@@ -4,6 +4,9 @@ fragment CardsBlock on CardsBlock_Fields {
   cards {
     title
     description
+    link {
+      ...AcfLink
+    }
   }
   blockSettings {
     ...BlockSettings
