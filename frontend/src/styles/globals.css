@@ -1,14 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+:root {
+  --header-height: 88px;
+}
 body {
-  @apply bg-primary-black-background scroll-smooth text-secondary-offWhite-white;
+  @apply scroll-smooth bg-primary-black-background text-secondary-offWhite-white;
 }
 
 * {
   @apply font-overpass;
 }
 .title-xl {
-  @apply font-bold text-4xl lg:text-5xl 3xl:text-[64px] 3xl:leading-[84px];
+  @apply text-4xl font-bold lg:text-5xl 3xl:text-[64px] 3xl:leading-[84px];
 }

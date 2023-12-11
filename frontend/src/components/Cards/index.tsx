@@ -1,21 +1,36 @@
 import {CardsBlock_Fields} from "@/__generated__/graphql";
 import React from "react";
 import Card from "../Card";
+import {Swiper, SwiperSlide} from "swiper/react";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
   return (
     <div className="container-fluid">
       <h3 className="title-xl mb-14">{props?.title}</h3>
-      <div className="grid grid-cols-3 gap-6">
+
+      <Swiper
+        spaceBetween={24}
+        breakpoints={{
+          320: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}>
         {props?.cards?.map((card, id) => {
           return (
-            <Card
-              key={id}
-              title={card?.title ?? ""}
-              description={card?.description ?? ""}
-            />
+            <SwiperSlide key={id}>
+              <Card
+                title={card?.title ?? ""}
+                description={card?.description ?? ""}
+              />
+            </SwiperSlide>
           );
         })}
-      </div>
+      </Swiper>
     </div>
   );
 };

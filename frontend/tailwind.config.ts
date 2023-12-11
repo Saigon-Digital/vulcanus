@@ -11,6 +11,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/wp-templates/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/wp-blocks/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -59,6 +60,7 @@ const config: Config = {
           green: "#179C6F",
           yellow: "#F7CC5F",
         },
+        "eerie-black": "#140F24",
       },
       height: {
         screen: [
@@ -71,7 +73,7 @@ const config: Config = {
   plugins: [
     require("@tailwindcss/container-queries"),
     require("@tailwindcss/typography"),
-    plugin(function ({matchUtilities}: any) {
+    plugin(function ({matchUtilities}) {
       matchUtilities(
         {
           "min-max": (value: any) => {
@@ -112,9 +114,13 @@ const config: Config = {
           width: "100%",
           marginLeft: "auto",
           marginRight: "auto",
-          paddingLeft: "1.5rem",
-          paddingRight: "1.5rem",
+          paddingLeft: "1.25rem",
+          paddingRight: "1.25rem",
           maxWidth: "1920px",
+          "@screen xl": {
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
+          },
         },
         ".heading-2": {
           fontSize: "40px",
