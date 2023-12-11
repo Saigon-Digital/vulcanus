@@ -15,11 +15,3 @@ export default function App({Component, pageProps}: AppProps) {
     </FaustProvider>
   );
 }
-
-App.getInitialProps = async () => {
-  return {
-    pageProps: {
-      data: "Header data",
-    },
-  };
-};
