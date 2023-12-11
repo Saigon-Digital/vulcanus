@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/"
+  to = "/preview"
+  status = 307
+  force = true
+  query = {preview = "true", previewPathname = ":previewPathname"}
