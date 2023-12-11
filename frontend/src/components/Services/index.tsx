@@ -1,16 +1,16 @@
 import React from "react";
-import Card, {TCard} from "../Card/index";
+import Card from "../Card/index";
 import Image from "next/image";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
 import Gear from "./images/gear.svg";
 type TService = {
-  cards?: TCard[];
+  cards?: any[];
   featureImage?: {image: string | StaticImport}[];
 };
 
-const cardData: TCard[] = [
+const cardData: any[] = [
   {
     title: "Engineering",
     description: `We have been a partner in machinery and plant engineering for many years.<br/>

@@ -4,6 +4,7 @@ import {FaustProvider} from "@faustwp/core";
 import type {AppProps} from "next/app";
 import {useRouter} from "next/router";
 import "../../faust.config";
+import "swiper/css";
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();

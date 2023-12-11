@@ -47,7 +47,7 @@ const HalfPageCotent = ({
               </div>
             </>
           )}
-          {cta && <Button link={cta.link}>{cta.text}</Button>}
+          {/* {cta && <Button link={cta.link}>{cta.text}</Button>} */}
         </div>
       </div>
     </div>
