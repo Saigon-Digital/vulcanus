@@ -36,6 +36,11 @@ const nextConfig = withFaust({
     dangerouslyAllowSVG: true,
     formats: ["image/avif", "image/webp"],
   },
+  i18n: {
+    locales: ["de", "en"],
+    defaultLocale: "de",
+    localeDetection: false,
+  },
 });
 
 module.exports = nextConfig;

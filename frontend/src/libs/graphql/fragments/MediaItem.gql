@@ -1,0 +1,6 @@
+fragment MediaItem on MediaItem {
+  altText
+  sourceUrl
+  sizes
+  caption
+}

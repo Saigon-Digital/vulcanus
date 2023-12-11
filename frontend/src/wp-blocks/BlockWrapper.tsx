@@ -7,8 +7,8 @@ type Props = PropsWithChildren &
 
 const BlockWrapper = ({children, blockSettings, ...props}: Props) => {
   return (
-    <>
-      <section {...props}>{children}</section>
+    <section {...props}>
+      {children}
       <style jsx>{`
         section {
           --padding-top: ${blockSettings?.spacing?.mobile?.top || 0}px;
@@ -30,7 +30,7 @@ const BlockWrapper = ({children, blockSettings, ...props}: Props) => {
           }
         }
       `}</style>
-    </>
+    </section>
   );
 };
 
