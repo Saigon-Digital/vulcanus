@@ -1,9 +1,10 @@
 import {CardsBlockCards_Fields} from "@/__generated__/graphql";
+import {getAcfLinkProps, getUrlPathname} from "@/utils";
+import Link from "next/link";
+import ArrowRight from "public/icons/arrow-right.svg";
 import React from "react";
 import {twMerge} from "tailwind-merge";
 import CardShape from "./images/card-shape.svg";
-import ArrowRight from "public/icons/arrow-right.svg";
-import Link from "next/link";
 
 type Props = CardsBlockCards_Fields & React.HTMLAttributes<HTMLDivElement>;
 
@@ -11,6 +12,7 @@ const Card: React.FC<Props> = ({
   title,
   description = "",
   className,
+  link,
   ...props
 }) => {
   return (
@@ -22,28 +24,24 @@ const Card: React.FC<Props> = ({
       {...props}>
       <CardShape
         alt="shape"
-        className="absolute right-0 top-0 translate-y-3 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100"
+        className="absolute right-0 top-0 scale-x-0 opacity-0 transition-all duration-500 group-hover:scale-x-100 group-hover:opacity-100"
         width={48}
         height={133}
       />
-      <h5
+      <h3
         className="font-semibold leading-[140%] tracking-tight text-primary-blue-main transition-all
          duration-300 min-max-[20_24] group-hover:text-secondary-offWhite-white">
         {title}
-      </h5>
+      </h3>
       <div className="space-y-6">
-        <p className="mb-5 line-clamp-4 text-lg font-light text-secondary-offWhite-white">
+        <p
+          className="mb-5 line-clamp-4 text-lg font-light text-secondary-offWhite-white"
+          title={description || ""}>
           {description}
         </p>
-        {props?.link?.url && props?.link?.title ? (
+        {link?.url && link?.title ? (
           <Link
-            href={props?.link?.url}
-            target={props?.link?.target || "_self"}
-            rel={
-              props?.link?.target === "_blank"
-                ? "noopener noreferrer"
-                : undefined
-            }
+            {...getAcfLinkProps(link)}
             className="inline-flex items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white">
             Read more
             <ArrowRight className="h-[22px] w-[22px] shrink-0 [&_path]:text-primary-blue-main [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:text-secondary-offWhite-white" />

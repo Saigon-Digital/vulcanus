@@ -5,9 +5,9 @@ import {Swiper, SwiperSlide} from "swiper/react";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
   return (
     <div className="container-fluid">
-      <h3 className="title-xl mb-14">{props?.title}</h3>
-
+      <h2 className="heading-2 mb-14">{props?.title}</h2>
       <Swiper
+        className="!overflow-visible"
         spaceBetween={24}
         breakpoints={{
           320: {
@@ -24,8 +24,9 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
           return (
             <SwiperSlide key={id}>
               <Card
-                title={card?.title ?? ""}
-                description={card?.description ?? ""}
+                title={card?.title || ""}
+                description={card?.description}
+                link={card?.link}
               />
             </SwiperSlide>
           );
@@ -33,25 +34,6 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
       </Swiper>
     </div>
   );
-};
-
-Cards.defaultProps = {
-  cards: [
-    {
-      title: "CNC - Turning",
-      description: `CNC turning is a highly precise machining process that revolves around the removal of material from a rotating workpiece using computer-controlled cutting tools.`,
-    },
-    {
-      title: "CNC - Milling",
-      description: `CNC milling is a versatile and efficient machining technique that employs computer-driven tools to subtract material from a workpiece, enabling the creation of intricate shapes, contours, and features
-        Read more`,
-    },
-    {
-      title: "Welding",
-      description: `Welding is the essential art of bonding materials, primarily metals, by applying heat and pressure to meld them together. This crucial joining process finds extensive use in construction, manufacturing.
-        Read more`,
-    },
-  ],
 };
 
 export default Cards;
