@@ -11,6 +11,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/wp-templates/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/wp-blocks/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -59,11 +60,12 @@ const config: Config = {
           green: "#179C6F",
           yellow: "#F7CC5F",
         },
+        "eerie-black": "#0F1424",
       },
       height: {
         screen: [
           "100vh /* fallback for Opera, IE and etc. */",
-          "100dvh",
+          "100svh",
         ] as unknown as string,
       },
     },
@@ -71,10 +73,10 @@ const config: Config = {
   plugins: [
     require("@tailwindcss/container-queries"),
     require("@tailwindcss/typography"),
-    plugin(function ({matchUtilities}: any) {
+    plugin(function ({matchUtilities}) {
       matchUtilities(
         {
-          "min-max": (value: any) => {
+          "min-max": (value) => {
             const arr = value.split(" ");
             if (arr.length !== 2 && arr.length !== 4) return null;
 
@@ -112,15 +114,22 @@ const config: Config = {
           width: "100%",
           marginLeft: "auto",
           marginRight: "auto",
-          paddingLeft: "1.5rem",
-          paddingRight: "1.5rem",
+          paddingLeft: "1.25rem",
+          paddingRight: "1.25rem",
           maxWidth: "1920px",
+          "@screen xl": {
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
+          },
         },
         ".heading-2": {
           fontSize: "40px",
           fontWeight: "700",
           lineHeight: "140%",
           letterSpacing: "-0.01em",
+          "@screen lg": {
+            fontSize: "48px",
+          },
           "@screen xl": {
             fontSize: "64px",
           },

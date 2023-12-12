@@ -1,5 +1,10 @@
 fragment HeroBlock on Hero_Fields {
   title
+  backgroundImage{
+    node{
+      ...MediaItem
+    }
+  }
   description
   button {
     ...AcfLink

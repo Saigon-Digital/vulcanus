@@ -1,9 +1,15 @@
 import blocks, {Block} from ".";
 import BlockWrapper from "./BlockWrapper";
 
-type BlockViewerProps = {
+export type BlockViewerProps = {
   dynamicBlocks: Array<Block | null | undefined> | null | undefined;
-  customRenderers?: Map<Block["__typename"], (props: Block) => JSX.Element>;
+  customRenderers?: Map<
+    Block["__typename"],
+    {
+      render: (props: Block) => JSX.Element;
+      skipWrapper?: boolean;
+    }
+  >;
 };
 
 function BlockViewer({dynamicBlocks, customRenderers}: BlockViewerProps) {
@@ -14,14 +20,14 @@ function BlockViewer({dynamicBlocks, customRenderers}: BlockViewerProps) {
           return null;
         }
         const customRenderer = customRenderers?.get(block.__typename);
-        const Component = blocks.get(block.__typename);
+        const Component = blocks?.get(block.__typename);
         return (
           <BlockWrapper
             key={`${block.__typename}_${index}`}
             data-block-type={block?.__typename}
             blockSettings={block?.blockSettings}>
             {customRenderer ? (
-              customRenderer(block)
+              customRenderer.render(block)
             ) : Component ? (
               <Component {...block} />
             ) : null}

@@ -3,8 +3,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="container-fluid">
-      <footer className="relative rounded-md">
+    <footer className="container-fluid">
+      <div className="relative rounded-md">
         <div className="relative grid grid-cols-12 rounded-md bg-primary-midBlue-main">
           <Image
             src="/images/footer-shape.svg"
@@ -86,8 +86,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
   );
 };
 
