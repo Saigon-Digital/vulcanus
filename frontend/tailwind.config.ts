@@ -60,7 +60,7 @@ const config: Config = {
           green: "#179C6F",
           yellow: "#F7CC5F",
         },
-        "eerie-black": "#140F24",
+        "eerie-black": "#0F1424",
       },
       height: {
         screen: [

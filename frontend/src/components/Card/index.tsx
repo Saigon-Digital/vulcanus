@@ -12,9 +12,9 @@ const Card: React.FC<Props> = ({
   title,
   description = "",
   className,
+  link,
   ...props
 }) => {
-  console.log("props", props);
   return (
     <div
       className={twMerge(
@@ -39,9 +39,9 @@ const Card: React.FC<Props> = ({
           title={description || ""}>
           {description}
         </p>
-        {props?.link?.url && props?.link?.title ? (
+        {link?.url && link?.title ? (
           <Link
-            {...getAcfLinkProps(props?.link)}
+            {...getAcfLinkProps(link)}
             className="inline-flex items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white">
             Read more
             <ArrowRight className="h-[22px] w-[22px] shrink-0 [&_path]:text-primary-blue-main [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:text-secondary-offWhite-white" />
