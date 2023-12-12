@@ -1,8 +1,10 @@
-import React, {PropsWithChildren} from "react";
-import Footer from "../Footer";
 import clsx from "clsx";
+import {PropsWithChildren} from "react";
+import Footer from "../Footer";
 
 import {Overpass} from "next/font/google";
+import Header from "../Header";
+import {MenuItemsQuery} from "@/__generated__/graphql";
 
 const overpass = Overpass({
   subsets: ["latin"],
@@ -10,12 +12,18 @@ const overpass = Overpass({
   variable: "--font-overpass",
 });
 
-const Layout = ({children}: PropsWithChildren) => {
+type Props = PropsWithChildren & {
+  headerMenu: MenuItemsQuery;
+  footerMenu: MenuItemsQuery;
+};
+
+const Layout = ({children, headerMenu, footerMenu}: Props) => {
   return (
-    <main className={clsx(overpass.variable, "overflow-x-clip")}>
-      {children}
-      <Footer />
-    </main>
+    <div className={clsx(overpass.variable, "overflow-x-clip")}>
+      <Header menuItems={headerMenu?.menuItems} />
+      <main>{children}</main>
+      <Footer menuItems={footerMenu?.menuItems} />
+    </div>
   );
 };
 

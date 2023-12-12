@@ -10,8 +10,11 @@ export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
   return (
     <FaustProvider pageProps={pageProps}>
-      <Layout>
-        <Component {...pageProps} key={router.asPath} />
+      <Layout
+        headerMenu={pageProps?.headerMenu}
+        footerMenu={pageProps?.footerMenu}
+        key={`${router.asPath}-${router.locale}`}>
+        <Component {...pageProps} key={`${router.asPath}-${router.locale}`} />
       </Layout>
     </FaustProvider>
   );

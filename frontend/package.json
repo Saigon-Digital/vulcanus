@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm run generate && concurrently \"faust dev\" \"pnpm run watch-codegen\"",
+    "dev:faust": "faust dev",
     "build": "pnpm run generate && pnpm run codegen && faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",
