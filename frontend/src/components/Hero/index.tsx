@@ -12,6 +12,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
           <Image
             fill
             src="/shapes/hero-shape.png"
+            sizes="(max-width: 1920px) 5vw, 100.52px"
             alt="Hero Shape"
             className="object-cover object-center"
           />
@@ -19,6 +20,8 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
 
         <Image
           fill
+          priority
+          sizes="(max-width: 1920px) 98vw, 1872px"
           src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
           alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
           className="z-0 object-cover object-center"></Image>
