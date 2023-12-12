@@ -5,7 +5,7 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
   return (
     <div className="container-fluid">
       <h3 className="title-xl mb-14">{props?.title}</h3>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {props?.cards?.map((card, id) => {
           return (
             <Card

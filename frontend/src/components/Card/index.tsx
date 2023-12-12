@@ -18,7 +18,7 @@ const Card: React.FC<CardsBlockCards_Fields & TCard> = ({
 }) => {
   return (
     <div
-      className={`group relative flex w-full cursor-pointer  flex-col justify-between rounded-sm border border-primary-blue-main p-6 
+      className={`group relative  flex w-full cursor-pointer  flex-col justify-between rounded-sm border border-primary-blue-main p-6 
     text-left hover:bg-primary-midBlue-main ${className}
     `}>
       <CardShape
