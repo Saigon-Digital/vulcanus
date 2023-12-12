@@ -1,7 +1,12 @@
+import {MenuItemsQuery} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
 
-const Footer = () => {
+type Props = {
+  menuItems: MenuItemsQuery["menuItems"];
+};
+
+const Footer = (props: Props) => {
   return (
     <footer className="container-fluid">
       <div className="relative rounded-md">
