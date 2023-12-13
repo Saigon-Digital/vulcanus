@@ -2,6 +2,10 @@ fragment PageBuilder on PageBuilder {
   dynamicBlocks {
     ...HeroBlock
     ...CardsBlock
+
+    ...Service_block
+
     ...TitleTextBlock
+
   }
 }

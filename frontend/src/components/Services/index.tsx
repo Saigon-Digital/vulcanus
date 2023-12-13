@@ -4,11 +4,11 @@ import Image from "next/image";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
+import {ServiceComponent} from "@/__generated__/graphql";
 import Gear from "./images/gear.svg";
 type TService = {
-  cards?: any[];
   featureImage?: {image: string | StaticImport}[];
-};
+} & ServiceComponent;
 
 const cardData: any[] = [
   {
@@ -39,25 +39,26 @@ const images = [
     image: img2,
   },
 ];
-const Service: React.FC<TService> = ({
-  cards = cardData,
-  featureImage = images,
-}) => {
+const Service: React.FC<TService> = ({services, featureImage = images}) => {
   return (
     <div className="container-fluid py-20">
       <h3 className="mb-14 text-3xl font-bold lg:text-6xl lg:leading-[84px] xl:text-[64px]">
         Our services
       </h3>
       <div className="relative grid h-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:min-h-[400px] xl:grid-cols-4 ">
-        {cards.map((ele, index) => {
-          return (
-            <Card
-              key={index}
-              {...ele}
-              className={`col-span-1 ${index == 1 ? "xl:col-start-3" : ""}`}
-            />
-          );
-        })}
+        {services &&
+          services.map((ele, index) => {
+            return (
+              <Card
+                key={index}
+                title={ele?.title || ""}
+                description={ele?.description || ""}
+                link={ele?.link}
+                hoverImage={ele?.featuredImage?.node?.sourceUrl || undefined}
+                className={`col-span-1 ${index == 1 ? "xl:col-start-3" : ""}`}
+              />
+            );
+          })}
         <Gear
           className="absolute left-1/4 top-[200px]"
           width={300}

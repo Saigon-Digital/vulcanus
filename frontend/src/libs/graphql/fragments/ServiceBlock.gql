@@ -1,0 +1,15 @@
+fragment Service_block on PageBuilderDynamicBlocksServiceBlock {
+  fieldGroupName
+  services {
+    title
+    description
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    link {
+      ...AcfLink
+    }
+  }
+}
