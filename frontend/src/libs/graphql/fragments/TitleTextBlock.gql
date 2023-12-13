@@ -1,0 +1,17 @@
+fragment TitleTextBlock on PageBuilderDynamicBlocksTitleTextBlock {
+  fieldGroupName
+  title
+  content {
+    descriptionTitle
+    contents {
+      content
+      fieldGroupName
+    }
+  }
+  cta {
+    ctaText
+    link {
+      url
+    }
+  }
+}
