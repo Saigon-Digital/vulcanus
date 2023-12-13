@@ -3,7 +3,7 @@
 @tailwind utilities;
 :root {
   --header-height: 88px;
-  --heading-py: 16px;
+  --header-py: 16px;
 }
 body {
   @apply scroll-smooth bg-primary-black-background text-secondary-offWhite-white;
