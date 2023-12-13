@@ -1,14 +1,12 @@
 import React, {ReactNode} from "react";
 import Button from "../Button";
+import {TitleTextBlock_Fields} from "@/__generated__/graphql";
+
+// import Button from "../Button";
 type TProps = {
-  title?: string;
-  content?: {
-    contentTitle?: string;
-    contentBody?: string[];
-  };
   extraGraphic?: ReactNode;
-  cta?: {text?: string; link?: string};
-};
+} & TitleTextBlock_Fields;
+
 let contentData = {
   contentTitle:
     "At Vulcanus we are committed, to pushing the limits of innovation through our Research and Development (R&D) initiative. ",
@@ -17,12 +15,14 @@ let contentData = {
     "Our dedicated R&D team works tirelessly to create state of the art processes guaranteeing that Vulcanus continues to excel in precision engineering.",
   ],
 };
-const HalfPageCotent = ({
+const HalfPageContent: React.FC<TProps> = ({
   title = "Research & Developement",
-  content = contentData,
+  content,
   extraGraphic,
   cta,
-}: TProps) => {
+}) => {
+  console.log(cta);
+
   return (
     <div className="container-fluid my-14">
       <div className="relative flex flex-wrap">
@@ -31,19 +31,26 @@ const HalfPageCotent = ({
           <h4 className="text-2xl font-bold">{title}</h4>
         </div>
         <div className="w-full md:w-1/2">
-          {content && (
+          {content?.contents && (
             <>
-              <h4 className="text-2xl md:text-3xl">{content.contentTitle}</h4>
+              <h4 className="text-2xl md:text-3xl">
+                {content?.descriptionTitle}
+              </h4>
               <div className="mt-6 flex flex-wrap justify-between xl:mt-8">
-                {content.contentBody?.map((ele, id) => {
+                {content?.contents?.map((ele, id) => {
                   return (
                     <p
                       key={id}
                       className="w-full text-lg font-light md:w-[calc(50%-20px)]">
-                      {ele}
+                      {ele?.content as string}
                     </p>
                   );
                 })}
+                {cta && (
+                  <Button href={(cta?.link?.url as string) || ""}>
+                    {cta.ctaText}
+                  </Button>
+                )}
               </div>
             </>
           )}
@@ -54,4 +61,4 @@ const HalfPageCotent = ({
   );
 };
 
-export default HalfPageCotent;
+export default HalfPageContent;

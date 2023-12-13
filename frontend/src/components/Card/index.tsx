@@ -1,10 +1,10 @@
-import {CardsBlockCards_Fields} from "@/__generated__/graphql";
 import {getAcfLinkProps, getUrlPathname} from "@/utils";
 import Link from "next/link";
 import ArrowRight from "public/icons/arrow-right.svg";
 import React from "react";
 import {twMerge} from "tailwind-merge";
 import CardShape from "./images/card-shape.svg";
+import {CardsBlockCards_Fields} from "@/__generated__/graphql";
 
 type Props = CardsBlockCards_Fields & React.HTMLAttributes<HTMLDivElement>;
 
