@@ -6,5 +6,6 @@ fragment PageBuilder on PageBuilder {
     ...Service_block
 
     ...TitleTextBlock
+    ...TitleBlock
   }
 }

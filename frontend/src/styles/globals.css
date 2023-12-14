@@ -15,3 +15,7 @@ body {
 .title-xl {
   @apply text-4xl font-bold lg:text-5xl 3xl:text-[64px] 3xl:leading-[84px];
 }
+
+.title-block strong {
+  @apply text-primary-blue-main;
+}
