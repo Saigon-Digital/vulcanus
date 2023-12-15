@@ -1,0 +1,12 @@
+fragment Team_Block on PageBuilderDynamicBlocksTeamBlock {
+  title
+  teamMembers {
+    image {
+      node {
+        sourceUrl
+      }
+    }
+    name
+    role
+  }
+}

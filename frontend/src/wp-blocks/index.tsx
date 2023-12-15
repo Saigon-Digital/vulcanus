@@ -4,11 +4,11 @@ import {
 } from "@/__generated__/graphql";
 import Cards from "@/components/Cards";
 import Hero from "@/components/Hero";
-
+import Team from "@/components/Team";
 import Service from "@/components/Services";
 
 import HalfPageContent from "@/components/HalfPageContent";
-
+import TitleBlock from "@/components/TitleBlock";
 
 export type Blocks = Exclude<
   PageBuilderFragment["dynamicBlocks"],
@@ -23,8 +23,8 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksCardsBlock", Cards],
 
   ["PageBuilderDynamicBlocksServiceBlock", Service],
-
   ["PageBuilderDynamicBlocksTitleTextBlock", HalfPageContent],
-
+  ["PageBuilderDynamicBlocksTeamBlock", Team],
+  ["PageBuilderDynamicBlocksTitleBlock", TitleBlock],
 ]);
 export default blocks;

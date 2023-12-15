@@ -4,7 +4,7 @@ import ArrowRight from "public/icons/arrow-right.svg";
 import React from "react";
 import {twMerge} from "tailwind-merge";
 import CardShape from "./images/card-shape.svg";
-
+import {CardsBlockCards_Fields} from "@/__generated__/graphql";
 // import {Url} from "next/dist/shared/lib/router/router";
 import Image from "next/image";
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
@@ -12,7 +12,6 @@ type Props = {
   hoverImage?: string | StaticImport | undefined;
 } & CardsBlockCards_Fields &
   React.HTMLAttributes<HTMLDivElement>;
-
 
 const Card: React.FC<Props> = ({
   title,
