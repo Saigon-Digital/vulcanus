@@ -9,6 +9,7 @@ import Service from "@/components/Services";
 
 import HalfPageContent from "@/components/HalfPageContent";
 import TitleBlock from "@/components/TitleBlock";
+import PageBanner from "@/components/PageBanner";
 
 export type Blocks = Exclude<
   PageBuilderFragment["dynamicBlocks"],
@@ -26,5 +27,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksTitleTextBlock", HalfPageContent],
   ["PageBuilderDynamicBlocksTeamBlock", Team],
   ["PageBuilderDynamicBlocksTitleBlock", TitleBlock],
+  ["PageBuilderDynamicBlocksPageBannerBlock", PageBanner],
 ]);
 export default blocks;
