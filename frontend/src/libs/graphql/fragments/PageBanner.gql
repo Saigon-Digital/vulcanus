@@ -1,0 +1,9 @@
+fragment PageBanner on PageBuilderDynamicBlocksPageBannerBlock {
+  description
+  title
+  image {
+    node {
+      sourceUrl
+    }
+  }
+}
