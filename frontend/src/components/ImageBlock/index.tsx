@@ -1,13 +1,13 @@
 import Image from "next/image";
 import React from "react";
-
-const ImageBlock = () => {
+import {type ImageBlock} from "@/__generated__/graphql";
+const ImageBlock: React.FC<ImageBlock> = (props) => {
   return (
     <div className="container-fluid">
-      <div className="relative min-h-[60vh] lg:min-h-[80vh]">
+      <div className="relative min-h-[400px] lg:min-h-[686px]">
         <Image
           fill
-          src="/images/image-large.png"
+          src={props.image?.node?.sourceUrl || "/images/image-large.png"}
           alt="image"
           className="object-cover"
         />

@@ -6,7 +6,7 @@ import Cards from "@/components/Cards";
 import Hero from "@/components/Hero";
 import Team from "@/components/Team";
 import Service from "@/components/Services";
-
+import ImageBlock from "@/components/ImageBlock";
 import HalfPageContent from "@/components/HalfPageContent";
 import TitleBlock from "@/components/TitleBlock";
 import PageBanner from "@/components/PageBanner";
@@ -28,5 +28,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksTeamBlock", Team],
   ["PageBuilderDynamicBlocksTitleBlock", TitleBlock],
   ["PageBuilderDynamicBlocksPageBannerBlock", PageBanner],
+  ["PageBuilderDynamicBlocksImageBlock", ImageBlock],
 ]);
 export default blocks;
