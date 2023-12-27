@@ -1,0 +1,16 @@
+fragment ImageTextBlock on PageBuilderDynamicBlocksImageText {
+  fieldGroupName
+  leftImage {
+    node {
+      sourceUrl
+    }
+  }
+  rightImage {
+    node {
+      sourceUrl
+    }
+  }
+  textRepeater {
+    text
+  }
+}

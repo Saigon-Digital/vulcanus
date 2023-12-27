@@ -10,7 +10,7 @@ import ImageBlock from "@/components/ImageBlock";
 import HalfPageContent from "@/components/HalfPageContent";
 import TitleBlock from "@/components/TitleBlock";
 import PageBanner from "@/components/PageBanner";
-
+import ImageTextBlock from "@/components/ImageTextBlock";
 export type Blocks = Exclude<
   PageBuilderFragment["dynamicBlocks"],
   null | undefined
@@ -29,5 +29,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksTitleBlock", TitleBlock],
   ["PageBuilderDynamicBlocksPageBannerBlock", PageBanner],
   ["PageBuilderDynamicBlocksImageBlock", ImageBlock],
+  ["PageBuilderDynamicBlocksImageText", ImageTextBlock],
 ]);
 export default blocks;
