@@ -31,7 +31,7 @@ const ImageText: React.FC<ImageTextBlock> = ({
         <div className="col-span-full flex gap-5 md:col-span-2 md:col-start-3">
           {textRepeater &&
             textRepeater.slice(1, textRepeater.length).map((ele, id) => {
-              return <p>{ele?.text}</p>;
+              return <p key={id}>{ele?.text}</p>;
             })}
         </div>
       </div>
