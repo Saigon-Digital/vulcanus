@@ -20,7 +20,7 @@ const ImageText: React.FC<ImageTextBlock> = ({
             className="object-cover"
           />
         </div>
-        <div className="relative col-span-full h-[360px] sm:col-span-2 md:col-span-2 md:col-start-3 ">
+        <div className="relative col-span-full h-[360px]  md:col-span-2 md:col-start-3 ">
           <Image
             src={rightImage?.node?.sourceUrl || ""}
             fill
