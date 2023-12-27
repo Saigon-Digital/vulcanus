@@ -1,0 +1,9 @@
+fragment ImageBlock on PageBuilderDynamicBlocksImageBlock {
+  __typename
+  fieldGroupName
+  image {
+    node {
+      sourceUrl
+    }
+  }
+}

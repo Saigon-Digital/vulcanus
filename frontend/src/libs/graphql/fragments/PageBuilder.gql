@@ -8,5 +8,7 @@ fragment PageBuilder on PageBuilder {
     ...TitleTextBlock
     ...TitleBlock
     ...PageBanner
+    ...ImageBlock
+    ...ImageTextBlock
   }
 }
