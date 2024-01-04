@@ -1,0 +1,13 @@
+fragment CompanyHistory on PageBuilderDynamicBlocksCompanyHistoryBlock {
+  fieldGroupName
+  title
+  histories {
+    description
+    year
+    mainImage {
+      node {
+        sourceUrl
+      }
+    }
+  }
+}
