@@ -1,0 +1,23 @@
+fragment IconsBlock on PageBuilderDynamicBlocksIconsBlock {
+  description
+  header
+  preHeader
+  fieldGroupName
+  ctaLink {
+    ctaText
+    ctaLink {
+      nodes {
+        uri
+      }
+    }
+  }
+  icons {
+    iconDescription
+    iconTitle
+    iconImage {
+      node {
+        sourceUrl
+      }
+    }
+  }
+}

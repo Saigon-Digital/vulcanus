@@ -1,0 +1,15 @@
+fragment Gallery on PageBuilderDynamicBlocksGalleryBlock {
+  fieldGroupName
+  title
+  gallery {
+    imageTitle
+
+    galleryImage {
+      node {
+        sourceUrl
+      }
+    }
+    textOrImge
+    richText
+  }
+}

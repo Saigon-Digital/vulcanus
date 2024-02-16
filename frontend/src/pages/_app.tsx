@@ -8,6 +8,7 @@ import "swiper/css";
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
+
   return (
     <FaustProvider pageProps={pageProps}>
       <Layout
