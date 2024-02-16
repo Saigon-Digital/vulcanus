@@ -3,6 +3,8 @@ import {WordPressTemplateProps} from "@/types";
 import {WordPressTemplate, getWordPressProps} from "@faustwp/core";
 import {GetStaticPaths, GetStaticProps} from "next";
 export default function Page(props: WordPressTemplateProps) {
+  console.log(props);
+
   return <WordPressTemplate {...props} />;
 }
 
