@@ -28,3 +28,8 @@ body {
 .history .swiper .swiper-wrapper {
   height: 350px;
 }
+
+.career .description strong {
+  color:#F7CC5F;
+  font-weight: 600;
+}

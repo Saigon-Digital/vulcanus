@@ -1,0 +1,11 @@
+fragment CareerBlock on PageBuilderDynamicBlocksCareersBlock {
+  description
+  fieldGroupName
+  title
+
+  careers {
+    careerDescription
+    location
+    title
+  }
+}
