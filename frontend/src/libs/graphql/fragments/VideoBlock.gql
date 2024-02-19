@@ -1,0 +1,6 @@
+fragment VideoBlock on PageBuilderDynamicBlocksVideoBlock {
+  fieldGroupName
+  videoLink {
+    url
+  }
+}

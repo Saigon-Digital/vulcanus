@@ -15,7 +15,7 @@ import CompanyHistory from "@/components/CompanyHistory";
 
 import Gallery from "@/components/Gallery/index";
 import IconsBlock from "@/components/IconsBlock";
-
+import Video from "@/components/Video";
 import CareersBlock from "@/components/CareersBlock";
 
 export type Blocks = Exclude<
@@ -43,6 +43,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksIconsBlock", IconsBlock],
 
   ["PageBuilderDynamicBlocksCareersBlock", CareersBlock],
-
+  ["PageBuilderDynamicBlocksVideoBlock", Video],
 ]);
 export default blocks;
