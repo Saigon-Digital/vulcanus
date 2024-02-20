@@ -4,7 +4,7 @@ import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
 import Image from "next/image";
 const Gallery = ({title, gallery}: GalleryBlock) => {
-  console.log(gallery);
+  console.log("gallery", gallery);
 
   return (
     <div className="py-20 lg:py-28">

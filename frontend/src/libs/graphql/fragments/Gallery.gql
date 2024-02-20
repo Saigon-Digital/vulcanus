@@ -1,4 +1,4 @@
-fragment Gallery on PageBuilderDynamicBlocksGalleryBlock {
+fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlock {
   fieldGroupName
   title
   gallery {

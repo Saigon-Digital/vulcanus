@@ -11,10 +11,9 @@ fragment PageBuilder on PageBuilder {
     ...ImageBlock
     ...ImageTextBlock
     ...CompanyHistory
-
+    ...GalleryBlock
     ...IconsBlock
 
     ...CareerBlock
-
   }
 }
