@@ -3,6 +3,7 @@ import React from "react";
 import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
 import Image from "next/image";
+import parse from "html-react-parser";
 const Gallery = ({title, gallery}: GalleryBlock) => {
   console.log("gallery", gallery);
 
@@ -29,20 +30,28 @@ const Gallery = ({title, gallery}: GalleryBlock) => {
                 className={clsx(
                   "col-span-full flex flex-col gap-3 border border-primary-blue-main p-3 sm:col-span-2 xl:p-5 ",
                   id === 1 || id === 2 ? "lg:col-span-3" : "lg:col-span-1",
-                  id === 2 && gallery.length < 4 ? "lg:col-span-full" : ""
+                  id === 2 && gallery.length < 4 ? "lg:col-span-full" : "",
+                  ele?.textOrImge === "text" &&
+                    "border-none bg-primary-blue-100 text-primary-midBlue-main"
                 )}>
-                <div className="relative h-[200px] w-full lg:h-[300px]">
-                  <Image
-                    fill
-                    src={ele?.galleryImage?.node?.sourceUrl || ""}
-                    className="object-cover"
-                    alt="gallery image"
-                  />
-                </div>
-                <span className="text-2xl text-primary-blue-main">
-                  0{id + 1}
-                </span>
-                <p>{ele?.imageTitle}</p>
+                {ele?.textOrImge === "image" ? (
+                  <>
+                    <div className="relative h-[200px] w-full lg:h-[300px]">
+                      <Image
+                        fill
+                        src={ele?.galleryImage?.node?.sourceUrl || ""}
+                        className="object-cover"
+                        alt="gallery image"
+                      />
+                    </div>
+                    <span className="text-2xl text-primary-blue-main">
+                      0{id + 1}
+                    </span>
+                    <p>{ele?.imageTitle}</p>
+                  </>
+                ) : (
+                  <div>{parse(ele?.richText || "")}</div>
+                )}
               </div>
             );
           })}
