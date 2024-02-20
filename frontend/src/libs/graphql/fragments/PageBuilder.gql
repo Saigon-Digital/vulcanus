@@ -13,8 +13,7 @@ fragment PageBuilder on PageBuilder {
     ...CompanyHistory
 
     ...IconsBlock
-
+    ...VideoBlock
     ...CareerBlock
-
   }
 }
