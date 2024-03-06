@@ -1,0 +1,14 @@
+fragment ChecklistBlock on PageBuilderDynamicBlocksChecklistBlock {
+  fieldGroupName
+  header
+  preHeader
+  cta {
+    ctaText
+    ctaLink {
+      url
+    }
+  }
+  checklist {
+    item
+  }
+}

@@ -1,0 +1,21 @@
+fragment ImageContent on PageBuilderDynamicBlocksImageContent {
+  fieldGroupName
+  reverse
+  image {
+    node {
+      sourceUrl
+    }
+  }
+  content {
+    description
+    icons {
+      text
+      icon {
+        node {
+          sourceUrl
+        }
+      }
+    }
+    title
+  }
+}

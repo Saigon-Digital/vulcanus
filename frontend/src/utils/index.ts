@@ -9,7 +9,7 @@ export function getUrlPathname(url: string | undefined) {
   }
 }
 
-export function getAcfLinkProps(link?: Maybe<AcfLink>) {
+export function getAcfLinkProps(link?: Maybe<AcfLink >) {
   return {
     href: getUrlPathname(link?.url || ""),
     target: link?.target || "_self",

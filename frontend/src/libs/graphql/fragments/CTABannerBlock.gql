@@ -1,0 +1,17 @@
+fragment CTABannerBlock on PageBuilderDynamicBlocksCtaBannerBlock {
+  bgColor
+  fieldGroupName
+  cta {
+    ctaText
+    cta {
+      url
+      target
+    }
+  }
+  title
+  bannerImage {
+    node {
+      sourceUrl
+    }
+  }
+}

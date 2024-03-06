@@ -15,5 +15,9 @@ fragment PageBuilder on PageBuilder {
     ...IconsBlock
     ...VideoBlock
     ...CareerBlock
+    ...ChecklistBlock
+    ...CTABannerBlock
+    ...ImageContent
+    ...CenterTitleText
   }
 }
