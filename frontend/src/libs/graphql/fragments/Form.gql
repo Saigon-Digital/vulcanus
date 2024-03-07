@@ -1,0 +1,21 @@
+fragment FormBlock on PageBuilderDynamicBlocksForm {
+  fieldGroupName
+  form {
+    copyrightText
+    formTitle
+  }
+  contactInformation {
+    email
+    fieldGroupName
+    phoneNumber
+    location {
+      locationInformation
+      fieldGroupName
+      locationLink {
+        url
+        target
+        title
+      }
+    }
+  }
+}
