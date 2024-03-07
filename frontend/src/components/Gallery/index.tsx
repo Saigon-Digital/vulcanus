@@ -5,8 +5,6 @@ import clsx from "clsx";
 import Image from "next/image";
 import parse from "html-react-parser";
 const Gallery = ({title, gallery}: GalleryBlock) => {
-  console.log("gallery", gallery);
-
   return (
     <div className="py-20 lg:py-28">
       <div className="container-fluid grid grid-cols-12 gap-5 lg:gap-6">

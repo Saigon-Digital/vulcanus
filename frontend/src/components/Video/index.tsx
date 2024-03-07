@@ -2,8 +2,6 @@ import React from "react";
 import {VideoBlock} from "@/__generated__/graphql";
 import ReactPlayer from "react-player";
 const index: React.FC<VideoBlock> = (props) => {
-  console.log("video", props);
-
   return (
     <div className="container-fluid py-20">
       <ReactPlayer
