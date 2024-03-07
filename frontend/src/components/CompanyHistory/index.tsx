@@ -6,7 +6,7 @@ import {Pagination} from "swiper/modules";
 // import "./index.scss";
 const CompanyHistory = (props: CompanyHistoryBlock) => {
   const [activeYear, setActiveYear] = useState(2018);
-  console.log(props);
+
   const getActive = (year: number) => {
     return props.histories?.find((ele) => ele?.year === year);
   };

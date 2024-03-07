@@ -21,8 +21,6 @@ const HalfPageContent: React.FC<TProps> = ({
   extraGraphic,
   cta,
 }) => {
-  console.log(cta);
-
   return (
     <div className="container-fluid my-14">
       <div className="relative flex flex-wrap">
