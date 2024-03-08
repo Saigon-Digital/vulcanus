@@ -34,6 +34,14 @@ async function getMenuItems(location: MenuLocationEnum) {
   });
 }
 
+// async function getBlogListing () {
+//   return await client.query({
+//     query:gql`
+//     `
+//   })
+// }
+
+
 export async function getGlobalSiteData(locale: string | undefined) {
   const menuLocation = menuLocations[(locale as "de" | "en") || "de"];
   const headerMenu = await getMenuItems(menuLocation.header);

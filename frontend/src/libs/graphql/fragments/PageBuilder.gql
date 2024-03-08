@@ -20,5 +20,6 @@ fragment PageBuilder on PageBuilder {
     ...ImageContent
     ...CenterTitleText
     ...FormBlock
+    ...blogsBlock
   }
 }

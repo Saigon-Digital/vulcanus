@@ -1,0 +1,4 @@
+fragment blogsBlock on PageBuilderDynamicBlocksBlogs {
+  fieldGroupName
+  tittle
+}
