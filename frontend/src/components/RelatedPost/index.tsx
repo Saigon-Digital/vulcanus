@@ -24,8 +24,8 @@ const RelatedPosts = ({posts}: Props) => {
               <p className="text-lg uppercase">Manufacturing</p>
               <h4 className="text-2xl">{ele.title}</h4>
               <p>
-                Discover the technological prowess behind Vulcanus Company's CNC
-                manufacturing. Learn about their state-of-the-art equipment,
+                Discover the technological prowess behind Vulcanus Company&apos;
+                CNC manufacturing. Learn about their state-of-the-art equipment,
                 their capacity for large-scale productions, and the diverse
                 materials they expertly handle.
               </p>
