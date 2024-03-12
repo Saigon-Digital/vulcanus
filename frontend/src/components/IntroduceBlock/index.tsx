@@ -41,7 +41,7 @@ const IntroduceBlock = (props: Props) => {
   };
   return (
     <section className="container-block introduce-block py-28 ">
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 gap-y-10 px-5">
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
           <p>Introduce</p>
           {pages.length > 0 && (
@@ -63,7 +63,7 @@ const IntroduceBlock = (props: Props) => {
             </ul>
           )}
         </div>
-        <div className="content col-span-full md:col-span-5">
+        <div className="content col-span-full md:col-span-7 lg:col-span-5">
           {props.content && parse(props.content || "")}
         </div>
       </div>
