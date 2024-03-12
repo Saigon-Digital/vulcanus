@@ -1,0 +1,20 @@
+fragment PostFragment on Post {
+  author {
+    node {
+      avatar {
+        url
+      }
+      name
+      registeredDate
+    }
+  }
+  dateGmt
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+  content
+  title
+  slug
+}

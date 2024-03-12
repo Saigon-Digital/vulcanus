@@ -1,7 +1,7 @@
 import {MenuItemsQuery} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
-
+import Link from "next/link";
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
 };
@@ -109,6 +109,13 @@ const Footer = (props: Props) => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="flex w-full justify-between py-4">
+          <p>© Copyrights {new Date().getFullYear()}. All rights reserved.</p>
+          <p>
+            Powered by{" "}
+            <Link href="https://saigon.digital/">saigon.digital</Link>{" "}
+          </p>
         </div>
       </div>
     </footer>

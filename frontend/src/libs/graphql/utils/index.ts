@@ -14,6 +14,7 @@ const menuLocations = {
   },
 };
 
+
 const client = createApolloClient();
 
 async function getMenuItems(location: MenuLocationEnum) {
