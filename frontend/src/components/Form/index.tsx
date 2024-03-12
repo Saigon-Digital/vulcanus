@@ -4,8 +4,6 @@ import {PhoneIcon, MailIcon, LocationIcon} from "../Icons";
 import parse from "html-react-parser";
 import Button from "../Button";
 const Form = ({contactInformation, form}: TForm) => {
-  console.log(contactInformation);
-
   return (
     <div className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
       <div className="grid grid-cols-12">
