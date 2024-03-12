@@ -2,7 +2,7 @@
 import { gql } from "@apollo/client";
 import {MenuLocationEnum, PostFragmentFragment} from "@/__generated__/graphql";
 import {createApolloClient} from "@faustwp/core/dist/cjs/client";
-
+import { LanguageCodeEnum } from "@/__generated__/graphql";
 const menuLocations = {
   de: {
     header: MenuLocationEnum.Header,
@@ -13,6 +13,7 @@ const menuLocations = {
     footer: MenuLocationEnum.FooterEn,
   },
 };
+
 
 const client = createApolloClient();
 
@@ -34,6 +35,31 @@ async function getMenuItems(location: MenuLocationEnum) {
     },
   });
 }
+
+export async function getPageType (language: LanguageCodeEnum) {
+  return await client.query({
+    query:gql(`
+    query GetPageType($language:LanguageCodeFilterEnum!) {
+      pages(where: {language: $language}) {
+        nodes {
+          uri
+          pageType {
+            nodes {
+              name
+            }
+          }
+          title
+          slug
+          
+        }
+      }
+    }
+    `),variables:{
+      language
+    }
+  })
+}
+
 
 export async function getAllPost () {
   return await client.query({
