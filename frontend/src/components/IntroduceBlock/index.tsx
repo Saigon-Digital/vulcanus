@@ -15,7 +15,7 @@ type Props = {
 };
 
 const IntroduceBlock = (props: Props) => {
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState<any[]>([]);
 
   useEffect(() => {
     getPagesTypeAsync();
@@ -25,17 +25,28 @@ const IntroduceBlock = (props: Props) => {
     const {data} = await getPageType(props.language);
     if (!data.pages) return;
 
-    const introducePages = data.pages?.nodes?.filter((ele: any) => {
-      //   console.log(ele);
+    let introducePages: any[] = [];
+    const nodes = data.pages?.nodes;
+    for (let index = 0; index < nodes.length; index++) {
+      const ele = nodes[index];
       const {pageType} = ele;
       //   console.log(pageType.nodes);
-      if (pageType.nodes.length > 0)
-        return (
-          pageType?.nodes?.find((ele: any) => ele.name === INTRODUCE_PAGE) !==
-          undefined
-        );
-      return false;
-    });
+      if (pageType.nodes.length > 0) {
+        if (
+          pageType?.nodes?.findIndex(
+            (ele: any) => ele.name === INTRODUCE_PAGE
+          ) !== -1
+        ) {
+          introducePages.push(ele);
+        }
+      }
+    }
+    // data.pages?.nodes?.forEach((ele: any) => {
+    //   //   console.log(ele);
+
+    //   return;
+    // });
+    // console.log(introducePages);
 
     setPages(introducePages);
   };

@@ -12,7 +12,6 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   if (props.loading) {
     return <>Loading...</>;
   }
-  console.log(props);
 
   const dynamicBlocks =
     props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
@@ -24,6 +23,8 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
     props.data?.page?.translation?.pageType?.nodes.findIndex(
       (ele) => ele.name === INTRODUCE_PAGE
     ) !== -1;
+  console.log(introducePage);
+
   if (introducePage)
     return (
       <>
