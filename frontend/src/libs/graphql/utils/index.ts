@@ -1,8 +1,9 @@
 // import {gql} from "@/__generated__";
 import { gql } from "@apollo/client";
-import {MenuLocationEnum, PostFragmentFragment} from "@/__generated__/graphql";
+
+import {LanguageCodeFilterEnum, MenuLocationEnum,LanguageCodeEnum,PostFragmentFragment} from "@/__generated__/graphql";
 import {createApolloClient} from "@faustwp/core/dist/cjs/client";
-import { LanguageCodeEnum } from "@/__generated__/graphql";
+// import { LanguageCodeEnum } from "@/__generated__/graphql";
 const menuLocations = {
   de: {
     header: MenuLocationEnum.Header,
@@ -58,6 +59,33 @@ export async function getPageType (language: LanguageCodeEnum) {
       language
     }
   })
+}
+
+
+export async function getPostThumb (language:LanguageCodeFilterEnum) {
+  return await client.query({
+    query:gql`
+    query GetPostsThumb($language:LanguageCodeFilterEnum!) {
+      posts (where: {language: $language}) {
+        nodes {
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          title
+          slug
+          blogDescription {
+            blogDescription
+          }
+        }
+      }
+    }
+    `,
+    variables:{
+      language:language.toLocaleUpperCase()
+    }
+  },)
 }
 
 
