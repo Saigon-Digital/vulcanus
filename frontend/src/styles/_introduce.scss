@@ -1,0 +1,19 @@
+.introduce-block {
+    .content {
+    h1 {
+        @apply text-3xl text-primary-blue-main mb-6;
+    }        
+    h2,h3,h4 ,h5{
+        @apply text-[#F7CC5F] text-2xl font-semibold mb-5 mt-2; 
+    }
+    p {
+        @apply mb-3;
+    }
+    strong {
+        @apply text-lg font-semibold;
+    }
+    hr {
+        @apply mb-5;
+    }
+}
+}
