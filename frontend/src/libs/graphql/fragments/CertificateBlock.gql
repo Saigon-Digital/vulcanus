@@ -1,0 +1,11 @@
+fragment CertificateBlock on PageBuilderDynamicBlocksCertificateBlock {
+  fieldGroupName
+  title
+  certificates {
+    certificate {
+      node {
+        sourceUrl
+      }
+    }
+  }
+}
