@@ -23,6 +23,7 @@ import ImageContent from "@/components/ImageContent";
 import CenterTitleText from "@/components/CenterTitleText";
 import Form from "@/components/Form";
 import BlogsBlock from "@/components/BlogsBlock";
+import CertificateBlock from "@/components/CertificateBlock";
 
 export type Blocks = Exclude<
   PageBuilderFragment["dynamicBlocks"],
@@ -56,5 +57,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksCenterTitleText", CenterTitleText],
   ["PageBuilderDynamicBlocksForm", Form],
   ["PageBuilderDynamicBlocksBlogs", BlogsBlock],
+  ["PageBuilderDynamicBlocksCertificateBlock", CertificateBlock],
 ]);
 export default blocks;
