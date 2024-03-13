@@ -4,6 +4,13 @@ fragment CardsBlock on CardsBlock_Fields {
   cards {
     title
     description
+    hasImage
+    iconImage {
+      node {
+        sourceUrl
+      }
+    }
+    backgroundColor
     link {
       ...AcfLink
     }
