@@ -10,52 +10,52 @@ import Link from "next/link";
 
 type Props = {
   content?: string | null | undefined;
-  language: LanguageCodeEnum;
+  language?: LanguageCodeEnum;
   pathname?: string;
 };
 
 const IntroduceBlock = (props: Props) => {
   const [pages, setPages] = useState<any[]>([]);
 
-  useEffect(() => {
-    getPagesTypeAsync();
-  }, []);
+  //   useEffect(() => {
+  // getPagesTypeAsync();
+  //   }, []);
 
-  const getPagesTypeAsync = async () => {
-    const {data} = await getPageType(props.language);
-    if (!data.pages) return;
+  //   const getPagesTypeAsync = async () => {
+  //     const {data} = await getPageType(props.language);
+  //     if (!data.pages) return;
 
-    let introducePages: any[] = [];
-    const nodes = data.pages?.nodes;
-    for (let index = 0; index < nodes.length; index++) {
-      const ele = nodes[index];
-      const {pageType} = ele;
-      //   console.log(pageType.nodes);
-      if (pageType.nodes.length > 0) {
-        if (
-          pageType?.nodes?.findIndex(
-            (ele: any) => ele.name === INTRODUCE_PAGE
-          ) !== -1
-        ) {
-          introducePages.push(ele);
-        }
-      }
-    }
-    // data.pages?.nodes?.forEach((ele: any) => {
-    //   //   console.log(ele);
+  //     let introducePages: any[] = [];
+  //     const nodes = data.pages?.nodes;
+  //     for (let index = 0; index < nodes.length; index++) {
+  //       const ele = nodes[index];
+  //       const {pageType} = ele;
+  //       //   console.log(pageType.nodes);
+  //       if (pageType.nodes.length > 0) {
+  //         if (
+  //           pageType?.nodes?.findIndex(
+  //             (ele: any) => ele.name === INTRODUCE_PAGE
+  //           ) !== -1
+  //         ) {
+  //           introducePages.push(ele);
+  //         }
+  //       }
+  //     }
+  //     // data.pages?.nodes?.forEach((ele: any) => {
+  //     //   //   console.log(ele);
 
-    //   return;
-    // });
-    // console.log(introducePages);
+  //     //   return;
+  //     // });
+  //     // console.log(introducePages);
 
-    setPages(introducePages);
-  };
+  //     setPages(introducePages);
+  //   };
   return (
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
           <p>Introduce</p>
-          {pages.length > 0 && (
+          {/* {pages.length > 0 && (
             <ul className="">
               {pages.map((ele: any, id) => {
                 return (
@@ -72,7 +72,7 @@ const IntroduceBlock = (props: Props) => {
                 );
               })}
             </ul>
-          )}
+          )} */}
         </div>
         <div className="content col-span-full md:col-span-7 lg:col-span-5">
           {props.content && parse(props.content || "")}
