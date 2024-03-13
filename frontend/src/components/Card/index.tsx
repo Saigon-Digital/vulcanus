@@ -17,14 +17,18 @@ const Card: React.FC<Props> = ({
   title,
   description = "",
   className,
+  hasImage,
+  iconImage,
+  backgroundColor,
   hoverImage,
   link,
   ...props
 }) => {
   return (
     <div
+      style={{background: backgroundColor || undefined}}
       className={twMerge(
-        "group relative z-10 flex h-[400px] flex-col justify-between rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
+        "group relative z-10 flex min-h-[400px] flex-col justify-between rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
         hoverImage && "hover:bg-primary-midBlue-main",
         className
       )}
@@ -51,9 +55,19 @@ const Card: React.FC<Props> = ({
          duration-300 min-max-[20_24] group-hover:text-secondary-offWhite-white">
         {title}
       </h3>
-      <div className="relative z-10 space-y-6">
+      {hasImage && (
+        <Image
+          src={iconImage?.node.sourceUrl || ""}
+          width={150}
+          height={150}
+          className="mx-auto my-14 h-1/4"
+          alt="icon image"
+        />
+      )}
+      <div className="relative z-10 h-1/4 space-y-6">
         <p
-          className="mb-5 line-clamp-4 text-lg font-light text-secondary-offWhite-white"
+          style={{color: backgroundColor ? "#140F24" : undefined}}
+          className="mb-5 line-clamp-4 text-lg font-light leading-[25px] text-secondary-offWhite-white"
           title={description || ""}>
           {description}
         </p>

@@ -24,6 +24,9 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
           return (
             <SwiperSlide key={id}>
               <Card
+                hasImage={card?.hasImage}
+                iconImage={card?.iconImage}
+                backgroundColor={card?.backgroundColor}
                 title={card?.title || ""}
                 description={card?.description}
                 link={card?.link}
