@@ -18,7 +18,7 @@ const HeaderDialog = ({menuItems, navIsOpen, setNavIsOpen}: Props) => {
     <div
       role="dialog"
       className={clsx(
-        "container-fluid fixed inset-0 z-50 flex flex-col bg-primary-midBlue-main py-[var(--header-py)] transition-all duration-500",
+        "container-fluid fixed inset-0 z-50 flex flex-col bg-primary-midBlue-main py-[var(--header-py)] transition-all duration-500 lg:opacity-0",
         {
           "translate-x-full": !navIsOpen,
           "translate-x-0": navIsOpen,

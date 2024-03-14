@@ -37,60 +37,61 @@ const Header = (props: Props) => {
 
   return (
     <>
-      <header className="container-fluid sticky top-0 z-50 py-[var(--header-py)]">
-        <div className="flex h-[var(--header-height)] items-center justify-between rounded-[5px] bg-eerie-black px-6 transition-all duration-300">
-          <Link href="/" locale={locale}>
-            <Image
-              src="/logo/combination-logo-shape.svg"
-              alt="logo"
-              width={226}
-              height={65}
-              className="aspect-[226/65] max-w-[50vw] object-contain"
-            />
-          </Link>
+      <header className=" sticky top-0 z-50 py-[var(--header-py)]">
+        <div className="container-fluid">
+          <div className="flex h-[var(--header-height)] items-center justify-between rounded-[5px] bg-eerie-black px-6 transition-all duration-300">
+            <Link href="/" locale={locale}>
+              <Image
+                src="/logo/combination-logo-shape.svg"
+                alt="logo"
+                width={226}
+                height={65}
+                className="aspect-[226/65] max-w-[50vw] object-contain"
+              />
+            </Link>
 
-          <nav className="hidden items-center space-x-4 xl:flex">
-            {props?.menuItems?.nodes?.map((item) => {
-              const isActive = asPath !== "/" && item?.uri?.includes(asPath);
-              return (
-                <Link
-                  key={item?.uri}
-                  href={item?.uri ?? "#"}
-                  locale={locale}
-                  className={clsx(
-                    "text-[16px] font-semibold uppercase leading-[200%] transition-all duration-300",
-                    {
-                      "text-primary-blue-main": isActive,
-                      "text-secondary-offWhite-white": !isActive,
-                    }
-                  )}>
-                  {item?.label}
-                </Link>
-              );
-            })}
-          </nav>
+            <nav className="hidden items-center space-x-4 xl:flex">
+              {props?.menuItems?.nodes?.map((item) => {
+                const isActive = asPath !== "/" && item?.uri?.includes(asPath);
+                return (
+                  <Link
+                    key={item?.uri}
+                    href={item?.uri ?? "#"}
+                    locale={locale}
+                    className={clsx(
+                      "text-[16px] font-semibold uppercase leading-[200%] transition-all duration-300",
+                      {
+                        "text-primary-blue-main": isActive,
+                        "text-secondary-offWhite-white": !isActive,
+                      }
+                    )}>
+                    {item?.label}
+                  </Link>
+                );
+              })}
+            </nav>
 
-          <div className="hidden shrink-0 xl:block">
-            <LanguageToggle />
-          </div>
+            <div className="hidden shrink-0 xl:block">
+              <LanguageToggle />
+            </div>
 
-          <div className="block xl:hidden">
-            <button
-              onClick={() => setNavIsOpen(true)}
-              className="flex items-center justify-center"
-              type="button">
-              <span className="sr-only">Open menu</span>
-              <HamburgerMenu />
-            </button>
+            <div className="block xl:hidden">
+              <button
+                onClick={() => setNavIsOpen(true)}
+                className="flex items-center justify-center"
+                type="button">
+                <span className="sr-only">Open menu</span>
+                <HamburgerMenu />
+              </button>
+            </div>
           </div>
         </div>
+        <HeaderDialog
+          menuItems={props.menuItems}
+          navIsOpen={navIsOpen}
+          setNavIsOpen={setNavIsOpen}
+        />
       </header>
-
-      <HeaderDialog
-        menuItems={props.menuItems}
-        navIsOpen={navIsOpen}
-        setNavIsOpen={setNavIsOpen}
-      />
     </>
   );
 };
