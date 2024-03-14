@@ -58,7 +58,7 @@ const Header = (props: Props) => {
                   href={item?.uri ?? "#"}
                   locale={locale}
                   className={clsx(
-                    "text-[16px] font-semibold uppercase leading-[200%] transition-all duration-300",
+                    "text-[16px] font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main",
                     {
                       "text-primary-blue-main": isActive,
                       "text-secondary-offWhite-white": !isActive,
