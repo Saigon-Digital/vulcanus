@@ -11,7 +11,6 @@ type Props = {
   relatedBlog: PostFragmentFragment[];
 };
 const index = ({blog, relatedBlog}: Props) => {
-  console.log("--------------", blog);
   var dateOptions = {
     weekday: "long",
     year: "numeric",
