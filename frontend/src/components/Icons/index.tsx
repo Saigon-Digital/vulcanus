@@ -1,5 +1,7 @@
 type IconProps = {
   className?: string;
+  w?: number;
+  h?: number;
 };
 export const CheckIcon = (props: IconProps) => {
   return (
@@ -112,6 +114,34 @@ export const PhoneIcon = (props: IconProps) => {
     </svg>
   );
 };
+
+export const TitleShape = (props: IconProps) => {
+  return (
+    <svg
+      className={props.className}
+      xmlns="http://www.w3.org/2000/svg"
+      width={props.w}
+      height={props.h}
+      viewBox="0 0 210 233"
+      fill="none">
+      <g clipPath="url(#clip0_591_1332)">
+        <path
+          d="M105.008 174.75L210 233V116.5L105.008 174.75Z"
+          fill="#169DD9"
+        />
+        <path d="M105.008 58.25L210 116.5V0L105.008 58.25Z" fill="#169DD9" />
+        <path d="M0 116.5L105.008 174.75V58.25L0 116.5Z" fill="#169DD9" />
+        <path d="M210 116.5L105.008 58.25V174.75L210 116.5Z" fill="#184891" />
+      </g>
+      <defs>
+        <clipPath id="clip0_591_1332">
+          <rect width={210} height={233} fill="white" />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+};
+
 export const MailIcon = (props: IconProps) => {
   return (
     <svg
