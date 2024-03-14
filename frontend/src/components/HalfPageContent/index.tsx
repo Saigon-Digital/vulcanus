@@ -45,7 +45,9 @@ const HalfPageContent: React.FC<TProps> = ({
                   );
                 })}
                 {cta && (
-                  <Button href={(cta?.link?.url as string) || ""}>
+                  <Button
+                    className="mt-6"
+                    href={(cta?.link?.url as string) || ""}>
                     {cta.ctaText}
                   </Button>
                 )}

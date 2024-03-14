@@ -18,28 +18,8 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
 
   const language = props.__TEMPLATE_VARIABLES__?.language;
 
-  const pathname = props.data?.page?.translation?.uri;
-  const introducePage =
-    props.data?.page?.translation?.pageType?.nodes.findIndex(
-      (ele) => ele.name === INTRODUCE_PAGE
-    ) !== -1;
-  console.log(introducePage);
+  // const pathname = props.data?.page?.translation?.uri;
 
-  if (introducePage)
-    return (
-      <>
-        <Head>
-          <title>{props?.data?.page?.translation?.title}</title>
-        </Head>
-        <main>
-          <IntroduceBlock
-            pathname={pathname || ""}
-            language={language}
-            content={props.data?.page?.translation?.content}
-          />
-        </main>
-      </>
-    );
   return (
     <>
       <Head>

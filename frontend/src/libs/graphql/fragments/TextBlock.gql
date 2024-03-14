@@ -1,4 +1,5 @@
 fragment TitleBlock on PageBuilderDynamicBlocksTitleBlock {
   fieldGroupName
   title
+  haveShape
 }
