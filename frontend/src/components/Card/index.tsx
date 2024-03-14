@@ -33,6 +33,11 @@ const Card: React.FC<Props> = ({
         className
       )}
       {...props}>
+      {link ? (
+        <Link
+          {...getAcfLinkProps(link)}
+          className="absolute inset-0 z-[10] h-full w-full items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white"></Link>
+      ) : null}
       {hoverImage && (
         <>
           <Image
@@ -64,10 +69,10 @@ const Card: React.FC<Props> = ({
           alt="icon image"
         />
       )}
-      <div className="relative z-10 h-1/4 space-y-6">
+      <div className="relative z-10 h-2/5 ">
         <p
           style={{color: backgroundColor ? "#140F24" : undefined}}
-          className="mb-5 line-clamp-4 text-lg font-light leading-[25px] text-secondary-offWhite-white"
+          className="mb-6 line-clamp-4 text-lg font-light leading-[25px] text-secondary-offWhite-white"
           title={description || ""}>
           {description}
         </p>
