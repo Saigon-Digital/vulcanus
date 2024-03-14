@@ -88,7 +88,7 @@ const BlogsBlock = () => {
                     {ele.blogDescription?.blogDescription}
                   </p>
                   <a
-                    href={`/blog/${ele.slug}` as string}
+                    href={`/${router.locale}/blog/${ele.slug}` as string}
                     className="group mt-5 text-primary-blue-main">
                     Read More
                     <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
