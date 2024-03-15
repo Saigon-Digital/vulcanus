@@ -2,13 +2,19 @@ import {CardsBlock_Fields} from "@/__generated__/graphql";
 import React from "react";
 import Card from "../Card";
 import {Swiper, SwiperSlide} from "swiper/react";
+import {Autoplay, Pagination} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
   return (
-    <div className="container-fluid py-14">
+    <div className="cards container-fluid py-14">
       <h2 className="heading-2 mb-14">{props?.title}</h2>
       <Swiper
         className="!overflow-visible"
+        modules={[Pagination, Autoplay]}
+        autoplay={{delay: 4000}}
         spaceBetween={24}
+        pagination
         breakpoints={{
           320: {
             slidesPerView: 1,

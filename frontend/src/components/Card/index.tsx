@@ -28,7 +28,7 @@ const Card: React.FC<Props> = ({
     <div
       style={{background: backgroundColor || undefined}}
       className={twMerge(
-        "group relative z-10 flex min-h-[400px]  flex-col justify-between rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
+        "group relative z-10 flex min-h-[400px] cursor-pointer  flex-col justify-between rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
         !hoverImage && "hover:bg-primary-midBlue-main",
         className
       )}
@@ -36,7 +36,9 @@ const Card: React.FC<Props> = ({
       {link ? (
         <Link
           {...getAcfLinkProps(link)}
-          className="absolute inset-0 z-[10] h-full w-full items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white"></Link>
+          className={`absolute inset-0 z-[10] h-full w-full items-center gap-x-4 text-primary-blue-main transition-all duration-300
+          ${!backgroundColor && "group-hover:text-secondary-offWhite-white"}
+          `}></Link>
       ) : null}
       {hoverImage && (
         <>
@@ -51,13 +53,17 @@ const Card: React.FC<Props> = ({
       )}
       <CardShape
         alt="shape"
-        className="absolute right-0 top-0 scale-x-0 opacity-0 transition-all duration-500 group-hover:scale-x-100 group-hover:opacity-100"
+        className={`absolute right-0 top-0 scale-x-0 opacity-0 transition-all duration-500  ${
+          !backgroundColor && "group-hover:scale-x-100 group-hover:opacity-100"
+        }`}
         width={48}
         height={133}
       />
       <h3
-        className="relative z-10 font-semibold leading-[140%] tracking-tight text-primary-blue-main transition-all
-         duration-300 min-max-[20_24] group-hover:text-secondary-offWhite-white">
+        className={`relative z-10 font-semibold leading-[140%] tracking-tight text-primary-blue-main transition-all
+          duration-300 min-max-[20_24] ${
+            !backgroundColor && "group-hover:text-secondary-offWhite-white"
+          }`}>
         {title}
       </h3>
       {hasImage && (
