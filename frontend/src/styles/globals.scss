@@ -16,7 +16,9 @@ body {
 .title-xl {
   @apply text-4xl font-bold lg:text-5xl 3xl:text-[64px] 3xl:leading-[84px];
 }
-
+p {
+  @apply lg:text-lg;
+}
 .title-block strong {
   @apply text-primary-blue-main;
 }
@@ -34,3 +36,16 @@ body {
   color:#F7CC5F;
   font-weight: 600;
 }
+
+.cards {
+  .swiper-pagination {
+    bottom: -40px !important; 
+    .swiper-pagination-bullet {
+      &.swiper-pagination-bullet-active {
+        @apply bg-primary-blue-main;
+      }
+      @apply bg-slate-400;
+    }
+  }
+
+} 

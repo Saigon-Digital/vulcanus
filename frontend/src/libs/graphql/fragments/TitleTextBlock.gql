@@ -2,6 +2,7 @@ fragment TitleTextBlock on PageBuilderDynamicBlocksTitleTextBlock {
   fieldGroupName
   title
   haveShape
+
   content {
     descriptionTitle
     contents {

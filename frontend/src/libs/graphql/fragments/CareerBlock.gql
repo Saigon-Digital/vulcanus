@@ -7,5 +7,12 @@ fragment CareerBlock on PageBuilderDynamicBlocksCareersBlock {
     careerDescription
     location
     title
+    cta {
+      ctaText
+      ctaLink {
+        url
+        target
+      }
+    }
   }
 }

@@ -7,10 +7,19 @@ type Props = {
   itemKey: string;
   expanded?: boolean;
   item: {
-    __typename?: "CareersBlockCareers" | undefined;
-    careerDescription?: string | null | undefined;
-    location?: string | null | undefined;
-    title?: string | null | undefined;
+    __typename?: "CareersBlockCareers";
+    careerDescription?: string | null;
+    location?: string | null;
+    title?: string | null;
+    cta?: {
+      __typename?: "CareersBlockCareersCta";
+      ctaText?: string | null;
+      ctaLink?: {
+        __typename?: "AcfLink";
+        url?: string | null;
+        target?: string | null;
+      } | null;
+    } | null;
   } | null;
 
   onValueChange: (expanded: boolean, key: string) => void;
@@ -106,9 +115,9 @@ const AccordionItem = (props: Props) => {
               "pb-[22px]": expanded,
             }
           )}>
-          <div className="-tracking-0.04 flex flex-col text-left text-2xl font-semibold capitalize text-primary-blue-main">
+          <div className="-tracking-0.04 flex flex-col text-left text-2xl font-bold capitalize  leading-[38px] text-primary-blue-main">
             {item?.title}
-            <span className="text-xl text-white">
+            <span className="text-xl font-normal text-white">
               location: {item?.location}
             </span>
           </div>
@@ -134,15 +143,21 @@ const AccordionItem = (props: Props) => {
                 "visible opacity-100": expanded,
               }
             )}>
-            <p
-              dangerouslySetInnerHTML={{__html: item?.careerDescription || ""}}
-              className="min-18-max-26 description  font-supreme-trial text-center font-light lg:max-w-[79.3%] lg:text-left"></p>
-            {/* <Button
-              href={item?.link?.sourceUrl || "#"}
-              download
-              className="min-20-max-24 mt-[20px] gap-x-[29px] px-[30px] py-[10px] capitalize lg:py-[18px]">
-              View job description
-            </Button> */}
+            <div>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item?.careerDescription || "",
+                }}
+                className="min-18-max-26 description font-supreme-trial text-center  font-light lg:max-w-[79.3%] lg:text-left [&>ul]:ml-4 [&>ul]:list-disc"></div>
+            </div>
+            {item?.cta && (
+              <Button
+                className="mt-6"
+                href={(item.cta?.ctaLink?.url as string) || "#"}
+                target={item.cta.ctaLink?.target || "_blank"}>
+                {item.cta?.ctaText}
+              </Button>
+            )}
           </div>
         </div>
         {/* Accordion Trigger */}

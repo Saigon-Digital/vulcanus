@@ -4,9 +4,9 @@ import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
 import Image from "next/image";
 import parse from "html-react-parser";
-const Gallery = ({title, gallery}: GalleryBlock) => {
+const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   return (
-    <div className="py-20 lg:py-28">
+    <div className="py-20 lg:pb-28">
       <div className="container-fluid grid grid-cols-12 gap-5 lg:gap-6">
         <div className="relative col-span-full flex justify-center text-left md:col-span-3">
           <Image
@@ -14,20 +14,26 @@ const Gallery = ({title, gallery}: GalleryBlock) => {
             width={47}
             height={155}
             alt="shape"
-            className="absolute -left-10  -top-5"
+            className="absolute -left-10 -top-5 hidden  sm:block"
           />
-          <h4 className="w-3/4 text-3xl font-bold md:text-4xl 2xl:text-5xl">
+          <h4 className="w-3/4 max-w-[261px] text-3xl font-bold md:text-4xl 2xl:text-5xl 2xl:leading-[67px]">
             {title}
           </h4>
         </div>
-        <div className="col-span-full grid grid-cols-4 gap-5 md:col-span-9">
+        <div className={`col-span-full grid grid-cols-4 gap-5 md:col-span-9 `}>
           {gallery?.map((ele, id) => {
             return (
               <div
                 key={id}
                 className={clsx(
                   "col-span-full flex flex-col gap-3 border border-primary-blue-main p-3 sm:col-span-2 xl:p-5 ",
-                  id === 1 || id === 2 ? "lg:col-span-3" : "lg:col-span-1",
+                  !reverseLayout
+                    ? id === 1 || id === 2
+                      ? "lg:col-span-3"
+                      : "lg:col-span-1"
+                    : id === 0 || id === 3
+                      ? "lg:col-span-3"
+                      : "lg:col-span-1",
                   id === 2 && gallery.length < 4 ? "lg:col-span-full" : "",
                   ele?.textOrImge === "text" &&
                     "border-none bg-primary-blue-100 text-primary-midBlue-main"
@@ -42,10 +48,10 @@ const Gallery = ({title, gallery}: GalleryBlock) => {
                         alt="gallery image"
                       />
                     </div>
-                    <span className="text-2xl text-primary-blue-main">
+                    <span className="text-2xl font-semibold  text-primary-blue-main">
                       0{id + 1}
                     </span>
-                    <p>{ele?.imageTitle}</p>
+                    <p className="lg:text-lg">{ele?.imageTitle}</p>
                   </>
                 ) : (
                   <div>{parse(ele?.richText || "")}</div>
