@@ -17,7 +17,7 @@ const Footer = (props: Props) => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={158}
-          className="h-10 w-10 md:h-14 md:w-14 lg:h-20 lg:w-20"
+          className="h-10 w-10 md:h-14 md:w-14 lg:h-28 lg:w-28 2xl:h-[158px] 2xl:w-[158px]"
           height={158}
           viewBox="0 0 158 158"
           fill="none">
