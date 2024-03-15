@@ -5,8 +5,10 @@ import {TitleShape} from "../Icons";
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({title, haveShape}) => {
   return (
-    <div className="title-block container relative py-16 lg:py-20">
-      <div className="max-w-[1000px] text-3xl font-bold lg:text-5xl">
+
+    <div className="title-block container border-b border-[#E6ECF3] py-16 lg:py-20">
+      <div className="max-w-[1000px] text-5xl font-bold">
+
         {title && parse(title)}
       </div>
       {haveShape && (
