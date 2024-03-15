@@ -1,6 +1,7 @@
 fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlock {
   fieldGroupName
   title
+  reverseLayout
   gallery {
     imageTitle
 
