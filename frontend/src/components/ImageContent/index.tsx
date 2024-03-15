@@ -12,7 +12,7 @@ const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
         className={`flex flex-wrap gap-y-10 ${
           reverse ? "flex-row-reverse" : "flex-row"
         }`}>
-        <div className="relative w-full border border-primary-midBlue-main p-4 lg:w-1/2">
+        <div className="relative w-full rounded-[5px] border border-primary-blue-main p-4 lg:w-1/2">
           <ImageShape
             className={`absolute  ${
               reverse ? "-left-[45px] rotate-180" : "-right-[45px]"
@@ -26,19 +26,21 @@ const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
           className={`flex w-full flex-col items-start justify-center gap-5 lg:w-1/2 ${
             reverse ? " md:pr-20 xl:pr-28" : "md:pl-20 xl:pl-28"
           }`}>
-          <h4 className="text-4xl font-bold">{content?.title}</h4>
-          <div className="[&>strong]:font-bold [&>strong]:!text-primary-midBlue-main [&>ul]:list-disc [&>ul]:pl-5 ">
+          <h4 className="text-4xl font-bold xl:text-5xl xl:leading-[67px]">
+            {content?.title}
+          </h4>
+          <div className="[&>*>strong]:!text-primary-blue-main [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 ">
             {content?.description && parse(content.description)}
           </div>
           {content?.icons && content?.icons?.length > 0 && (
-            <div className="flex gap-10 lg:gap-20">
+            <div className="flex flex-col justify-center gap-10 lg:gap-20">
               {content.icons.map((ele, index) => {
                 return (
                   <div key={index} className="mt-5 flex flex-col">
                     <Image
                       src={ele?.icon?.node?.sourceUrl || ""}
-                      width={120}
-                      height={120}
+                      width={98}
+                      height={98}
                       alt="icon image"
                     />
                     <p>{ele?.text}</p>
