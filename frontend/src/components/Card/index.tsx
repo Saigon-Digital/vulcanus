@@ -72,7 +72,7 @@ const Card: React.FC<Props> = ({
       <div className="relative z-10 h-2/5 ">
         <p
           style={{color: backgroundColor ? "#140F24" : undefined}}
-          className="mb-6 line-clamp-4 text-lg font-light leading-[25px] text-secondary-offWhite-white"
+          className="mb-0 line-clamp-4 text-lg font-light leading-[25px] text-secondary-offWhite-white"
           title={description || ""}>
           {description}
         </p>
