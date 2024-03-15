@@ -3,12 +3,17 @@ import {TitleBlockFragment} from "@/__generated__/graphql";
 import parse, {HTMLReactParserOptions, Element} from "html-react-parser";
 import {TitleShape} from "../Icons";
 
-const TitleBlock: React.FC<TitleBlockFragment> = ({title, haveShape}) => {
+const TitleBlock: React.FC<TitleBlockFragment> = ({
+  title,
+  haveShape,
+  haveBorderBottom,
+}) => {
   return (
-
-    <div className="title-block container border-b border-[#E6ECF3] py-16 lg:py-20">
-      <div className="max-w-[1000px] text-5xl font-bold">
-
+    <div
+      className={`title-block container py-16 lg:py-20 ${
+        haveBorderBottom && " border-b border-[#E6ECF3]"
+      }`}>
+      <div className="max-w-[1000px] text-4xl font-bold xl:text-5xl 2xl:leading-[67px]">
         {title && parse(title)}
       </div>
       {haveShape && (

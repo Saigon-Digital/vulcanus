@@ -34,3 +34,16 @@ body {
   color:#F7CC5F;
   font-weight: 600;
 }
+
+.cards {
+  .swiper-pagination {
+    bottom: -40px !important; 
+    .swiper-pagination-bullet {
+      &.swiper-pagination-bullet-active {
+        @apply bg-primary-blue-main;
+      }
+      @apply bg-slate-400;
+    }
+  }
+
+} 
