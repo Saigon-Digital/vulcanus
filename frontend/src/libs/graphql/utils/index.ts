@@ -24,9 +24,12 @@ async function getMenuItems(location: MenuLocationEnum) {
             query MenuItems($location: MenuLocationEnum!) {
               menuItems(where: { location: $location }) {
                 nodes {
-                  label
-                  target
                   uri
+                  label
+                  title
+                  parentId
+                  id
+                  target
                 }
               }
             }
@@ -36,6 +39,8 @@ async function getMenuItems(location: MenuLocationEnum) {
     },
   });
 }
+
+
 
 export async function getPageType (language: LanguageCodeEnum) {
   return await client.query({

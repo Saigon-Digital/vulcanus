@@ -4,6 +4,7 @@ import {TitleTextBlock_Fields} from "@/__generated__/graphql";
 import {ArrowRight, ShapeLeftLarge} from "../Icons";
 import Shape from "./images/shape.png";
 import Image from "next/image";
+import parse from "html-react-parser";
 // import Button from "../Button";
 type TProps = {
   extraGraphic?: ReactNode;
@@ -37,21 +38,21 @@ const HalfPageContent: React.FC<TProps> = ({
       )}
 
       <div className="container-fluid my-14">
-        <div className="relative flex flex-wrap">
+        <div className="relative flex flex-wrap gap-y-10">
           {extraGraphic && extraGraphic}
           <div className="w-full md:w-1/2">
             {title && title?.length > 0 && (
-              <h4 className="flex items-center gap-4 text-2xl font-bold leading-none">
+              <h4 className="flex items-center gap-4 text-2xl font-bold leading-[33px]">
                 <ArrowRight w={26} h={24} className="ml-2 inline-block" />{" "}
                 {title}
               </h4>
             )}
           </div>
-          <div className="w-full md:w-1/2">
+          <div className="w-full pl-10 md:w-1/2 md:pl-0">
             {content?.contents && (
               <>
-                <h4 className="text-2xl md:text-3xl">
-                  {content?.descriptionTitle}
+                <h4 className="[&>*>strong]:text-primary-blue-main [&>*]:text-2xl xl:[&>*]:text-3xl 2xl:[&>*]:text-[32px] 2xl:[&>*]:leading-[44px]">
+                  {content.contentTitle && parse(content.contentTitle)}
                 </h4>
                 <div className="mt-6 flex flex-wrap justify-between xl:mt-8">
                   {content?.contents?.map((ele, id) => {
