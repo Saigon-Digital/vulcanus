@@ -66,14 +66,14 @@ const Footer = (props: Props) => {
               {hierarchicalList &&
                 hierarchicalList.map((ele: any, index: number) => {
                   return (
-                    <div className="flex flex-col  ">
+                    <div key={index} className="flex flex-col  ">
                       <h4 className="text-base font-semibold uppercase xl:text-lg">
                         {ele.label}
                       </h4>
                       <ul className="mt-5 flex flex-col gap-2 lg:gap-3">
                         {ele.children.map((ele: any, index: number) => {
                           return (
-                            <li>
+                            <li key={index}>
                               <Link href={ele.uri}>{ele.label}</Link>
                             </li>
                           );
