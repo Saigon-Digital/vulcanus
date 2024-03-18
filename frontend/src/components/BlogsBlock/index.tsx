@@ -51,12 +51,10 @@ const BlogsBlock = () => {
   useEffect(() => {
     (async () => {
       const {data} = await getPostThumb(locale as LanguageCodeFilterEnum);
-      console.log(data);
 
       setBlockListing(data.posts?.nodes);
     })();
   }, []);
-  //   console.log(blockListing);
 
   //   return;
 

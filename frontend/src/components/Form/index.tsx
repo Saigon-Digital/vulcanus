@@ -6,11 +6,11 @@ import Button from "../Button";
 const Form = ({contactInformation, form}: TForm) => {
   return (
     <div className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
-      <div className="grid grid-cols-12">
+      <div className="grid grid-cols-12 ">
         <div className="col-span-full grid grid-cols-8 lg:col-span-8 lg:col-start-3">
           <div className="col-span-full flex flex-col gap-5 md:col-span-3">
             <h4 className="mb-3 max-w-[33%] text-2xl font-semibold">
-              Contact In formation:
+              Contact Information:
             </h4>
             <p className="flex gap-4">
               <PhoneIcon />
@@ -22,7 +22,7 @@ const Form = ({contactInformation, form}: TForm) => {
               <MailIcon />
               <a
                 href={`mailto:${contactInformation?.email}`}
-                className="font-base">
+                className="font-base underline">
                 {contactInformation?.email}
               </a>
             </p>
@@ -37,9 +37,9 @@ const Form = ({contactInformation, form}: TForm) => {
               </a>
             </p>
           </div>
-          <div className="col-span-full flex flex-col gap-6 lg:col-span-5">
-            <h4 className="max-w-[630px]  text-3xl text-primary-blue-400">
-              {form?.formTitle}
+          <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 lg:col-span-5">
+            <h4 className="max-w-[630px] text-3xl text-primary-blue-main  [&>*]:text-3xl xl:[&>*]:text-[32px]">
+              {form?.formTitle && parse(form.formTitle)}
             </h4>
             {form?.copyrightText && (
               <div className="[&>*>a]:text-primary-blue-400 [&>*>a]:underline">

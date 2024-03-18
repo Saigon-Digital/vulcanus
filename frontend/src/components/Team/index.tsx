@@ -5,8 +5,6 @@ import {Autoplay} from "swiper/modules";
 import Image from "next/image";
 
 const Team: React.FC<TeamBlock> = ({title, teamMembers}) => {
-  //   console.log(props);
-
   return (
     <div className="container-fluid py-14 lg:py-20">
       <h3 className="mb-8 text-5xl font-semibold lg:mb-10 lg:text-[64px]">
