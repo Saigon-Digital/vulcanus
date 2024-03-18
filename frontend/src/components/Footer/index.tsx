@@ -2,11 +2,15 @@ import {MenuItemsQuery} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import {flatListToHierarchical} from "@faustwp/core";
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
 };
 
 const Footer = (props: Props) => {
+  const hierarchicalList = flatListToHierarchical(props.menuItems?.nodes);
+  console.log("hierarchicalList", hierarchicalList);
+  if (!hierarchicalList) return null;
   return (
     <footer className="container-fluid pt-20">
       <div className="mb-12 flex items-center justify-between">
@@ -59,54 +63,25 @@ const Footer = (props: Props) => {
             </div>
 
             <div className="mt-16 grid w-full grid-cols-2  gap-5 gap-y-10  text-primary-blue-100 sm:w-4/5 md:grid-cols-3 lg:w-1/2  lg:gap-10 lg:pl-10 xl:mt-16 ">
-              <div className="flex flex-col  ">
-                <h4 className="text-base font-semibold uppercase xl:text-lg">
-                  our products
-                </h4>
-                <ul className="mt-5 flex flex-col gap-2 lg:gap-3">
-                  <li>
-                    <a href="#">Services</a>
-                  </li>
-                  <li>
-                    <a href="#">Manufacturing</a>
-                  </li>
-                  <li>
-                    <a href="#">Quality Assurance</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="flex flex-col  ">
-                <h4 className="text-base font-semibold uppercase xl:text-lg">
-                  Informations
-                </h4>
-                <ul className="mt-5 flex flex-col gap-2 lg:gap-3">
-                  <li>
-                    <a href="#">About Us</a>
-                  </li>
-                  <li>
-                    <a href="#">Career</a>
-                  </li>
-                  <li>
-                    <a href="#">Blogs</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="flex flex-col  ">
-                <h4 className="text-base font-semibold uppercase xl:text-lg">
-                  get in touch
-                </h4>
-                <ul className="mt-5 flex flex-col gap-2 lg:gap-3">
-                  <li>
-                    <a href="#">Services</a>
-                  </li>
-                  <li>
-                    <a href="#">Manufacturing</a>
-                  </li>
-                  <li>
-                    <a href="#">Quality Assurance</a>
-                  </li>
-                </ul>
-              </div>
+              {hierarchicalList &&
+                hierarchicalList.map((ele: any, index: number) => {
+                  return (
+                    <div key={index} className="flex flex-col  ">
+                      <h4 className="text-base font-semibold uppercase xl:text-lg">
+                        {ele.label}
+                      </h4>
+                      <ul className="mt-5 flex flex-col gap-2 lg:gap-3">
+                        {ele.children.map((ele: any, index: number) => {
+                          return (
+                            <li key={index}>
+                              <Link href={ele.uri}>{ele.label}</Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         </div>

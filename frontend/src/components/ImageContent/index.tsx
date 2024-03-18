@@ -4,15 +4,15 @@ import React from "react";
 import {ImageShape} from "../Icons";
 import parse from "html-react-parser";
 const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
-  console.log(image, content);
-
   return (
-    <div className="container py-20">
+    <div className="container py-20 lg:px-20">
       <div
         className={`flex flex-wrap gap-y-10 ${
           reverse ? "flex-row-reverse" : "flex-row"
         }`}>
-        <div className="relative w-full rounded-[5px] border border-primary-blue-main p-4 lg:w-1/2">
+        <div
+          style={{height: "fit-content"}}
+          className="relative w-full rounded-[5px] border border-primary-blue-main p-4 lg:w-1/2">
           <ImageShape
             className={`absolute  ${
               reverse ? "-left-[45px] rotate-180" : "-right-[45px]"
@@ -33,10 +33,12 @@ const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
             {content?.description && parse(content.description)}
           </div>
           {content?.icons && content?.icons?.length > 0 && (
-            <div className="flex flex-col justify-center gap-10 lg:gap-20">
+            <div className="flex  justify-center gap-10 2xl:gap-20">
               {content.icons.map((ele, index) => {
                 return (
-                  <div key={index} className="mt-5 flex flex-col">
+                  <div
+                    key={index}
+                    className="mt-5 flex flex-col justify-center text-center">
                     <Image
                       src={ele?.icon?.node?.sourceUrl || ""}
                       width={98}
