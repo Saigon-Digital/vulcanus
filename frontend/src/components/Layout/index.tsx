@@ -18,6 +18,8 @@ type Props = PropsWithChildren & {
 };
 
 const Layout = ({children, headerMenu, footerMenu}: Props) => {
+  console.log("footer ", footerMenu);
+
   return (
     <div className={clsx(overpass.variable, "overflow-x-clip")}>
       <Header menuItems={headerMenu?.menuItems} />
