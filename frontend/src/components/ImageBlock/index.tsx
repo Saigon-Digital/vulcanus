@@ -6,7 +6,7 @@ const ImageBlock: React.FC<
   ImageBlock & {imageSrc?: string; className?: string; height?: number}
 > = (props) => {
   return (
-    <div className={`container-fluid px-0 md:px-20 ${props.className}`}>
+    <div className={`container-fluid px-0 md:px-[20px] ${props.className}`}>
       <div
         style={{maxHeight: `${props.height}px`}}
         className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[586px] 2xl:min-h-[689px]">
