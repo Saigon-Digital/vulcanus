@@ -15,6 +15,7 @@ const Header = (props: Props) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const {locale, locales, defaultLocale, asPath} = useRouter();
   console.log("header", props.menuItems);
+  
 
   useEffect(() => {
     if (navIsOpen) {
