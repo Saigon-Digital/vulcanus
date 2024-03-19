@@ -1,4 +1,17 @@
 fragment blogsBlock on PageBuilderDynamicBlocksBlogs {
   fieldGroupName
   tittle
+  ctaBlocks {
+    ctaButton {
+      fieldGroupName
+      text
+      link {
+        nodes {
+          slug
+          uri
+        }
+      }
+    }
+    contactInfo
+  }
 }
