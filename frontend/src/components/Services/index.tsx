@@ -60,9 +60,9 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
             );
           })}
         <Gear
-          className="absolute left-1/4 top-[200px] scale-90 object-contain"
-          width={380}
-          height={207}
+          className="absolute left-[calc(25%-20px)] top-[180px] scale-90 object-contain"
+          width={394}
+          height={217}
           alt="gear"
         />
       </div>
