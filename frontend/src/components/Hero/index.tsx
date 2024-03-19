@@ -6,14 +6,14 @@ import Button from "../Button";
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   return (
-    <div className="container-fluid">
+    <div className="sm:container-fluid">
       <div className="relative flex min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px]">
-        <div className="absolute left-0 top-0 z-10 aspect-[100.528/278.4] w-[5vw] min-w-[45px] max-w-[100.52px]">
+        <div className="absolute -top-[26px] left-0 z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:w-[100px] ">
           <Image
             fill
             src="/shapes/hero-shape.png"
             alt="Hero Shape"
-            className="object-cover object-center"
+            className="object-contain object-center"
           />
         </div>
 
