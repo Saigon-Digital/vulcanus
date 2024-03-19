@@ -43,6 +43,7 @@ const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
                       src={ele?.icon?.node?.sourceUrl || ""}
                       width={98}
                       height={98}
+                      className="mx-auto"
                       alt="icon image"
                     />
                     <p>{ele?.text}</p>

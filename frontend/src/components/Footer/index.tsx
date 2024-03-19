@@ -9,7 +9,7 @@ type Props = {
 
 const Footer = (props: Props) => {
   const hierarchicalList = flatListToHierarchical(props.menuItems?.nodes);
-  console.log("hierarchicalList", hierarchicalList);
+
   if (!hierarchicalList) return null;
   return (
     <footer className="container-fluid pt-20">

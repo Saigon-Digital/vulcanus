@@ -14,6 +14,8 @@ type Props = {
 const Header = (props: Props) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const {locale, locales, defaultLocale, asPath} = useRouter();
+  console.log("header", props.menuItems);
+  
 
   useEffect(() => {
     if (navIsOpen) {
@@ -50,28 +52,26 @@ const Header = (props: Props) => {
               />
             </Link>
 
-
-          <nav className="hidden items-center space-x-4 xl:flex">
-            {props?.menuItems?.nodes?.map((item) => {
-              const isActive = asPath !== "/" && item?.uri?.includes(asPath);
-              return (
-                <Link
-                  key={item?.uri}
-                  href={item?.uri ?? "#"}
-                  locale={locale}
-                  className={clsx(
-                    "text-[16px] font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main",
-                    {
-                      "text-primary-blue-main": isActive,
-                      "text-secondary-offWhite-white": !isActive,
-                    }
-                  )}>
-                  {item?.label}
-                </Link>
-              );
-            })}
-          </nav>
-
+            <nav className="hidden items-center space-x-4 xl:flex">
+              {props?.menuItems?.nodes?.map((item) => {
+                const isActive = asPath !== "/" && item?.uri?.includes(asPath);
+                return (
+                  <Link
+                    key={item?.uri}
+                    href={item?.uri ?? "#"}
+                    locale={locale}
+                    className={clsx(
+                      "text-[16px] font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main",
+                      {
+                        "text-primary-blue-main": isActive,
+                        "text-secondary-offWhite-white": !isActive,
+                      }
+                    )}>
+                    {item?.label}
+                  </Link>
+                );
+              })}
+            </nav>
 
             <div className="hidden shrink-0 xl:block">
               <LanguageToggle />
