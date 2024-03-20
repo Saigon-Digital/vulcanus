@@ -3,14 +3,21 @@ type Tlang = {
   thankyou: string;
   errorFormatEmail: string;
   errorFormatPhone: string;
+  loading: string;
+  contactUs: string;
 };
 
+type Tlangs = {
+  key: string;
+  value: Tlang;
+}[];
 export const languages = (locale: string | undefined): Tlang | undefined => {
   if (!locale) return undefined;
-  const langs = [
+  const langs: Tlangs = [
     {
       key: "en",
       value: {
+        loading: "...Loading",
         require: "This field is require",
         contactUs: "Contact Us",
         thankyou: "Thank you for submitting the form !",
@@ -21,11 +28,12 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
     {
       key: "de",
       value: {
+        loading: "Wird geladen",
         require: "Dieses Feld ist erforderlich",
         contactUs: "kontaktiere uns",
         thankyou: "Vielen Dank für das Absenden des Formulars!",
-        errorFormatEmail: "Please enter correct email format",
-        errorFormatPhone: "Please enter correct phone number",
+        errorFormatEmail: "Bitte geben Sie das korrekte E-Mail-Format ein",
+        errorFormatPhone: "Bitte geben Sie die richtige Telefonnummer ein",
       },
     },
   ];
