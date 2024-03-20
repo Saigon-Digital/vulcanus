@@ -22,5 +22,6 @@ fragment PageBuilder on PageBuilder {
     ...FormBlock
     ...blogsBlock
     ...CertificateBlock
+    ...ImagesSLide
   }
 }

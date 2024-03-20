@@ -1,0 +1,10 @@
+fragment ImagesSLide on PageBuilderDynamicBlocksImagesSlide {
+  fieldGroupName
+  slides {
+    image {
+      node {
+        sourceUrl
+      }
+    }
+  }
+}
