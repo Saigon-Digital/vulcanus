@@ -2,19 +2,23 @@ import {MenuItemsQuery} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import {flatListToHierarchical} from "@faustwp/core";
+// import {flatListToHierarchical} from "@faustwp/core";
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
 };
 
 const Footer = (props: Props) => {
-  const hierarchicalList = flatListToHierarchical(props.menuItems?.nodes);
+  const hierarchicalList = props.menuItems?.nodes.filter((ele: any) => {
+    const {childItems} = ele;
+
+    return childItems.nodes?.length > 0;
+  });
 
   if (!hierarchicalList) return null;
   return (
     <footer className="container-fluid pt-20">
       <div className="mb-12 flex items-center justify-between">
-        <h4 className="text-3xl font-bold text-primary-midBlue-main xl:text-[100px]">
+        <h4 className="text-3xl font-bold text-white xl:text-[100px]">
           Let’s start
           <span className="text-primary-blue-main"> to work</span>
         </h4>
@@ -35,7 +39,7 @@ const Footer = (props: Props) => {
       <div className="relative rounded-md">
         <div className="relative grid grid-cols-12 rounded-md bg-primary-midBlue-main">
           <Image
-            src="/images/footer-shape.svg"
+            src="/footer-shape.png"
             className="absolute right-2 top-2 hidden sm:block"
             width={56}
             height={100}
@@ -71,13 +75,15 @@ const Footer = (props: Props) => {
                         {ele.label}
                       </h4>
                       <ul className="mt-5 flex flex-col gap-2 lg:gap-3">
-                        {ele.children.map((ele: any, index: number) => {
-                          return (
-                            <li key={index}>
-                              <Link href={ele.uri}>{ele.label}</Link>
-                            </li>
-                          );
-                        })}
+                        {ele.childItems?.nodes?.map(
+                          (ele: any, index: number) => {
+                            return (
+                              <li key={index}>
+                                <Link href={ele.uri}>{ele.label}</Link>
+                              </li>
+                            );
+                          }
+                        )}
                       </ul>
                     </div>
                   );
@@ -85,7 +91,7 @@ const Footer = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="flex w-full justify-between py-4">
+        <div className="flex w-full flex-col justify-between gap-y-6 py-4 sm:flex-row">
           <p>© Copyrights {new Date().getFullYear()}. All rights reserved.</p>
           <p>
             Powered by{" "}

@@ -67,7 +67,6 @@ const BlogsBlock = (props: Props) => {
           : "...Wird geladen"}
       </div>
     );
-  // console.log(props.ctaBlocks);
 
   return (
     <section className="container-fluid py-20 lg:py-28">
@@ -107,8 +106,6 @@ const BlogsBlock = (props: Props) => {
         </div>
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">
           {props.ctaBlocks?.map((ele, id) => {
-            console.log(ele?.ctaButton?.link);
-
             if (id === 0)
               return (
                 <div className="flex w-full flex-col gap-4 rounded-md border border-primary-blue-main p-6">

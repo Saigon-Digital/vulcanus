@@ -60,7 +60,7 @@ const HalfPageContent: React.FC<TProps> = ({
                       <p
                         key={id}
                         className="w-full text-lg font-light md:w-[calc(50%-20px)]">
-                        {ele?.content as string}
+                        {ele?.text && (parse(ele.text) as string)}
                       </p>
                     );
                   })}
