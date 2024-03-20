@@ -91,7 +91,12 @@ const Form = ({contactInformation, form}: TForm) => {
   );
 
   /////
-  if (!data || error) return <div className="h-[500px]"></div>;
+  if (!data || error)
+    return (
+      <div className="container-fluid min-h-[600px] py-20 pb-28 xl:py-28 xl:pb-40">
+        {languages(locale)?.loading}
+      </div>
+    );
 
   gfForm = data.gfForm;
   console.log("form  ", errors);
@@ -105,16 +110,6 @@ const Form = ({contactInformation, form}: TForm) => {
       ? "Thank you for submitting the form !"
       : "Vielen Dank für das Absenden des Formulars!";
   //----------//
-
-  // on Invalid
-  const onInvalid = (e: any) => {
-    if (e.target.id === "phone") {
-      phoneRef?.current?.setCustomValidity(
-        "Please enter with format: 000-000-0000 "
-      );
-    }
-  };
-  //
 
   // handle submit
   const handleSumit: SubmitHandler<FieldValues> = async (data) => {
