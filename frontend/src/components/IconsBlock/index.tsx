@@ -15,7 +15,6 @@ const index: React.FC<IconsBlock> = (props) => {
           </h2>
           <p className="lg:text-lg">{props.description}</p>
           <Button
-            as="link"
             className="mt-5 max-w-[250px]"
             href={props.ctaLink?.ctaLink?.nodes[0].uri || ""}>
             {props.ctaLink?.ctaText}

@@ -50,7 +50,19 @@ p {
 
 }
 
-
+.image-slide {
+  .swiper {
+    .swiper-wrapper {
+      transition-timing-function: linear;
+    }
+    .swiper-slide {
+      width: auto !important;
+      display: inline-block;
+      min-width: 200px;
+      min-height: 300px;
+    }
+  }
+}
 .title-block {
   .title {
 
