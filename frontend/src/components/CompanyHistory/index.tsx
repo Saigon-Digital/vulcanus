@@ -47,7 +47,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
             {props.title}
           </h2>
 
-          <div className="relative col-span-2  mt-10  flex w-[65px] gap-4 after:absolute after:top-0 after:h-14 after:w-full after:rounded-md after:bg-primary-blue-main md:col-span-full md:w-[134px] md:flex-col md:justify-end after:md:top-1/2 after:md:-translate-y-1/2 lg:ml-auto ">
+          <div className="relative col-span-2  mt-10  flex h-[360px] w-[65px] gap-4 after:absolute after:top-0 after:h-14 after:w-full after:rounded-md after:bg-primary-blue-main md:col-span-full md:w-[134px] md:flex-col md:justify-end after:md:top-1/2 after:md:-translate-y-1/2 lg:ml-auto ">
             <div className=" w-full">
               <Swiper
                 modules={[Pagination]}
@@ -63,18 +63,14 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                       className={clsx(
                         ` !flex items-center justify-center text-right text-xl  xl:text-3xl `,
                         activeSlide === id && "slide-active",
-                        id === currentSlide
-                          ? currentSlide - 2 && "opacity-40"
-                          : null,
-                        id === currentSlide
-                          ? currentSlide - 1 && "opacity-80"
-                          : null,
-                        id === currentSlide
-                          ? currentSlide + 1 && "opacity-80"
-                          : null,
-                        id === currentSlide
-                          ? currentSlide + 2 && "opacity-40"
-                          : null
+                        currentSlide &&
+                          id === currentSlide - 2 &&
+                          "opacity-40 xl:text-2xl",
+                        currentSlide && id === currentSlide - 1 && "opacity-80",
+                        currentSlide &&
+                          id === currentSlide + 2 &&
+                          "opacity-40 xl:text-2xl",
+                        currentSlide && id === currentSlide + 1 && "opacity-80 "
                       )}
                       key={id}>
                       {ele?.year}
