@@ -5,6 +5,7 @@ import {ArrowRight, ShapeLeftLarge} from "../Icons";
 import Shape from "./images/shape.png";
 import Image from "next/image";
 import parse from "html-react-parser";
+import {getAcfLinkProps} from "@/utils";
 // import Button from "../Button";
 type TProps = {
   extraGraphic?: ReactNode;
@@ -65,9 +66,7 @@ const HalfPageContent: React.FC<TProps> = ({
                     );
                   })}
                   {cta && (
-                    <Button
-                      className="mt-6"
-                      href={(cta?.link?.url as string) || ""}>
+                    <Button className="mt-6" {...getAcfLinkProps(cta.link)}>
                       {cta.ctaText}
                     </Button>
                   )}
