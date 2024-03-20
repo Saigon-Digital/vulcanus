@@ -28,7 +28,7 @@ const Card: React.FC<Props> = ({
     <div
       style={{background: backgroundColor || undefined}}
       className={twMerge(
-        "group relative z-10 flex min-h-[400px] cursor-pointer  flex-col justify-between rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
+        "group relative z-10 flex min-h-[450px] cursor-pointer  flex-col justify-between rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
         !hoverImage && "hover:bg-primary-midBlue-main",
         className
       )}
