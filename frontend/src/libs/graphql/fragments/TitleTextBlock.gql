@@ -4,11 +4,11 @@ fragment TitleTextBlock on PageBuilderDynamicBlocksTitleTextBlock {
   haveShape
 
   content {
-    contentTitle
     contents {
-      content
+      text
       fieldGroupName
     }
+    contentTitle
   }
   cta {
     ctaText

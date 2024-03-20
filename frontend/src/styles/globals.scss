@@ -48,4 +48,15 @@ p {
     }
   }
 
-} 
+}
+
+
+.title-block {
+  .title {
+
+    &> * {
+      
+      @apply text-4xl xl:text-5xl xl:leading-[64px] 3xl:text-[64px] 3xl:leading-[84px];
+    }
+  }
+}

@@ -10,6 +10,7 @@ import {ButtonNext} from "../Icons";
 import {getPostThumb} from "@/libs/graphql/utils";
 import {GetPostsThumbQuery} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
+import {log} from "console";
 type TBlog = {
   category?: string;
   featureImage?: string;
@@ -44,7 +45,7 @@ const DEFAULT_BLOG: TBlog[] = [
   },
 ];
 interface Props extends BlogsBlockFragment {}
-const BlogsBlock = () => {
+const BlogsBlock = (props: Props) => {
   const [blockListing, setBlockListing] = useState([]);
   const router = useRouter();
   const locale = router.locale;
@@ -58,7 +59,14 @@ const BlogsBlock = () => {
 
   //   return;
 
-  if (blockListing.length < 1) return null;
+  if (blockListing.length < 1)
+    return (
+      <div className="container-fluid min-h-[500px] pt-10">
+        {locale?.toUpperCase() === LanguageCodeFilterEnum.En
+          ? "...Loading"
+          : "...Wird geladen"}
+      </div>
+    );
 
   return (
     <section className="container-fluid py-20 lg:py-28">
@@ -97,27 +105,45 @@ const BlogsBlock = () => {
           })}
         </div>
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">
-          <div className="flex w-full flex-col gap-4 rounded-md border border-primary-blue-main p-6">
-            <h3 className="text-2xl text-primary-blue-main ">Get in touch</h3>
-            <p>
-              We are your partner for CNC manufacturing of individual parts and
-              series, specialised constructions, and repair work.
-            </p>
-            <Button as="link" className="mt-4" href="#">
-              Get in touch
-            </Button>
-          </div>
-          <div className="mt-6 flex w-full flex-col gap-4 rounded-md border bg-white p-6">
-            <h3 className="text-2xl text-primary-blue-main ">Get in touch</h3>
-            <p className="text-black">
-              Please apply in writing, preferably by e-mail, to:
-              bewerbung@vulcanus-stahl.deWe look forward to receiving your
-              applications.
-            </p>
-            <Button as="link" className="mt-4" href="#">
-              work with us
-            </Button>
-          </div>
+          {props.ctaBlocks?.map((ele, id) => {
+            if (id === 0)
+              return (
+                <div className="flex w-full flex-col gap-4 rounded-md border border-primary-blue-main p-6">
+                  <h3 className="text-2xl text-primary-blue-main ">
+                    Get in touch
+                  </h3>
+                  <div
+                    className="[&>*>a]:underline xl:[&>*]:text-lg xl:[&>*]:leading-[25px]"
+                    dangerouslySetInnerHTML={{
+                      __html: ele?.contactInfo || "",
+                    }}></div>
+                  <Button
+                    as="link"
+                    className="mt-4"
+                    href={ele?.ctaButton?.link?.nodes[0].slug as string}>
+                    {ele?.ctaButton?.text}
+                  </Button>
+                </div>
+              );
+            if (id === 1)
+              return (
+                <div className="mt-6 flex w-full flex-col gap-4 rounded-md border bg-white p-6">
+                  <h3 className="text-2xl text-primary-blue-main ">
+                    Get in touch
+                  </h3>
+                  <div
+                    className="[&>*>a]:underline [&>*]:text-[#140F24] xl:[&>*]:text-lg xl:[&>*]:leading-[25px]"
+                    dangerouslySetInnerHTML={{
+                      __html: ele?.contactInfo || "",
+                    }}></div>
+                  <Button
+                    className="mt-4"
+                    href={ele?.ctaButton?.link?.nodes[0].slug || ""}>
+                    {ele?.ctaButton?.text}
+                  </Button>
+                </div>
+              );
+          })}
         </div>
       </div>
     </section>
