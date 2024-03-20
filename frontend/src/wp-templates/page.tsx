@@ -6,6 +6,7 @@ import {GetPageQuery, LanguageCodeEnum} from "../__generated__/graphql";
 import Head from "next/head";
 import {INTRODUCE_PAGE} from "@/constant";
 import IntroduceBlock from "@/components/IntroduceBlock";
+import SEO from "@/components/SEO";
 
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
@@ -22,9 +23,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
 
   return (
     <>
-      <Head>
-        <title>{props?.data?.page?.translation?.title}</title>
-      </Head>
+      <SEO {...props.data?.page?.translation?.seo} />
       <BlockViewer dynamicBlocks={dynamicBlocks} />
     </>
   );
@@ -53,6 +52,35 @@ Page.query = gql(`
         language {
           code
         }
+        seo {
+          canonical
+          title
+          metaDesc
+          focuskw
+          metaRobotsNoindex
+          metaRobotsNofollow
+          opengraphAuthor
+          opengraphDescription
+          opengraphTitle
+          opengraphDescription
+          opengraphImage 
+          {
+              altText
+              sourceUrl
+              srcSet
+          }
+          opengraphUrl
+          opengraphSiteName
+          
+          twitterTitle
+          twitterDescription
+          twitterImage 
+          {
+            altText
+            sourceUrl
+            srcSet
+          }
+       }
         pageBuilder {
         ...PageBuilder
         }
