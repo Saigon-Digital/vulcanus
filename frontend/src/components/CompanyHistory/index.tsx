@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from "react";
 import {CompanyHistoryBlock} from "@/__generated__/graphql";
 import Image from "next/image";
-import {Swiper, SwiperSlide, SwiperClass} from "swiper/react";
+import {Swiper, SwiperSlide, SwiperClass, useSwiper} from "swiper/react";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
 import {Pagination} from "swiper/modules";
 import clsx from "clsx";
@@ -19,6 +19,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
     activeSlide
   );
   // console.log();
+  // const swiper = useSwiper();
 
   const onSwiperChange = (swiper: SwiperClass) => {
     // console.log("swiper change ", swiper.activeIndex);
@@ -60,16 +61,20 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 {props.histories?.map((ele, id) => {
                   return (
                     <SwiperSlide
+                      onClick={(e) => {
+                        setCurentSlide(id);
+                        // swiper.slideTo(id);
+                      }}
                       className={clsx(
                         ` !flex items-center justify-center text-right text-xl  xl:text-3xl `,
                         activeSlide === id && "slide-active",
                         currentSlide &&
                           id === currentSlide - 2 &&
-                          "opacity-40 xl:text-2xl",
+                          "opacity-40 xl:text-[24px]",
                         currentSlide && id === currentSlide - 1 && "opacity-80",
                         currentSlide &&
                           id === currentSlide + 2 &&
-                          "opacity-40 xl:text-2xl",
+                          "opacity-40 xl:text-[24px]",
                         currentSlide && id === currentSlide + 1 && "opacity-80 "
                       )}
                       key={id}>
@@ -94,7 +99,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
             <div className="mt-5">{activeHistory?.description}</div>
           </div>
         </div>
-        <div className="col-span-full hidden grid-cols-12 gap-4 md:col-span-8 md:grid md:gap-5">
+        <div className="col-span-full hidden grid-cols-12 gap-4 md:col-span-8 md:grid md:gap-5 lg:col-start-5">
           <div className="col-span-3">
             <Image
               className="ml-auto aspect-[316/267] rounded-md object-cover lg:w-3/4"
@@ -107,7 +112,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
               }
             />
           </div>
-          <div className="col-span-9 ">
+          <div className="col-span-9 max-w-[903px]">
             <Image
               className="aspect-video w-full rounded-md object-cover"
               alt="history"
