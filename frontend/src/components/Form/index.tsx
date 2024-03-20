@@ -190,27 +190,39 @@ const Form = ({contactInformation, form}: TForm) => {
                   (ele: inputField, index: number) => {
                     if (ele.adminLabel === adminLabelEmun.firstName)
                       return (
-                        <div className="col-span-1 flex flex-col gap-4">
+                        <div className="relative col-span-1 flex flex-col gap-4">
                           <label htmlFor="firstName">First name</label>
                           <input
                             {...register(String(ele.databaseId), {
-                              required: ele.isRequired || false,
+                              required: {
+                                value: ele.isRequired || false,
+                                message: languages(locale)?.require || "",
+                              },
                             })}
                             type="text"
                             id="firstName"
-                            required={ele.isRequired || false}
                             placeholder="Your first name"
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
+                          {errors[String(ele.databaseId)] && (
+                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                              {errors[
+                                String(ele.databaseId)
+                              ]?.message?.toString()}
+                            </p>
+                          )}
                         </div>
                       );
                     if (ele.adminLabel === adminLabelEmun.lastName)
                       return (
-                        <div className="col-span-1 flex flex-col gap-4">
+                        <div className="relative col-span-1 flex flex-col gap-4">
                           <label htmlFor="lastName">Last name</label>
                           <input
                             {...register(String(ele.databaseId), {
-                              required: ele.isRequired || false,
+                              required: {
+                                value: ele.isRequired || false,
+                                message: languages(locale)?.require || "",
+                              },
                             })}
                             type="text"
                             id="lastName"
@@ -218,6 +230,13 @@ const Form = ({contactInformation, form}: TForm) => {
                             placeholder="Your last name"
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
+                          {errors[String(ele.databaseId)] && (
+                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                              {errors[
+                                String(ele.databaseId)
+                              ]?.message?.toString()}
+                            </p>
+                          )}
                         </div>
                       );
 
@@ -229,7 +248,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             {...register(String(ele.databaseId), {
                               required: {
                                 value: ele.isRequired || false,
-                                message: "This field is require",
+                                message: languages(locale)?.require || "",
                               },
                               pattern: {
                                 value: pattern.email,
@@ -245,7 +264,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[35px] left-0 text-base ">
+                            <p className="absolute -bottom-[25px] left-0 text-sm ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -275,7 +294,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[35px] left-0 text-base ">
+                            <p className="absolute -bottom-[25px] left-0 text-sm ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -285,19 +304,28 @@ const Form = ({contactInformation, form}: TForm) => {
                       );
                     if (ele.adminLabel === adminLabelEmun.message)
                       return (
-                        <div className="col-span-2 flex flex-col gap-4">
+                        <div className="relative col-span-2 flex flex-col gap-4">
                           <label htmlFor="message">Message</label>
                           <textarea
                             {...register(String(ele.databaseId), {
-                              required: ele.isRequired || false,
+                              required: {
+                                value: ele.isRequired || false,
+                                message: languages(locale)?.require || "",
+                              },
                             })}
-                            required={ele.isRequired || false}
                             rows={4}
                             aria-rowspan={4}
                             id="message"
                             placeholder="Message"
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
+                          {errors[String(ele.databaseId)] && (
+                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                              {errors[
+                                String(ele.databaseId)
+                              ]?.message?.toString()}
+                            </p>
+                          )}
                         </div>
                       );
                   }
