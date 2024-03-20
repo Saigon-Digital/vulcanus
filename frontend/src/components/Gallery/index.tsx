@@ -6,17 +6,17 @@ import Image from "next/image";
 import parse from "html-react-parser";
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   return (
-    <div className="py-20 lg:pb-28">
+    <div className="relative py-20 lg:pb-28">
       <div className="container-fluid grid grid-cols-12 gap-5 lg:gap-6">
-        <div className="relative col-span-full flex justify-center text-left md:col-span-3">
+        <div className="relative col-span-full flex justify-start text-left md:col-span-3 md:justify-center">
           <Image
             src={"/shapes/left-shape.svg"}
             width={47}
             height={155}
             alt="shape"
-            className="absolute -left-10 -top-5 hidden  sm:block"
+            className="absolute -left-[25px] -top-5 hidden  md:block"
           />
-          <h4 className="w-3/4 max-w-[261px] text-3xl font-bold md:text-4xl 2xl:text-5xl 2xl:leading-[67px]">
+          <h4 className="w-3/4 max-w-[269px] text-2xl font-bold tracking-tight xl:text-4xl 2xl:text-5xl 2xl:leading-[67px]">
             {title}
           </h4>
         </div>
@@ -51,10 +51,14 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                     <span className="text-2xl font-semibold  text-primary-blue-main">
                       0{id + 1}
                     </span>
-                    <p className="lg:text-lg">{ele?.imageTitle}</p>
+                    <p className="lg:text-lg xl:text-xl xl:leading-[28px]">
+                      {ele?.imageTitle}
+                    </p>
                   </>
                 ) : (
-                  <div>{parse(ele?.richText || "")}</div>
+                  <div className="[&>p]:text-lg [&>p]:leading-[24px]">
+                    {parse(ele?.richText || "")}
+                  </div>
                 )}
               </div>
             );
