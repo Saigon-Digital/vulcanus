@@ -13,7 +13,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         <h1 className="text-4xl font-bold text-white lg:text-5xl 2xl:text-[64px] 2xl:leading-[89px]">
           {title}
         </h1>
-        <div className="[*>*>strong]:font-[500] w-full text-lg font-[300] md:w-1/2 md:text-xl">
+        <div className="[*>*>strong]:font-[500] w-full text-lg font-[300] md:w-1/2 md:text-xl xl:[&>*]:text-xl">
           {description && parse(description)}
         </div>
       </div>
