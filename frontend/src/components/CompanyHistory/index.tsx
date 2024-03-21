@@ -8,6 +8,7 @@ import clsx from "clsx";
 
 // import "./index.scss";
 const CompanyHistory = (props: CompanyHistoryBlock) => {
+  // Slider not work as expected, check logic again
   const isMobile = useMediaQuery("(max-width:768px)");
   const activeSlide = isMobile
     ? props.histories

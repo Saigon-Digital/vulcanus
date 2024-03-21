@@ -72,6 +72,7 @@ const BlogsBlock = (props: Props) => {
     <section className="container-fluid py-20 lg:py-28">
       <div className="grid grid-cols-12">
         <div className="col-span-full flex  flex-col gap-10 md:col-span-8">
+          {/* check null here */}
           {blockListing.map((ele: any, id) => {
             return (
               <div key={id} className=" flex flex-wrap gap-5 lg:min-h-[350px] ">

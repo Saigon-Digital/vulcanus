@@ -46,6 +46,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
         Our services
       </h3>
       <div className="relative grid h-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:min-h-[400px] xl:grid-cols-4 ">
+        {/* Check emty array instead check null value: services.length >0 ... */}
         {services &&
           services.map((ele, index) => {
             return (

@@ -11,6 +11,7 @@ const RelatedPosts = ({posts}: Props) => {
     <div className="container-fluid bg-primary-midBlue-main px-6 pb-12 pt-12">
       <h4 className="mb-8 text-5xl font-bold">Related post</h4>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        {/* Check null/ undefined array */}
         {posts.map((ele, index) => {
           return (
             <div key={index} className="flex flex-col gap-4">

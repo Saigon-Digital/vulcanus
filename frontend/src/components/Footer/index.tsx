@@ -50,6 +50,7 @@ const Footer = (props: Props) => {
               <Image src="/logo.svg" width={458} height={137} alt="logo" />
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
                 <div className="text-primary-blue-100 lg:flex-[122px]">
+                  {/* eslint rule anchor-is-valid*/}
                   <a href="">Runtestraße 13 59457 Werl Germany</a>
                 </div>
                 <ul className="text-primary-blue-100 lg:flex-[240px]">
@@ -67,6 +68,9 @@ const Footer = (props: Props) => {
             </div>
 
             <div className="mt-16 grid w-full grid-cols-2  gap-5 gap-y-10  text-primary-blue-100 sm:w-4/5 md:grid-cols-3 lg:w-1/2  lg:gap-10 lg:pl-10 xl:mt-16 ">
+            {/* should check if empty array: hierarchicalList.length > 0 && ...
+            Check null
+            */}
               {hierarchicalList &&
                 hierarchicalList.map((ele: any, index: number) => {
                   return (

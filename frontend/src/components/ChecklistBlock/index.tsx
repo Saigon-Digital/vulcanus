@@ -4,6 +4,7 @@ import Button from "../Button";
 import {CheckIcon} from "../Icons";
 
 const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
+  // Check null, conditional rendering
   return (
     <div className="container-fluid py-20 xl:py-28">
       <p className="mb-4 text-xl font-normal text-primary-blue-main xl:text-2xl">

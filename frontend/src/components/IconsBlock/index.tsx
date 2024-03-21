@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Button from "../Button";
 const index: React.FC<IconsBlock> = (props) => {
+  // check null data
   return (
     <div className="container-fluid py-16 lg:py-20 xl:py-28 ">
       <div className="grid grid-cols-12">

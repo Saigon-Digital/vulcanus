@@ -7,6 +7,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   description,
   image,
 }) => {
+  // check null data
   return (
     <div className="container-fluid pb-10 lg:pb-16">
       <div className="flex flex-wrap items-center justify-between gap-y-5 py-10 ">
