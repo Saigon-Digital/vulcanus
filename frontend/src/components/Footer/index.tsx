@@ -50,25 +50,24 @@ const Footer = (props: Props) => {
               <Image src="/logo.svg" width={458} height={137} alt="logo" />
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
                 <div className="text-primary-blue-100 lg:flex-[122px]">
-                  {/* eslint rule anchor-is-valid*/}
-                  <a href="">Runtestraße 13 59457 Werl Germany</a>
+                  <Link href="">Runtestraße 13 59457 Werl Germany</Link>
                 </div>
                 <ul className="text-primary-blue-100 lg:flex-[240px]">
                   <li>
-                    <a> Tel.: +49 (0) 2922 / 97 49 0</a>
+                    <Link href="/#"> Tel.: +49 (0) 2922 / 97 49 0</Link>
                   </li>
                   <li>
-                    <a>Fax: +49 (0) 2922 / 97 49 99</a>
+                    <Link href="/#">Fax: +49 (0) 2922 / 97 49 99</Link>
                   </li>
                   <li>
-                    <a>Email: info@vulcanus-stahl.de</a>
+                    <Link href="/#">Email: info@vulcanus-stahl.de</Link>
                   </li>
                 </ul>
               </div>
             </div>
 
             <div className="mt-16 grid w-full grid-cols-2  gap-5 gap-y-10  text-primary-blue-100 sm:w-4/5 md:grid-cols-3 lg:w-1/2  lg:gap-10 lg:pl-10 xl:mt-16 ">
-            {/* should check if empty array: hierarchicalList.length > 0 && ...
+              {/* should check if empty array: hierarchicalList.length > 0 && ...
             Check null
             */}
               {hierarchicalList &&
