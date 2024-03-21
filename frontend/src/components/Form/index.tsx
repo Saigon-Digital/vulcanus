@@ -180,7 +180,7 @@ const Form = ({contactInformation, form}: TForm) => {
             <hr className="h-[1px] w-full border-[0.5px] border-b-white" />
             <form
               onSubmit={handleSubmit(handleSumit)}
-              className="grid grid-cols-2 gap-6">
+              className="grid grid-cols-2 gap-3 gap-y-6 md:gap-4 xl:gap-8">
               {gfForm &&
                 gfForm.formFields?.nodes.map(
                   (ele: inputField, index: number) => {
@@ -201,7 +201,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -222,12 +222,11 @@ const Form = ({contactInformation, form}: TForm) => {
                             })}
                             type="text"
                             id="lastName"
-                            required={ele.isRequired || false}
                             placeholder="Your last name"
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -238,7 +237,7 @@ const Form = ({contactInformation, form}: TForm) => {
 
                     if (ele.adminLabel === adminLabelEmun.email)
                       return (
-                        <div className="relative col-span-1 flex flex-col gap-4">
+                        <div className="relative col-span-1 flex flex-col gap-3">
                           <label htmlFor="email">E-mail</label>
                           <input
                             {...register(String(ele.databaseId), {
@@ -255,12 +254,11 @@ const Form = ({contactInformation, form}: TForm) => {
                             type="text"
                             id="email"
                             pattern={String(pattern.email)}
-                            required={ele.isRequired || false}
                             placeholder="Your email"
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -270,7 +268,7 @@ const Form = ({contactInformation, form}: TForm) => {
                       );
                     if (ele.adminLabel === adminLabelEmun.phone)
                       return (
-                        <div className="relative col-span-1 flex flex-col gap-4">
+                        <div className="relative col-span-1 flex flex-col gap-3">
                           <label htmlFor="phone">Phone</label>
                           <input
                             {...register(String(ele.databaseId), {
@@ -285,12 +283,12 @@ const Form = ({contactInformation, form}: TForm) => {
                             //ref={phoneRef}
                             // onInvalid={(e) => onInvalid(e)}
                             // pattern={String(pattern.phone)}
-                            required={ele.isRequired || false}
+
                             placeholder="Your phone number"
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -300,7 +298,7 @@ const Form = ({contactInformation, form}: TForm) => {
                       );
                     if (ele.adminLabel === adminLabelEmun.message)
                       return (
-                        <div className="relative col-span-2 flex flex-col gap-4">
+                        <div className="relative col-span-2 flex flex-col gap-3">
                           <label htmlFor="message">Message</label>
                           <textarea
                             {...register(String(ele.databaseId), {
@@ -316,7 +314,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[25px] left-0 text-sm ">
+                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -338,7 +336,9 @@ const Form = ({contactInformation, form}: TForm) => {
                     </>
                   )
                 ) : (
-                  <p className="text-2xl">{languages(locale)?.thankyou} </p>
+                  <p className="whitespace-nowrap text-2xl">
+                    {languages(locale)?.thankyou}{" "}
+                  </p>
                 )}
               </div>
             </form>
