@@ -20,6 +20,7 @@ import {getMutationVariables} from "@/utils/gravity-form";
 import {useRouter} from "next/router";
 import Loader from "../Loader";
 import {languages} from "@/utils/language";
+import Link from "next/link";
 const FORM_ID = 1;
 const DELAY = 5000;
 enum adminLabelEmun {
@@ -150,11 +151,11 @@ const Form = ({contactInformation, form}: TForm) => {
             </p>
             <p className="flex gap-4">
               <MailIcon />
-              <a
+              <Link
                 href={`mailto:${contactInformation?.email}`}
                 className="font-base underline">
                 {contactInformation?.email}
-              </a>
+              </Link>
             </p>
             <p className="flex gap-4">
               <LocationIcon />

@@ -18,15 +18,15 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   const dynamicBlocks =
     props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
 
-  const language = props.__TEMPLATE_VARIABLES__?.language;
+  // const language = props.__TEMPLATE_VARIABLES__?.language;
 
   // const pathname = props.data?.page?.translation?.uri;
-  const siteSetting = props.data?.siteSettings?.siteSetting;
+  const siteSetting = props.data?.siteSettings;
   return (
     <>
       <SEO
         seo={props.data?.page?.translation?.pagesSetting}
-        defaultSEO={props.data?.siteSettings?.siteSetting}
+        defaultSEO={siteSetting?.siteSetting}
         // uri={props.data?.page?.translation?.uri}
         title={props.data?.page?.translation?.title || ""}
       />
@@ -69,7 +69,11 @@ Page.query = gql(`
         }
       }
     }
-    
+    siteSettings {
+      siteSetting {
+        ...SiteSetting
+      }
+    }
   }
 `);
 
