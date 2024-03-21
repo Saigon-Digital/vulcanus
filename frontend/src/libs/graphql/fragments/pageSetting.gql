@@ -1,0 +1,11 @@
+fragment pagesSetting on PagesSetting {
+  __typename
+  title
+  description
+  canonicalUrl
+  socialGraphImage {
+    node {
+      sourceUrl
+    }
+  }
+}

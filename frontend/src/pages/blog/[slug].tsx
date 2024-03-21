@@ -6,6 +6,7 @@ import moment from "moment";
 import ImageBlock from "@/components/ImageBlock";
 import parse from "html-react-parser";
 import RelatedPosts from "@/components/RelatedPost";
+import SEO from "@/components/SEO";
 type Props = {
   blog: PostFragmentFragment;
   relatedBlog: PostFragmentFragment[];
@@ -18,25 +19,28 @@ const index = ({blog, relatedBlog}: Props) => {
     day: "numeric",
   };
   return (
-    <main className="container max-w-[1500px] py-20 lg:py-40">
-      <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 lg:mb-20">
-        <h1 className="text-4xl font-bold xl:text-5xl ">{blog.title}</h1>
-        <p className="text-base text-primary-blue-main">
-          Posted on {moment(blog.dateGmt).format("Do MMMM YYYY")}
-        </p>
-      </div>
-      <ImageBlock
-        height={575}
-        imageSrc={blog.featuredImage?.node?.sourceUrl || ""}
-      />
-      <div
-        className="mx-auto mb-10 mt-20 flex max-w-[912px] flex-col [&>*>strong]:mt-8 [&>*>strong]:inline-block [&>*>strong]:text-2xl [&>*>strong]:font-bold [&>h3]:text-4xl [&>h4]:text-4xl [&>h4]:font-bold
-      [&>h5]:text-4xl [&>p]:mt-4 [&>p]:text-base [&>ul]:mt-2 [&>ul]:list-disc [&>ul]:pl-5
-      ">
-        {blog.content && parse(blog.content)}
-      </div>
-      <RelatedPosts posts={relatedBlog} />
-    </main>
+    <>
+      <SEO seo={blog.pagesSetting} title={blog.title} />
+      <main className="container max-w-[1500px] py-20 lg:py-40">
+        <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 lg:mb-20">
+          <h1 className="text-4xl font-bold xl:text-5xl ">{blog.title}</h1>
+          <p className="text-base text-primary-blue-main">
+            Posted on {moment(blog.dateGmt).format("Do MMMM YYYY")}
+          </p>
+        </div>
+        <ImageBlock
+          height={575}
+          imageSrc={blog.featuredImage?.node?.sourceUrl || ""}
+        />
+        <div
+          className="mx-auto mb-10 mt-20 flex max-w-[912px] flex-col [&>*>strong]:mt-8 [&>*>strong]:inline-block [&>*>strong]:text-2xl [&>*>strong]:font-bold [&>h3]:text-4xl [&>h4]:text-4xl [&>h4]:font-bold
+        [&>h5]:text-4xl [&>p]:mt-4 [&>p]:text-base [&>ul]:mt-2 [&>ul]:list-disc [&>ul]:pl-5
+        ">
+          {blog.content && parse(blog.content)}
+        </div>
+        <RelatedPosts posts={relatedBlog} />
+      </main>
+    </>
   );
 };
 

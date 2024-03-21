@@ -17,4 +17,7 @@ fragment PostFragment on Post {
   content
   title
   slug
+  pagesSetting {
+    ...pagesSetting
+  }
 }

@@ -1,57 +1,60 @@
-import {GetPageQuery} from "@/__generated__/graphql";
+import {
+  GetPageQuery,
+  PagesSettingFragment,
+  SiteSetting,
+  SiteSettingFragment,
+  SiteSetting_Fields,
+} from "@/__generated__/graphql";
 import React from "react";
 import {NextSeo} from "next-seo";
 export type TSEO = {
-  __typename?: "PostTypeSEO";
-  canonical?: string | null;
-  title?: string | null;
-  metaDesc?: string | null;
-  focuskw?: string | null;
-  metaRobotsNoindex?: string | null;
-  metaRobotsNofollow?: string | null;
-  opengraphAuthor?: string | null;
-  opengraphDescription?: string | null;
-  opengraphTitle?: string | null;
-  opengraphUrl?: string | null;
-  opengraphSiteName?: string | null;
-  twitterTitle?: string | null;
-  twitterDescription?: string | null;
-  opengraphImage?: {
-    __typename?: "MediaItem";
-    altText?: string | null;
-    sourceUrl?: string | null;
-    srcSet?: string | null;
-  } | null;
-  twitterImage?: {
-    __typename?: "MediaItem";
-    altText?: string | null;
-    sourceUrl?: string | null;
-    srcSet?: string | null;
-  } | null;
+  seo?: PagesSettingFragment | null | undefined;
+  defaultSEO?: SiteSettingFragment | null | undefined;
+  title?: string | null | undefined;
+  uri?: string;
 };
+
 const SEO = (props: TSEO) => {
+  // console.log("seo", props.seo);
+  console.log("default ", props.defaultSEO);
+
   return (
     <>
-      <NextSeo
-        title={props.title || "Vulcanus Stahl"}
-        description={props.metaDesc || ""}
-        canonical={
-          props.canonical ||
-          "https://vulcanus.saigondigital.dev/wp-content/uploads/2023/12/vul-hero.png"
-        }
-        // twitter={{site:props.twitterTitle}}
-        openGraph={{
-          url: props.opengraphUrl || "",
-          images: [
-            {
-              url: props.opengraphImage?.sourceUrl || "",
-              width: 800,
-              height: 600,
-              type: "image/png",
-            },
-          ],
-        }}
-      />
+      {props.seo && (
+        <NextSeo
+          title={
+            props.seo?.title ||
+            (props.title && `${props.title} | Vulcanus`) ||
+            props.defaultSEO?.siteTitle ||
+            "Vulcanus Stahl"
+          }
+          description={
+            props.seo?.description || props.defaultSEO?.description || ""
+          }
+          canonical={
+            props.seo?.canonicalUrl ||
+            `${props.defaultSEO?.siteUrl || ""}${props.uri || ""}`
+          }
+          // twitter={{site:props.twitterTitle}}
+          openGraph={{
+            url:
+              props.seo?.canonicalUrl ||
+              props.defaultSEO?.openGraphImage?.node.sourceUrl ||
+              "https://vulcanus.saigondigital.dev/wp-content/uploads/2023/12/vul-hero.png",
+            images: [
+              {
+                url:
+                  props.seo?.socialGraphImage?.node.sourceUrl ||
+                  props.defaultSEO?.openGraphImage?.node.sourceUrl ||
+                  "",
+                width: 800,
+                height: 600,
+                type: "image/png",
+              },
+            ],
+          }}
+        />
+      )}
     </>
   );
 };
