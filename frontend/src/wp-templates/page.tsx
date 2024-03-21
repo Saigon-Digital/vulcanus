@@ -7,7 +7,8 @@ import Head from "next/head";
 import {INTRODUCE_PAGE} from "@/constant";
 import IntroduceBlock from "@/components/IntroduceBlock";
 import SEO from "@/components/SEO";
-
+import { DefaultSeo } from "next-seo";
+import defaultSEO from "../next-seo.config"
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
   if (props.loading) {
@@ -20,10 +21,15 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   const language = props.__TEMPLATE_VARIABLES__?.language;
 
   // const pathname = props.data?.page?.translation?.uri;
-
+  const siteSetting = props.data?.siteSettings?.siteSetting;
   return (
     <>
       <SEO {...props.data?.page?.translation?.seo} />
+      <DefaultSeo
+      title={siteSetting?.siteTitle || defaultSEO.title }
+      description={siteSetting?.description || defaultSEO.description}
+      openGraph={siteSetting?.}
+      />
       <BlockViewer dynamicBlocks={dynamicBlocks} />
     </>
   );
@@ -83,6 +89,18 @@ Page.query = gql(`
        }
         pageBuilder {
         ...PageBuilder
+        }
+      }
+    }
+    siteSettings {
+      siteSetting {
+        siteUrl
+        siteTitle
+        description
+        openGraphImage {
+          node {
+            sourceUrl
+          }
         }
       }
     }
