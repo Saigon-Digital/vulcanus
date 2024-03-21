@@ -138,7 +138,7 @@ const Form = ({contactInformation, form}: TForm) => {
   return (
     <div className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
       <div className="grid grid-cols-12 ">
-        <div className="col-span-full grid grid-cols-8 lg:col-span-8 lg:col-start-3">
+        <div className="col-span-full grid grid-cols-8 gap-y-14 lg:col-span-8 lg:col-start-3">
           <div className="col-span-full flex flex-col gap-5 md:col-span-3">
             <h4 className="mb-3 max-w-[33%] text-2xl font-semibold">
               Contact Information:
@@ -169,25 +169,29 @@ const Form = ({contactInformation, form}: TForm) => {
             </p>
           </div>
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 lg:col-span-5">
-            <h4 className="max-w-[630px] text-3xl text-primary-blue-main  [&>*]:text-3xl xl:[&>*]:text-[32px]">
+            <h4 className="max-w-[750px] text-3xl text-primary-blue-main  [&>*]:text-3xl xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]">
               {form?.formTitle && parse(form.formTitle)}
             </h4>
             {form?.copyrightText && (
-              <div className="[&>*>a]:text-primary-blue-400 [&>*>a]:underline">
+              <div className="[&>*>a]:text-primary-blue-main [&>*>a]:underline xl:[&>*]:text-lg xl:[&>*]:leading-[24px]">
                 {parse(form.copyrightText)}
               </div>
             )}
-            <hr className="h-[1px] w-full border-[0.5px] border-b-white" />
+            <hr className="h-[1px] w-full border-[0.5px]  border-b-white" />
             <form
               onSubmit={handleSubmit(handleSumit)}
-              className="grid grid-cols-2 gap-3 gap-y-6 md:gap-4 xl:gap-8">
+              className="grid grid-cols-2 gap-3 gap-y-6 md:gap-4 lg:gap-8">
               {gfForm &&
                 gfForm.formFields?.nodes.map(
                   (ele: inputField, index: number) => {
                     if (ele.adminLabel === adminLabelEmun.firstName)
                       return (
-                        <div className="relative col-span-1 flex flex-col gap-4">
-                          <label htmlFor="firstName">First name</label>
+                        <div className="relative col-span-full flex flex-col gap-4 sm:col-span-1">
+                          <label
+                            className="text-lg font-medium leading-[22px]"
+                            htmlFor="firstName">
+                            First name
+                          </label>
                           <input
                             {...register(String(ele.databaseId), {
                               required: {
@@ -211,8 +215,12 @@ const Form = ({contactInformation, form}: TForm) => {
                       );
                     if (ele.adminLabel === adminLabelEmun.lastName)
                       return (
-                        <div className="relative col-span-1 flex flex-col gap-4">
-                          <label htmlFor="lastName">Last name</label>
+                        <div className="relative col-span-full flex flex-col gap-4 sm:col-span-1">
+                          <label
+                            className="text-lg font-medium leading-[22px]"
+                            htmlFor="lastName">
+                            Last name
+                          </label>
                           <input
                             {...register(String(ele.databaseId), {
                               required: {
@@ -237,8 +245,12 @@ const Form = ({contactInformation, form}: TForm) => {
 
                     if (ele.adminLabel === adminLabelEmun.email)
                       return (
-                        <div className="relative col-span-1 flex flex-col gap-3">
-                          <label htmlFor="email">E-mail</label>
+                        <div className="relative col-span-full flex flex-col gap-3 sm:col-span-1">
+                          <label
+                            className="text-lg font-medium leading-[22px]"
+                            htmlFor="email">
+                            E-mail
+                          </label>
                           <input
                             {...register(String(ele.databaseId), {
                               required: {
@@ -268,8 +280,12 @@ const Form = ({contactInformation, form}: TForm) => {
                       );
                     if (ele.adminLabel === adminLabelEmun.phone)
                       return (
-                        <div className="relative col-span-1 flex flex-col gap-3">
-                          <label htmlFor="phone">Phone</label>
+                        <div className="relative col-span-full flex flex-col gap-3 sm:col-span-1">
+                          <label
+                            className="text-lg font-medium leading-[22px]"
+                            htmlFor="phone">
+                            Phone
+                          </label>
                           <input
                             {...register(String(ele.databaseId), {
                               required: ele.isRequired || false,
@@ -299,7 +315,11 @@ const Form = ({contactInformation, form}: TForm) => {
                     if (ele.adminLabel === adminLabelEmun.message)
                       return (
                         <div className="relative col-span-2 flex flex-col gap-3">
-                          <label htmlFor="message">Message</label>
+                          <label
+                            className="text-lg font-medium leading-[22px]"
+                            htmlFor="message">
+                            Message
+                          </label>
                           <textarea
                             {...register(String(ele.databaseId), {
                               required: {
