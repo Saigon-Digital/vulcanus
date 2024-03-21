@@ -10,7 +10,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   return (
     <div className="container-fluid pb-10 lg:pb-16">
       <div className="flex flex-wrap items-center justify-between gap-y-5 py-10 ">
-        <h1 className="text-4xl font-bold text-white lg:text-5xl 2xl:text-6xl 2xl:leading-[89px]">
+        <h1 className="text-4xl font-bold text-white lg:text-5xl 2xl:text-[64px] 2xl:leading-[89px]">
           {title}
         </h1>
         <div className="[*>*>strong]:font-[500] w-full text-lg font-[300] md:w-1/2 md:text-xl">
