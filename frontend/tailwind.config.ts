@@ -116,7 +116,7 @@ const config: Config = {
           marginRight: "auto",
           paddingLeft: "1.25rem",
           paddingRight: "1.25rem",
-          maxWidth: "1920px",
+          maxWidth: "2550px",
           "@screen xl": {
             paddingLeft: "1.5rem",
             paddingRight: "1.5rem",

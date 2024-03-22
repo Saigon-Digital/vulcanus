@@ -7,7 +7,8 @@ import "../../faust.config";
 import "swiper/css";
 import {__DEV__} from "@apollo/client/utilities/globals";
 import {loadErrorMessages, loadDevMessages} from "@apollo/client/dev";
-
+import {DefaultSeo} from "next-seo";
+import seo from "@/next-seo.config";
 if (__DEV__) {
   // Adds messages only in a dev environment
   loadDevMessages();
@@ -18,6 +19,7 @@ export default function App({Component, pageProps}: AppProps) {
 
   return (
     <FaustProvider pageProps={pageProps}>
+      <DefaultSeo {...seo} />
       <Layout
         headerMenu={pageProps?.headerMenu}
         footerMenu={pageProps?.footerMenu}

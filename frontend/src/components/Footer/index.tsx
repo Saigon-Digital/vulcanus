@@ -50,7 +50,7 @@ const Footer = (props: Props) => {
               <Image src="/logo.svg" width={458} height={137} alt="logo" />
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
                 <div className="text-primary-blue-100 lg:flex-[122px]">
-                  <Link href="">Runtestraße 13 59457 Werl Germany</Link>
+                  <Link href="/#">Runtestraße 13 59457 Werl Germany</Link>
                 </div>
                 <ul className="text-primary-blue-100 lg:flex-[240px]">
                   <li>
@@ -64,6 +64,9 @@ const Footer = (props: Props) => {
                     </Link>
                   </li>
                   <li>
+                    <Link href="mailto:info@vulcanus-stahl.de">
+                      Email: info@vulcanus-stahl.de
+                    </Link>
                     <Link href="mailto:info@vulcanus-stahl.de">
                       Email: info@vulcanus-stahl.de
                     </Link>

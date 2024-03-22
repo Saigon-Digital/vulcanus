@@ -4,9 +4,11 @@ import {useRouter} from "next/router";
 import {gql} from "../__generated__";
 import {GetPageQuery, LanguageCodeEnum} from "../__generated__/graphql";
 import Head from "next/head";
-import {INTRODUCE_PAGE} from "@/constant";
-import IntroduceBlock from "@/components/IntroduceBlock";
 
+import IntroduceBlock from "@/components/IntroduceBlock";
+import SEO from "@/components/SEO";
+import {DefaultSeo} from "next-seo";
+import defaultSEO from "../next-seo.config";
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
   if (props.loading) {
@@ -16,15 +18,19 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   const dynamicBlocks =
     props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
 
-  const language = props.__TEMPLATE_VARIABLES__?.language;
+  // const language = props.__TEMPLATE_VARIABLES__?.language;
 
   // const pathname = props.data?.page?.translation?.uri;
-
+  const siteSetting = props.data?.siteSettings;
   return (
     <>
-      <Head>
-        <title>{props?.data?.page?.translation?.title}</title>
-      </Head>
+      <SEO
+        seo={props.data?.page?.translation?.pagesSetting}
+        defaultSEO={siteSetting?.siteSetting}
+        // uri={props.data?.page?.translation?.uri}
+        title={props.data?.page?.translation?.title || ""}
+      />
+
       <BlockViewer dynamicBlocks={dynamicBlocks} />
     </>
   );
@@ -53,9 +59,19 @@ Page.query = gql(`
         language {
           code
         }
+
+        pagesSetting {
+          ...pagesSetting
+        }
+
         pageBuilder {
         ...PageBuilder
         }
+      }
+    }
+    siteSettings {
+      siteSetting {
+        ...SiteSetting
       }
     }
   }

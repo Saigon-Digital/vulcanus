@@ -5,6 +5,7 @@ type Tlang = {
   errorFormatPhone: string;
   loading: string;
   contactUs: string;
+  loadMore: string;
 };
 
 type Tlangs = {
@@ -23,6 +24,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         thankyou: "Thank you for submitting the form !",
         errorFormatEmail: "Please enter correct email format",
         errorFormatPhone: "Please enter correct phone number",
+        loadMore: "Load More",
       },
     },
     {
@@ -34,6 +36,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         thankyou: "Vielen Dank für das Absenden des Formulars!",
         errorFormatEmail: "Bitte geben Sie das korrekte E-Mail-Format ein",
         errorFormatPhone: "Bitte geben Sie die richtige Telefonnummer ein",
+        loadMore: "Mehr laden",
       },
     },
   ];

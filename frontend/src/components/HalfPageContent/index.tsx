@@ -58,11 +58,11 @@ const HalfPageContent: React.FC<TProps> = ({
                 <div className="mt-6 flex flex-wrap justify-between xl:mt-8">
                   {content?.contents?.map((ele, id) => {
                     return (
-                      <p
+                      <div
                         key={id}
-                        className="w-full text-lg font-light md:w-[calc(50%-20px)]">
+                        className="w-full text-lg font-light md:w-[calc(50%-10px)] ">
                         {ele?.text && (parse(ele.text) as string)}
-                      </p>
+                      </div>
                     );
                   })}
                   {cta && (
