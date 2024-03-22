@@ -26,9 +26,9 @@ const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
           className={`flex w-full flex-col items-start justify-center gap-5 lg:w-1/2 ${
             reverse ? " md:pr-20 xl:pr-28" : "md:pl-20 xl:pl-28"
           }`}>
-          <h4 className="text-4xl font-bold xl:text-5xl xl:leading-[67px]">
+          <h3 className="text-4xl font-bold xl:text-5xl xl:leading-[67px]">
             {content?.title}
-          </h4>
+          </h3>
           <div className="[&>*>strong]:!text-primary-blue-main [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 ">
             {content?.description && parse(content.description)}
           </div>

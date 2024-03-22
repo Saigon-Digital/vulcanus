@@ -40,7 +40,7 @@ const index: React.FC<IconsBlock> = (props) => {
                     alt="icon"
                     className=""
                   />
-                  <h5 className="text-2xl font-semibold">{ele?.iconTitle}</h5>
+                  <h3 className="text-2xl font-semibold">{ele?.iconTitle}</h3>
                   <p className="text-lg font-[300]">{ele?.iconDescription}</p>
                 </div>
               );

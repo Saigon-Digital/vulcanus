@@ -28,9 +28,9 @@ const CTABannerBlock = ({
             )}
           </div>
           <div className="flex w-full flex-col items-start justify-center gap-8 lg:w-1/2">
-            <h4 className="max-w-[750px] text-4xl font-bold text-primary-midBlue-main xl:text-5xl xl:leading-[67px]">
+            <h3 className="max-w-[750px] text-4xl font-bold text-primary-midBlue-main xl:text-5xl xl:leading-[67px]">
               {title}
-            </h4>
+            </h3>
             {cta && <Button href={cta.ctaText as string}>{cta.ctaText}</Button>}
           </div>
         </div>
