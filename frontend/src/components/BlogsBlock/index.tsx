@@ -72,38 +72,41 @@ const BlogsBlock = (props: Props) => {
     <section className="container-fluid py-20 lg:py-28">
       <div className="grid grid-cols-12">
         <div className="col-span-full flex  flex-col gap-10 md:col-span-8">
-          {/* check null here */}
-          {blockListing.map((ele: any, id) => {
-            return (
-              <div key={id} className=" flex flex-wrap gap-5 lg:min-h-[350px] ">
-                <div className="relative min-h-[250px] w-full md:w-[45%]">
-                  <Image
-                    fill
-                    className=" max-h-[400px] w-full object-cover"
-                    src={
-                      ele.featuredImage?.node?.sourceUrl || "/blogs/blog-1.png"
-                    }
-                    alt="blog image"
-                  />
+          {blockListing &&
+            blockListing.map((ele: any, id) => {
+              return (
+                <div
+                  key={id}
+                  className=" flex flex-wrap gap-5 lg:min-h-[350px] ">
+                  <div className="relative min-h-[250px] w-full md:w-[45%]">
+                    <Image
+                      fill
+                      className=" max-h-[400px] w-full object-cover"
+                      src={
+                        ele.featuredImage?.node?.sourceUrl ||
+                        "/blogs/blog-1.png"
+                      }
+                      alt="blog image"
+                    />
+                  </div>
+                  <div className="flex w-full flex-col justify-center gap-2 md:w-1/2">
+                    <h4 className="text-xl uppercase text-primary-blue-main">
+                      Manufacturing
+                    </h4>
+                    <h2 className="text-3xl font-bold">{ele.title}</h2>
+                    <p className="text text-base">
+                      {ele.blogDescription?.blogDescription}
+                    </p>
+                    <a
+                      href={`/${router.locale}/blog/${ele.slug}` as string}
+                      className="group mt-5 text-primary-blue-main">
+                      Read More
+                      <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
+                    </a>
+                  </div>
                 </div>
-                <div className="flex w-full flex-col justify-center gap-2 md:w-1/2">
-                  <h4 className="text-xl uppercase text-primary-blue-main">
-                    Manufacturing
-                  </h4>
-                  <h2 className="text-3xl font-bold">{ele.title}</h2>
-                  <p className="text text-base">
-                    {ele.blogDescription?.blogDescription}
-                  </p>
-                  <a
-                    href={`/${router.locale}/blog/${ele.slug}` as string}
-                    className="group mt-5 text-primary-blue-main">
-                    Read More
-                    <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
-                  </a>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">
           {props.ctaBlocks?.map((ele, id) => {

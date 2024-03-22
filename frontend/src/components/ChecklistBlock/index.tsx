@@ -4,17 +4,20 @@ import Button from "../Button";
 import {CheckIcon} from "../Icons";
 
 const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
-  // Check null, conditional rendering
   return (
     <div className="container-fluid py-20 xl:py-28">
-      <p className="mb-4 text-xl font-normal text-primary-blue-main xl:text-2xl">
-        {props.preHeader}
-      </p>
+      {props.preHeader && (
+        <p className="mb-4 text-xl font-normal text-primary-blue-main xl:text-2xl">
+          {props.preHeader}
+        </p>
+      )}
       <div className="flex flex-wrap">
         <div className="flex w-full flex-col gap-10 lg:w-1/2">
-          <h2 className="max-w-[776px] gap-6 text-4xl font-bold xl:text-5xl xl:leading-[67px]">
-            {props.header}
-          </h2>
+          {props.header && (
+            <h2 className="max-w-[776px] gap-6 text-4xl font-bold xl:text-5xl xl:leading-[67px]">
+              {props.header}
+            </h2>
+          )}
           {props.cta && (
             <Button
               className="w-[fit-content]"
