@@ -57,7 +57,7 @@ const Header = (props: Props) => {
                   <Link
                     key={item?.uri}
                     href={item?.uri ?? "#"}
-                    locale={locale}
+                    // locale={locale}
                     className={clsx(
                       "text-[16px] font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main",
                       {

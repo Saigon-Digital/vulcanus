@@ -24,6 +24,7 @@ export default function App({Component, pageProps}: AppProps) {
         headerMenu={pageProps?.headerMenu}
         footerMenu={pageProps?.footerMenu}
         key={`${router.asPath}-${router.locale}`}>
+        {/* > */}
         <Component {...pageProps} key={`${router.asPath}-${router.locale}`} />
       </Layout>
     </FaustProvider>

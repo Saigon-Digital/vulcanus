@@ -8,6 +8,7 @@ import {
 import React from "react";
 import {NextSeo} from "next-seo";
 import {useRouter} from "next/router";
+
 export type TSEO = {
   seo?: PagesSettingFragment | null | undefined;
   defaultSEO?: SiteSettingFragment | null | undefined;
@@ -15,9 +16,12 @@ export type TSEO = {
   slug?: string;
   // locale?: string;
 };
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 const SEO = (props: TSEO) => {
   // console.log("seo", props.seo);
+  console.log(SITE_URL);
+
   const router = useRouter();
   const locale = router.locale?.toLocaleLowerCase();
   return (
@@ -35,14 +39,18 @@ const SEO = (props: TSEO) => {
           }
           canonical={
             props.seo?.canonicalUrl ||
-            `${props.defaultSEO?.siteUrl || ""}${locale}/${props.slug || ""}`
+            `${props.defaultSEO?.siteUrl || SITE_URL}${locale}/${
+              props.slug || ""
+            }`
           }
           // twitter={{site:props.twitterTitle}}
           openGraph={{
             url:
               props.seo?.canonicalUrl ||
-              props.defaultSEO?.openGraphImage?.node.sourceUrl ||
-              "https://vulcanus.saigondigital.dev/wp-content/uploads/2023/12/vul-hero.png",
+              `${props.defaultSEO?.siteUrl || SITE_URL}${locale}/${
+                props.slug || ""
+              }`,
+            type: "website",
             images: [
               {
                 url:
