@@ -9,7 +9,7 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
       <p className="mb-4 text-xl font-normal text-primary-blue-main xl:text-2xl">
         {props.preHeader}
       </p>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap gap-y-10">
         <div className="flex w-full flex-col gap-10 lg:w-1/2">
           <h2 className="max-w-[776px] gap-6 text-4xl font-bold xl:text-5xl xl:leading-[67px]">
             {props.header}
@@ -34,7 +34,9 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
                   }
                   ${id === last && "border-b-transparent"}
                   `}>
-                  <CheckIcon className="aspect-square h-6 w-6 flex-[1_60px]" />
+                  <div className="min-w-[40px]">
+                    <CheckIcon className="inline-block aspect-square h-10 w-10 flex-[40px] md:h-6 md:w-6" />
+                  </div>
                   <p className="lg:text-lg">{ele?.item}</p>
                 </div>
               );

@@ -5,7 +5,7 @@ import {ImageShape} from "../Icons";
 import parse from "html-react-parser";
 const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
   return (
-    <div className="container py-20 lg:px-20">
+    <div className="container py-10 md:py-[54px] lg:px-20">
       <div
         className={`flex flex-wrap gap-y-10 ${
           reverse ? "flex-row-reverse" : "flex-row"
@@ -29,7 +29,7 @@ const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
           <h4 className="text-4xl font-bold xl:text-5xl xl:leading-[67px]">
             {content?.title}
           </h4>
-          <div className="[&>*>strong]:!text-primary-blue-main [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 ">
+          <div className="[&>*>strong]:!text-primary-blue-main xl:[&>*]:text-[20px] 2xl:[&>*]:leading-[28px] [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 ">
             {content?.description && parse(content.description)}
           </div>
           {content?.icons && content?.icons?.length > 0 && (
