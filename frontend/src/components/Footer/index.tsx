@@ -54,15 +54,19 @@ const Footer = (props: Props) => {
                 </div>
                 <ul className="text-primary-blue-100 lg:flex-[240px]">
                   <li>
-                    <Link href="tel:+4902922">
-                      {" "}
+                    <Link href="tel:+492922974999">
                       Tel.: +49 (0) 2922 / 97 49 0
                     </Link>
                   </li>
                   <li>
-                    <Link href="/#">Fax: +49 (0) 2922 / 97 49 99</Link>
+                    <Link href="fax:+492922974999">
+                      Fax: +49 (0) 2922 / 97 49 99
+                    </Link>
                   </li>
                   <li>
+                    <Link href="mailto:info@vulcanus-stahl.de">
+                      Email: info@vulcanus-stahl.de
+                    </Link>
                     <Link href="mailto:info@vulcanus-stahl.de">
                       Email: info@vulcanus-stahl.de
                     </Link>
@@ -72,6 +76,9 @@ const Footer = (props: Props) => {
             </div>
 
             <div className="mt-16 grid w-full grid-cols-2  gap-5 gap-y-10  text-primary-blue-100 sm:w-4/5 md:grid-cols-3 lg:w-1/2  lg:gap-10 lg:pl-10 xl:mt-16 ">
+              {/* should check if empty array: hierarchicalList.length > 0 && ...
+           
+            */}
               {hierarchicalList &&
                 hierarchicalList.map((ele: any, index: number) => {
                   return (
