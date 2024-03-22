@@ -27,7 +27,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
       <SEO
         seo={props.data?.page?.translation?.pagesSetting}
         defaultSEO={siteSetting?.siteSetting}
-        // uri={props.data?.page?.translation?.uri}
+        slug={props.data?.page?.translation?.slug || ""}
         title={props.data?.page?.translation?.title || ""}
       />
 
@@ -51,6 +51,7 @@ Page.query = gql(`
         uri
         title
         content
+        slug
         pageType {
           nodes {
            name
