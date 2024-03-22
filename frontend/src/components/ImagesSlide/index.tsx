@@ -44,9 +44,10 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             return (
               <SwiperSlide key={index}>
                 <div className="relative aspect-video w-full">
-                  <Image
+                  <img
                     src={ele?.image?.node.sourceUrl || ""}
                     //   fill
+
                     loading="eager"
                     //   sizes="100vw, (min-width: 640px) 33vw, (min-width: 1024px) 25vw, (min-width: 1280px) 20vw"
                     alt={" slide"}

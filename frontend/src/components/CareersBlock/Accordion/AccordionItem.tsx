@@ -2,6 +2,7 @@ import {CareerBlockFragment} from "@/__generated__/graphql";
 import clsx from "clsx";
 import {useRef} from "react";
 import Button from "@/components/Button";
+import {MinusIcon, PlusIcon} from "@/components/Icons";
 
 type Props = {
   itemKey: string;
@@ -27,7 +28,9 @@ type Props = {
 
 const TriggerLabel = ({expanded}: Props) => {
   return (
-    <div className="font-supreme-trial flex items-center gap-x-[10px] lg:gap-x-[20px]"> {/*  gap-x-2.5 lg:gap-x-5 */}
+    <div className="font-supreme-trial flex items-center gap-x-[10px] lg:gap-x-[20px]">
+      {" "}
+      {/*  gap-x-2.5 lg:gap-x-5 */}
       <div className="min-12-max-14 font-supreme-trial tracking-0.25 text-chocolate-lite relative font-medium uppercase">
         <span
           className={clsx(
@@ -43,25 +46,7 @@ const TriggerLabel = ({expanded}: Props) => {
               "hidden ": expanded,
             }
           )}>
-            {/* refactor svg to component*/}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none">
-            <g clip-path="url(#clip0_618_893)"> 
-              <path
-                d="M20 0C8.95437 0 0 8.95437 0 20C0 31.0462 8.95437 40 20 40C31.0462 40 40 31.0462 40 20C40 8.95437 31.0462 0 20 0ZM20 37.5394C10.3506 37.5394 2.5 29.6494 2.5 19.9999C2.5 10.3505 10.3506 2.49992 20 2.49992C29.6494 2.49992 37.5 10.3506 37.5 19.9999C37.5 29.6493 29.6494 37.5394 20 37.5394ZM28.75 18.75H21.25V11.25C21.25 10.56 20.69 10 20 10C19.31 10 18.75 10.56 18.75 11.25V18.75H11.25C10.56 18.75 10 19.31 10 20C10 20.69 10.56 21.25 11.25 21.25H18.75V28.75C18.75 29.44 19.31 30 20 30C20.69 30 21.25 29.44 21.25 28.75V21.25H28.75C29.44 21.25 30 20.69 30 20C30 19.31 29.44 18.75 28.75 18.75Z"
-                fill="#009EE0"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_618_893">
-                <rect width="40" height="40" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
+          <PlusIcon />
         </div>
         <div
           className={clsx(
@@ -70,24 +55,7 @@ const TriggerLabel = ({expanded}: Props) => {
               hidden: !expanded,
             }
           )}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none">
-            <g clip-path="url(#clip0_618_886)">
-              <path
-                d="M20 0C31.0547 0 40 8.94531 40 20C40 31.0547 31.0547 40 20 40C8.94531 40 0 31.0547 0 20C0 8.94531 8.94531 0 20 0ZM20 37.5391C29.6484 37.5391 37.5 29.6484 37.5 20C37.5 10.3516 29.6484 2.5 20 2.5C10.3516 2.5 2.5 10.3516 2.5 20C2.5 29.6484 10.3516 37.5391 20 37.5391ZM18.6328 21.25H11.25C10.5469 21.25 10 20.7031 10 20C10 19.2969 10.5469 18.75 11.25 18.75H28.75C29.4531 18.75 30 19.2969 30 20C30 20.7031 29.4531 21.25 28.75 21.25H18.6328Z"
-                fill="#009EE0"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_618_886">
-                <rect width="40" height="40" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
+          <MinusIcon />
         </div>
       </div>
     </div>
