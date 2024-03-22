@@ -17,7 +17,7 @@ body {
   @apply text-4xl font-bold lg:text-5xl 3xl:text-[64px] 3xl:leading-[84px];
 }
 p {
-  @apply lg:text-lg;
+  @apply lg:text-lg lg:leading-[25px];
 }
 .title-block strong {
   @apply text-primary-blue-main;
@@ -32,9 +32,22 @@ p {
   height: 350px;
 }
 
-.career .description strong {
-  color:#F7CC5F;
-  font-weight: 600;
+.career  {
+  .description{
+    strong {
+      color:#F7CC5F;
+      font-weight: 600;
+      font-size: 20px;
+      margin-top: 24px;
+      line-height: 32px;
+      display: inline-block;
+    }
+    *:not(strong) {
+      @apply xl:text-lg font-normal;
+    }
+  } 
+ 
+  
 }
 
 .cards {

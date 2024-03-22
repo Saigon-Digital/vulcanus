@@ -1,0 +1,10 @@
+fragment SiteSetting on SiteSetting {
+  siteTitle
+  description
+  siteUrl
+  openGraphImage {
+    node {
+      sourceUrl
+    }
+  }
+}

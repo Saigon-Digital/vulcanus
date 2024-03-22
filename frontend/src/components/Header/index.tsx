@@ -37,8 +37,8 @@ const Header = (props: Props) => {
 
   return (
     <>
-      <header className=" sticky top-0 z-50 py-[var(--header-py)]">
-        <div className="container-fluid">
+      <header className=" sticky top-0 z-[100] py-[var(--header-py)]">
+        <div className="sm:container-fluid ">
           <div className="flex h-[var(--header-height)] items-center justify-between rounded-[5px] bg-eerie-black px-6 transition-all duration-300">
             <Link href="/" locale={locale}>
               <Image

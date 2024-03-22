@@ -228,6 +228,16 @@ export async function getAllPost () {
         }
         content
         title
+        pagesSetting {
+          title
+          description
+          canonicalUrl
+          socialGraphImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
       }
     }
   }

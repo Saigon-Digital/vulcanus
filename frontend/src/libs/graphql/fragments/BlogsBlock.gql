@@ -2,8 +2,10 @@ fragment blogsBlock on PageBuilderDynamicBlocksBlogs {
   fieldGroupName
   tittle
   ctaBlocks {
+    title
     ctaButton {
       fieldGroupName
+
       text
       link {
         nodes {
