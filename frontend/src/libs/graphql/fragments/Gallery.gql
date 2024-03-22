@@ -11,6 +11,9 @@ fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlock {
       }
     }
     textOrImge
-    richText
+    text {
+      content
+      title
+    }
   }
 }

@@ -16,7 +16,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             alt="shape"
             className="absolute -left-[25px] -top-5 hidden  md:block"
           />
-          <h4 className="w-3/4 max-w-[269px] text-2xl font-bold tracking-tight xl:text-4xl 2xl:text-5xl 2xl:leading-[67px]">
+          <h4 className="w-4/5 max-w-[279px] text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-3/4  2xl:text-5xl 2xl:leading-[67px]">
             {title}
           </h4>
         </div>
@@ -26,7 +26,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
               <div
                 key={id}
                 className={clsx(
-                  "col-span-full flex flex-col gap-3 border border-primary-blue-main p-3 sm:col-span-2 xl:p-5 ",
+                  "col-span-full flex flex-col gap-3 rounded-[5px] border border-primary-blue-main p-3 sm:col-span-2 xl:p-5 ",
                   !reverseLayout
                     ? id === 1 || id === 2
                       ? "lg:col-span-3"
@@ -57,7 +57,10 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                   </>
                 ) : (
                   <div className="[&>p]:text-lg [&>p]:leading-[24px]">
-                    {parse(ele?.richText || "")}
+                    <h5 className="mb-3 text-xl font-bold text-primary-midBlue-main 2xl:text-2xl">
+                      {ele?.text?.title}
+                    </h5>
+                    <p>{ele?.text?.content}</p>
                   </div>
                 )}
               </div>

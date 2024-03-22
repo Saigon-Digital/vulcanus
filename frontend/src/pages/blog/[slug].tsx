@@ -23,7 +23,9 @@ const index = ({blog, relatedBlog}: Props) => {
       <SEO seo={blog.pagesSetting} title={blog.title} />
       <main className="container max-w-[1500px] py-20 lg:py-40">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 lg:mb-20">
-          <h1 className="text-4xl font-bold xl:text-5xl ">{blog.title}</h1>
+          <h1 className="text-4xl font-bold xl:text-5xl xl:leading-[64px] ">
+            {blog.title}
+          </h1>
           <p className="text-base text-primary-blue-main">
             Posted on {moment(blog.dateGmt).format("Do MMMM YYYY")}
           </p>
