@@ -19,7 +19,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
       key: "en",
       value: {
         loading: "...Loading",
-        require: "This field is require",
+        require: "This field is required",
         contactUs: "Contact Us",
         thankyou: "Thank you for submitting the form !",
         errorFormatEmail: "Please enter correct email format",

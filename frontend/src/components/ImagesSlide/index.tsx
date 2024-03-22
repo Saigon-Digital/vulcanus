@@ -47,9 +47,10 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
                   <img
                     src={ele?.image?.node.sourceUrl || ""}
                     //   fill
+
                     loading="eager"
                     //   sizes="100vw, (min-width: 640px) 33vw, (min-width: 1024px) 25vw, (min-width: 1280px) 20vw"
-                    alt={"slide"}
+                    alt={" slide"}
                     className="aspect-auto min-h-[480px] object-contain"
                   />
                 </div>
