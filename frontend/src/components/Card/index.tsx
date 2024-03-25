@@ -28,7 +28,7 @@ const Card: React.FC<Props> = ({
     <div
       style={{background: backgroundColor || undefined}}
       className={twMerge(
-        "group relative z-10 flex min-h-[450px] cursor-pointer  flex-col justify-between rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
+        "group relative z-10 flex min-h-[450px] cursor-pointer  flex-col justify-start gap-3 rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
         !hoverImage && "hover:bg-primary-midBlue-main",
         className
       )}
@@ -82,14 +82,14 @@ const Card: React.FC<Props> = ({
           title={description || ""}>
           {description}
         </p>
-        {link ? (
+        {/* {link ? (
           <Link
             {...getAcfLinkProps(link)}
             className="inline-flex items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white">
             Read more
             <ArrowRight className="h-[22px] w-[22px] shrink-0 [&_path]:text-primary-blue-main [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:text-secondary-offWhite-white" />
           </Link>
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );
