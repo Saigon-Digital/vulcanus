@@ -12,6 +12,7 @@ import {GetPostsThumbQuery} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
 import {log} from "console";
 import {languages} from "@/utils/language";
+import {getAcfLinkProps} from "@/utils";
 type TBlog = {
   category?: string;
   featureImage?: string;
@@ -106,9 +107,13 @@ const BlogsBlock = (props: Props) => {
                       <h4 className="text-lg font-semibold uppercase leading-5 text-primary-blue-main">
                         Manufacturing
                       </h4>
-                      <h2 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
-                        {ele.title}
-                      </h2>
+                      <Link
+                        href={`/${router.locale}/blog/${ele.slug}` as string}
+                        className="group">
+                        <h2 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
+                          {ele.title}
+                        </h2>
+                      </Link>
                       <p className="text text-base leading-[22px]">
                         {ele.blogDescription?.blogDescription}
                       </p>
@@ -123,15 +128,17 @@ const BlogsBlock = (props: Props) => {
                 );
               })}
           <div className="mt-10 flex w-full justify-center">
-            <Button
-              onClick={() =>
-                setPage((prev) => {
-                  return prev + 1 >= max_page ? max_page : prev + 1;
-                })
-              }
-              as="button">
-              {languages(locale)?.loadMore}
-            </Button>
+            {blockListing.length > PAGE_SIZE && (
+              <Button
+                onClick={() =>
+                  setPage((prev) => {
+                    return prev + 1 >= max_page ? max_page : prev + 1;
+                  })
+                }
+                as="button">
+                {languages(locale)?.loadMore}
+              </Button>
+            )}
           </div>
         </div>
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">
@@ -147,12 +154,13 @@ const BlogsBlock = (props: Props) => {
                     dangerouslySetInnerHTML={{
                       __html: ele?.contactInfo || "",
                     }}></div>
-                  <Button
-                    as="link"
-                    className="mt-4"
-                    href={ele?.ctaButton?.link?.nodes[0].slug as string}>
-                    {ele?.ctaButton?.text}
-                  </Button>
+                  {ele?.ctaButton && (
+                    <Button
+                      className="mt-4"
+                      {...getAcfLinkProps(ele.ctaButton.link)}>
+                      {ele?.ctaButton?.text}
+                    </Button>
+                  )}
                 </div>
               );
             if (id === 1)
@@ -166,11 +174,13 @@ const BlogsBlock = (props: Props) => {
                     dangerouslySetInnerHTML={{
                       __html: ele?.contactInfo || "",
                     }}></div>
-                  <Button
-                    className="mt-4"
-                    href={ele?.ctaButton?.link?.nodes[0].slug || ""}>
-                    {ele?.ctaButton?.text}
-                  </Button>
+                  {ele?.ctaButton && (
+                    <Button
+                      className="mt-4"
+                      {...getAcfLinkProps(ele.ctaButton.link)}>
+                      {ele?.ctaButton?.text}
+                    </Button>
+                  )}
                 </div>
               );
           })}

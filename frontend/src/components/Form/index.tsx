@@ -94,23 +94,18 @@ const Form = ({contactInformation, form}: TForm) => {
   /////
   if (!data || error)
     return (
-      <div className="container-fluid min-h-[600px] py-20 pb-28 xl:py-28 xl:pb-40">
-        {languages(locale)?.loading}
+      <div className="container-fluid min-h-[600px] py-20 pb-28 text-lg xl:py-28 xl:pb-40">
+        {error ? languages(locale)?.error : languages(locale)?.loading}
       </div>
     );
 
   gfForm = data.gfForm;
-  console.log("form  ", errors);
+  console.log("form  ", gfForm);
+  console.log("form error ", error);
+
   // console.log("number", watch());
 
   // return;
-
-  // text message
-  const thankyouMsg =
-    locale === LanguageCodeEnum.En.toLocaleLowerCase()
-      ? "Thank you for submitting the form !"
-      : "Vielen Dank für das Absenden des Formulars!";
-  //----------//
 
   // handle submit
   const handleSumit: SubmitHandler<FieldValues> = async (data) => {
@@ -190,7 +185,7 @@ const Form = ({contactInformation, form}: TForm) => {
                           <label
                             className="text-lg font-medium leading-[22px]"
                             htmlFor="firstName">
-                            First name
+                            {languages(locale)?.firstName.label}
                           </label>
                           <input
                             {...register(String(ele.databaseId), {
@@ -201,7 +196,9 @@ const Form = ({contactInformation, form}: TForm) => {
                             })}
                             type="text"
                             id="firstName"
-                            placeholder="Your first name"
+                            placeholder={
+                              languages(locale)?.firstName.placeholder
+                            }
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
@@ -219,7 +216,7 @@ const Form = ({contactInformation, form}: TForm) => {
                           <label
                             className="text-lg font-medium leading-[22px]"
                             htmlFor="lastName">
-                            Last name
+                            {languages(locale)?.lastName.label}
                           </label>
                           <input
                             {...register(String(ele.databaseId), {
@@ -230,7 +227,9 @@ const Form = ({contactInformation, form}: TForm) => {
                             })}
                             type="text"
                             id="lastName"
-                            placeholder="Your last name"
+                            placeholder={
+                              languages(locale)?.lastName.placeholder
+                            }
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
@@ -249,7 +248,7 @@ const Form = ({contactInformation, form}: TForm) => {
                           <label
                             className="text-lg font-medium leading-[22px]"
                             htmlFor="email">
-                            E-mail
+                            {languages(locale)?.email.label}
                           </label>
                           <input
                             {...register(String(ele.databaseId), {
@@ -266,7 +265,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             type="text"
                             id="email"
                             pattern={String(pattern.email)}
-                            placeholder="Your email"
+                            placeholder={languages(locale)?.email.placeholder}
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
@@ -284,7 +283,7 @@ const Form = ({contactInformation, form}: TForm) => {
                           <label
                             className="text-lg font-medium leading-[22px]"
                             htmlFor="phone">
-                            Phone
+                            {languages(locale)?.phone.label}
                           </label>
                           <input
                             {...register(String(ele.databaseId), {
@@ -300,7 +299,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             // onInvalid={(e) => onInvalid(e)}
                             // pattern={String(pattern.phone)}
 
-                            placeholder="Your phone number"
+                            placeholder={languages(locale)?.phone.placeholder}
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
@@ -318,7 +317,7 @@ const Form = ({contactInformation, form}: TForm) => {
                           <label
                             className="text-lg font-medium leading-[22px]"
                             htmlFor="message">
-                            Message
+                            {languages(locale)?.message.label}
                           </label>
                           <textarea
                             {...register(String(ele.databaseId), {
@@ -330,7 +329,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             rows={4}
                             aria-rowspan={4}
                             id="message"
-                            placeholder="Message"
+                            placeholder={languages(locale)?.message.placeholder}
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
@@ -348,7 +347,7 @@ const Form = ({contactInformation, form}: TForm) => {
                 {!formSuccess ? (
                   !loading ? (
                     <Button type="submit" as="button" className="mt-3">
-                      Contact us
+                      {languages(locale)?.contactUs}
                     </Button>
                   ) : (
                     <>

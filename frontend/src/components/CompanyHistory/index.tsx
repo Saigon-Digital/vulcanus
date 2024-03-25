@@ -62,10 +62,10 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 {props.histories?.map((ele, id) => {
                   return (
                     <SwiperSlide
-                      onClick={(e) => {
-                        setCurentSlide(id);
-                        // swiper.slideTo(id);
-                      }}
+                      // onClick={(e) => {
+                      //   setCurentSlide(id);
+                      //   swiper.slideTo(id);
+                      // }}
                       className={clsx(
                         ` !flex items-center justify-center text-right text-xl  xl:text-3xl `,
                         activeSlide === id && "slide-active",
