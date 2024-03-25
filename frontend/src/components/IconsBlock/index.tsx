@@ -5,20 +5,20 @@ import Button from "../Button";
 const index: React.FC<IconsBlock> = (props) => {
   return (
     <div className="container-fluid py-16 lg:py-20 xl:py-28 ">
+      {props.preHeader && (
+        <p className="font-semiborder-l-primary-midBlue-100 mb-3 text-xl text-primary-blue-main lg:text-2xl ">
+          {props.preHeader}
+        </p>
+      )}
       <div className="grid grid-cols-12 gap-y-10">
-        <div className="col-span-full flex flex-col gap-4 sm:col-span-10 md:col-span-5 2xl:col-span-5">
-          {props.preHeader && (
-            <p className="text-xl font-semibold text-primary-blue-main lg:text-2xl ">
-              {props.preHeader}
-            </p>
-          )}
+        <div className="col-span-full flex max-w-[650px] flex-col gap-4 sm:col-span-10 md:col-span-5 2xl:col-span-4">
           {props.header && (
             <h2 className="text-3xl font-bold lg:text-5xl lg:leading-[67px]">
               {props.header}
             </h2>
           )}
           {props.description && (
-            <p className="lg:text-lg">{props.description}</p>
+            <p className=" lg:text-lg">{props.description}</p>
           )}
           {props.ctaLink && (
             <Button

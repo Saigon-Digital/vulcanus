@@ -108,7 +108,7 @@ const AccordionItem = (props: Props) => {
           <hr className="mx-auto w-[calc(100%-88px)] border-t border-primary-blue-main" />
           <div
             className={clsx(
-              "text-chocolate flex flex-col items-center p-[20px]  pt-8  transition-all duration-300 lg:items-start lg:px-[48px] lg:pb-[40px]",
+              "text-chocolate flex w-full flex-col items-center p-[20px]  pt-8  transition-all duration-300 lg:items-start lg:px-[48px] lg:pb-[40px]",
               {
                 "collapse opacity-0": !expanded,
                 "visible opacity-100": expanded,
@@ -119,7 +119,7 @@ const AccordionItem = (props: Props) => {
                 dangerouslySetInnerHTML={{
                   __html: item?.careerDescription || "",
                 }}
-                className=" description font-supreme-trial text-left   font-light lg:max-w-[79.3%] lg:text-left [&>ul]:ml-4 [&>ul]:list-disc"></div>
+                className="description font-supreme-trial w-full text-left   font-light lg:text-left  [&>ul]:ml-4 [&>ul]:list-disc"></div>
             </div>
             {item?.cta && (
               <Button
