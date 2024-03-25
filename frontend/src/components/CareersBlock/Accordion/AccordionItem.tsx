@@ -7,6 +7,7 @@ import {MinusIcon, PlusIcon} from "@/components/Icons";
 type Props = {
   itemKey: string;
   expanded?: boolean;
+  className?: string;
   item: {
     __typename?: "CareersBlockCareers";
     careerDescription?: string | null;
@@ -26,9 +27,10 @@ type Props = {
   onValueChange: (expanded: boolean, key: string) => void;
 };
 
-const TriggerLabel = ({expanded}: Props) => {
+const TriggerLabel = ({expanded, className}: Props) => {
   return (
-    <div className="font-supreme-trial flex items-center gap-x-[10px] lg:gap-x-[20px]">
+    <div
+      className={`font-supreme-trial flex items-center gap-x-[10px] lg:gap-x-[20px] ${className}`}>
       {" "}
       {/*  gap-x-2.5 lg:gap-x-5 */}
       <div className="min-12-max-14 font-supreme-trial tracking-0.25 text-chocolate-lite relative font-medium uppercase">
@@ -74,11 +76,11 @@ const AccordionItem = (props: Props) => {
 
   return (
     <div className="career rounded-[10px] border border-primary-blue-main bg-[#051028]">
-      <div className="flex flex-col items-center lg:flex-row lg:flex-wrap">
+      <div className="flex flex-col items-center justify-between lg:flex-row lg:flex-wrap">
         <button
           {...triggerButtonProps}
           className={clsx(
-            "flex w-full items-start justify-between px-[43px] pt-[28px] transition-all duration-500 lg:justify-between lg:px-[48px]",
+            "flex w-full items-start justify-between px-4 pt-[28px] transition-all duration-500 md:px-[43px] lg:justify-between lg:px-[48px]",
             {
               "lg:pb-[28px]": !expanded,
               "pb-[22px]": expanded,
@@ -90,7 +92,7 @@ const AccordionItem = (props: Props) => {
               location: {item?.location}
             </span>
           </div>
-          <div className="hidden lg:block">
+          <div className="hidden justify-center  lg:block">
             <TriggerLabel {...props} />
           </div>
         </button>
@@ -117,7 +119,7 @@ const AccordionItem = (props: Props) => {
                 dangerouslySetInnerHTML={{
                   __html: item?.careerDescription || "",
                 }}
-                className="min-18-max-26 description font-supreme-trial text-center  font-light lg:max-w-[79.3%] lg:text-left [&>ul]:ml-4 [&>ul]:list-disc"></div>
+                className=" description font-supreme-trial text-left   font-light lg:max-w-[79.3%] lg:text-left [&>ul]:ml-4 [&>ul]:list-disc"></div>
             </div>
             {item?.cta && (
               <Button
@@ -130,8 +132,10 @@ const AccordionItem = (props: Props) => {
           </div>
         </div>
         {/* Accordion Trigger */}
-        <button className="mb-[14px] lg:hidden" {...triggerButtonProps}>
-          <TriggerLabel {...props} />
+        <button
+          className="mb-16 flex w-full justify-center lg:hidden"
+          {...triggerButtonProps}>
+          <TriggerLabel {...props} className="mt-3 -translate-x-6" />
         </button>
       </div>
     </div>

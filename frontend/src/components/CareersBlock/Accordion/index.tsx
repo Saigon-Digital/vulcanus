@@ -9,7 +9,7 @@ const Accordion = (props: {careers: CareerBlockFragment["careers"]}) => {
     setExpandedItems([key]);
   };
   return (
-    <div className="container relative z-50">
+    <div className=" relative z-50">
       <div className="container-smaller">
         <div className="grid lg:grid-cols-12">
           <div className="lg:col-span-10 lg:col-start-2">
