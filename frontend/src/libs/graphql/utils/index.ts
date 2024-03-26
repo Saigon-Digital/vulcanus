@@ -1,7 +1,12 @@
 // import {gql} from "@/__generated__";
-import { gql } from "@apollo/client";
+import {gql} from "@apollo/client";
 
-import {LanguageCodeFilterEnum, MenuLocationEnum,LanguageCodeEnum,PostFragmentFragment} from "@/__generated__/graphql";
+import {
+  LanguageCodeFilterEnum,
+  MenuLocationEnum,
+  LanguageCodeEnum,
+  PostFragmentFragment,
+} from "@/__generated__/graphql";
 import {createApolloClient} from "@faustwp/core/dist/cjs/client";
 // import { LanguageCodeEnum } from "@/__generated__/graphql";
 const menuLocations = {
@@ -15,8 +20,7 @@ const menuLocations = {
   },
 };
 
-
-const client = createApolloClient();
+export const client = createApolloClient();
 
 async function getMenuItems(location: MenuLocationEnum) {
   return await client.query({
@@ -47,11 +51,31 @@ async function getMenuItems(location: MenuLocationEnum) {
   });
 }
 
+export const GET_MENUS = gql`
+  query MenuItems($location: MenuLocationEnum!) {
+    menuItems(where: {location: $location}) {
+      nodes {
+        uri
+        label
+        title
+        parentId
+        id
+        target
+        childItems {
+          nodes {
+            title
+            uri
+            label
+          }
+        }
+      }
+    }
+  }
+`;
 
-
-export async function getPageType (language: LanguageCodeEnum) {
+export async function getPageType(language: LanguageCodeEnum) {
   return await client.query({
-    query:gql(`
+    query: gql(`
     query GetPageType($language:LanguageCodeFilterEnum!) {
       pages(where: {language: $language}) {
         nodes {
@@ -67,12 +91,12 @@ export async function getPageType (language: LanguageCodeEnum) {
         }
       }
     }
-    `),variables:{
-      language
-    }
-  })
+    `),
+    variables: {
+      language,
+    },
+  });
 }
-
 
 export const GET_FORM = gql(`
   query GetGravityForm($formId: ID!) {
@@ -176,77 +200,72 @@ export const SUBMIT_FORM = gql(`
   }
 `);
 
-export async function getPostThumb (language:LanguageCodeFilterEnum) {
+export async function getPostThumb(language: LanguageCodeFilterEnum) {
   return await client.query({
-    query:gql`
-    query GetPostsThumb($language:LanguageCodeFilterEnum!) {
-      posts (where: {language: $language}) {
-        nodes {
-          featuredImage {
-            node {
-              sourceUrl
+    query: gql`
+      query GetPostsThumb($language: LanguageCodeFilterEnum!) {
+        posts(where: {language: $language}) {
+          nodes {
+            featuredImage {
+              node {
+                sourceUrl
+              }
             }
-          }
-          title
-          slug
-          blogDescription {
-            blogDescription
+            title
+            slug
+            blogDescription {
+              blogDescription
+            }
           }
         }
       }
-    }
     `,
-    variables:{
-      language:language.toLocaleUpperCase()
-    }
-  },)
+    variables: {
+      language: language.toLocaleUpperCase(),
+    },
+  });
 }
 
-
-export async function getAllPost () {
+export async function getAllPost() {
   return await client.query({
     //@ts-ignore
-    query:gql`
-    query GetPosts {
-      posts {
-        nodes {
-        slug
-        author {
-          node {
-           
-            avatar {
-              url
+    query: gql`
+      query GetPosts {
+        posts {
+          nodes {
+            slug
+            author {
+              node {
+                avatar {
+                  url
+                }
+                name
+                registeredDate
+              }
             }
-            name
-            registeredDate
-          }
-        }
-        featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-        content
-        title
-        pagesSetting {
-          title
-          description
-          canonicalUrl
-          socialGraphImage {
-            node {
-              sourceUrl
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+            content
+            title
+            pagesSetting {
+              title
+              description
+              canonicalUrl
+              socialGraphImage {
+                node {
+                  sourceUrl
+                }
+              }
             }
           }
         }
       }
-    }
-  }
-    
     `,
-   
-  }) 
+  });
 }
-
 
 export async function getGlobalSiteData(locale: string | undefined) {
   const menuLocation = menuLocations[(locale as "de" | "en") || "de"];
