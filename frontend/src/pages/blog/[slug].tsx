@@ -21,21 +21,22 @@ const index = ({blog, relatedBlog}: Props) => {
   return (
     <>
       <SEO seo={blog.pagesSetting} title={blog.title} />
-      <main className="container max-w-[1500px] py-20 lg:py-40">
+      <main className=" py-20 pb-10 lg:py-0 lg:pb-0">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 lg:mb-20">
           <h1 className="text-4xl font-bold xl:text-5xl xl:leading-[64px] ">
             {blog.title}
           </h1>
-          <p className="text-base text-primary-blue-main">
+          <p className="text-lg leading-[25px] text-primary-blue-main">
             Posted on {moment(blog.dateGmt).format("Do MMMM YYYY")}
           </p>
         </div>
         <ImageBlock
           height={575}
+          maxWidth={false}
           imageSrc={blog.featuredImage?.node?.sourceUrl || ""}
         />
         <div
-          className="mx-auto mb-10 mt-20 flex max-w-[912px] flex-col [&>*>strong]:mt-8 [&>*>strong]:inline-block [&>*>strong]:text-2xl [&>*>strong]:font-bold [&>h3]:text-4xl [&>h4]:text-4xl [&>h4]:font-bold
+          className="mx-auto mb-20 mt-20 flex max-w-[912px] flex-col xl:mb-[140px] [&>*>strong]:mt-8 [&>*>strong]:inline-block [&>*>strong]:text-2xl [&>*>strong]:font-bold [&>h3]:text-4xl [&>h4]:text-4xl [&>h4]:font-bold
         [&>h5]:text-4xl [&>p]:mt-4 [&>p]:text-base [&>ul]:mt-2 [&>ul]:list-disc [&>ul]:pl-5
         ">
           {blog.content && parse(blog.content)}

@@ -164,7 +164,7 @@ const Form = ({contactInformation, form}: TForm) => {
             </p>
           </div>
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 lg:col-span-5">
-            <h4 className="max-w-[750px] text-3xl text-primary-blue-main  [&>*]:text-3xl xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]">
+            <h4 className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]">
               {form?.formTitle && parse(form.formTitle)}
             </h4>
             {form?.copyrightText && (
@@ -295,10 +295,6 @@ const Form = ({contactInformation, form}: TForm) => {
                             })}
                             type="text"
                             id="phone"
-                            //ref={phoneRef}
-                            // onInvalid={(e) => onInvalid(e)}
-                            // pattern={String(pattern.phone)}
-
                             placeholder={languages(locale)?.phone.placeholder}
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
@@ -346,7 +342,10 @@ const Form = ({contactInformation, form}: TForm) => {
               <div className="col-span-1  gap-4">
                 {!formSuccess ? (
                   !loading ? (
-                    <Button type="submit" as="button" className="mt-3">
+                    <Button
+                      type="submit"
+                      as="button"
+                      className="mt-3 whitespace-nowrap">
                       {languages(locale)?.contactUs}
                     </Button>
                   ) : (
