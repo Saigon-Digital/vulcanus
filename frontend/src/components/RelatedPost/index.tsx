@@ -16,8 +16,8 @@ const RelatedPosts = ({posts}: Props) => {
         {posts &&
           posts.map((ele, index) => {
             return (
-              <Link href={`/blog/${ele.slug}`}>
-                <div key={index} className="flex flex-col gap-4">
+              <Link key={index} href={`/blog/${ele.slug}`}>
+                <div className="flex flex-col gap-4">
                   <Image
                     className="aspect-[450/290] w-full"
                     src={
