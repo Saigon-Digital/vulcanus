@@ -3,11 +3,11 @@ import React from "react";
 import parse from "html-react-parser";
 const CenterTitleTextBlock = (props: CenterTitleText) => {
   return (
-    <div className="container-fluid py-20 text-center xl:py-28 xl:pb-20">
+    <div className="container-fluid py-20 pb-10 text-center xl:py-28 xl:pb-14 ">
       <h2 className="mb-8 text-4xl font-bold xl:text-6xl">{props.title}</h2>
-      <p className="mx-auto max-w-[817px] text-base font-light lg:text-lg">
+      <div className="mx-auto max-w-[817px] text-base lg:text-lg [&>*>*]:font-light">
         {props.text && parse(props.text)}
-      </p>
+      </div>
     </div>
   );
 };
