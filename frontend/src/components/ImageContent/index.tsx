@@ -5,7 +5,7 @@ import {ImageShape} from "../Icons";
 import parse from "html-react-parser";
 const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
   return (
-    <div className="container py-20 lg:px-20">
+    <div className="container py-10 lg:px-20 lg:py-20">
       <div
         className={`flex flex-wrap gap-y-10 ${
           reverse ? "flex-row-reverse" : "flex-row"

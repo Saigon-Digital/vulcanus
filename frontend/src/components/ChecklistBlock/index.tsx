@@ -2,6 +2,7 @@ import {ChecklistBlock as TCheckListBlock} from "@/__generated__/graphql";
 import React from "react";
 import Button from "../Button";
 import {CheckIcon} from "../Icons";
+import {getAcfLinkProps} from "@/utils";
 
 const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
   return (
@@ -11,7 +12,7 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
           {props.preHeader}
         </p>
       )}
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap gap-y-10">
         <div className="flex w-full flex-col gap-10 lg:w-1/2">
           {props.header && (
             <h2 className="max-w-[776px] gap-6 text-4xl font-bold xl:text-5xl xl:leading-[67px]">
@@ -21,7 +22,7 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
           {props.cta && (
             <Button
               className="w-[fit-content]"
-              href={(props.cta?.ctaLink?.url as string) || "#"}>
+              {...getAcfLinkProps(props.cta.ctaLink)}>
               {props.cta?.ctaText}
             </Button>
           )}
@@ -38,7 +39,9 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
                   }
                   ${id === last && "border-b-transparent"}
                   `}>
-                  <CheckIcon className="aspect-square h-6 w-6 flex-[1_60px]" />
+                  <div className="w-10 flex-[40px]">
+                    <CheckIcon className="aspect-square h-6 w-6 flex-[1_60px]" />
+                  </div>
                   <p className="lg:text-lg">{ele?.item}</p>
                 </div>
               );

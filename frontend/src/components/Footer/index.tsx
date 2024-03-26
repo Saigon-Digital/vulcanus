@@ -16,8 +16,8 @@ const Footer = (props: Props) => {
 
   if (!hierarchicalList) return null;
   return (
-    <footer className="container-fluid pt-20">
-      <div className="mb-12 flex items-center justify-between">
+    <footer className="pt-20 sm:container-fluid">
+      <div className="mb-12 flex items-center justify-between px-5 sm:px-0">
         <h4 className="text-3xl font-bold text-white xl:text-[100px]">
           Let’s start
           <span className="text-primary-blue-main"> to work</span>

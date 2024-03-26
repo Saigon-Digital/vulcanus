@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import {ShapeTopRight} from "../Icons";
 import Button from "../Button";
+import {getAcfLinkProps} from "@/utils";
 const CTABannerBlock = ({
   bannerImage,
   bgColor,
@@ -14,9 +15,9 @@ const CTABannerBlock = ({
       <div
         style={{background: bgColor || "transparent"}}
         className=" relative p-6">
-        <ShapeTopRight className="absolute right-0 top-0 w-[135px]" />
-        <div className="flex flex-wrap">
-          <div className="flex w-full justify-start pr-10 lg:w-1/2 lg:pr-20">
+        <ShapeTopRight className="absolute right-0 top-0 hidden w-[135px] sm:block" />
+        <div className="flex flex-wrap gap-y-10">
+          <div className="flex w-full justify-start md:pr-10 lg:w-1/2 lg:pr-20">
             {bannerImage && (
               <Image
                 width={734}
@@ -28,10 +29,12 @@ const CTABannerBlock = ({
             )}
           </div>
           <div className="flex w-full flex-col items-start justify-center gap-8 lg:w-1/2">
-            <h3 className="max-w-[750px] text-4xl font-bold text-primary-midBlue-main xl:text-5xl xl:leading-[67px]">
+            <h3 className="max-w-[750px] text-3xl font-bold text-primary-midBlue-main lg:text-4xl xl:text-5xl xl:leading-[67px]">
               {title}
             </h3>
-            {cta && <Button href={cta.ctaText as string}>{cta.ctaText}</Button>}
+            {cta && (
+              <Button {...getAcfLinkProps(cta.cta)}>{cta.ctaText}</Button>
+            )}
           </div>
         </div>
       </div>
