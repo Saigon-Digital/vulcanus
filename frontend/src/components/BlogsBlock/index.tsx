@@ -93,15 +93,18 @@ const BlogsBlock = (props: Props) => {
                     key={id}
                     className=" flex flex-wrap gap-5 lg:min-h-[350px] ">
                     <div className="relative min-h-[250px] w-full md:w-[45%]">
-                      <Image
-                        fill
-                        className=" max-h-[400px] w-full object-cover"
-                        src={
-                          ele.featuredImage?.node?.sourceUrl ||
-                          "/blogs/blog-1.png"
-                        }
-                        alt="blog image"
-                      />
+                      <Link
+                        href={`/${router.locale}/blog/${ele.slug}` as string}>
+                        <Image
+                          fill
+                          className=" max-h-[400px] w-full object-cover"
+                          src={
+                            ele.featuredImage?.node?.sourceUrl ||
+                            "/blogs/blog-1.png"
+                          }
+                          alt="blog image"
+                        />
+                      </Link>
                     </div>
                     <div className="flex w-full flex-col justify-center gap-2 md:w-1/2">
                       <h4 className="text-lg font-semibold uppercase leading-5 text-primary-blue-main">
