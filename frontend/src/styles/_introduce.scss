@@ -1,4 +1,7 @@
 .introduce-block {
+  a {
+    @apply text-primary-blue-main underline;
+  }
   .content {
     h1 {
       @apply mb-6 text-3xl text-primary-blue-main;
