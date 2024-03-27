@@ -78,7 +78,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 ref={swiperRef}
                 // onTouchStart={(swiper) => onSwiperChange(swiper)}
                 initialSlide={activeSlide}
-                centeredSlides={isMobile ? false : true}
+                centeredSlides={!isMobile}
                 onSlideChange={(swiper) => onSwiperChange(swiper)}
                 slidesPerView={isMobile ? 5 : 5}>
                 {props.histories?.map((ele, id) => {
@@ -94,10 +94,10 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                         activeSlide === id && "slide-active",
                         currentSlide &&
                           id === currentSlide - 2 &&
-                          "!hidden opacity-40 sm:block xl:text-[24px]",
+                          "!hidden opacity-40 sm:!block xl:text-[24px]",
                         currentSlide &&
                           id === currentSlide - 1 &&
-                          "!hidden opacity-80 sm:block",
+                          "!hidden opacity-80 sm:!block",
                         currentSlide &&
                           id === currentSlide + 2 &&
                           "opacity-40 xl:text-[24px]",
