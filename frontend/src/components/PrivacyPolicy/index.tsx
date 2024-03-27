@@ -5,10 +5,6 @@ import clsx from "clsx";
 import {useState} from "react";
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
   const [active, setActive] = useState(0);
-  const navigate = (title: string) => {
-    setActive(props.terms?.findIndex((ele) => ele?.title === title) || 0);
-    const id = title.replace(" ", "");
-  };
 
   React.useEffect(() => {
     if (typeof document === undefined) return;
@@ -25,20 +21,19 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
           <div className="flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6">
             <p>Introduce</p>
-            <ul className="list-decimal pl-3">
+            <ul className="list-decimal pl-5">
               {props.terms?.map((ele, id) => {
                 let size = props.terms ? props.terms.length - 1 : 0;
                 return (
                   <li
                     key={id}
-                    onClick={(e) => setActive(id)}
                     className={clsx(
                       `relative cursor-pointer font-normal`,
                       active === id &&
-                        "font-semibold text-primary-blue-main after:absolute after:-left-[38px] after:top-0 after:h-5 after:w-[2px] after:border-l-2 after:border-primary-blue-main",
+                        "font-semibold text-primary-blue-main after:absolute after:-left-[46px] after:top-0 after:h-5 after:w-[2px] after:border-l-2 after:border-primary-blue-main",
                       id === size ? "-mb-2" : "mb-3"
                     )}>
-                    {ele?.title}
+                    <button onClick={(e) => setActive(id)}>{ele?.title}</button>
                   </li>
                 );
               })}
