@@ -1,19 +1,29 @@
 .introduce-block {
-    .content {
+  a {
+    @apply text-primary-blue-main underline;
+  }
+  .content {
     h1 {
-        @apply text-3xl text-primary-blue-main mb-6;
-    }        
-    h2,h3,h4 ,h5,strong {
-        @apply text-[#F7CC5F] text-2xl font-semibold mb-5 mt-2; 
+      @apply mb-6 text-3xl text-primary-blue-main;
+    }
+    .heading {
+      @apply mb-5 text-2xl leading-[30px] text-secondary-yellow;
+    }
+    h2,
+    h3,
+    h4,
+    h5,
+    strong {
+      @apply mb-2 mt-2 inline-block text-lg font-medium leading-[25px];
     }
     p {
-        @apply mb-3;
+      @apply mb-3 text-lg font-light leading-[25px];
     }
     strong {
-        @apply text-lg font-semibold;
+      @apply text-lg font-semibold;
     }
     hr {
-        @apply mb-5;
+      @apply mb-5;
     }
-}
+  }
 }
