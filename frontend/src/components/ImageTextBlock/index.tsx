@@ -32,7 +32,9 @@ const ImageText: React.FC<ImageTextBlock> = ({
           {textRepeater &&
             textRepeater.slice(1, textRepeater.length).map((ele, id) => {
               return (
-                <p className=" font-[300] lg:text-xl" key={id}>
+                <p
+                  className=" font-[300] lg:text-lg lg:leading-[25px]"
+                  key={id}>
                   {ele?.text}
                 </p>
               );
