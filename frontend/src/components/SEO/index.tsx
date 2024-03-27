@@ -23,7 +23,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const SEO = (props: TSEO) => {
   // console.log("seo", props.seo);
   console.log(SITE_URL);
-  
+
   const pathname = usePathname();
   const router = useRouter();
   const locale =
@@ -32,7 +32,7 @@ const SEO = (props: TSEO) => {
       : "en";
 
   console.log("locale", locale);
-  
+
   return (
     <>
       <NextSeo
@@ -45,14 +45,23 @@ const SEO = (props: TSEO) => {
         description={
           props.seo?.description || props.defaultSEO?.description || ""
         }
-        
+        languageAlternates={[
+          {
+            hrefLang: "de",
+            href: props.defaultSEO?.siteUrl || SITE_URL || "",
+          },
+          {
+            hrefLang: "en",
+            href: `${props.defaultSEO?.siteUrl}en` || `${SITE_URL}en` || "",
+          },
+        ]}
         canonical={
           props.seo?.canonicalUrl ||
           `${props.defaultSEO?.siteUrl || SITE_URL}${locale}${pathname}`
         }
         // twitter={{site:props.twitterTitle}}
         openGraph={{
-          locale:router.locale,
+          locale: router.locale,
           url:
             props.seo?.canonicalUrl ||
             `${props.defaultSEO?.siteUrl || SITE_URL}${locale}${pathname}`,
