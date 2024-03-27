@@ -13,6 +13,7 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
         className="!overflow-visible"
         modules={[Pagination, Autoplay]}
         autoplay={{delay: 4000}}
+        height={460}
         spaceBetween={24}
         pagination
         breakpoints={{
@@ -28,7 +29,7 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
         }}>
         {props?.cards?.map((card, id) => {
           return (
-            <SwiperSlide key={id}>
+            <SwiperSlide className="h-[400px] xl:h-[450px]  " key={id}>
               <Card
                 hasImage={card?.hasImage}
                 iconImage={card?.iconImage}

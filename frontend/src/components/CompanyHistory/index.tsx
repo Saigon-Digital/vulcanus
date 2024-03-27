@@ -1,7 +1,20 @@
-import React, {useMemo, useState} from "react";
+import React, {
+  PropsWithChildren,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {CompanyHistoryBlock} from "@/__generated__/graphql";
 import Image from "next/image";
-import {Swiper, SwiperSlide, SwiperClass, useSwiper} from "swiper/react";
+import {
+  Swiper,
+  SwiperSlide,
+  SwiperClass,
+  useSwiper,
+  useSwiperSlide,
+  SwiperRef,
+} from "swiper/react";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
 import {Pagination} from "swiper/modules";
 import clsx from "clsx";
@@ -20,17 +33,17 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
     activeSlide
   );
   // console.log();
-  // const swiper = useSwiper();
+  const swiperRef = useRef<SwiperRef | null>(null);
 
   const onSwiperChange = (swiper: SwiperClass) => {
-    // console.log("swiper change ", swiper.activeIndex);
+    console.log("swiper change ", swiper.activeIndex);
     const slide = swiper.activeIndex;
-    if (isMobile)
-      //@ts-ignore
-      return setCurentSlide((prev: number) => {
-        if (slide - 1 < 0) return 0;
-        return slide - 1;
-      });
+    // if (isMobile)
+    //   //@ts-ignore
+    //   return setCurentSlide((prev: number) => {
+    //     if (slide - 1 < 0) return 0;
+    //     return slide - 1;
+    //   });
     setCurentSlide(slide);
   };
 
@@ -39,6 +52,10 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
       props.histories && props.histories.find((ele, id) => id === currentSlide)
     );
   }, [currentSlide]);
+
+  useEffect(() => {
+    if (isMobile) swiperRef.current?.swiper.slideTo(activeSlide);
+  }, [activeSlide]);
 
   return (
     <div
@@ -55,31 +72,39 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 modules={[Pagination]}
                 grabCursor={true}
                 direction="vertical"
+                draggable
+                freeMode
+                // simulateTouch
+                ref={swiperRef}
+                // onTouchStart={(swiper) => onSwiperChange(swiper)}
                 initialSlide={activeSlide}
-                centeredSlides={isMobile ? false : true}
+                centeredSlides={!isMobile}
                 onSlideChange={(swiper) => onSwiperChange(swiper)}
-                slidesPerView={5}>
+                slidesPerView={isMobile ? 5 : 5}>
                 {props.histories?.map((ele, id) => {
                   return (
                     <SwiperSlide
-                      // onClick={(e) => {
-                      //   setCurentSlide(id);
-                      //   swiper.slideTo(id);
-                      // }}
+                      onClick={(e) => {
+                        if (isMobile) setCurentSlide(id);
+                      }}
+                      // onClickCapture={}
+
                       className={clsx(
                         ` !flex items-center justify-center text-right text-xl  xl:text-3xl `,
                         activeSlide === id && "slide-active",
                         currentSlide &&
                           id === currentSlide - 2 &&
-                          "opacity-40 xl:text-[24px]",
-                        currentSlide && id === currentSlide - 1 && "opacity-80",
+                          "!hidden opacity-40 sm:!block xl:text-[24px]",
+                        currentSlide &&
+                          id === currentSlide - 1 &&
+                          "!hidden opacity-80 sm:!block",
                         currentSlide &&
                           id === currentSlide + 2 &&
                           "opacity-40 xl:text-[24px]",
                         currentSlide && id === currentSlide + 1 && "opacity-80 "
                       )}
                       key={id}>
-                      {ele?.year}
+                      <SlideButton id={id}>{ele?.year}</SlideButton>
                     </SwiperSlide>
                   );
                 })}
@@ -124,14 +149,28 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 "/images/hero-banner.png"
               }
             />
-            <div className="mt-5">{activeHistory?.description}</div>
+            <div className="mt-5 font-light xl:text-xl">
+              {activeHistory?.description}
+            </div>
           </div>
         </div>
       </div>
-      <style jsx>{`
-        background: red;
-      `}</style>
     </div>
+  );
+};
+
+const SlideButton = (props: PropsWithChildren & {id: number}) => {
+  const swiper = useSwiper();
+  const currentSlide = useSwiperSlide();
+  const onClick = (e: any) => {
+    console.log("click", props.id, swiper.activeIndex);
+
+    swiper.slideTo(props.id);
+  };
+  return (
+    <button className="z-10 h-full w-full" onClick={onClick}>
+      {props.children}
+    </button>
   );
 };
 

@@ -24,18 +24,18 @@ p {
 }
 
 // .history .swiper .swiper-slide-active  {
- 
+
 //           background: red;
-   
+
 // }
 .history .swiper .swiper-wrapper {
   height: 350px;
 }
 
-.career  {
-  .description{
+.career {
+  .description {
     strong {
-      color:#F7CC5F;
+      color: #f7cc5f;
       font-weight: 700;
       font-size: 20px;
       margin-top: 24px;
@@ -43,16 +43,20 @@ p {
       display: inline-block;
     }
     *:not(strong) {
-      @apply xl:text-lg font-normal;
+      @apply font-normal xl:text-lg;
     }
-  } 
- 
-  
+  }
 }
 
 .cards {
+  .swiper-wrapper {
+    height: 480px;
+    .swiper-slide {
+      @apply h-[400px] xl:h-[460px];
+    }
+  }
   .swiper-pagination {
-    bottom: -40px !important; 
+    bottom: -40px !important;
     .swiper-pagination-bullet {
       &.swiper-pagination-bullet-active {
         @apply bg-primary-blue-main;
@@ -60,7 +64,6 @@ p {
       @apply bg-slate-400;
     }
   }
-
 }
 
 .image-slide {
