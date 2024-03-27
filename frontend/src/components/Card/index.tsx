@@ -28,7 +28,7 @@ const Card: React.FC<Props> = ({
     <div
       style={{background: backgroundColor || undefined}}
       className={twMerge(
-        "group relative z-10 flex min-h-[450px] cursor-pointer  flex-col justify-start gap-3 rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
+        "group relative z-10 flex h-full min-h-[450px] cursor-pointer  flex-col justify-start gap-3 rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
         !hoverImage && "hover:bg-primary-midBlue-main",
         className
       )}
@@ -71,7 +71,7 @@ const Card: React.FC<Props> = ({
           src={iconImage?.node.sourceUrl || ""}
           width={150}
           height={150}
-          className="mx-auto my-14 h-1/4"
+          className="mx-auto my-14 h-1/4 object-contain"
           alt="icon image"
         />
       )}
