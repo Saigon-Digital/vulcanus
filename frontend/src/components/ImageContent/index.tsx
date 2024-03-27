@@ -29,7 +29,7 @@ const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
           <h3 className="text-4xl font-bold xl:text-5xl xl:leading-[67px]">
             {content?.title}
           </h3>
-          <div className="[&>*>strong]:!text-primary-blue-main [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 ">
+          <div className="xl:[&>*>*]:text-xl [&>*>strong]:!text-primary-blue-main [&>*]:font-normal xl:[&>*]:text-xl [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 ">
             {content?.description && parse(content.description)}
           </div>
           {content?.icons && content?.icons?.length > 0 && (

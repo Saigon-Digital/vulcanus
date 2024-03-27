@@ -8,7 +8,7 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
   return (
     <div className="container-fluid py-20 xl:py-28">
       {props.preHeader && (
-        <p className="mb-4 text-xl font-normal text-primary-blue-main xl:text-2xl">
+        <p className="mb-4 text-xl  font-semibold text-primary-blue-main xl:text-2xl xl:leading-[33px]">
           {props.preHeader}
         </p>
       )}
