@@ -9,7 +9,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
     <div className="sm:container-fluid">
       <div className="relative flex min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px]">
         <div className="absolute inset-0 z-[5] h-full w-full bg-black/20"></div>
-        <div className="absolute -top-[28px] left-0  z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:-top-[24px] 3xl:w-[100px] ">
+        <div className="absolute -top-[26px] left-0  z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:-top-[28px] 3xl:w-[100px] ">
           <Image
             fill
             src="/shapes/hero-shape.png"
