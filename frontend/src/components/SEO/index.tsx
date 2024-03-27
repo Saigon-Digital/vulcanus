@@ -31,7 +31,9 @@ const SEO = (props: TSEO) => {
       ? ""
       : "en";
 
-  console.log("locale", locale);
+  const defaultPath = `${props.defaultSEO?.siteUrl || SITE_URL}${
+    locale !== "" && locale + "/"
+  }${pathname.replace("/", "")}`;
 
   return (
     <>
@@ -55,10 +57,7 @@ const SEO = (props: TSEO) => {
             href: `${props.defaultSEO?.siteUrl}en` || `${SITE_URL}en` || "",
           },
         ]}
-        canonical={
-          props.seo?.canonicalUrl ||
-          `${props.defaultSEO?.siteUrl || SITE_URL}${locale}${pathname}`
-        }
+        canonical={props.seo?.canonicalUrl || defaultPath}
         // twitter={{site:props.twitterTitle}}
         openGraph={{
           locale: router.locale,
