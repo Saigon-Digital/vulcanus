@@ -23,5 +23,6 @@ fragment PageBuilder on PageBuilder {
     ...blogsBlock
     ...CertificateBlock
     ...ImagesSLide
+    ...privacyPolicy
   }
 }

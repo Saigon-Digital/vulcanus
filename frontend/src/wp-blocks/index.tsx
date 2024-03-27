@@ -25,6 +25,7 @@ import Form from "@/components/Form";
 import BlogsBlock from "@/components/BlogsBlock";
 import CertificateBlock from "@/components/CertificateBlock";
 import ImagesSlide from "@/components/ImagesSlide";
+import PrivacyPolicy from "@/components/PrivacyPolicy";
 
 export type Blocks = Exclude<
   PageBuilderFragment["dynamicBlocks"],
@@ -60,5 +61,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksBlogs", BlogsBlock],
   ["PageBuilderDynamicBlocksCertificateBlock", CertificateBlock],
   ["PageBuilderDynamicBlocksImagesSlide", ImagesSlide],
+  ["PageBuilderDynamicBlocksPrivacyPolicy", PrivacyPolicy],
 ]);
 export default blocks;
