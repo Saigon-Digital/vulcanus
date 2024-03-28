@@ -5,30 +5,24 @@ import {
   PostFragmentFragment,
 } from "@/__generated__/graphql";
 import {getAllPost} from "@/libs/graphql/utils";
-import moment from "moment";
+
 import ImageBlock from "@/components/ImageBlock";
 import parse from "html-react-parser";
 import RelatedPosts from "@/components/RelatedPost";
 import SEO from "@/components/SEO";
-import {useRouter} from "next/router";
+
 import {languages} from "@/utils/language";
 type Props = {
   blog: PostFragmentFragment;
+  locale: string;
   relatedBlog: PostFragmentFragment[];
 };
-const index = ({blog, relatedBlog}: Props) => {
-  var dateOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const router = useRouter();
+const index = ({blog, relatedBlog, locale}: Props) => {
   console.log(blog.dateGmt);
 
   const event = new Date(blog.dateGmt || new Date().getTime());
-  const locale =
-    useRouter().locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
+  const localeStr =
+    locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
       ? "en-EN"
       : "de-DE";
   return (
@@ -40,8 +34,8 @@ const index = ({blog, relatedBlog}: Props) => {
             {blog.title}
           </h1>
           <p className="text-lg leading-[25px] text-primary-blue-main">
-            {languages(router.locale)?.posted}{" "}
-            {event.toLocaleDateString(locale, {
+            {languages(locale)?.posted}{" "}
+            {event.toLocaleDateString(localeStr, {
               weekday: "long",
               year: "numeric",
               month: "long",
@@ -70,6 +64,7 @@ const index = ({blog, relatedBlog}: Props) => {
 export const getServerSideProps = (async (context) => {
   const slug = context.params?.slug;
   const {data} = await getAllPost();
+  const locale = context.locale;
   const relatedBLog = data.posts?.nodes?.filter(
     (ele: PostFragmentFragment) => ele.slug !== slug
   );
@@ -77,7 +72,13 @@ export const getServerSideProps = (async (context) => {
     (ele: PostFragmentFragment) => ele.slug === slug
   );
   if (!blog) return {notFound: true};
-  return {props: {relatedBlog: relatedBLog, blog: blog}};
+  return {
+    props: {
+      relatedBlog: relatedBLog,
+      blog: blog,
+      locale: locale,
+    },
+  };
 }) satisfies GetServerSideProps<{
   blog: Props;
 }>;
