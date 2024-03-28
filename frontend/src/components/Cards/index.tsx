@@ -14,6 +14,7 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
         {props?.cards?.map((card, id) => {
           return (
             <Card
+              key={id}
               hasImage={card?.hasImage}
               iconImage={card?.iconImage}
               backgroundColor={card?.backgroundColor}
