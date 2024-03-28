@@ -1,13 +1,18 @@
 type Tlang = {
   require: string;
   thankyou: string;
+  letStart: string;
+  policy: string;
   errorFormatEmail: string;
   errorFormatPhone: string;
   loading: string;
   readMore: string;
+  introduce: string;
   error: string;
+  poweredBy: string;
   contactUs: string;
   loadMore: string;
+  copyRight: string;
   contactInfo: string;
   firstName: {label: string; placeholder: string};
   lastName: {label: string; placeholder: string};
@@ -32,6 +37,11 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         require: "This field is required",
         error: "Something went wrong",
         contactUs: "Contact Us",
+        policy: "Privacy Policy",
+        poweredBy: "Powered by",
+        copyRight: " Copyrights $year. All rights reserved.",
+        introduce: "Introduce",
+        letStart: `Let’s start <strong>to work</strong>`,
         thankyou: "Thank you for submitting the form !",
         errorFormatEmail: "Please enter correct email format",
         errorFormatPhone: "Please enter correct phone number",
@@ -49,8 +59,13 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         readMore: "Mehr lesen",
         contactInfo: "Kontaktinformationen",
         loading: "Wird geladen",
+        letStart: "Beginnen wir mit <strong>der Arbeit</strong>",
         require: "Dieses Feld ist erforderlich",
         contactUs: "kontaktiere uns",
+        policy: "Datenschutzrichtlinie",
+        introduce: "Einführen",
+        poweredBy: "Angetrieben von",
+        copyRight: "Urheberrechte $year. Alle Rechte vorbehalten.",
         error: "Etwas ist schief gelaufen",
         thankyou: "Vielen Dank für das Absenden des Formulars!",
         errorFormatEmail: "Bitte geben Sie das korrekte E-Mail-Format ein",

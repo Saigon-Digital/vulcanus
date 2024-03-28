@@ -3,26 +3,35 @@ import * as React from "react";
 import parse from "html-react-parser";
 import clsx from "clsx";
 import {useState} from "react";
+import {languages} from "@/utils/language";
+import {useRouter} from "next/router";
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
   const [active, setActive] = useState(0);
-
+  const router = useRouter();
   React.useEffect(() => {
     if (typeof document === undefined) return;
     const id =
-      props.terms?.find((ele, id) => id === active)?.title?.replace(" ", "") ||
-      "";
-    document
-      .getElementById(id)
-      ?.scrollIntoView({behavior: "smooth", inline: "center", block: "center"});
+      //@ts-ignore
+      props.terms
+        ?.find((ele, id) => (id !== 0 ? id === active : ""))
+        ?.title?.replace(" ", "") || "";
+    const element = document.getElementById(id);
+    if (element) {
+      element?.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "center",
+      });
+    }
   }, [active]);
   return (
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
           <div className="flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6">
-            <p>Introduce</p>
+            <p>{languages(router.locale)?.introduce}</p>
             <ul className="list-decimal pl-5">
-              {props.terms?.map((ele, id) => {
+              {props.terms?.map((ele: any, id: number) => {
                 let size = props.terms ? props.terms.length - 1 : 0;
                 return (
                   <li
@@ -42,14 +51,16 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
         </div>
         <div className="content col-span-full flex flex-col md:col-span-7 lg:col-span-5">
           <div className="border-b border-white pb-4">
-            <h1 className="mb-5 text-[32px] leading-[40px]">Privacy Policy</h1>
+            <h1 className="mb-5 text-[32px] leading-[40px]">
+              {languages(router.locale)?.policy}
+            </h1>
             <h2 className="mb-5 !text-2xl font-semibold !leading-[30px] text-secondary-yellow ">
-              Introduce
+              {languages(router.locale)?.introduce}
             </h2>
             {props.introduction && parse(props.introduction)}
           </div>
           {props.terms &&
-            props.terms.map((ele, id) => {
+            props.terms.map((ele: any, id: number) => {
               const last = props.terms ? id === props.terms?.length - 1 : false;
               return (
                 <div

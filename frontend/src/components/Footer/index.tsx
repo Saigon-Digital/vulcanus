@@ -2,6 +2,8 @@ import {MenuItemsQuery} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import {languages} from "@/utils/language";
+import {useRouter} from "next/router";
 // import {flatListToHierarchical} from "@faustwp/core";
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
@@ -13,15 +15,16 @@ const Footer = (props: Props) => {
 
     return childItems.nodes?.length > 0;
   });
-
+  const router = useRouter();
   if (!hierarchicalList) return null;
   return (
     <footer className="pt-20 sm:container-fluid">
       <div className="mb-12 flex items-center justify-between px-5 sm:px-0">
-        <h4 className="text-3xl font-bold text-white xl:text-[100px]">
-          Let’s start
-          <span className="text-primary-blue-main"> to work</span>
-        </h4>
+        <h4
+          className="text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] [&>strong]:text-primary-blue-main"
+          dangerouslySetInnerHTML={{
+            __html: languages(router.locale)?.letStart || "",
+          }}></h4>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={158}
@@ -104,9 +107,14 @@ const Footer = (props: Props) => {
           </div>
         </div>
         <div className="flex w-full flex-col justify-between gap-y-6 py-4 sm:flex-row">
-          <p>© Copyrights {new Date().getFullYear()}. All rights reserved.</p>
           <p>
-            Powered by{" "}
+            {languages(router.locale)?.copyRight.replace(
+              "$year",
+              String(new Date().getFullYear())
+            )}
+          </p>
+          <p>
+            {languages(router.locale)?.poweredBy}{" "}
             <Link href="https://saigon.digital/">saigon.digital</Link>{" "}
           </p>
         </div>
