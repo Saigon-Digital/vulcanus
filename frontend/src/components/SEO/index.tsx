@@ -32,7 +32,7 @@ const SEO = (props: TSEO) => {
       : "en";
 
   const defaultPath = `${props.defaultSEO?.siteUrl || SITE_URL}${
-    locale !== "" && locale + "/"
+    locale !== "" ? locale + "/" : ""
   }${pathname.replace("/", "")}`;
 
   return (
