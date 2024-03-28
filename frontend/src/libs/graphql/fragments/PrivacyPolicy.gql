@@ -1,0 +1,8 @@
+fragment privacyPolicy on PageBuilderDynamicBlocksPrivacyPolicy {
+  fieldGroupName
+  introduction
+  terms {
+    content
+    title
+  }
+}
