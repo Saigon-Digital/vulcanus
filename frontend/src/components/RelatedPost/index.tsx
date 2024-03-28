@@ -5,6 +5,7 @@ import Link from "next/link";
 import {ButtonNext} from "../Icons";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules";
+
 type Props = {
   posts: PostFragmentFragment[];
 };

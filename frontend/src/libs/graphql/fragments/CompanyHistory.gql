@@ -4,6 +4,7 @@ fragment CompanyHistory on PageBuilderDynamicBlocksCompanyHistoryBlock {
   histories {
     description
     year
+
     supportingImage {
       node {
         sourceUrl
