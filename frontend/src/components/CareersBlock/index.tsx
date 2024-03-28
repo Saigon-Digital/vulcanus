@@ -7,7 +7,7 @@ const CareersBlock: React.FC<CareerBlockFragment> = (props) => {
     <div
       className="careers container-fluid flex
   flex-col items-center gap-4 py-16 text-center text-2xl lg:py-20 xl:py-28">
-      <div className="no-job mx-auto flex max-w-[1550px]">
+      <div className="no-job mx-auto flex max-w-[1550px] flex-col">
         {props.noJobVacancy && parse(props.noJobVacancy)}
       </div>
     </div>
