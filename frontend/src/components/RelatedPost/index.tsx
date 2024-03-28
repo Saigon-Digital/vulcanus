@@ -37,8 +37,8 @@ const RelatedPosts = ({posts}: Props) => {
           {posts &&
             posts.map((ele, index) => {
               return (
-                <SwiperSlide>
-                  <Link key={index} href={`/blog/${ele.slug}`}>
+                <SwiperSlide key={index}>
+                  <Link href={`/blog/${ele.slug}`}>
                     <div className="flex flex-col gap-4">
                       <Image
                         className="aspect-[450/290] w-full"
