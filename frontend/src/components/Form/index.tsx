@@ -135,7 +135,7 @@ const Form = ({contactInformation, form}: TForm) => {
       <div className="grid grid-cols-12 ">
         <div className="col-span-full grid grid-cols-8 gap-y-14 lg:col-span-8 lg:col-start-3">
           <div className="col-span-full flex flex-col gap-5 md:col-span-3">
-            <h4 className="mb-3 max-w-[33%] text-2xl font-semibold">
+            <h4 className="mb-3 max-w-[33%] whitespace-nowrap text-2xl font-semibold">
               {languages(locale)?.contactInfo} :
             </h4>
             <p className="flex gap-4">
