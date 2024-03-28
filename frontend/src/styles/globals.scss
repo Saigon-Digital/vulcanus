@@ -79,3 +79,24 @@ p {
     }
   }
 }
+
+.careers {
+  * {
+    @apply mb-10;
+  }
+  a {
+    @apply text-primary-blue-main underline;
+  }
+  .no-job {
+    h2,
+    h3,
+    h4,
+    strong {
+      @apply mb-10 inline-block text-4xl xl:text-5xl;
+    }
+
+    p {
+      @apply text-lg;
+    }
+  }
+}

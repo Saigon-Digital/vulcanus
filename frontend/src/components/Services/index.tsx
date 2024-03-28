@@ -45,7 +45,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
       <h2 className="mb-14 text-3xl font-bold leading-[89px] lg:text-6xl lg:leading-[84px] xl:text-[64px]">
         Our services
       </h2>
-      <div className="relative grid h-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:min-h-[400px] xl:grid-cols-4 ">
+      <div className="relative grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:min-h-[400px] xl:grid-cols-4 xl:gap-6 ">
         {/* Check emty array instead check null value: services.length >0 ... */}
         {services &&
           services.map((ele, index) => {
@@ -60,12 +60,14 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
               />
             );
           })}
-        <Gear
-          className="absolute left-[calc(25%-20px)] top-[180px] scale-90 object-contain"
-          width={394}
-          height={217}
-          alt="gear"
-        />
+        <div className="col-span-1 col-start-2 row-start-1 hidden place-items-center items-end justify-center xl:flex">
+          <Gear
+            className="absolute left-[calc(25%-20px)] top-[180px] aspect-[394/217] w-4/5 scale-90 overflow-visible object-contain xl:static xl:w-auto"
+            width={394}
+            height={217}
+            alt="gear"
+          />
+        </div>
       </div>
       <div className="mt-6 grid h-full  grid-cols-1 gap-6 sm:grid-cols-2  lg:grid-cols-4 xl:min-h-[400px] ">
         {featureImage?.map((img, index) => {
