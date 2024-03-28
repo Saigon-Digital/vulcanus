@@ -2,10 +2,15 @@ import React, {useState} from "react";
 import AccordionItem from "./AccordionItem";
 import {CareerBlockFragment} from "@/__generated__/graphql";
 const Accordion = (props: {careers: CareerBlockFragment["careers"]}) => {
-  const defaultItem: string = `CareersBlockCareers_0`;
-  const [expandedItems, setExpandedItems] = useState<string[]>([defaultItem]);
+  const defaultItem = `CareersBlockCareers_0`;
+  const [expandedItems, setExpandedItems] = useState<Array<string | null>>([
+    defaultItem,
+  ]);
 
   const onAccordionItemValueChange = (newState: boolean, key: string) => {
+    if (expandedItems.includes(key)) {
+      return setExpandedItems([null]);
+    }
     setExpandedItems([key]);
   };
   return (

@@ -2,11 +2,12 @@ fragment CareerBlock on PageBuilderDynamicBlocksCareersBlock {
   description
   fieldGroupName
   title
-
+  noJobVacancy
   careers {
     careerDescription
     location
     title
+
     cta {
       ctaText
       ctaLink {
