@@ -10,6 +10,8 @@ import parse from "html-react-parser";
 import Image from "next/image";
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
 import clsx from "clsx";
+import {languages} from "@/utils/language";
+import {useRouter} from "next/router";
 type Props = {
   hoverImage?: string | StaticImport | undefined;
 } & CardsBlockCards_Fields &
@@ -26,13 +28,15 @@ const Card: React.FC<Props> = ({
   link,
   ...props
 }) => {
+  const locale = useRouter().locale;
   return (
     <div
       style={{background: backgroundColor || undefined}}
       className={clsx(
-        "group relative z-10 flex h-full min-h-[450px] cursor-pointer  flex-col  gap-3 rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
+        " group relative z-10 flex h-full min-h-[450px]  flex-col  gap-3 rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
         !hoverImage && "justify-end hover:bg-primary-midBlue-main",
         iconImage ? "justify-start" : "justify-between",
+        link && "cursor-pointer",
         className
       )}
       {...props}>
@@ -78,7 +82,11 @@ const Card: React.FC<Props> = ({
           alt="icon image"
         />
       )}
-      <div className="relative z-10 flex h-[48%] flex-col justify-end gap-5">
+      <div
+        className={clsx(
+          "relative z-10 flex  flex-col  gap-5",
+          !link ? "h-1/3 justify-start" : "h-[48%] justify-end"
+        )}>
         <p
           style={{color: backgroundColor ? "#140F24" : undefined}}
           className="mb-0 line-clamp-6 text-base font-light leading-[25px] text-secondary-offWhite-white 2xl:text-lg">
@@ -88,7 +96,7 @@ const Card: React.FC<Props> = ({
           <Link
             {...getAcfLinkProps(link)}
             className="inline-flex items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white">
-            Read more
+            {languages(locale)?.readMore}
             <ArrowRight className="h-[22px] w-[22px] shrink-0 [&_path]:text-primary-blue-main [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:text-secondary-offWhite-white" />
           </Link>
         ) : null}

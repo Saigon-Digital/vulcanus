@@ -4,6 +4,7 @@ type Tlang = {
   errorFormatEmail: string;
   errorFormatPhone: string;
   loading: string;
+  readMore: string;
   error: string;
   contactUs: string;
   loadMore: string;
@@ -25,6 +26,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
     {
       key: "en",
       value: {
+        readMore: "Read More",
         contactInfo: "Contact Information",
         loading: "...Loading",
         require: "This field is required",
@@ -44,6 +46,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
     {
       key: "de",
       value: {
+        readMore: "Mehr lesen",
         contactInfo: "Kontaktinformationen",
         loading: "Wird geladen",
         require: "Dieses Feld ist erforderlich",
