@@ -233,6 +233,7 @@ export async function getAllPost() {
       query GetPosts {
         posts {
           nodes {
+            dateGmt
             slug
             author {
               node {

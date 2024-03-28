@@ -5,15 +5,18 @@ import Link from "next/link";
 import {ButtonNext} from "../Icons";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules";
+import {languages} from "@/utils/language";
+import {useRouter} from "next/router";
 
 type Props = {
   posts: PostFragmentFragment[];
 };
 const RelatedPosts = ({posts}: Props) => {
+  const router = useRouter();
   return (
     <div className=" bg-primary-midBlue-main px-6 pb-12 pt-12">
       <h4 className="mb-8 text-5xl font-bold 2xl:text-[64px] 2xl:leading-[89px]">
-        Related post
+        {languages(router.locale)?.relatedPost}
       </h4>
       <div className="w-full">
         <Swiper

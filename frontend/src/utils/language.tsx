@@ -3,12 +3,15 @@ type Tlang = {
   thankyou: string;
   letStart: string;
   policy: string;
+  posted: string;
   errorFormatEmail: string;
   errorFormatPhone: string;
   loading: string;
   readMore: string;
   introduce: string;
   error: string;
+  manufacturing: string;
+  relatedPost: string;
   poweredBy: string;
   contactUs: string;
   loadMore: string;
@@ -34,6 +37,9 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         readMore: "Read More",
         contactInfo: "Contact Information",
         loading: "...Loading",
+        posted: "Posted on",
+        manufacturing: "Manufacturing",
+        relatedPost: "Related Post",
         require: "This field is required",
         error: "Something went wrong",
         contactUs: "Contact Us",
@@ -59,10 +65,13 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         readMore: "Mehr lesen",
         contactInfo: "Kontaktinformationen",
         loading: "Wird geladen",
+        posted: "Veröffentlicht am",
         letStart: "Beginnen wir mit <strong>der Arbeit</strong>",
         require: "Dieses Feld ist erforderlich",
         contactUs: "kontaktiere uns",
+        manufacturing: "Herstellung",
         policy: "Datenschutzrichtlinie",
+        relatedPost: "Verwandter Beitrag",
         introduce: "Einführen",
         poweredBy: "Angetrieben von",
         copyRight: "Urheberrechte $year. Alle Rechte vorbehalten.",

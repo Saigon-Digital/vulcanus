@@ -64,7 +64,6 @@ const BlogsBlock = (props: Props) => {
   }, []);
 
   //   return;
-  console.log(page, max_page);
 
   if (blockListing.length < 1)
     return (
@@ -108,7 +107,7 @@ const BlogsBlock = (props: Props) => {
                     </div>
                     <div className="flex w-full flex-col justify-center gap-2 md:w-1/2">
                       <h4 className="text-lg font-semibold uppercase leading-5 text-primary-blue-main">
-                        Manufacturing
+                        {languages(router.locale)?.manufacturing}
                       </h4>
                       <Link
                         href={`/${router.locale}/blog/${ele.slug}` as string}
