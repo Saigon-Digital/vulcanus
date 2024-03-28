@@ -65,7 +65,15 @@ p {
     }
   }
 }
-
+.swiper-pagination {
+  bottom: -30px !important;
+  .swiper-pagination-bullet {
+    &.swiper-pagination-bullet-active {
+      @apply bg-primary-blue-main;
+    }
+    @apply bg-slate-400;
+  }
+}
 .image-slide {
   .swiper {
     .swiper-wrapper {
