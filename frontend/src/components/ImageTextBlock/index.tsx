@@ -28,7 +28,7 @@ const ImageText: React.FC<ImageTextBlock> = ({
             alt="left image"
           />
         </div>
-        <div className="col-span-full flex gap-5 md:col-span-2 md:col-start-3">
+        <div className="col-span-full grid grid-cols-1 gap-5 sm:grid-cols-2 md:col-span-2 md:col-start-3">
           {textRepeater &&
             textRepeater.slice(1, textRepeater.length).map((ele, id) => {
               return (
