@@ -29,7 +29,7 @@ p {
 
 // }
 .history .swiper .swiper-wrapper {
-  height: 350px;
+  @apply h-[80px] sm:h-[350px];
 }
 
 .career {

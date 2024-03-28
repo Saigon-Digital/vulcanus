@@ -19,11 +19,13 @@ import {useMediaQuery} from "@/hooks/useMediaQuery";
 import {Pagination} from "swiper/modules";
 import clsx from "clsx";
 
+// import Draggable from "react-draggable";
+
 // import "./index.scss";
 const CompanyHistory = (props: CompanyHistoryBlock) => {
   // Slider not work as expected, check logic again
   const isMobile = useMediaQuery("(max-width:768px)");
-  const activeSlide = isMobile
+  const activeSlide = !isMobile
     ? props.histories
       ? Math.floor(props.histories?.length / 2) - 1
       : 0
@@ -32,30 +34,42 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
   const [currentSlide, setCurentSlide] = useState<number | undefined>(
     activeSlide
   );
-  // console.log();
+
+  const [mobileSlide, setMobileSlide] = useState<typeof props.histories>(
+    props.histories
+  );
+
+  console.log("active", currentSlide);
   const swiperRef = useRef<SwiperRef | null>(null);
 
   const onSwiperChange = (swiper: SwiperClass) => {
-    console.log("swiper change ", swiper.activeIndex);
+    console.log("swiper active index ", swiper.activeIndex);
     const slide = swiper.activeIndex;
-    // if (isMobile)
-    //   //@ts-ignore
-    //   return setCurentSlide((prev: number) => {
-    //     if (slide - 1 < 0) return 0;
-    //     return slide - 1;
-    //   });
+
     setCurentSlide(slide);
   };
 
   const activeHistory = useMemo(() => {
+    if (isMobile) {
+      return mobileSlide?.at(0);
+    }
     return (
       props.histories && props.histories.find((ele, id) => id === currentSlide)
     );
-  }, [currentSlide]);
+  }, [currentSlide, mobileSlide]);
 
-  useEffect(() => {
-    if (isMobile) swiperRef.current?.swiper.slideTo(activeSlide);
-  }, [activeSlide]);
+  const onMobileSlide = (index: number) => {
+    let result = mobileSlide ? [...mobileSlide] : [];
+    console.log("before", result);
+
+    let rightItems = result.filter((ele, id) => id < index);
+    let leftItem = result.filter((ele, id) => id >= index);
+
+    result = [...leftItem, ...rightItems];
+
+    setMobileSlide(result);
+  };
+  // console.log(mobileSlide);
 
   return (
     <div
@@ -66,21 +80,35 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
             {props.title}
           </h2>
 
-          <div className="relative col-span-2  mt-10  flex h-[360px] w-[65px] gap-4 after:absolute after:top-0 after:h-14 after:w-full after:rounded-md after:bg-primary-blue-main md:col-span-full md:w-[134px] md:flex-col md:justify-end after:md:top-1/2 after:md:-translate-y-1/2 lg:ml-auto ">
-            <div className=" w-full">
+          <div className="relative col-span-2  mt-10  flex  w-[65px] gap-4 after:absolute after:top-0 after:h-14 after:w-full after:rounded-md after:bg-primary-blue-main sm:h-[360px] md:col-span-full md:w-[134px] md:flex-col md:justify-end after:md:top-1/2 after:md:-translate-y-1/2 lg:ml-auto ">
+            <div className="z-10 flex w-full flex-col items-center justify-start md:hidden">
+              {mobileSlide?.map((ele, id) => {
+                return (
+                  <div
+                    key={id}
+                    onClick={() => onMobileSlide(id)}
+                    className="flex h-14 w-full items-center justify-center">
+                    {ele?.year}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className=" hidden w-full md:block">
               <Swiper
                 modules={[Pagination]}
                 grabCursor={true}
                 direction="vertical"
-                draggable
-                freeMode
+                // draggable
+                // freeMode
+                className="h-[300%] sm:h-full"
                 // simulateTouch
                 ref={swiperRef}
                 // onTouchStart={(swiper) => onSwiperChange(swiper)}
                 initialSlide={activeSlide}
                 centeredSlides={!isMobile}
-                onSlideChange={(swiper) => onSwiperChange(swiper)}
-                slidesPerView={isMobile ? 5 : 5}>
+                onSlideChange={(swiper: any) => onSwiperChange(swiper)}
+                slidesPerView={isMobile ? 4 : 5}>
                 {props.histories?.map((ele, id) => {
                   return (
                     <SwiperSlide
@@ -104,7 +132,9 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                         currentSlide && id === currentSlide + 1 && "opacity-80 "
                       )}
                       key={id}>
-                      <SlideButton id={id}>{ele?.year}</SlideButton>
+                      <SlideButton isMobile={isMobile} id={id}>
+                        {ele?.year}
+                      </SlideButton>
                     </SwiperSlide>
                   );
                 })}
@@ -159,10 +189,13 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
   );
 };
 
-const SlideButton = (props: PropsWithChildren & {id: number}) => {
+const SlideButton = (
+  props: PropsWithChildren & {id: number; isMobile: boolean}
+) => {
   const swiper = useSwiper();
-  const currentSlide = useSwiperSlide();
+
   const onClick = (e: any) => {
+    // if (props.isMobile) return;
     console.log("click", props.id, swiper.activeIndex);
 
     swiper.slideTo(props.id);
