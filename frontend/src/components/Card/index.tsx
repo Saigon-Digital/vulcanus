@@ -85,7 +85,7 @@ const Card: React.FC<Props> = ({
       <div
         className={clsx(
           "relative z-10 flex  flex-col  gap-5",
-          !link ? "h-[48%] justify-start xl:h-1/3" : "h-[48%] justify-end"
+          !link ? "h-[48%] justify-start xl:h-[45%]" : "h-[48%] justify-end"
         )}>
         <p
           style={{color: backgroundColor ? "#140F24" : undefined}}
