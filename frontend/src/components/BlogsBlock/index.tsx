@@ -123,7 +123,7 @@ const BlogsBlock = (props: Props) => {
                       <Link
                         href={`/${router.locale}/blog/${ele.slug}` as string}
                         className="group mt-5 text-primary-blue-main">
-                        Read More
+                        {languages(locale)?.readMore}
                         <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
                       </Link>
                     </div>
