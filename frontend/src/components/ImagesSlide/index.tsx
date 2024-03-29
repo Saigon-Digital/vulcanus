@@ -17,26 +17,27 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             spaceBetween: 24,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: 5,
             spaceBetween: 24,
+          },
+          1920: {
+            slidesPerView: 6,
+            spaceBetween: 40,
           },
         }}
         spaceBetween={35}
         // navigation={}
-
+        freeMode
         modules={[Autoplay, Navigation]}
         autoplay={{
           disableOnInteraction: false,
-          delay: 0,
+          delay: 0.5,
           stopOnLastSlide: false,
         }}
-        // className={`${
-        //     loading ? "opacity-0" : "opacity-100"
-        // }`}
-        slidesPerView={3}
+        slidesPerView={"auto"}
         loop={true}
         // freeMode={true}
-        speed={10000}>
+        speed={11000}>
         {props.slides &&
           [...props?.slides, ...props?.slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
@@ -49,7 +50,6 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
                     //   fill
 
                     loading="eager"
-                    //   sizes="100vw, (min-width: 640px) 33vw, (min-width: 1024px) 25vw, (min-width: 1280px) 20vw"
                     alt={" slide"}
                     className="aspect-auto min-h-[480px] object-contain"
                   />
