@@ -1,7 +1,7 @@
 import {getAcfLinkProps, getUrlPathname} from "@/utils";
 import Link from "next/link";
 import ArrowRight from "public/icons/arrow-right.svg";
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import {twMerge} from "tailwind-merge";
 import CardShape from "./images/card-shape.svg";
 import {CardsBlockCards_Fields} from "@/__generated__/graphql";
@@ -29,6 +29,10 @@ const Card: React.FC<Props> = ({
   ...props
 }) => {
   const locale = useRouter().locale;
+  const textRef = useRef<HTMLParagraphElement | null>(null);
+  // useEffect(() => {
+  //   console.log("hieght ", textRef.current?.offsetHeight);
+  // }, []);
   return (
     <div
       style={{background: backgroundColor || undefined}}
@@ -85,9 +89,10 @@ const Card: React.FC<Props> = ({
       <div
         className={clsx(
           "relative z-10 flex  flex-col  gap-5",
-          !link ? "h-[48%] justify-start xl:h-[45%]" : "h-[48%] justify-end"
+          !link ? "h-[48%] justify-start xl:h-[40%]" : "h-[48%] justify-end"
         )}>
         <p
+          ref={textRef}
           style={{color: backgroundColor ? "#140F24" : undefined}}
           className="mb-0 line-clamp-6 text-base font-light leading-[25px] text-secondary-offWhite-white 2xl:text-lg">
           {description && parse(description)}

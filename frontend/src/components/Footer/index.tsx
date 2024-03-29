@@ -70,9 +70,6 @@ const Footer = (props: Props) => {
                     <Link href="mailto:info@vulcanus-stahl.de">
                       Email: info@vulcanus-stahl.de
                     </Link>
-                    <Link href="mailto:info@vulcanus-stahl.de">
-                      Email: info@vulcanus-stahl.de
-                    </Link>
                   </li>
                 </ul>
               </div>
