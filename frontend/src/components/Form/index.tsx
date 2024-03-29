@@ -101,7 +101,7 @@ const Form = ({contactInformation, form}: TForm) => {
 
   gfForm = data.gfForm;
   console.log("form  ", gfForm);
-  console.log("form error ", error);
+  // console.log("form error ", error);
 
   // console.log("number", watch());
 
@@ -129,6 +129,8 @@ const Form = ({contactInformation, form}: TForm) => {
     }
     setLoading(false);
   };
+
+  console.log("errors ", errors);
 
   return (
     <div className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
@@ -287,7 +289,10 @@ const Form = ({contactInformation, form}: TForm) => {
                           </label>
                           <input
                             {...register(String(ele.databaseId), {
-                              required: ele.isRequired || false,
+                              required: {
+                                value: ele.isRequired || false,
+                                message: languages(locale)?.require || "",
+                              },
                               pattern: {
                                 value: pattern.phone,
                                 message: "Please enter correct phone number",
