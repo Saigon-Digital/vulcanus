@@ -32,9 +32,8 @@ enum adminLabelEmun {
   phone = "Phone",
 }
 const pattern = {
-  email: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/,
-  // phone:
-  //   /^(((\+44\s?\d{4}|\(?0\d{4}\)?)\s?\d{3}\s?\d{3})|((\+44\s?\d{3}|\(?0\d{3}\)?)\s?\d{3}\s?\d{4})|((\+44\s?\d{2}|\(?0\d{2}\)?)\s?\d{4}\s?\d{4}))(\s?\#(\d{4}|\d{3}))?$/,
+  email:
+    /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
   phone: /^(\+[1-9]{1}[0-9]{3,14})?([0-9]{9,14})$/,
 };
 
@@ -64,7 +63,7 @@ const Form = ({contactInformation, form}: TForm) => {
     formState: {errors},
   } = useForm();
   //-----------------
-
+  const EXCLUDE_EMAIL = [".email@domain.com", ".email@.domain.com"];
   // use Mutation
   const [submitFormMutation, {loading: submitFormLoading}] = useMutation(
     SUBMIT_FORM,
@@ -256,6 +255,7 @@ const Form = ({contactInformation, form}: TForm) => {
                                 value: ele.isRequired || false,
                                 message: languages(locale)?.require || "",
                               },
+
                               pattern: {
                                 value: pattern.email,
                                 message:
@@ -292,7 +292,8 @@ const Form = ({contactInformation, form}: TForm) => {
                               },
                               pattern: {
                                 value: pattern.phone,
-                                message: "Please enter correct phone number",
+                                message:
+                                  languages(locale)?.errorFormatPhone || "",
                               },
                             })}
                             type="text"
