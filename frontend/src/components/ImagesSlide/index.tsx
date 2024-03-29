@@ -10,10 +10,10 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
       <Swiper
         breakpoints={{
           320: {
-            slidesPerView: 1,
+            slidesPerView: 2,
           },
           640: {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 24,
           },
           1024: {
@@ -31,13 +31,13 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         modules={[Autoplay, Navigation]}
         autoplay={{
           disableOnInteraction: false,
-          delay: 0.5,
+          delay: 500,
           stopOnLastSlide: false,
         }}
         slidesPerView={"auto"}
         loop={true}
         // freeMode={true}
-        speed={8000}>
+        speed={6000}>
         {props.slides &&
           [...props?.slides, ...props?.slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
