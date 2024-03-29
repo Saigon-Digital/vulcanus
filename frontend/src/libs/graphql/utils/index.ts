@@ -261,6 +261,20 @@ export async function getAllPost() {
                 }
               }
             }
+            seo {
+              opengraphUrl
+            }
+          }
+        }
+        siteSettings {
+          siteSetting {
+            siteUrl
+            description
+            openGraphImage {
+              node {
+                sourceUrl
+              }
+            }
           }
         }
       }

@@ -11,29 +11,64 @@ import {NextSeo} from "next-seo";
 import {usePathname} from "next/navigation";
 import {useRouter} from "next/router";
 import {LanguageCodeFilterEnum} from "@/__generated__/graphql";
+import {urlHelper} from "@/utils";
 export type TSEO = {
   seo?: PagesSettingFragment | null | undefined;
+  translations?:
+    | ({
+        __typename?: "Page" | undefined;
+        slug?: string | null | undefined;
+        uri?: string | null | undefined;
+      } | null)[]
+    | null
+    | undefined;
+  opengraphUrl?: string | null | undefined;
   defaultSEO?: SiteSettingFragment | null | undefined;
   title?: string | null | undefined;
-  slug?: string;
+  uri?: string | null | undefined;
   // locale?: string;
 };
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
 const SEO = (props: TSEO) => {
   // console.log("seo", props.seo);
-  console.log(SITE_URL);
 
-  const pathname = usePathname();
   const router = useRouter();
+  const pathname = usePathname();
   const locale =
     router.locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.De
-      ? ""
+      ? "de"
       : "en";
+  const siteUrl = urlHelper(props.defaultSEO?.siteUrl || SITE_URL || "");
 
-  const defaultPath = `${props.defaultSEO?.siteUrl || SITE_URL}${
-    locale !== "" ? locale + "/" : ""
-  }${pathname.replace("/", "")}`;
+  const defaultPath = `${siteUrl}${props.uri}`;
+
+  const translation = `${siteUrl}${
+    props.translations ? props.translations[0]?.uri : ""
+  }`;
+
+  const languageOptions =
+    locale === "en"
+      ? [
+          {
+            hrefLang: "x-default",
+            href: props.seo?.canonicalUrl || defaultPath,
+          },
+          {
+            hrefLang: "de",
+            href: translation,
+          },
+        ]
+      : [
+          {
+            hrefLang: "x-default",
+            href: props.seo?.canonicalUrl || defaultPath,
+          },
+          {
+            hrefLang: "en",
+            href: translation,
+          },
+        ];
 
   return (
     <>
@@ -47,23 +82,12 @@ const SEO = (props: TSEO) => {
         description={
           props.seo?.description || props.defaultSEO?.description || ""
         }
-        languageAlternates={[
-          {
-            hrefLang: "de",
-            href: props.defaultSEO?.siteUrl || SITE_URL || "",
-          },
-          {
-            hrefLang: "en",
-            href: `${props.defaultSEO?.siteUrl}en` || `${SITE_URL}en` || "",
-          },
-        ]}
-        canonical={props.seo?.canonicalUrl || defaultPath}
+        languageAlternates={languageOptions}
+        canonical={props.seo?.canonicalUrl || defaultPath || ""}
         // twitter={{site:props.twitterTitle}}
         openGraph={{
           locale: router.locale,
-          url:
-            props.seo?.canonicalUrl ||
-            `${props.defaultSEO?.siteUrl || SITE_URL}${locale}${pathname}`,
+          url: props.seo?.canonicalUrl || props.opengraphUrl || "",
           type: "website",
           images: [
             {

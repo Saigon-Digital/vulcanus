@@ -7,8 +7,7 @@ import Head from "next/head";
 
 import IntroduceBlock from "@/components/IntroduceBlock";
 import SEO from "@/components/SEO";
-import {DefaultSeo} from "next-seo";
-import defaultSEO from "../next-seo.config";
+
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
   if (props.loading) {
@@ -22,12 +21,16 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
 
   // const pathname = props.data?.page?.translation?.uri;
   const siteSetting = props.data?.siteSettings;
+  console.log("seo", props.data?.page?.seo);
+
   return (
     <>
       <SEO
+        translations={props.data?.page?.translations}
         seo={props.data?.page?.translation?.pagesSetting}
+        opengraphUrl={props.data?.page?.seo?.opengraphUrl}
         defaultSEO={siteSetting?.siteSetting}
-        slug={props.data?.page?.translation?.slug || ""}
+        uri={props.data?.page?.translation?.uri || ""}
         title={props.data?.page?.translation?.title || ""}
       />
 
@@ -47,6 +50,10 @@ Page.variables = ({databaseId}, ctx) => {
 Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $language: LanguageCodeEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      translations {
+        slug
+        uri
+      }
       translation(language: $language) {
         uri
         title
@@ -69,7 +76,11 @@ Page.query = gql(`
         ...PageBuilder
         }
       }
+      seo {
+        opengraphUrl
+      }
     }
+
     siteSettings {
       siteSetting {
         ...SiteSetting

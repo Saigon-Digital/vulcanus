@@ -3,6 +3,8 @@ import {GetStaticProps, GetServerSideProps} from "next";
 import {
   LanguageCodeFilterEnum,
   PostFragmentFragment,
+  SiteSettingFragment,
+  SiteSettings,
 } from "@/__generated__/graphql";
 import {getAllPost} from "@/libs/graphql/utils";
 
@@ -16,8 +18,9 @@ type Props = {
   blog: PostFragmentFragment;
   locale: string;
   relatedBlog: PostFragmentFragment[];
+  siteSettings: SiteSettingFragment;
 };
-const index = ({blog, relatedBlog, locale}: Props) => {
+const index = ({blog, relatedBlog, locale, siteSettings}: Props) => {
   console.log(blog.dateGmt);
 
   const event = new Date(blog.dateGmt || new Date().getTime());
@@ -25,9 +28,18 @@ const index = ({blog, relatedBlog, locale}: Props) => {
     locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
       ? "en-EN"
       : "de-DE";
+  const defaultUrl =
+    blog.pagesSetting?.canonicalUrl ||
+    `${siteSettings.siteUrl}${locale}${blog.slug}`;
+
   return (
     <>
-      <SEO seo={blog.pagesSetting} title={blog.title} />
+      <SEO
+        opengraphUrl={defaultUrl}
+        defaultSEO={siteSettings}
+        seo={blog.pagesSetting}
+        title={blog.title}
+      />
       <main className="  py-20 pb-10 lg:py-0 lg:pb-0">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 px-5 lg:mb-20">
           <h1 className="text-4xl font-bold xl:text-5xl xl:leading-[64px] ">
@@ -65,6 +77,7 @@ export const getServerSideProps = (async (context) => {
   const slug = context.params?.slug;
   const {data} = await getAllPost();
   const locale = context.locale;
+  const siteSettings = data.siteSettings;
   const relatedBLog = data.posts?.nodes?.filter(
     (ele: PostFragmentFragment) => ele.slug !== slug
   );
@@ -77,6 +90,7 @@ export const getServerSideProps = (async (context) => {
       relatedBlog: relatedBLog,
       blog: blog,
       locale: locale,
+      siteSettings: siteSettings,
     },
   };
 }) satisfies GetServerSideProps<{
