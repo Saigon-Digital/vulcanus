@@ -20,11 +20,11 @@ const Footer = (props: Props) => {
   return (
     <footer className="pt-20 sm:container-fluid">
       <div className="mb-12 flex items-center justify-between px-5 sm:px-0">
-        <h4
+        <h3
           className="text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] [&>strong]:text-primary-blue-main"
           dangerouslySetInnerHTML={{
             __html: languages(router.locale)?.letStart || "",
-          }}></h4>
+          }}></h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width={158}
