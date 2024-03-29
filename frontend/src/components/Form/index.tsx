@@ -101,7 +101,7 @@ const Form = ({contactInformation, form}: TForm) => {
 
   gfForm = data.gfForm;
   console.log("form  ", gfForm);
-  // console.log("form error ", error);
+  console.log("form error ", error);
 
   // console.log("number", watch());
 
@@ -109,15 +109,13 @@ const Form = ({contactInformation, form}: TForm) => {
 
   // handle submit
   const handleSumit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
-
     const variables = getMutationVariables({
       databaseId: FORM_ID.toString(),
       fields: gfForm,
       data: data,
     });
     console.log("form variable ", variables);
-
+    if (Object.entries(errors).length > 0) return;
     try {
       setLoading(true);
       await submitFormMutation({
