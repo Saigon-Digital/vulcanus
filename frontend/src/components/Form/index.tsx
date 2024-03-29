@@ -264,7 +264,6 @@ const Form = ({contactInformation, form}: TForm) => {
                             })}
                             type="text"
                             id="email"
-                            pattern={String(pattern.email)}
                             placeholder={languages(locale)?.email.placeholder}
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
