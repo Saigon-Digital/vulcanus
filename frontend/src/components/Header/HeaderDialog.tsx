@@ -25,13 +25,15 @@ const HeaderDialog = ({menuItems, navIsOpen, setNavIsOpen}: Props) => {
         }
       )}>
       <div className="flex h-[var(--header-height)] items-center justify-between px-6">
-        <Image
-          src="/logo/combination-logo.svg"
-          alt="logo"
-          width={243.82}
-          height={30.84}
-          className="aspect-[243.82/30.84] max-w-[50vw] object-contain"
-        />
+        <Link href={"/"} locale={locale}>
+          <Image
+            src="/logo/combination-logo.svg"
+            alt="logo"
+            width={243.82}
+            height={30.84}
+            className="aspect-[243.82/30.84] max-w-[50vw] object-contain"
+          />
+        </Link>
         <button
           onClick={() => setNavIsOpen(false)}
           className="flex items-center justify-center"
