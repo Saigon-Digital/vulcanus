@@ -87,7 +87,7 @@ const SEO = (props: TSEO) => {
         // twitter={{site:props.twitterTitle}}
         openGraph={{
           locale: router.locale,
-          url: props.seo?.canonicalUrl || props.opengraphUrl || "",
+          url: props.seo?.canonicalUrl || defaultPath || "",
           type: "website",
           images: [
             {
