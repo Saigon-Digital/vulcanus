@@ -34,7 +34,7 @@ const SEO = (props: TSEO) => {
   // console.log("seo", props.seo);
 
   const router = useRouter();
-  const pathname = usePathname();
+
   const locale =
     router.locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.De
       ? "de"
@@ -43,13 +43,15 @@ const SEO = (props: TSEO) => {
 
   const defaultPath = `${siteUrl}${props.uri}`;
 
-  let translation = `${siteUrl}${
-    props.translations ? props.translations[0]?.uri : ""
-  }`;
+  let translationUri = props.translations ? props.translations[0]?.uri : "";
 
-  if (translation === "/" && locale === "en") {
-    translation = "/en";
+  if (translationUri === "/" && locale === "de") {
+    translationUri = "/en";
   }
+
+  let translation = `${siteUrl}${translationUri}`;
+
+  // console.log("tranlations", defaultPath, translation);
 
   const languageOptions =
     locale === "en"
