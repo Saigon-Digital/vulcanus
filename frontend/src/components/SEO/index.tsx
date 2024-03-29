@@ -43,9 +43,13 @@ const SEO = (props: TSEO) => {
 
   const defaultPath = `${siteUrl}${props.uri}`;
 
-  const translation = `${siteUrl}${
+  let translation = `${siteUrl}${
     props.translations ? props.translations[0]?.uri : ""
   }`;
+
+  if (translation === "/" && locale === "en") {
+    translation = "/en";
+  }
 
   const languageOptions =
     locale === "en"
