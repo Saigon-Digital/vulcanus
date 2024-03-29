@@ -204,7 +204,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
+                            <p className="absolute -bottom-[28px] left-0 whitespace-nowrap text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -235,7 +235,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
+                            <p className="absolute -bottom-[28px] left-0 whitespace-nowrap text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -271,7 +271,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
+                            <p className="absolute -bottom-[28px] left-0 whitespace-nowrap text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -304,7 +304,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
+                            <p className="absolute -bottom-[28px] left-0 whitespace-nowrap text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
@@ -334,7 +334,7 @@ const Form = ({contactInformation, form}: TForm) => {
                             className="min-h-[48px] px-3 py-2 text-black placeholder:text-black/30"
                           />
                           {errors[String(ele.databaseId)] && (
-                            <p className="absolute -bottom-[28px] left-0 text-sm text-red-400 ">
+                            <p className="absolute -bottom-[28px] left-0 whitespace-nowrap text-sm text-red-400 ">
                               {errors[
                                 String(ele.databaseId)
                               ]?.message?.toString()}
