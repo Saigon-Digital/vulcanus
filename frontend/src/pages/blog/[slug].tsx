@@ -35,7 +35,9 @@ const index = ({blog, relatedBlog, locale, siteSettings}: Props) => {
   return (
     <>
       <SEO
-        opengraphUrl={defaultUrl}
+        uri={blog.uri}
+        DEUri={blog.DELang?.uri}
+        ENUri={blog.ENLang?.uri}
         defaultSEO={siteSettings}
         seo={blog.pagesSetting}
         title={blog.title}

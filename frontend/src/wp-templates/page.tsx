@@ -26,9 +26,9 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   return (
     <>
       <SEO
-        translations={props.data?.page?.translations}
+        DEUri={props.data?.page?.translation?.DELang?.uri}
+        ENUri={props.data?.page?.translation?.ENLang?.uri}
         seo={props.data?.page?.translation?.pagesSetting}
-        opengraphUrl={props.data?.page?.seo?.opengraphUrl}
         defaultSEO={siteSetting?.siteSetting}
         uri={props.data?.page?.translation?.uri || ""}
         title={props.data?.page?.translation?.title || ""}
@@ -67,7 +67,12 @@ Page.query = gql(`
         language {
           code
         }
-
+        ENLang:translation (language:EN) {
+          uri
+        }
+        DELang:translation(language: DE) {
+          uri
+        }
         pagesSetting {
           ...pagesSetting
         }

@@ -261,8 +261,12 @@ export async function getAllPost() {
                 }
               }
             }
-            seo {
-              opengraphUrl
+            uri
+            DELang: translation(language: DE) {
+              uri
+            }
+            ENLang: translation(language: EN) {
+              uri
             }
           }
         }

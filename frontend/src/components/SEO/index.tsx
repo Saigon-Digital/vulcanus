@@ -14,15 +14,9 @@ import {LanguageCodeFilterEnum} from "@/__generated__/graphql";
 import {urlHelper} from "@/utils";
 export type TSEO = {
   seo?: PagesSettingFragment | null | undefined;
-  translations?:
-    | ({
-        __typename?: "Page" | undefined;
-        slug?: string | null | undefined;
-        uri?: string | null | undefined;
-      } | null)[]
-    | null
-    | undefined;
-  opengraphUrl?: string | null | undefined;
+  ENUri?: string | null | undefined;
+  DEUri?: string | null | undefined;
+
   defaultSEO?: SiteSettingFragment | null | undefined;
   title?: string | null | undefined;
   uri?: string | null | undefined;
@@ -41,43 +35,24 @@ const SEO = (props: TSEO) => {
       : "en";
   const siteUrl = urlHelper(props.defaultSEO?.siteUrl || SITE_URL || "");
 
-  let translationUri = props.translations ? props.translations[0]?.uri : "";
+  // let translationUri = props.translations ? props.translations[0]?.uri : "";
 
-  if (translationUri === "/" && locale === "de") {
-    translationUri = "/en";
-  }
-  const defaultPath = `${siteUrl}${
-    (props.uri === "/" || props.uri === "") && locale === "en"
-      ? "/en"
-      : props.uri
-  }`;
+  // if (translationUri === "/" && locale === "de") {
+  //   translationUri = "/en";
 
-  let translation = `${siteUrl}${translationUri}`;
+  const defaultPath = `${siteUrl}${props.uri}`;
 
-  console.log("tranlations", defaultPath, translation);
-
-  const languageOptions =
-    locale === "en"
-      ? [
-          {
-            hrefLang: "en",
-            href: props.seo?.canonicalUrl || defaultPath,
-          },
-          {
-            hrefLang: "x-default",
-            href: translation,
-          },
-        ]
-      : [
-          {
-            hrefLang: "x-default",
-            href: props.seo?.canonicalUrl || defaultPath,
-          },
-          {
-            hrefLang: "en",
-            href: translation,
-          },
-        ];
+  let enUri = props.ENUri === "/" || props.ENUri === "" ? "/en" : props.ENUri;
+  const languageOptions = [
+    {
+      hrefLang: "x-default",
+      href: props.seo?.canonicalUrl || `${siteUrl}${props.DEUri || ""}`,
+    },
+    {
+      hrefLang: "en",
+      href: props.seo?.canonicalUrl || `${siteUrl}${enUri || ""}`,
+    },
+  ];
 
   return (
     <>
