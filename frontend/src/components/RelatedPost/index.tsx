@@ -55,7 +55,7 @@ const RelatedPosts = ({posts}: Props) => {
                         height={296}
                       />
                       <p className="text-lg font-semibold uppercase leading-[20px] text-[#E6ECF3]">
-                        Manufacturing
+                        {languages(router.locale)?.manufacturing}
                       </p>
                       <h4 className="flex-[68px] text-2xl font-bold">
                         {ele.title}
@@ -70,7 +70,7 @@ const RelatedPosts = ({posts}: Props) => {
                       <Link
                         className="group flex gap-1 text-lg"
                         href={`/blog/${ele.slug}`}>
-                        Read More
+                        {languages(router.locale)?.readMore}
                         <ButtonNext className="text-white transition-all group-hover:translate-x-2" />
                       </Link>
                     </div>
