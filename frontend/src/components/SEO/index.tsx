@@ -41,27 +41,30 @@ const SEO = (props: TSEO) => {
       : "en";
   const siteUrl = urlHelper(props.defaultSEO?.siteUrl || SITE_URL || "");
 
-  const defaultPath = `${siteUrl}${props.uri}`;
-
   let translationUri = props.translations ? props.translations[0]?.uri : "";
 
   if (translationUri === "/" && locale === "de") {
     translationUri = "/en";
   }
+  const defaultPath = `${siteUrl}${
+    (props.uri === "/" || props.uri === "") && locale === "en"
+      ? "/en"
+      : props.uri
+  }`;
 
   let translation = `${siteUrl}${translationUri}`;
 
-  // console.log("tranlations", defaultPath, translation);
+  console.log("tranlations", defaultPath, translation);
 
   const languageOptions =
     locale === "en"
       ? [
           {
-            hrefLang: "x-default",
+            hrefLang: "en",
             href: props.seo?.canonicalUrl || defaultPath,
           },
           {
-            hrefLang: "de",
+            hrefLang: "x-default",
             href: translation,
           },
         ]
