@@ -37,7 +37,7 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         slidesPerView={"auto"}
         loop={true}
         // freeMode={true}
-        speed={11000}>
+        speed={8000}>
         {props.slides &&
           [...props?.slides, ...props?.slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();

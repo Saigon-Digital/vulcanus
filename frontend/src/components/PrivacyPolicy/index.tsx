@@ -26,7 +26,7 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
-          <div className="flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6">
+          <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
             <p>{languages(router.locale)?.introduce}</p>
             <ul className="list-decimal pl-5">
               {props.terms?.map((ele: any, id: number) => {
