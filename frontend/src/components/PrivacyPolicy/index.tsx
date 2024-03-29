@@ -12,16 +12,14 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
     if (typeof document === undefined) return;
     const id =
       //@ts-ignore
-      props.terms
-        ?.find((ele, id) => (id !== 0 ? id === active : ""))
-        ?.title?.replace(" ", "") || "";
+      props.terms?.find((ele, id) => id === active)?.title?.replace(" ", "") ||
+      "";
     const element = document.getElementById(id);
     if (element) {
-      element?.scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "center",
-      });
+      const top = element.getBoundingClientRect().top + window.pageYOffset - 80;
+      console.log(top);
+
+      window.scrollTo({top: top, behavior: "smooth"});
     }
   }, [active]);
   return (
