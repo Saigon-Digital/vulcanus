@@ -158,7 +158,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
         <div className="col-span-full hidden grid-cols-12 gap-4 md:col-span-8 md:grid md:gap-5 lg:col-start-5">
           <div className="col-span-3">
             <Image
-              className="ml-auto aspect-[316/267] rounded-md object-cover lg:w-3/4"
+              className="ml-auto aspect-[316/267] rounded-md object-cover transition-all lg:w-3/4"
               alt="history"
               width={360}
               height={267}
