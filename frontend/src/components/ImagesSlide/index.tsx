@@ -1,7 +1,7 @@
 import {ImagesSLideFragment} from "@/__generated__/graphql";
 import React from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {Autoplay, Navigation} from "swiper/modules";
+import {Autoplay, Navigation, A11y} from "swiper/modules";
 import Image from "next/image";
 import "swiper/css/autoplay";
 const ImagesSlide = (props: ImagesSLideFragment) => {
@@ -27,8 +27,8 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         }}
         spaceBetween={35}
         // navigation={}
-        freeMode
-        modules={[Autoplay, Navigation]}
+        grabCursor
+        modules={[Autoplay, Navigation, A11y]}
         autoplay={{
           disableOnInteraction: false,
           delay: 500,
