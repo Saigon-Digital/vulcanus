@@ -25,6 +25,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         <div className="relative aspect-[2/1] w-full lg:aspect-[1800/800]">
           <Image
             fill
+            loading="eager"
             src={image?.node?.sourceUrl || ""}
             alt="banner img"
             className="object-cover"
