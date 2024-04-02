@@ -14,8 +14,9 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const dynamicBlocks =
-    props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
+  const dynamicBlocks = props.data?.page?.isPreview
+    ? props.data?.page?.pageBuilder?.dynamicBlocks
+    : props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
 
   // const language = props.__TEMPLATE_VARIABLES__?.language;
 
@@ -47,16 +48,28 @@ Page.variables = ({databaseId}, ctx) => {
 Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $language: LanguageCodeEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-      link
-      ENLang: translation(language: EN) {
-        link
+
+      uri
+      title
+      content
+      slug
+      isPreview
+      pageType {
+        nodes {
+         name
+        }
       }
-      DELang: translation(language: DE) {
-        link
+      language {
+        code
       }
-      translations {
-        slug
-        uri
+
+      pagesSetting {
+        ...pagesSetting
+      }
+
+      pageBuilder {
+      ...PageBuilder
+
       }
       translation(language: $language) {
         uri
