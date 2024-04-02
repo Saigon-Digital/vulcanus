@@ -24,11 +24,11 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   return (
     <>
       <SEO
-        DEUri={props?.data?.page?.DELang?.link}
-        ENUri={props.data?.page?.ENLang?.link}
+        DEUri={props?.data?.page?.translation?.DELang?.link}
+        ENUri={props.data?.page?.translation?.ENLang?.link}
         seo={props?.data?.page?.translation?.pagesSetting}
         defaultSEO={siteSetting?.siteSetting}
-        link={props?.data?.page?.link}
+        link={props?.data?.page?.translation?.link}
       />
 
       <BlockViewer dynamicBlocks={dynamicBlocks} />
@@ -63,6 +63,7 @@ Page.query = gql(`
         title
         content
         slug
+        link
         pageType {
           nodes {
            name
@@ -72,10 +73,10 @@ Page.query = gql(`
           code
         }
         ENLang:translation (language:EN) {
-          uri
+          link
         }
         DELang:translation(language: DE) {
-          uri
+          link
         }
         pagesSetting {
           ...pagesSetting

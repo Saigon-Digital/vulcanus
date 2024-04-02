@@ -12,6 +12,7 @@ export type TSEO = {
 };
 const SEO = (props: TSEO) => {
   const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props;
+  console.log("onPageSeo=>",onPageSeo)
   const favicon = defaultSEO?.favicon?.node?.sourceUrl;
 
   const seo = {
@@ -20,8 +21,8 @@ const SEO = (props: TSEO) => {
     image:
       onPageSeo?.socialGraphImage?.node?.sourceUrl ||
       defaultSEO?.openGraphImage?.node.sourceUrl,
-    seoCanonical: onPageSeo?.canonicalUrl || link,
-    url: link,
+    seoCanonical: onPageSeo?.canonicalUrl || link?.replace("homepage/",""),
+    url: link?.replace("homepage/",""),
   };
 
   return (
@@ -79,7 +80,7 @@ const SEO = (props: TSEO) => {
       )}
       {seo.seoCanonical && <link rel="canonical" href={seo.seoCanonical} />}
       {DEUri && <link rel="alternate" hrefLang="x-default" href={DEUri} />}
-      {ENUri && <link rel="alternate" hrefLang="en" href={ENUri} />}
+      {ENUri && <link rel="alternate" hrefLang="en" href={ENUri?.replace("homepage/","")} />}
     </Head>
   );
 };
