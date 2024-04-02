@@ -17,7 +17,6 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
     const element = document.getElementById(id);
     if (element) {
       const top = element.getBoundingClientRect().top + window.pageYOffset - 80;
-      console.log(top);
 
       window.scrollTo({top: top, behavior: "smooth"});
     }

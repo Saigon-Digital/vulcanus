@@ -12,7 +12,6 @@ export type TSEO = {
 };
 const SEO = (props: TSEO) => {
   const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props;
-  console.log("onPageSeo=>",onPageSeo)
   const favicon = defaultSEO?.favicon?.node?.sourceUrl;
 
   const seo = {
