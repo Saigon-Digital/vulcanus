@@ -47,6 +47,7 @@ const Card: React.FC<Props> = ({
       {link ? (
         <Link
           {...getAcfLinkProps(link)}
+          aria-label={title}
           className={`absolute inset-0 z-[10] h-full w-full items-center gap-x-4 text-primary-blue-main transition-all duration-300
           ${!backgroundColor && "group-hover:text-secondary-offWhite-white"}
           `}></Link>
