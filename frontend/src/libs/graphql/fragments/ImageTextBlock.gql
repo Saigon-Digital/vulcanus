@@ -1,4 +1,4 @@
-fragment ImageTextBlock on PageBuilderDynamicBlocksImageText {
+fragment ImageTextBlock on PageBuilderDynamicBlocksImageTextLayout_Fields {
   fieldGroupName
   leftImage {
     node {

@@ -1,4 +1,4 @@
-fragment PageBanner on PageBuilderDynamicBlocksPageBannerBlock {
+fragment PageBanner on PageBuilderDynamicBlocksPageBannerBlockLayout_Fields {
   description
   title
   image {

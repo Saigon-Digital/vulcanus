@@ -1,4 +1,4 @@
-fragment privacyPolicy on PageBuilderDynamicBlocksPrivacyPolicy {
+fragment privacyPolicy on PageBuilderDynamicBlocksPrivacyPolicyLayout_Fields {
   fieldGroupName
   introduction
   terms {

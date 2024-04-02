@@ -1,4 +1,4 @@
-fragment TitleBlock on PageBuilderDynamicBlocksTitleBlock {
+fragment TitleBlock on PageBuilderDynamicBlocksTitleBlockLayout_Fields {
   fieldGroupName
   title
   textSize
