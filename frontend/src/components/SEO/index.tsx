@@ -9,6 +9,7 @@ export type TSEO = {
   DEUri?: string | null | undefined;
   defaultSEO?: SiteSettingFragment | null | undefined;
   link?: string | null | undefined;
+  pageTitle?:string
 };
 const SEO = (props: TSEO) => {
   const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props;
@@ -16,7 +17,7 @@ const SEO = (props: TSEO) => {
 
   const seo = {
     title: onPageSeo?.title || defaultSEO?.siteTitle,
-    description: onPageSeo?.description || defaultSEO?.siteTitle,
+    description: onPageSeo?.description || defaultSEO?.description,
     image:
       onPageSeo?.socialGraphImage?.node?.sourceUrl ||
       defaultSEO?.openGraphImage?.node.sourceUrl,
