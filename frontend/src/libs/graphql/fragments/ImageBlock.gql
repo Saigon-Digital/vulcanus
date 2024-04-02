@@ -1,4 +1,4 @@
-fragment ImageBlock on PageBuilderDynamicBlocksImageBlock {
+fragment ImageBlock on PageBuilderDynamicBlocksImageBlockLayout_Fields {
   __typename
   fieldGroupName
   image {

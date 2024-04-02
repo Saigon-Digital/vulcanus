@@ -1,4 +1,4 @@
-fragment CompanyHistory on PageBuilderDynamicBlocksCompanyHistoryBlock {
+fragment CompanyHistory on PageBuilderDynamicBlocksCompanyHistoryBlockLayout_Fields {
   fieldGroupName
   title
   histories {

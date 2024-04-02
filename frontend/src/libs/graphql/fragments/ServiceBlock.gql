@@ -1,4 +1,4 @@
-fragment Service_block on PageBuilderDynamicBlocksServiceBlock {
+fragment Service_block on PageBuilderDynamicBlocksServiceBlockLayout_Fields {
   fieldGroupName
   services {
     title

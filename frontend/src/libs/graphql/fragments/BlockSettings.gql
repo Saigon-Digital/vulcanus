@@ -1,4 +1,4 @@
-fragment BlockSettings on BaseBlockFieldsBlockSettings {
+fragment BlockSettings on PageBuilderDynamicBlocksBlockSettings {
   spacing {
     mobile {
       top

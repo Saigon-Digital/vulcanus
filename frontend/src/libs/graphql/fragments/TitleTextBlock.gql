@@ -1,4 +1,4 @@
-fragment TitleTextBlock on PageBuilderDynamicBlocksTitleTextBlock {
+fragment TitleTextBlock on PageBuilderDynamicBlocksTitleTextBlockLayout_Fields {
   fieldGroupName
   title
   haveShape

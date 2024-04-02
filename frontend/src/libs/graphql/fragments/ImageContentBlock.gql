@@ -1,4 +1,4 @@
-fragment ImageContent on PageBuilderDynamicBlocksImageContent {
+fragment ImageContent on PageBuilderDynamicBlocksImageContentLayout_Fields {
   fieldGroupName
   reverse
   image {
@@ -6,7 +6,7 @@ fragment ImageContent on PageBuilderDynamicBlocksImageContent {
       sourceUrl
     }
   }
-  content {
+  contentGroup {
     description
     icons {
       text
