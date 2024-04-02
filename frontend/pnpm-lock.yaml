@@ -17,6 +17,9 @@ dependencies:
   '@graphql-typed-document-node/core':
     specifier: ^3.2.0
     version: 3.2.0(graphql@16.8.1)
+  '@netlify/plugin-nextjs':
+    specifier: 5.0.0-rc.8
+    version: 5.0.0-rc.8
   '@next/env':
     specifier: 13.4.19
     version: 13.4.19
@@ -2461,6 +2464,11 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  /@netlify/plugin-nextjs@5.0.0-rc.8:
+    resolution: {integrity: sha512-8hCQrsGcS38+IMW0m+Nz5R5yYYwTnzXoUDATOjXPXNZacspl2WUNYuJ5pwV7le0z4kdhrLu3AAp16hXPlvJqGw==}
+    engines: {node: '>=18.0.0'}
+    dev: false
 
   /@next/env@13.4.19:
     resolution: {integrity: sha512-FsAT5x0jF2kkhNkKkukhsyYOrRqtSxrEhfliniIq0bwWbuXLgyt3Gv0Ml+b91XwjwArmuP7NxCiGd++GGKdNMQ==}
