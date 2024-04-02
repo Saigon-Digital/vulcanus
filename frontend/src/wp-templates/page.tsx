@@ -15,7 +15,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const dynamicBlocks = !props.data?.page?.translation
+  const dynamicBlocks = props.data?.page?.isPreview
     ? props.data?.page?.pageBuilder?.dynamicBlocks
     : props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
 
@@ -52,6 +52,7 @@ Page.query = gql(`
       title
       content
       slug
+      isPreview
       pageType {
         nodes {
          name
