@@ -1,4 +1,4 @@
-fragment CardsBlock on CardsBlock_Fields {
+fragment CardsBlock on PageBuilderDynamicBlocksCardsBlockLayout_Fields {
   __typename
   title
   cards {

@@ -10,6 +10,7 @@ type Tlang = {
   readMore: string;
   introduce: string;
   error: string;
+  service: string;
   manufacturing: string;
   relatedPost: string;
   poweredBy: string;
@@ -42,6 +43,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         relatedPost: "Related Post",
         require: "This field is required",
         error: "Something went wrong",
+        service: "Our Services",
         contactUs: "Contact Us",
         policy: "Privacy Policy",
         poweredBy: "Powered by",
@@ -70,6 +72,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         require: "Dieses Feld ist erforderlich",
         contactUs: "kontaktiere uns",
         manufacturing: "Herstellung",
+        service: "Unsere Dienstleistungen",
         policy: "Datenschutzrichtlinie",
         relatedPost: "Verwandter Beitrag",
         introduce: "Einführen",

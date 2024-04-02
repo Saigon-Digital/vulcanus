@@ -1,10 +1,10 @@
-fragment ChecklistBlock on PageBuilderDynamicBlocksChecklistBlock {
+fragment ChecklistBlock on PageBuilderDynamicBlocksChecklistBlockLayout_Fields {
   fieldGroupName
   header
   preHeader
   cta {
     ctaText
-    ctaLink {
+    link {
       url
     }
   }

@@ -20,6 +20,8 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
 
         <Image
           fill
+          priority
+          quality={60}
           src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
           alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
           className="z-0 object-cover object-center"></Image>

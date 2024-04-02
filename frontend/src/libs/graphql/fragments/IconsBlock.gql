@@ -1,4 +1,4 @@
-fragment IconsBlock on PageBuilderDynamicBlocksIconsBlock {
+fragment IconsBlock on PageBuilderDynamicBlocksIconsBlockLayout_Fields {
   description
   header
   preHeader

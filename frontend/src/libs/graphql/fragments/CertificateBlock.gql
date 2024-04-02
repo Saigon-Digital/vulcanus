@@ -1,4 +1,4 @@
-fragment CertificateBlock on PageBuilderDynamicBlocksCertificateBlock {
+fragment CertificateBlock on PageBuilderDynamicBlocksCertificateBlockLayout_Fields {
   fieldGroupName
   title
   certificates {

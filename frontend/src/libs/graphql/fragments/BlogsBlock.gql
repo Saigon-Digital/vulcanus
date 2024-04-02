@@ -1,4 +1,4 @@
-fragment blogsBlock on PageBuilderDynamicBlocksBlogs {
+fragment blogsBlock on PageBuilderDynamicBlocksBlogsLayout {
   fieldGroupName
   tittle
   ctaBlocks {
