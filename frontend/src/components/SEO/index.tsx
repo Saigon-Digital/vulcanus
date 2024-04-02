@@ -6,7 +6,7 @@ import {
   SiteSettingFragment,
   SiteSetting_Fields,
 } from "@/__generated__/graphql";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {NextSeo} from "next-seo";
 import {usePathname} from "next/navigation";
 import {useRouter} from "next/router";
@@ -28,17 +28,7 @@ const SEO = (props: TSEO) => {
   // console.log("seo", props.seo);
 
   const router = useRouter();
-
-  const locale =
-    router.locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.De
-      ? "de"
-      : "en";
-  const siteUrl = urlHelper(props.defaultSEO?.siteUrl || SITE_URL || "");
-
-  // let translationUri = props.translations ? props.translations[0]?.uri : "";
-
-  // if (translationUri === "/" && locale === "de") {
-  //   translationUri = "/en";
+  const [siteUrl, setSiteUrl] = useState<string | null>(null);
 
   const defaultPath = `${siteUrl}${props.uri}`;
 
@@ -53,6 +43,15 @@ const SEO = (props: TSEO) => {
       href: props.seo?.canonicalUrl || `${siteUrl}${enUri || ""}`,
     },
   ];
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      const url = window.location.origin;
+
+      return setSiteUrl(urlHelper(url || props.defaultSEO?.siteUrl || ""));
+    }
+  }, []);
+  if (!siteUrl) return null;
 
   return (
     <>
