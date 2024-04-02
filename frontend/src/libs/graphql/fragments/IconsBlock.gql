@@ -6,9 +6,7 @@ fragment IconsBlock on PageBuilderDynamicBlocksIconsBlockLayout_Fields {
   ctaLink {
     ctaText
     ctaLink {
-      nodes {
-        uri
-      }
+      ...AcfLink
     }
   }
   icons {
