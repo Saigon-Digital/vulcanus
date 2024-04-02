@@ -134,9 +134,9 @@ const Form = ({contactInformation, form}: TForm) => {
       <div className="grid grid-cols-12 ">
         <div className="col-span-full grid grid-cols-8 gap-y-14 lg:col-span-8 lg:col-start-3">
           <div className="col-span-full flex flex-col gap-5 md:col-span-3">
-            <h4 className="mb-3 max-w-[33%] whitespace-nowrap text-2xl font-semibold">
+            <p className="mb-3 max-w-[33%] whitespace-nowrap text-2xl font-semibold">
               {languages(locale)?.contactInfo} :
-            </h4>
+            </p>
             <p className="flex gap-4">
               <PhoneIcon />
               <span className="font-base">
@@ -163,9 +163,9 @@ const Form = ({contactInformation, form}: TForm) => {
             </p>
           </div>
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 lg:col-span-5">
-            <h4 className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]">
+            <h2 className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]">
               {form?.formTitle && parse(form.formTitle)}
-            </h4>
+            </h2>
             {form?.copyrightText && (
               <div className="[&>*>a]:text-primary-blue-main [&>*>a]:underline xl:[&>*]:text-lg xl:[&>*]:leading-[24px]">
                 {parse(form.copyrightText)}

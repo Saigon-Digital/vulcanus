@@ -16,9 +16,9 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             alt="shape"
             className="absolute -left-[25px] -top-5 hidden  md:block"
           />
-          <h4 className="w-4/5 max-w-[279px] text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-3/4  2xl:text-5xl 2xl:leading-[67px]">
+          <h2 className="w-4/5 max-w-[279px] text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-3/4  2xl:text-5xl 2xl:leading-[67px]">
             {title}
-          </h4>
+          </h2>
         </div>
         <div className={`col-span-full grid grid-cols-4 gap-5 md:col-span-9 `}>
           {gallery?.map((ele, id) => {
@@ -57,9 +57,9 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                   </>
                 ) : (
                   <div className="[&>p]:text-lg [&>p]:leading-[24px]">
-                    <h5 className="mb-3 text-xl font-bold text-primary-midBlue-main 2xl:text-2xl">
+                    <h3 className="mb-3 text-xl font-bold text-primary-midBlue-main 2xl:text-2xl">
                       {ele?.text?.title}
-                    </h5>
+                    </h3>
                     <p>{ele?.text?.content}</p>
                   </div>
                 )}

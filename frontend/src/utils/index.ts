@@ -9,7 +9,7 @@ export function getUrlPathname(url: string | undefined) {
   }
 }
 
-export function getAcfLinkProps(link?: Maybe<AcfLink >) {
+export function getAcfLinkProps(link?: Maybe<AcfLink>) {
   return {
     href: getUrlPathname(link?.url || ""),
     target: link?.target || "_self",
@@ -17,24 +17,28 @@ export function getAcfLinkProps(link?: Maybe<AcfLink >) {
   };
 }
 
-
+export const urlHelper = (url: string) => {
+  if (url.charAt(url.length - 1) === "/") {
+    return url.substring(0, url.length - 1);
+  } else {
+    return url;
+  }
+};
 
 export const flatListToHierarchical = (
   data = [],
-  {idKey='key',parentKey='parentId',childrenKey='children'} = {}
+  {idKey = "key", parentKey = "parentId", childrenKey = "children"} = {}
 ) => {
-  const tree:any[] = [];
-  const childrenOf:any = {};
-  data.forEach((item:any) => {
-      const newItem = {...item};
-      const { [idKey]: id, [parentKey]: parentId = 0 } = newItem;
-      childrenOf[id] = childrenOf[id] || [];
-      newItem[childrenKey] = childrenOf[id];
-      parentId
-          ? (
-              childrenOf[parentId] = childrenOf[parentId] || []
-          ).push(newItem)
-          : tree.push(newItem);
+  const tree: any[] = [];
+  const childrenOf: any = {};
+  data.forEach((item: any) => {
+    const newItem = {...item};
+    const {[idKey]: id, [parentKey]: parentId = 0} = newItem;
+    childrenOf[id] = childrenOf[id] || [];
+    newItem[childrenKey] = childrenOf[id];
+    parentId
+      ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
+      : tree.push(newItem);
   });
   return tree;
 };

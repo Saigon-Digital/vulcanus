@@ -7,8 +7,7 @@ import Head from "next/head";
 
 import IntroduceBlock from "@/components/IntroduceBlock";
 import SEO from "@/components/SEO";
-import {DefaultSeo} from "next-seo";
-import defaultSEO from "../next-seo.config";
+
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
   if (props.loading) {
@@ -26,10 +25,11 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   return (
     <>
       <SEO
-        seo={props.data?.page?.translation?.pagesSetting}
+        DEUri={props?.data?.page?.translation?.DELang?.link}
+        ENUri={props.data?.page?.translation?.ENLang?.link}
+        seo={props?.data?.page?.translation?.pagesSetting}
         defaultSEO={siteSetting?.siteSetting}
-        slug={props.data?.page?.translation?.slug || ""}
-        title={props.data?.page?.translation?.title || ""}
+        link={props?.data?.page?.translation?.link}
       />
 
       <BlockViewer dynamicBlocks={dynamicBlocks} />
@@ -48,6 +48,7 @@ Page.variables = ({databaseId}, ctx) => {
 Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $language: LanguageCodeEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+
       uri
       title
       content
@@ -68,12 +69,14 @@ Page.query = gql(`
 
       pageBuilder {
       ...PageBuilder
+
       }
       translation(language: $language) {
         uri
         title
         content
         slug
+        link
         pageType {
           nodes {
            name
@@ -82,7 +85,12 @@ Page.query = gql(`
         language {
           code
         }
-
+        ENLang:translation (language:EN) {
+          link
+        }
+        DELang:translation(language: DE) {
+          link
+        }
         pagesSetting {
           ...pagesSetting
         }
@@ -91,7 +99,11 @@ Page.query = gql(`
         ...PageBuilder
         }
       }
+      seo {
+        opengraphUrl
+      }
     }
+
     siteSettings {
       siteSetting {
         ...SiteSetting
