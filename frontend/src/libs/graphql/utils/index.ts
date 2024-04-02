@@ -235,6 +235,7 @@ export async function getAllPost() {
           nodes {
             dateGmt
             slug
+            link
             author {
               node {
                 avatar {
@@ -259,6 +260,24 @@ export async function getAllPost() {
                 node {
                   sourceUrl
                 }
+              }
+            }
+            uri
+            DELang: translation(language: DE) {
+              uri
+            }
+            ENLang: translation(language: EN) {
+              uri
+            }
+          }
+        }
+        siteSettings {
+          siteSetting {
+            siteUrl
+            description
+            openGraphImage {
+              node {
+                sourceUrl
               }
             }
           }

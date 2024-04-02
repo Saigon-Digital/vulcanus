@@ -1,84 +1,87 @@
-"use client";
 import {
-  GetPageQuery,
   PagesSettingFragment,
-  SiteSetting,
-  SiteSettingFragment,
-  SiteSetting_Fields,
+  SiteSettingFragment
 } from "@/__generated__/graphql";
-import React from "react";
-import {NextSeo} from "next-seo";
-import {usePathname} from "next/navigation";
-import {useRouter} from "next/router";
-import {LanguageCodeFilterEnum} from "@/__generated__/graphql";
+import Head from "next/head";
 export type TSEO = {
   seo?: PagesSettingFragment | null | undefined;
+  ENUri?: string | null | undefined;
+  DEUri?: string | null | undefined;
   defaultSEO?: SiteSettingFragment | null | undefined;
-  title?: string | null | undefined;
-  slug?: string;
-  // locale?: string;
+  link?: string | null | undefined;
 };
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
-
 const SEO = (props: TSEO) => {
-  // console.log("seo", props.seo);
-  console.log(SITE_URL);
+  const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props;
+  console.log("onPageSeo=>",onPageSeo)
+  const favicon = defaultSEO?.favicon?.node?.sourceUrl;
 
-  const pathname = usePathname();
-  const router = useRouter();
-  const locale =
-    router.locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.De
-      ? ""
-      : "en";
-
-  const defaultPath = `${props.defaultSEO?.siteUrl || SITE_URL}${
-    locale !== "" ? locale + "/" : ""
-  }${pathname.replace("/", "")}`;
+  const seo = {
+    title: onPageSeo?.title || defaultSEO?.siteTitle,
+    description: onPageSeo?.description || defaultSEO?.siteTitle,
+    image:
+      onPageSeo?.socialGraphImage?.node?.sourceUrl ||
+      defaultSEO?.openGraphImage?.node.sourceUrl,
+    seoCanonical: onPageSeo?.canonicalUrl || link?.replace("homepage/",""),
+    url: link?.replace("homepage/",""),
+  };
 
   return (
-    <>
-      <NextSeo
-        title={
-          props.seo?.title ||
-          (props.title && `${props.title} | Vulcanus`) ||
-          props.defaultSEO?.siteTitle ||
-          "Vulcanus Stahl"
-        }
-        description={
-          props.seo?.description || props.defaultSEO?.description || ""
-        }
-        languageAlternates={[
-          {
-            hrefLang: "de",
-            href: props.defaultSEO?.siteUrl || SITE_URL || "",
-          },
-          {
-            hrefLang: "en",
-            href: `${props.defaultSEO?.siteUrl}en` || `${SITE_URL}en` || "",
-          },
-        ]}
-        canonical={props.seo?.canonicalUrl || defaultPath}
-        // twitter={{site:props.twitterTitle}}
-        openGraph={{
-          locale: router.locale,
-          url:
-            props.seo?.canonicalUrl ||
-            `${props.defaultSEO?.siteUrl || SITE_URL}${locale}${pathname}`,
-          type: "website",
-          images: [
-            {
-              url:
-                props.seo?.socialGraphImage?.node.sourceUrl ||
-                props.defaultSEO?.openGraphImage?.node.sourceUrl ||
-                "",
-              width: 800,
-              height: 600,
-              type: "image",
-            },
-          ],
-        }}
+    <Head>
+      <meta property="og:type" content="website" />
+      <meta property="twitter:card" content="summary_large_image" />
+
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href={favicon || "/images/favicon.png"}
       />
-    </>
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href={favicon || "/images/favicon.png"}
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href={favicon || "/images/favicon.png"}
+      />
+
+      {seo.title && (
+        <>
+          <title>{seo.title}</title>
+          <meta name="title" content={seo.title} />
+          <meta property="og:title" content={seo.title} />
+          <meta property="twitter:title" content={seo.title} />
+        </>
+      )}
+
+      {seo.description && (
+        <>
+          <meta name="description" content={seo.description} />
+          <meta property="og:description" content={seo.description} />
+          <meta property="twitter:description" content={seo.description} />
+        </>
+      )}
+
+      {seo.image && (
+        <>
+          <meta property="og:image" content={seo.image} />
+          <meta property="twitter:image" content={seo.image} />
+        </>
+      )}
+
+      {seo.url && (
+        <>
+          <meta property="og:url" content={seo.url} />
+          <meta property="twitter:url" content={seo.url} />
+        </>
+      )}
+      {seo.seoCanonical && <link rel="canonical" href={seo.seoCanonical} />}
+      {DEUri && <link rel="alternate" hrefLang="x-default" href={DEUri} />}
+      {ENUri && <link rel="alternate" hrefLang="en" href={ENUri?.replace("homepage/","")} />}
+    </Head>
   );
 };
 

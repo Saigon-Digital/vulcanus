@@ -2,6 +2,11 @@ fragment SiteSetting on SiteSetting {
   siteTitle
   description
   siteUrl
+  favicon {
+    node {
+      sourceUrl
+    }
+  }
   openGraphImage {
     node {
       sourceUrl
