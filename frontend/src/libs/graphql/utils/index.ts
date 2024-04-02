@@ -265,9 +265,11 @@ export async function getAllPost() {
             uri
             DELang: translation(language: DE) {
               uri
+              link
             }
             ENLang: translation(language: EN) {
               uri
+              link
             }
           }
         }

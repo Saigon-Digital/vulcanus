@@ -39,11 +39,9 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
     props.histories
   );
 
-  console.log("active", currentSlide);
   const swiperRef = useRef<SwiperRef | null>(null);
 
   const onSwiperChange = (swiper: SwiperClass) => {
-    console.log("swiper active index ", swiper.activeIndex);
     const slide = swiper.activeIndex;
 
     setCurentSlide(slide);
@@ -60,7 +58,6 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
 
   const onMobileSlide = (index: number) => {
     let result = mobileSlide ? [...mobileSlide] : [];
-    console.log("before", result);
 
     let rightItems = result.filter((ele, id) => id < index);
     let leftItem = result.filter((ele, id) => id >= index);
