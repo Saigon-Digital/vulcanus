@@ -21,17 +21,14 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
 
   // const pathname = props.data?.page?.translation?.uri;
   const siteSetting = props.data?.siteSettings;
-  console.log("seo", props.data?.page?.seo);
-
   return (
     <>
       <SEO
-        DEUri={props.data?.page?.translation?.DELang?.uri}
-        ENUri={props.data?.page?.translation?.ENLang?.uri}
-        seo={props.data?.page?.translation?.pagesSetting}
+        DEUri={props?.data?.page?.DELang?.link}
+        ENUri={props.data?.page?.ENLang?.link}
+        seo={props?.data?.page?.translation?.pagesSetting}
         defaultSEO={siteSetting?.siteSetting}
-        uri={props.data?.page?.translation?.uri || ""}
-        title={props.data?.page?.translation?.title || ""}
+        link={props?.data?.page?.link}
       />
 
       <BlockViewer dynamicBlocks={dynamicBlocks} />
@@ -50,6 +47,13 @@ Page.variables = ({databaseId}, ctx) => {
 Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $language: LanguageCodeEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      link
+      ENLang: translation(language: EN) {
+        link
+      }
+      DELang: translation(language: DE) {
+        link
+      }
       translations {
         slug
         uri
