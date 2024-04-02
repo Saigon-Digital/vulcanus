@@ -16,13 +16,14 @@ fragment PostFragment on Post {
   }
   content
   title
+  link
   slug
   uri
   DELang: translation(language: DE) {
-    uri
+    link
   }
   ENLang: translation(language: EN) {
-    uri
+    link
   }
   pagesSetting {
     ...pagesSetting
