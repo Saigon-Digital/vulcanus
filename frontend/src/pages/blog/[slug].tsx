@@ -18,27 +18,28 @@ type Props = {
   blog: PostFragmentFragment;
   locale: string;
   relatedBlog: PostFragmentFragment[];
-  siteSettings: SiteSettingFragment;
-  host?: string
+  siteSettings: {
+    siteSetting: SiteSettingFragment;
+  };
+  host?: string;
 };
-const index = ({blog, relatedBlog, locale,host, siteSettings}: Props) => {
+const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
   const event = new Date(blog.dateGmt || new Date().getTime());
   const localeStr =
     locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
       ? "en-EN"
       : "de-DE";
-  
- 
-  let link = host + `/${locale}` + '/blog' + blog.uri
-  let DEUri = host + `/de` + '/blog' + blog.uri
-  let ENUri = host + `/en` + '/blog' + blog.uri
+  let siteTitle = blog.title + " | Vulcanus Stahl";
+  let link = host + `/${locale}` + "/blog" + blog.uri;
+  let DEUri = host + `/de` + "/blog" + blog.uri;
+  let ENUri = host + `/en` + "/blog" + blog.uri;
   return (
     <>
       <SEO
         link={link}
         DEUri={DEUri}
         ENUri={ENUri}
-        defaultSEO={siteSettings}
+        defaultSEO={{...siteSettings.siteSetting, siteTitle: siteTitle}}
         seo={blog.pagesSetting}
       />
       <main className="  py-20 pb-10 lg:py-0 lg:pb-0">
@@ -75,7 +76,7 @@ const index = ({blog, relatedBlog, locale,host, siteSettings}: Props) => {
 };
 
 export const getServerSideProps = (async (context) => {
-  let host =  context.req.headers.host ;
+  let host = context.req.headers.host;
   const slug = context.params?.slug;
   const {data} = await getAllPost();
   const locale = context.locale;

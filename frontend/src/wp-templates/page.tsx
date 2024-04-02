@@ -22,13 +22,15 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
 
   // const pathname = props.data?.page?.translation?.uri;
   const siteSetting = props.data?.siteSettings;
+  let siteTitle = props.data?.page?.title + " | Vulcanus Stahl";
+
   return (
     <>
       <SEO
         DEUri={props?.data?.page?.translation?.DELang?.link}
         ENUri={props.data?.page?.translation?.ENLang?.link}
         seo={props?.data?.page?.translation?.pagesSetting}
-        defaultSEO={siteSetting?.siteSetting}
+        defaultSEO={{...siteSetting?.siteSetting, siteTitle: siteTitle}}
         link={props?.data?.page?.translation?.link}
       />
 

@@ -275,6 +275,7 @@ export async function getAllPost() {
         }
         siteSettings {
           siteSetting {
+            siteTitle
             siteUrl
             description
             openGraphImage {
