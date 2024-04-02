@@ -14,24 +14,22 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
     return <>Loading...</>;
   }
 
-  const dynamicBlocks =
-    props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
+  const dynamicBlocks = props.data?.page?.isPreview
+    ? props.data?.page?.pageBuilder?.dynamicBlocks
+    : props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
 
   // const language = props.__TEMPLATE_VARIABLES__?.language;
 
   // const pathname = props.data?.page?.translation?.uri;
   const siteSetting = props.data?.siteSettings;
-  console.log("seo", props.data?.page?.seo);
-
   return (
     <>
       <SEO
-        DEUri={props.data?.page?.translation?.DELang?.uri}
-        ENUri={props.data?.page?.translation?.ENLang?.uri}
-        seo={props.data?.page?.translation?.pagesSetting}
+        DEUri={props?.data?.page?.translation?.DELang?.link}
+        ENUri={props.data?.page?.translation?.ENLang?.link}
+        seo={props?.data?.page?.translation?.pagesSetting}
         defaultSEO={siteSetting?.siteSetting}
-        uri={props.data?.page?.translation?.uri || ""}
-        title={props.data?.page?.translation?.title || ""}
+        link={props?.data?.page?.translation?.link}
       />
 
       <BlockViewer dynamicBlocks={dynamicBlocks} />
@@ -50,15 +48,35 @@ Page.variables = ({databaseId}, ctx) => {
 Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $language: LanguageCodeEnum!) {
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
-      translations {
-        slug
-        uri
+
+      uri
+      title
+      content
+      slug
+      isPreview
+      pageType {
+        nodes {
+         name
+        }
+      }
+      language {
+        code
+      }
+
+      pagesSetting {
+        ...pagesSetting
+      }
+
+      pageBuilder {
+      ...PageBuilder
+
       }
       translation(language: $language) {
         uri
         title
         content
         slug
+        link
         pageType {
           nodes {
            name
@@ -68,10 +86,10 @@ Page.query = gql(`
           code
         }
         ENLang:translation (language:EN) {
-          uri
+          link
         }
         DELang:translation(language: DE) {
-          uri
+          link
         }
         pagesSetting {
           ...pagesSetting

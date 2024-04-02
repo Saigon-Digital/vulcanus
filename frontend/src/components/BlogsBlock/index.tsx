@@ -109,13 +109,13 @@ const BlogsBlock = (props: Props) => {
                       <h2 className="text-lg font-semibold uppercase leading-5 text-primary-blue-main">
                         {languages(router.locale)?.manufacturing}
                       </h2>
-                      <Link
-                        href={`/${router.locale}/blog/${ele.slug}` as string}
-                        className="group">
-                        <h3 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
+                      <h3 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
+                        <Link
+                          href={`/${router.locale}/blog/${ele.slug}` as string}
+                          className="group">
                           {ele.title}
-                        </h3>
-                      </Link>
+                        </Link>
+                      </h3>
                       <p className="text text-base leading-[22px]">
                         {ele.blogDescription?.blogDescription}
                       </p>

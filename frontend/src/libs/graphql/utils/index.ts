@@ -235,6 +235,7 @@ export async function getAllPost() {
           nodes {
             dateGmt
             slug
+            link
             author {
               node {
                 avatar {
@@ -264,9 +265,11 @@ export async function getAllPost() {
             uri
             DELang: translation(language: DE) {
               uri
+              link
             }
             ENLang: translation(language: EN) {
               uri
+              link
             }
           }
         }

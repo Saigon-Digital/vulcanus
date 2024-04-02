@@ -25,7 +25,6 @@ export default function App({Component, pageProps}: AppProps) {
   return (
     <ApolloProvider client={client}>
       <FaustProvider pageProps={pageProps}>
-        <DefaultSeo {...seo} />
         <Layout
           headerMenu={pageProps?.headerMenu}
           footerMenu={pageProps?.footerMenu}

@@ -1,4 +1,4 @@
-fragment FormBlock on PageBuilderDynamicBlocksForm {
+fragment FormBlock on PageBuilderDynamicBlocksFormLayout_Fields {
   fieldGroupName
   form {
     copyrightText

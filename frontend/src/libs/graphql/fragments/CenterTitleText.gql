@@ -1,4 +1,4 @@
-fragment CenterTitleText on PageBuilderDynamicBlocksCenterTitleText {
+fragment CenterTitleText on PageBuilderDynamicBlocksCenterTitleTextLayout_Fields {
   fieldGroupName
   text
   title

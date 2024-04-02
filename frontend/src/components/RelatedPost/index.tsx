@@ -42,8 +42,8 @@ const RelatedPosts = ({posts}: Props) => {
             posts.map((ele, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <Link href={`/blog/${ele.slug}`}>
-                    <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-4">
+                    <Link href={`/blog/${ele.slug}`}>
                       <Image
                         className="aspect-[450/290] w-full"
                         src={
@@ -54,27 +54,27 @@ const RelatedPosts = ({posts}: Props) => {
                         width={450}
                         height={296}
                       />
-                      <p className="text-lg font-semibold uppercase leading-[20px] text-[#E6ECF3]">
-                        {languages(router.locale)?.manufacturing}
-                      </p>
-                      <h4 className="flex-[68px] text-2xl font-bold">
-                        {ele.title}
-                      </h4>
-                      <p className="text-base leading-[22px]">
-                        Discover the technological prowess behind Vulcanus
-                        Company&apos; CNC manufacturing. Learn about their
-                        state-of-the-art equipment, their capacity for
-                        large-scale productions, and the diverse materials they
-                        expertly handle.
-                      </p>
-                      <Link
-                        className="group flex gap-1 text-lg"
-                        href={`/blog/${ele.slug}`}>
-                        {languages(router.locale)?.readMore}
-                        <ButtonNext className="text-white transition-all group-hover:translate-x-2" />
-                      </Link>
-                    </div>
-                  </Link>
+                    </Link>
+                    <p className="text-lg font-semibold uppercase leading-[20px] text-[#E6ECF3]">
+                      {languages(router.locale)?.manufacturing}
+                    </p>
+                    <h4 className="flex-[68px] text-2xl font-bold">
+                      {ele.title}
+                    </h4>
+                    <p className="text-base leading-[22px]">
+                      Discover the technological prowess behind Vulcanus
+                      Company&apos; CNC manufacturing. Learn about their
+                      state-of-the-art equipment, their capacity for large-scale
+                      productions, and the diverse materials they expertly
+                      handle.
+                    </p>
+                    <Link
+                      className="group flex gap-1 text-lg"
+                      href={`/blog/${ele.slug}`}>
+                      {languages(router.locale)?.readMore}
+                      <ButtonNext className="text-white transition-all group-hover:translate-x-2" />
+                    </Link>
+                  </div>
                 </SwiperSlide>
               );
             })}

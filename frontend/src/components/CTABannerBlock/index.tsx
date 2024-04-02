@@ -33,7 +33,7 @@ const CTABannerBlock = ({
               {title}
             </h3>
             {cta && (
-              <Button {...getAcfLinkProps(cta.cta)}>{cta.ctaText}</Button>
+              <Button {...getAcfLinkProps(cta.link)}>{cta.ctaText}</Button>
             )}
           </div>
         </div>
