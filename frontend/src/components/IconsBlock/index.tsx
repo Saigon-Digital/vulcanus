@@ -2,6 +2,7 @@ import {IconsBlock} from "@/__generated__/graphql";
 import React from "react";
 import Image from "next/image";
 import Button from "../Button";
+import {getAcfLinkProps} from "@/utils";
 const index: React.FC<IconsBlock> = (props) => {
   return (
     <div className="container-fluid py-16 lg:py-20 xl:py-28 ">
@@ -23,7 +24,7 @@ const index: React.FC<IconsBlock> = (props) => {
           {props.ctaLink && (
             <Button
               className="mt-5 max-w-[250px]"
-              href={props.ctaLink?.ctaLink?.nodes[0].uri || ""}>
+              {...getAcfLinkProps(props.ctaLink.ctaLink)}>
               {props.ctaLink?.ctaText}
             </Button>
           )}
