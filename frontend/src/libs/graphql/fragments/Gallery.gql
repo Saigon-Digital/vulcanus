@@ -1,4 +1,4 @@
-fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlock {
+fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlockLayout_Fields {
   fieldGroupName
   title
   reverseLayout
