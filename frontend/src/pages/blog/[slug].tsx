@@ -35,12 +35,11 @@ const index = ({blog, relatedBlog, locale, siteSettings}: Props) => {
   return (
     <>
       <SEO
-        uri={blog.uri}
-        DEUri={blog.DELang?.uri}
-        ENUri={blog.ENLang?.uri}
+        link={blog.link}
+        DEUri={blog.DELang?.link}
+        ENUri={blog.ENLang?.link}
         defaultSEO={siteSettings}
         seo={blog.pagesSetting}
-        title={blog.title}
       />
       <main className="  py-20 pb-10 lg:py-0 lg:pb-0">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 px-5 lg:mb-20">

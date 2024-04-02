@@ -235,6 +235,7 @@ export async function getAllPost() {
           nodes {
             dateGmt
             slug
+            link
             author {
               node {
                 avatar {
