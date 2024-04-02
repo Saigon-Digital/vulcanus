@@ -43,9 +43,4 @@ const nextConfig = withFaust({
   },
 });
 
-module.exports = {
-  ...nextConfig,
-  async redirects() {
-    return [];
-  },
-};
+module.exports = nextConfig;
