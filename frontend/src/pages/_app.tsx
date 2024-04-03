@@ -27,8 +27,8 @@ export default function App({Component, pageProps}: AppProps) {
       <FaustProvider pageProps={pageProps}>
         <LocaleContextProvider
           localeData={{
-            DE: pageProps.__TEMPLATE_QUERY_DATA__.page.translation.DELang,
-            EN: pageProps.__TEMPLATE_QUERY_DATA__.page.translation.ENLang,
+            DE: pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang || {},
+            EN: pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang || {},
           }}>
           <Layout
             headerMenu={pageProps?.headerMenu}
