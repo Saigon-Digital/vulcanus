@@ -2,10 +2,11 @@ fragment ChecklistBlock on PageBuilderDynamicBlocksChecklistBlock {
   fieldGroupName
   header
   preHeader
-  cta {
+  ctaGroup {
     ctaText
-    ctaLink {
-      url
+
+    link {
+      ...AcfLink
     }
   }
   checklist {

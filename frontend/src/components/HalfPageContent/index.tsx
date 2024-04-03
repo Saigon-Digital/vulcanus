@@ -66,8 +66,8 @@ const HalfPageContent: React.FC<TProps> = ({
                     );
                   })}
                   {cta && (
-                    <Button className="mt-6" {...getAcfLinkProps(cta.link)}>
-                      {cta.ctaText}
+                    <Button className="mt-6" {...getAcfLinkProps(cta)}>
+                      {cta.title}
                     </Button>
                   )}
                 </div>
