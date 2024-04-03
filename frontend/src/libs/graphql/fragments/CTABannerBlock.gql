@@ -2,12 +2,7 @@ fragment CTABannerBlock on PageBuilderDynamicBlocksCtaBannerBlockLayout {
   bgColor
   fieldGroupName
   cta {
-    ctaText
-    link {
-      target
-      title
-      url
-    }
+    ...AcfLink
   }
   title
   bannerImage {

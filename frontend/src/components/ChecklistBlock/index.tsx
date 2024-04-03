@@ -19,11 +19,11 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
               {props.header}
             </h2>
           )}
-          {props.cta && (
+          {props.ctaGroup && (
             <Button
               className="w-[fit-content]"
-              {...getAcfLinkProps(props.cta.ctaLink)}>
-              {props.cta?.ctaText}
+              {...getAcfLinkProps(props.ctaGroup.link)}>
+              {props.ctaGroup?.ctaText}
             </Button>
           )}
         </div>

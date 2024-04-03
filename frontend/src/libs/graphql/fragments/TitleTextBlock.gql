@@ -11,9 +11,6 @@ fragment TitleTextBlock on PageBuilderDynamicBlocksTitleTextBlockLayout_Fields {
     contentTitle
   }
   cta {
-    ctaText
-    link {
-      url
-    }
+    ...AcfLink
   }
 }
