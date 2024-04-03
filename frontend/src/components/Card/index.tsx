@@ -65,9 +65,11 @@ const Card: React.FC<Props> = ({
       )}
       <CardShape
         alt="shape"
-        className={`absolute right-0 top-0 scale-x-0 opacity-0 transition-all duration-500  ${
-          !backgroundColor && "group-hover:scale-x-100 group-hover:opacity-100"
-        }`}
+        className={clsx(
+          `absolute right-0 top-0 translate-x-10  opacity-0 transition-all duration-500`,
+          !backgroundColor &&
+            "group-hover:translate-x-0  group-hover:opacity-100"
+        )}
         width={48}
         height={133}
       />

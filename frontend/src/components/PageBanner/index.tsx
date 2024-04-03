@@ -2,6 +2,7 @@ import React from "react";
 import {PageBannerFragment} from "@/__generated__/graphql";
 import parse from "html-react-parser";
 import Image from "next/image";
+import Parallax from "../Parallax";
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
   description,
@@ -23,13 +24,19 @@ const PageBanner: React.FC<PageBannerFragment> = ({
       </div>
       {image && (
         <div className="relative aspect-[2/1] w-full lg:aspect-[1800/800]">
-          <Image
-            fill
-            loading="eager"
-            src={image?.node?.sourceUrl || ""}
-            alt="banner img"
-            className="object-cover"
-          />
+          <Parallax
+            from={-20}
+            to={5}
+            className="absolute h-full w-full overflow-hidden "
+            targetClass="h-[120%]">
+            <Image
+              fill
+              loading="eager"
+              src={image?.node?.sourceUrl || ""}
+              alt="banner img"
+              className="object-cover"
+            />
+          </Parallax>
         </div>
       )}
     </div>

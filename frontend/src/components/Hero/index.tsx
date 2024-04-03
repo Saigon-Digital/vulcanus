@@ -3,6 +3,7 @@ import {getAcfLinkProps} from "@/utils";
 import Image from "next/image";
 import React from "react";
 import Button from "../Button";
+import Parallax from "../Parallax";
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   return (
@@ -17,14 +18,19 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             className="object-contain object-center"
           />
         </div>
-
-        <Image
-          fill
-          priority
-          quality={60}
-          src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
-          alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
-          className="z-0 object-cover object-center"></Image>
+        {/* <div className="absolute h-full w-full"> */}
+        <Parallax
+          targetClass="min-h-[120vh]"
+          className=" absolute min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] w-full">
+          <Image
+            fill
+            priority
+            quality={60}
+            src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
+            alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
+            className="parallax z-0 object-cover object-center"></Image>
+        </Parallax>
+        {/* </div> */}
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
           <div className="relative z-10 mx-auto max-w-[85%] text-secondary-offWhite-white lg:col-span-full lg:col-start-2 lg:mx-0 lg:max-w-[868px]">
