@@ -23,7 +23,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         )}
       </div>
       {image && (
-        <div className="relative aspect-[2/1] w-full lg:aspect-[1800/800]">
+        <div className="relative aspect-[2/1] w-full lg:aspect-[1600/800]">
           <Parallax
             from={0}
             to={30}

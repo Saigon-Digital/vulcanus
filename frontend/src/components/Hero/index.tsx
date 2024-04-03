@@ -20,6 +20,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         </div>
         {/* <div className="absolute h-full w-full"> */}
         <Parallax
+          to={15}
           targetClass="min-h-[120vh]"
           className=" absolute min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] w-full">
           <Image
