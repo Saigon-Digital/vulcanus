@@ -4,18 +4,21 @@ import {useRef} from "react";
 import Button from "@/components/Button";
 import {MinusIcon, PlusIcon} from "@/components/Icons";
 import {getAcfLinkProps} from "@/utils";
-
+// { __typename?: 'CareersBlockCareers', careerDescription?: string | null, location?: string | null, title?: string | null, cta?: { __typename?: 'AcfLink', title?: string | null, url?: string | null, target?: string | null } | null }
 type Props = {
   itemKey: string;
   expanded?: boolean;
   className?: string;
-  item: {
-    __typename?: "CareersBlockCareers";
-    careerDescription?: string | null;
-    location?: string | null;
-    title?: string | null;
-    cta?: AcfLink | null;
-  };
+  item:
+    | {
+        __typename?: "CareersBlockCareers";
+        careerDescription?: string | null;
+        location?: string | null;
+        title?: string | null;
+        cta?: AcfLink | null | undefined;
+      }
+    | null
+    | undefined;
   onValueChange: (expanded: boolean, key: string) => void;
 };
 
