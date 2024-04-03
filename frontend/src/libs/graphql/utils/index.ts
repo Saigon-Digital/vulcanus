@@ -289,7 +289,26 @@ export async function getAllPost() {
     `,
   });
 }
-
+export async function getPageByID(id: number) {
+  return await client.query({
+    query: gql`
+      query Page {
+        page(id: ${id}, idType: DATABASE_ID) {
+          databaseId
+          language {
+            code
+          }
+          DE: translation(language: DE) {
+            link
+          }
+          EN: translation(language: EN) {
+            link
+          }
+        }
+      }
+    `,
+  });
+}
 export async function getGlobalSiteData(locale: string | undefined) {
   const menuLocation = menuLocations[(locale as "de" | "en") || "de"];
   const headerMenu = await getMenuItems(menuLocation.header);
