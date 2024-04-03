@@ -7,8 +7,8 @@ const Parallax = ({
   id = "parallax",
   className,
   children,
-  from = -15,
-  to = 15,
+  from = 0,
+  to = 20,
   speed = 1,
   targetClass,
 }: PropsWithChildren<{
@@ -22,28 +22,28 @@ const Parallax = ({
   const trigger = useRef(null);
   const target = useRef(null);
   let timeline = useRef<any>(null);
-
+  let initialClass = from < 0 && `-translate-y-[${Math.abs(from)}%]`;
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const tl = gsap.timeline({
       scrollTrigger: {
         id: id,
         trigger: trigger.current,
-        scrub: 3,
+        scrub: 1,
+
         invalidateOnRefresh: true,
         fastScrollEnd: true,
         preventOverlaps: true,
         // markers: true,
-        start: "top bottom",
+        start: "top+=0% top",
         end: "bottom top",
       },
     });
 
-    tl.fromTo(
+    tl.to(
       target.current,
 
-      {yPercent: from},
-      {yPercent: to}
+      {yPercent: to, ease: "none"}
     );
     return () => {
       tl.kill();
@@ -54,7 +54,11 @@ const Parallax = ({
     <div className={className} ref={trigger}>
       <div
         id="parallax-target"
-        className={clsx(`relative h-full w-full overflow-hidden `, targetClass)}
+        className={clsx(
+          `relative h-full w-full  -translate-y-[15%] overflow-hidden `,
+          initialClass,
+          targetClass
+        )}
         ref={target}>
         {children}
       </div>

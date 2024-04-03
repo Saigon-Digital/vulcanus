@@ -94,7 +94,11 @@ const Footer = (props: Props) => {
                           (ele: any, index: number) => {
                             return (
                               <li key={index}>
-                                <Link href={ele.uri}>{ele.label}</Link>
+                                <Link
+                                  className="hove:font-bold hover:text-primary-blue-main"
+                                  href={ele.uri}>
+                                  {ele.label}
+                                </Link>
                               </li>
                             );
                           }
