@@ -22,13 +22,18 @@ if (__DEV__) {
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
+
   return (
     <ApolloProvider client={client}>
       <FaustProvider pageProps={pageProps}>
         <LocaleContextProvider
           localeData={{
-            DE: pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang || {},
-            EN: pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang || {},
+            DE:
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang ||
+              null,
+            EN:
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang ||
+              null,
           }}>
           <Layout
             headerMenu={pageProps?.headerMenu}
