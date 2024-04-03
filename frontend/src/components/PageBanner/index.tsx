@@ -25,8 +25,9 @@ const PageBanner: React.FC<PageBannerFragment> = ({
       {image && (
         <div className="relative aspect-[2/1] w-full lg:aspect-[1800/800]">
           <Parallax
-            from={-20}
-            to={5}
+            from={0}
+            to={30}
+            start={-20}
             className="absolute h-full w-full overflow-hidden "
             targetClass="h-[120%]">
             <Image
