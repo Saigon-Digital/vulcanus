@@ -1,5 +1,5 @@
-// import {gql} from "@/__generated__";
-import {gql} from "@apollo/client";
+import {gql} from "@/__generated__";
+// import {gql} from "@apollo/client";
 
 import {
   LanguageCodeFilterEnum,
@@ -51,7 +51,7 @@ async function getMenuItems(location: MenuLocationEnum) {
   });
 }
 
-export const GET_MENUS = gql`
+export const GET_MENUS = gql(`
   query MenuItems($location: MenuLocationEnum!) {
     menuItems(where: {location: $location}) {
       nodes {
@@ -71,9 +71,9 @@ export const GET_MENUS = gql`
       }
     }
   }
-`;
+`);
 
-export async function getPageType(language: LanguageCodeEnum) {
+export async function getPageType(language: LanguageCodeFilterEnum) {
   return await client.query({
     query: gql(`
     query GetPageType($language:LanguageCodeFilterEnum!) {
@@ -202,7 +202,7 @@ export const SUBMIT_FORM = gql(`
 
 export async function getPostThumb(language: LanguageCodeFilterEnum) {
   return await client.query({
-    query: gql`
+    query: gql(`
       query GetPostsThumb($language: LanguageCodeFilterEnum!) {
         posts(where: {language: $language}) {
           nodes {
@@ -219,9 +219,9 @@ export async function getPostThumb(language: LanguageCodeFilterEnum) {
           }
         }
       }
-    `,
+    `),
     variables: {
-      language: language.toLocaleUpperCase(),
+      language: language.toLocaleUpperCase() as LanguageCodeFilterEnum,
     },
   });
 }
@@ -289,26 +289,7 @@ export async function getAllPost() {
     `,
   });
 }
-export async function getPageByID(id: number) {
-  return await client.query({
-    query: gql`
-      query Page {
-        page(id: ${id}, idType: DATABASE_ID) {
-          databaseId
-          language {
-            code
-          }
-          DE: translation(language: DE) {
-            link
-          }
-          EN: translation(language: EN) {
-            link
-          }
-        }
-      }
-    `,
-  });
-}
+
 export async function getGlobalSiteData(locale: string | undefined) {
   const menuLocation = menuLocations[(locale as "de" | "en") || "de"];
   const headerMenu = await getMenuItems(menuLocation.header);
