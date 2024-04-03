@@ -1,4 +1,4 @@
-fragment IconsBlock on PageBuilderDynamicBlocksIconsBlock {
+fragment IconsBlock on PageBuilderDynamicBlocksIconsBlockLayout_Fields {
   description
   header
   preHeader
@@ -6,9 +6,7 @@ fragment IconsBlock on PageBuilderDynamicBlocksIconsBlock {
   ctaLink {
     ctaText
     ctaLink {
-      nodes {
-        uri
-      }
+      ...AcfLink
     }
   }
   icons {

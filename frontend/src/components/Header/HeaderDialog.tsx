@@ -17,6 +17,7 @@ const HeaderDialog = ({menuItems, navIsOpen, setNavIsOpen}: Props) => {
   return (
     <div
       role="dialog"
+      aria-labelledby="dialogTitle"
       className={clsx(
         "container-fluid fixed inset-0 z-50 flex flex-col bg-primary-midBlue-main py-[var(--header-py)] transition-all duration-500 lg:opacity-0",
         {
@@ -38,7 +39,9 @@ const HeaderDialog = ({menuItems, navIsOpen, setNavIsOpen}: Props) => {
           onClick={() => setNavIsOpen(false)}
           className="flex items-center justify-center"
           type="button">
-          <span className="sr-only">Close menu</span>
+          <span id="dialogTitle" className="sr-only">
+            Close menu
+          </span>
           <CloseIcon />
         </button>
       </div>

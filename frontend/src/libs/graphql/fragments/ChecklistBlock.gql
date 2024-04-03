@@ -1,4 +1,4 @@
-fragment ChecklistBlock on PageBuilderDynamicBlocksChecklistBlock {
+fragment ChecklistBlock on PageBuilderDynamicBlocksChecklistBlockLayout_Fields {
   fieldGroupName
   header
   preHeader

@@ -1,4 +1,4 @@
-fragment CareerBlock on PageBuilderDynamicBlocksCareersBlock {
+fragment CareerBlock on PageBuilderDynamicBlocksCareersBlockLayout_Fields {
   description
   fieldGroupName
   title

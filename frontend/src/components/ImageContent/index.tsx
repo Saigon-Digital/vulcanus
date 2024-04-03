@@ -3,7 +3,11 @@ import Image from "next/image";
 import React from "react";
 import {ImageShape} from "../Icons";
 import parse from "html-react-parser";
-const ImageContent = ({image, content, reverse}: ImageContentBlock) => {
+const ImageContent = ({
+  image,
+  contentGroup: content,
+  reverse,
+}: ImageContentBlock) => {
   return (
     <div className="container py-10 lg:px-20 lg:py-20">
       <div

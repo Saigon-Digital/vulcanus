@@ -3,6 +3,8 @@ import {GetStaticProps, GetServerSideProps} from "next";
 import {
   LanguageCodeFilterEnum,
   PostFragmentFragment,
+  SiteSettingFragment,
+  SiteSettings,
 } from "@/__generated__/graphql";
 import {getAllPost} from "@/libs/graphql/utils";
 
@@ -16,18 +18,30 @@ type Props = {
   blog: PostFragmentFragment;
   locale: string;
   relatedBlog: PostFragmentFragment[];
+  siteSettings: {
+    siteSetting: SiteSettingFragment;
+  };
+  host?: string;
 };
-const index = ({blog, relatedBlog, locale}: Props) => {
-  console.log(blog.dateGmt);
-
+const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
   const event = new Date(blog.dateGmt || new Date().getTime());
   const localeStr =
     locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
       ? "en-EN"
       : "de-DE";
+  let siteTitle = blog.title + " | Vulcanus Stahl";
+  let link = host + `/${locale}` + "/blog" + blog.uri;
+  let DEUri = host + `/de` + "/blog" + blog.uri;
+  let ENUri = host + `/en` + "/blog" + blog.uri;
   return (
     <>
-      <SEO seo={blog.pagesSetting} title={blog.title} />
+      <SEO
+        link={link}
+        DEUri={DEUri}
+        ENUri={ENUri}
+        defaultSEO={{...siteSettings.siteSetting, siteTitle: siteTitle}}
+        seo={blog.pagesSetting}
+      />
       <main className="  py-20 pb-10 lg:py-0 lg:pb-0">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 px-5 lg:mb-20">
           <h1 className="text-4xl font-bold xl:text-5xl xl:leading-[64px] ">
@@ -62,9 +76,11 @@ const index = ({blog, relatedBlog, locale}: Props) => {
 };
 
 export const getServerSideProps = (async (context) => {
+  let host = context.req.headers.host;
   const slug = context.params?.slug;
-  const {data} = await getAllPost();
+  const {data} = await getAllPost() as any;
   const locale = context.locale;
+  const siteSettings = data.siteSettings;
   const relatedBLog = data.posts?.nodes?.filter(
     (ele: PostFragmentFragment) => ele.slug !== slug
   );
@@ -77,6 +93,8 @@ export const getServerSideProps = (async (context) => {
       relatedBlog: relatedBLog,
       blog: blog,
       locale: locale,
+      host,
+      siteSettings: siteSettings,
     },
   };
 }) satisfies GetServerSideProps<{

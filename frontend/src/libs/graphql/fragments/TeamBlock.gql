@@ -1,4 +1,4 @@
-fragment Team_Block on PageBuilderDynamicBlocksTeamBlock {
+fragment Team_Block on PageBuilderDynamicBlocksTeamBlockLayout_Fields {
   title
   teamMembers {
     image {

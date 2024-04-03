@@ -1,4 +1,4 @@
-fragment CTABannerBlock on PageBuilderDynamicBlocksCtaBannerBlock {
+fragment CTABannerBlock on PageBuilderDynamicBlocksCtaBannerBlockLayout {
   bgColor
   fieldGroupName
   cta {

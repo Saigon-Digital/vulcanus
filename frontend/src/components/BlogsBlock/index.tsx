@@ -59,7 +59,7 @@ const BlogsBlock = (props: Props) => {
     (async () => {
       const {data} = await getPostThumb(locale as LanguageCodeFilterEnum);
 
-      setBlockListing(data.posts?.nodes);
+      setBlockListing(data?.posts?.nodes as any);
     })();
   }, []);
 
@@ -106,16 +106,16 @@ const BlogsBlock = (props: Props) => {
                       </Link>
                     </div>
                     <div className="flex w-full flex-col justify-center gap-2 md:w-1/2">
-                      <h4 className="text-lg font-semibold uppercase leading-5 text-primary-blue-main">
+                      <h2 className="text-lg font-semibold uppercase leading-5 text-primary-blue-main">
                         {languages(router.locale)?.manufacturing}
-                      </h4>
-                      <Link
-                        href={`/${router.locale}/blog/${ele.slug}` as string}
-                        className="group">
-                        <h2 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
+                      </h2>
+                      <h3 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
+                        <Link
+                          href={`/${router.locale}/blog/${ele.slug}` as string}
+                          className="group">
                           {ele.title}
-                        </h2>
-                      </Link>
+                        </Link>
+                      </h3>
                       <p className="text text-base leading-[22px]">
                         {ele.blogDescription?.blogDescription}
                       </p>

@@ -1,4 +1,4 @@
-fragment HeroBlock on Hero_Fields {
+fragment HeroBlock on PageBuilderDynamicBlocksHeroBlockLayout_Fields {
   title
   backgroundImage{
     node{

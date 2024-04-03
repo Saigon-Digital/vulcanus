@@ -9,7 +9,6 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
   haveBorderBottom,
   textSize = ["large"],
 }) => {
-  console.log("textSize", textSize);
   const size = textSize?.find((_, id) => id === 0) || textSize || "large";
   return (
     <section className="container-fluid relative">

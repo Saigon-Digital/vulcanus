@@ -52,9 +52,11 @@ const HalfPageContent: React.FC<TProps> = ({
           <div className="w-full pl-10 md:w-1/2 md:pl-0">
             {content?.contents && (
               <>
-                <h4 className="[&>*>strong]:text-primary-blue-main [&>*]:text-2xl xl:[&>*]:text-3xl 2xl:[&>*]:text-[32px] 2xl:[&>*]:leading-[44px]">
-                  {content.contentTitle && parse(content.contentTitle)}
-                </h4>
+                {content.contentTitle && (
+                  <h4 className="[&>*>strong]:text-primary-blue-main [&>*]:text-2xl xl:[&>*]:text-3xl 2xl:[&>*]:text-[32px] 2xl:[&>*]:leading-[44px]">
+                    {content.contentTitle && parse(content.contentTitle)}
+                  </h4>
+                )}
                 <div className="mt-6 flex flex-wrap justify-between xl:mt-8">
                   {content?.contents?.map((ele, id) => {
                     return (

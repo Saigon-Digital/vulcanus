@@ -1,4 +1,4 @@
-fragment ImagesSLide on PageBuilderDynamicBlocksImagesSlide {
+fragment ImagesSLide on PageBuilderDynamicBlocksImagesSlideLayout_Fields {
   fieldGroupName
   slides {
     image {

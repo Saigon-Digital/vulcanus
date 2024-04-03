@@ -1,5 +1,5 @@
-// import {gql} from "@/__generated__";
-import {gql} from "@apollo/client";
+import {gql} from "@/__generated__";
+// import {gql} from "@apollo/client";
 
 import {
   LanguageCodeFilterEnum,
@@ -51,7 +51,7 @@ async function getMenuItems(location: MenuLocationEnum) {
   });
 }
 
-export const GET_MENUS = gql`
+export const GET_MENUS = gql(`
   query MenuItems($location: MenuLocationEnum!) {
     menuItems(where: {location: $location}) {
       nodes {
@@ -71,9 +71,9 @@ export const GET_MENUS = gql`
       }
     }
   }
-`;
+`);
 
-export async function getPageType(language: LanguageCodeEnum) {
+export async function getPageType(language: LanguageCodeFilterEnum) {
   return await client.query({
     query: gql(`
     query GetPageType($language:LanguageCodeFilterEnum!) {
@@ -202,7 +202,7 @@ export const SUBMIT_FORM = gql(`
 
 export async function getPostThumb(language: LanguageCodeFilterEnum) {
   return await client.query({
-    query: gql`
+    query: gql(`
       query GetPostsThumb($language: LanguageCodeFilterEnum!) {
         posts(where: {language: $language}) {
           nodes {
@@ -219,9 +219,9 @@ export async function getPostThumb(language: LanguageCodeFilterEnum) {
           }
         }
       }
-    `,
+    `),
     variables: {
-      language: language.toLocaleUpperCase(),
+      language: language.toLocaleUpperCase() as LanguageCodeFilterEnum,
     },
   });
 }
@@ -235,6 +235,7 @@ export async function getAllPost() {
           nodes {
             dateGmt
             slug
+            link
             author {
               node {
                 avatar {
@@ -259,6 +260,27 @@ export async function getAllPost() {
                 node {
                   sourceUrl
                 }
+              }
+            }
+            uri
+            DELang: translation(language: DE) {
+              uri
+              link
+            }
+            ENLang: translation(language: EN) {
+              uri
+              link
+            }
+          }
+        }
+        siteSettings {
+          siteSetting {
+            siteTitle
+            siteUrl
+            description
+            openGraphImage {
+              node {
+                sourceUrl
               }
             }
           }
