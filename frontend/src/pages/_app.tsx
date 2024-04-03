@@ -13,6 +13,7 @@ import {MenuItem, MenuItemsQuery} from "@/__generated__/graphql";
 import {ApolloProvider, useQuery} from "@apollo/client";
 import {GET_MENUS, client} from "@/libs/graphql/utils";
 import {languages} from "@/utils/language";
+import {LocaleContextProvider} from "@/context/LocaleContext";
 if (__DEV__) {
   // Adds messages only in a dev environment
   loadDevMessages();
@@ -21,17 +22,25 @@ if (__DEV__) {
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
-
   return (
     <ApolloProvider client={client}>
       <FaustProvider pageProps={pageProps}>
-        <Layout
-          headerMenu={pageProps?.headerMenu}
-          footerMenu={pageProps?.footerMenu}
-          key={`${router.asPath}-${router.locale}`}>
-          {/* > */}
-          <Component {...pageProps} key={`${router.asPath}-${router.locale}`} />
-        </Layout>
+        <LocaleContextProvider
+          localeData={{
+            DE: pageProps.__TEMPLATE_QUERY_DATA__.page.translation.DELang,
+            EN: pageProps.__TEMPLATE_QUERY_DATA__.page.translation.ENLang,
+          }}>
+          <Layout
+            headerMenu={pageProps?.headerMenu}
+            footerMenu={pageProps?.footerMenu}
+            key={`${router.asPath}-${router.locale}`}>
+            {/* > */}
+            <Component
+              {...pageProps}
+              key={`${router.asPath}-${router.locale}`}
+            />
+          </Layout>
+        </LocaleContextProvider>
       </FaustProvider>
     </ApolloProvider>
   );

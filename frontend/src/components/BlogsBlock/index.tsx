@@ -59,7 +59,7 @@ const BlogsBlock = (props: Props) => {
     (async () => {
       const {data} = await getPostThumb(locale as LanguageCodeFilterEnum);
 
-      setBlockListing(data.posts?.nodes);
+      setBlockListing(data?.posts?.nodes as any);
     })();
   }, []);
 

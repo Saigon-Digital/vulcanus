@@ -1,3 +1,4 @@
+import {useLocaleContext} from "@/context/LocaleContext";
 import clsx from "clsx";
 import {useRouter} from "next/router";
 import {useCallback} from "react";
@@ -27,25 +28,27 @@ const LanguageButton = ({
 type Props = {};
 
 const LanguageToggle = (props: Props) => {
+  const {localeData} = useLocaleContext();
   const router = useRouter();
 
   const handleLanguageChange = useCallback(
     (locale: string) => {
-      router.push(router.asPath, router.asPath, {locale});
+      let href = localeData[locale].link;
+      router.push(href);
     },
-    [router]
+    [localeData, router]
   );
   return (
     <div className="rounded-full border border-primary-blue-main bg-primary-blue-100 px-[3.68px] py-[3px]">
       <LanguageButton
         label="ENG"
         isActive={router.locale === "en"}
-        onClick={() => handleLanguageChange("en")}
+        onClick={() => handleLanguageChange("EN")}
       />
       <LanguageButton
         label="GER"
         isActive={router.locale === "de"}
-        onClick={() => handleLanguageChange("de")}
+        onClick={() => handleLanguageChange("DE")}
       />
     </div>
   );

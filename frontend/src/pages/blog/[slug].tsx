@@ -78,7 +78,7 @@ const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
 export const getServerSideProps = (async (context) => {
   let host = context.req.headers.host;
   const slug = context.params?.slug;
-  const {data} = await getAllPost();
+  const {data} = await getAllPost() as any;
   const locale = context.locale;
   const siteSettings = data.siteSettings;
   const relatedBLog = data.posts?.nodes?.filter(
