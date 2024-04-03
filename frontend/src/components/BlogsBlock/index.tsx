@@ -112,7 +112,7 @@ const BlogsBlock = (props: Props) => {
                       <h3 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
                         <Link
                           href={`/${router.locale}/blog/${ele.slug}` as string}
-                          className="group">
+                          className="group hover:text-primary-blue-main">
                           {ele.title}
                         </Link>
                       </h3>
