@@ -1,8 +1,9 @@
 import React, {PropsWithChildren, useEffect, useRef} from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import clsx from "clsx";
+
 import {useGSAP} from "@gsap/react";
+import {twMerge} from "tailwind-merge";
 const Parallax = ({
   id = "parallax",
   className,
@@ -59,9 +60,10 @@ const Parallax = ({
     <div className={className} ref={trigger}>
       <div
         id="parallax-target"
-        className={clsx(
-          `relative h-full w-full  -translate-y-[15%] overflow-hidden `,
+        className={twMerge(
+          `relative h-full w-full   overflow-hidden `,
           initialClass,
+          from < 0 ? "-translate-y-[15%]" : "",
           targetClass
         )}
         ref={target}>
