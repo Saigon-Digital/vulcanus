@@ -8,7 +8,12 @@ import Parallax from "../Parallax";
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   return (
     <div className="sm:container-fluid">
-      <div className="relative flex min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px]">
+      <div
+        style={{
+          backgroundImage:
+            `url(${props.backgroundImage?.node?.sourceUrl}` || "",
+        }}
+        className="parallax relative flex min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px]">
         <div className="absolute inset-0 z-[5] h-full w-full bg-black/20"></div>
         <div className="absolute -top-[26px] left-0  z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:-top-[28px] 3xl:w-[100px] ">
           <Image
@@ -19,7 +24,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
           />
         </div>
         {/* <div className="absolute h-full w-full"> */}
-        <Parallax
+        {/* <Parallax
           to={15}
           targetClass="min-h-[120vh]"
           className=" absolute min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] w-full">
@@ -30,7 +35,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
             alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
             className="parallax z-0 object-cover object-center"></Image>
-        </Parallax>
+        </Parallax> */}
         {/* </div> */}
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">

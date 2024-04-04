@@ -44,6 +44,7 @@ const images = [
 ];
 const Service: React.FC<TService> = ({services, featureImage = images}) => {
   const router = useRouter();
+
   return (
     <div className="container-fluid py-20">
       <h2 className="mb-14 text-3xl font-bold leading-[89px] lg:text-6xl lg:leading-[84px] xl:text-[64px]">
@@ -59,7 +60,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 title={ele?.title || ""}
                 description={ele?.description || ""}
                 link={ele?.link}
-                hoverImage={ele?.featuredImage?.node?.sourceUrl || undefined}
+                hoverImage={ele?.featuredImage?.node?.sourceUrl || ""}
                 className={`col-span-1 ${index == 1 ? "xl:col-start-3" : ""}`}
               />
             );

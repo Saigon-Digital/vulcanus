@@ -23,8 +23,12 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         )}
       </div>
       {image && (
-        <div className="relative aspect-[2/1] w-full lg:aspect-[1600/800]">
-          <Parallax
+        <div
+          style={{
+            backgroundImage: `url(${image?.node?.sourceUrl}` || "",
+          }}
+          className="parallax relative aspect-[2/1] w-full object-cover lg:aspect-[1600/800]">
+          {/* <Parallax
             from={0}
             to={30}
             start={-20}
@@ -37,7 +41,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               alt="banner img"
               className="object-cover"
             />
-          </Parallax>
+          </Parallax> */}
         </div>
       )}
     </div>
