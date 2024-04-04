@@ -3,7 +3,6 @@ import {getAcfLinkProps} from "@/utils";
 import Image from "next/image";
 import React from "react";
 import Button from "../Button";
-import Parallax from "../Parallax";
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   return (

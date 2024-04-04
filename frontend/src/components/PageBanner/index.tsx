@@ -2,7 +2,7 @@ import React from "react";
 import {PageBannerFragment} from "@/__generated__/graphql";
 import parse from "html-react-parser";
 import Image from "next/image";
-import Parallax from "../Parallax";
+
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
   description,
