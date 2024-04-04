@@ -59,7 +59,7 @@ const Card: React.FC<Props> = ({
           <Image
             fill
             alt="hover image"
-            className="hover-image z-0 object-cover opacity-0 group-hover:opacity-80"
+            className="hover-image z-0 object-cover opacity-0 transition-all duration-300 group-hover:opacity-80"
             src={hoverImage}
           />
           <div className="z-5 absolute left-0 top-0 h-full w-full bg-black/40"></div>
