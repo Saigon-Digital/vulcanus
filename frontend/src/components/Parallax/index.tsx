@@ -7,7 +7,7 @@ const Parallax = ({
   id = "parallax",
   className,
   children,
-  from = 0,
+  from = -10,
   to = 100,
   start = 0,
   speed = 1,
@@ -43,11 +43,7 @@ const Parallax = ({
         },
       });
 
-      tl.to(
-        target.current,
-
-        {yPercent: to, ease: "none"}
-      );
+      tl.fromTo(target.current, {yPercent: from}, {yPercent: to, ease: "none"});
       return () => {
         tl.kill();
       };
@@ -62,6 +58,7 @@ const Parallax = ({
         className={clsx(
           `relative h-full w-full   overflow-hidden `,
           initialClass,
+
           targetClass
         )}
         ref={target}>
