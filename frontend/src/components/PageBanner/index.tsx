@@ -27,12 +27,12 @@ const PageBanner: React.FC<PageBannerFragment> = ({
           // style={{
           //   backgroundImage: `url(${image?.node?.sourceUrl}` || "",
           // }}
-          className="parallax relative aspect-[2/1] w-full object-cover lg:aspect-[1800/800]">
+          className="parallax relative aspect-[2/1] max-h-[600px] w-full object-cover lg:aspect-[1800/800]">
           <Parallax
-            from={-20}
+            from={-10}
             to={40}
             className="absolute h-full w-full overflow-hidden "
-            targetClass="h-[120%]">
+            targetClass="h-[110%]">
             <Image
               fill
               loading="eager"
