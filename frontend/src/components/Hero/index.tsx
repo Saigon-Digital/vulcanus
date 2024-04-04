@@ -3,10 +3,20 @@ import {getAcfLinkProps} from "@/utils";
 import Image from "next/image";
 import React from "react";
 import Button from "../Button";
-
+import Head from "next/head";
+import Link from "next/link";
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   return (
     <div className="sm:container-fluid">
+      {props.backgroundImage && (
+        <Head>
+          <link
+            rel="preload"
+            href={props.backgroundImage.node.sourceUrl || ""}
+            as="image"
+          />
+        </Head>
+      )}
       <div
         style={{
           backgroundImage:
