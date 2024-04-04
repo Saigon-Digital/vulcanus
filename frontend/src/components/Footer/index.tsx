@@ -129,7 +129,11 @@ const Footer = (props: Props) => {
           </p>
           <p>
             {languages(router.locale)?.poweredBy}{" "}
-            <Link href="https://saigon.digital/">saigon.digital</Link>{" "}
+            <Link
+              className="hover:text-primary-blue-main"
+              href="https://saigon.digital/">
+              saigon.digital
+            </Link>{" "}
           </p>
         </div>
       </div>
