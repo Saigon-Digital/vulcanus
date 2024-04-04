@@ -54,16 +54,18 @@ const BlogsBlock = (props: Props) => {
   const locale = router.locale;
   const [page, setPage] = useState(0);
   const max_page = Math.floor([...blockListing].length / PAGE_SIZE);
+  console.log("blog listing", blockListing);
 
   useEffect(() => {
     (async () => {
-      const {data} = await getPostThumb(locale as LanguageCodeFilterEnum);
-
-      setBlockListing(data?.posts?.nodes as any);
+      const {data} = await getPostThumb();
+      const blogs =
+        data.posts?.nodes.filter(
+          (blog) => blog.language?.code === locale?.toLocaleUpperCase()
+        ) || [];
+      setBlockListing(blogs as any);
     })();
   }, []);
-
-  //   return;
 
   if (blockListing.length < 1)
     return (
@@ -130,17 +132,18 @@ const BlogsBlock = (props: Props) => {
                 );
               })}
           <div className="mt-10 flex w-full justify-center">
-            {blockListing.length > PAGE_SIZE && (
-              <Button
-                onClick={() =>
-                  setPage((prev) => {
-                    return prev + 1 >= max_page ? max_page : prev + 1;
-                  })
-                }
-                as="button">
-                {languages(locale)?.loadMore}
-              </Button>
-            )}
+            {blockListing.length > PAGE_SIZE &&
+              (page + 1) * PAGE_SIZE < blockListing.length && (
+                <Button
+                  onClick={() =>
+                    setPage((prev) => {
+                      return prev + 1 >= max_page ? max_page : prev + 1;
+                    })
+                  }
+                  as="button">
+                  {languages(locale)?.loadMore}
+                </Button>
+              )}
           </div>
         </div>
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">

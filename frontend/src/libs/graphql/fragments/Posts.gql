@@ -1,4 +1,5 @@
 fragment PostFragment on Post {
+  databaseId
   author {
     node {
       avatar {
@@ -13,6 +14,9 @@ fragment PostFragment on Post {
     node {
       sourceUrl
     }
+  }
+  language {
+    code
   }
   content
   title

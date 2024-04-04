@@ -200,29 +200,29 @@ export const SUBMIT_FORM = gql(`
   }
 `);
 
-export async function getPostThumb(language: LanguageCodeFilterEnum) {
+export async function getPostThumb() {
   return await client.query({
     query: gql(`
-      query GetPostsThumb($language: LanguageCodeFilterEnum!) {
-        posts(where: {language: $language}) {
-          nodes {
-            featuredImage {
-              node {
-                sourceUrl
-              }
+    query GetPostsThumb {
+      posts {
+        nodes {
+          language {
+            code
+          }
+          featuredImage {
+            node {
+              sourceUrl
             }
-            title
-            slug
-            blogDescription {
-              blogDescription
-            }
+          }
+          title
+          slug
+          blogDescription {
+            blogDescription
           }
         }
       }
+    }
     `),
-    variables: {
-      language: language.toLocaleUpperCase() as LanguageCodeFilterEnum,
-    },
   });
 }
 
@@ -233,9 +233,13 @@ export async function getAllPost() {
       query GetPosts {
         posts {
           nodes {
+            databaseId
             dateGmt
             slug
             link
+            language {
+              code
+            }
             author {
               node {
                 avatar {

@@ -6,6 +6,8 @@ import {Autoplay, Pagination} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
+  console.log("card", props.cards);
+
   return (
     <div className="cards container-fluid py-14">
       <h2 className="heading-2 mb-14">{props?.title}</h2>
