@@ -32,9 +32,7 @@ const CTABannerBlock = ({
             <h3 className="max-w-[750px] text-3xl font-bold text-primary-midBlue-main lg:text-4xl xl:text-5xl xl:leading-[67px]">
               {title}
             </h3>
-            {cta && (
-              <Button {...getAcfLinkProps(cta.link)}>{cta.ctaText}</Button>
-            )}
+            {cta && <Button {...getAcfLinkProps(cta)}>{cta.title}</Button>}
           </div>
         </div>
       </div>

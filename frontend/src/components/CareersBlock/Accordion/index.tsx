@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import AccordionItem from "./AccordionItem";
 import {CareerBlockFragment} from "@/__generated__/graphql";
+
 const Accordion = (props: {careers: CareerBlockFragment["careers"]}) => {
   const defaultItem = `CareersBlockCareers_0`;
   const [expandedItems, setExpandedItems] = useState<Array<string | null>>([

@@ -1,29 +1,24 @@
-import {CareerBlockFragment} from "@/__generated__/graphql";
+import {CareerBlockFragment, AcfLink} from "@/__generated__/graphql";
 import clsx from "clsx";
 import {useRef} from "react";
 import Button from "@/components/Button";
 import {MinusIcon, PlusIcon} from "@/components/Icons";
-
+import {getAcfLinkProps} from "@/utils";
+// { __typename?: 'CareersBlockCareers', careerDescription?: string | null, location?: string | null, title?: string | null, cta?: { __typename?: 'AcfLink', title?: string | null, url?: string | null, target?: string | null } | null }
 type Props = {
   itemKey: string;
   expanded?: boolean;
   className?: string;
-  item: {
-    __typename?: "CareersBlockCareers";
-    careerDescription?: string | null;
-    location?: string | null;
-    title?: string | null;
-    cta?: {
-      __typename?: "CareersBlockCareersCta";
-      ctaText?: string | null;
-      ctaLink?: {
-        __typename?: "AcfLink";
-        url?: string | null;
-        target?: string | null;
-      } | null;
-    } | null;
-  } | null;
-
+  item:
+    | {
+        __typename?: "CareersBlockCareers";
+        careerDescription?: string | null;
+        location?: string | null;
+        title?: string | null;
+        cta?: AcfLink | null | undefined;
+      }
+    | null
+    | undefined;
   onValueChange: (expanded: boolean, key: string) => void;
 };
 
@@ -122,11 +117,8 @@ const AccordionItem = (props: Props) => {
                 className="description font-supreme-trial w-full text-left   font-light lg:text-left  [&>ul]:ml-4 [&>ul]:list-disc"></div>
             </div>
             {item?.cta && (
-              <Button
-                className="mt-6"
-                href={(item.cta?.ctaLink?.url as string) || "#"}
-                target={item.cta.ctaLink?.target || "_blank"}>
-                {item.cta?.ctaText}
+              <Button className="mt-6" {...getAcfLinkProps(item.cta)}>
+                {item.cta?.title}
               </Button>
             )}
           </div>

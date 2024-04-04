@@ -9,11 +9,7 @@ fragment CareerBlock on PageBuilderDynamicBlocksCareersBlockLayout_Fields {
     title
 
     cta {
-      ctaText
-      ctaLink {
-        url
-        target
-      }
+      ...AcfLink
     }
   }
 }
