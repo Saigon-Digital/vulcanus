@@ -27,7 +27,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
           // style={{
           //   backgroundImage: `url(${image?.node?.sourceUrl}` || "",
           // }}
-          className="parallax relative aspect-[2/1] w-full object-cover lg:aspect-[1600/800]">
+          className="parallax relative aspect-[2/1] w-full object-cover lg:aspect-[1400/800]">
           <Parallax
             from={0}
             to={60}
