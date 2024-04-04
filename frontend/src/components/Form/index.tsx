@@ -138,27 +138,29 @@ const Form = ({contactInformation, form}: TForm) => {
             </p>
             <p className="flex gap-4">
               <PhoneIcon />
-              <span className="font-base">
+              <Link
+                href={`tel:${contactInformation?.phoneNumber || ""}`}
+                className="font-base hover:text-primary-blue-main">
                 {contactInformation?.phoneNumber}
-              </span>
+              </Link>
             </p>
             <p className="flex gap-4">
               <MailIcon />
               <Link
                 href={`mailto:${contactInformation?.email}`}
-                className="font-base underline">
+                className="font-base underline hover:text-primary-blue-main">
                 {contactInformation?.email}
               </Link>
             </p>
             <p className="flex gap-4">
               <LocationIcon />
-              <a
+              <Link
                 href={
                   (contactInformation?.location?.locationLink as string) || "#"
                 }
-                className="font-base max-w-[250px]">
+                className="font-base max-w-[250px] hover:text-primary-blue-main">
                 {contactInformation?.location?.locationInformation}
-              </a>
+              </Link>
             </p>
           </div>
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 lg:col-span-5">
@@ -166,7 +168,7 @@ const Form = ({contactInformation, form}: TForm) => {
               {form?.formTitle && parse(form.formTitle)}
             </h2>
             {form?.copyrightText && (
-              <div className="[&>*>a]:text-primary-blue-main [&>*>a]:underline xl:[&>*]:text-lg xl:[&>*]:leading-[24px]">
+              <div className="[&>*>a]:text-primary-blue-main [&>*>a]:underline [&>*>a]:hover:text-primary-midBlue-main xl:[&>*]:text-lg xl:[&>*]:leading-[24px]">
                 {parse(form.copyrightText)}
               </div>
             )}

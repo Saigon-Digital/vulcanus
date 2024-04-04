@@ -56,21 +56,31 @@ const Footer = (props: Props) => {
               </Link>
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
                 <div className="text-primary-blue-100 lg:flex-[122px]">
-                  <Link href="/#">Runtestraße 13 59457 Werl Germany</Link>
+                  <Link
+                    href="/#"
+                    className="transition hover:text-primary-blue-main">
+                    Runtestraße 13 59457 Werl Germany
+                  </Link>
                 </div>
                 <ul className="text-primary-blue-100 lg:flex-[240px]">
                   <li>
-                    <Link href="tel:+492922974999">
+                    <Link
+                      className="transition hover:text-primary-blue-main"
+                      href="tel:+492922974999">
                       Tel.: +49 (0) 2922 / 97 49 0
                     </Link>
                   </li>
                   <li>
-                    <Link href="fax:+492922974999">
+                    <Link
+                      className="transition hover:text-primary-blue-main"
+                      href="fax:+492922974999">
                       Fax: +49 (0) 2922 / 97 49 99
                     </Link>
                   </li>
                   <li>
-                    <Link href="mailto:info@vulcanus-stahl.de">
+                    <Link
+                      className="transition hover:text-primary-blue-main"
+                      href="mailto:info@vulcanus-stahl.de">
                       Email: info@vulcanus-stahl.de
                     </Link>
                   </li>
@@ -94,7 +104,11 @@ const Footer = (props: Props) => {
                           (ele: any, index: number) => {
                             return (
                               <li key={index}>
-                                <Link href={ele.uri}>{ele.label}</Link>
+                                <Link
+                                  className="hove:font-bold transition hover:text-primary-blue-main"
+                                  href={ele.uri}>
+                                  {ele.label}
+                                </Link>
                               </li>
                             );
                           }
@@ -115,7 +129,11 @@ const Footer = (props: Props) => {
           </p>
           <p>
             {languages(router.locale)?.poweredBy}{" "}
-            <Link href="https://saigon.digital/">saigon.digital</Link>{" "}
+            <Link
+              className="hover:text-primary-blue-main"
+              href="https://saigon.digital/">
+              saigon.digital
+            </Link>{" "}
           </p>
         </div>
       </div>

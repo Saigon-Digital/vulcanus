@@ -29,6 +29,8 @@ const Card: React.FC<Props> = ({
   ...props
 }) => {
   const locale = useRouter().locale;
+  // console.log("hover ", hoverImage);
+
   const textRef = useRef<HTMLParagraphElement | null>(null);
   // useEffect(() => {
   //   console.log("hieght ", textRef.current?.offsetHeight);
@@ -38,7 +40,7 @@ const Card: React.FC<Props> = ({
       style={{background: backgroundColor || undefined}}
       className={clsx(
         " group relative z-10 flex h-full min-h-[450px] flex-col  gap-3  overflow-hidden rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 ",
-        !hoverImage && "justify-end hover:bg-primary-midBlue-main",
+        !hoverImage ? "justify-end hover:bg-primary-midBlue-main" : "",
         iconImage ? "justify-start" : "justify-between",
         link && "cursor-pointer",
         className
@@ -57,7 +59,7 @@ const Card: React.FC<Props> = ({
           <Image
             fill
             alt="hover image"
-            className="z-0 object-cover opacity-0 group-hover:opacity-80"
+            className="hover-image z-0 object-cover opacity-0 transition-all duration-300 group-hover:opacity-80"
             src={hoverImage}
           />
           <div className="z-5 absolute left-0 top-0 h-full w-full bg-black/40"></div>
@@ -65,9 +67,11 @@ const Card: React.FC<Props> = ({
       )}
       <CardShape
         alt="shape"
-        className={`absolute right-0 top-0 scale-x-0 opacity-0 transition-all duration-500  ${
-          !backgroundColor && "group-hover:scale-x-100 group-hover:opacity-100"
-        }`}
+        className={clsx(
+          `absolute right-0 top-0 translate-x-10  opacity-0 transition-all duration-500`,
+          !backgroundColor &&
+            "group-hover:translate-x-0  group-hover:opacity-100"
+        )}
         width={48}
         height={133}
       />
