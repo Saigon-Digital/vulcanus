@@ -1,10 +1,42 @@
 import {ImagesSLideFragment} from "@/__generated__/graphql";
-import React from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, A11y} from "swiper/modules";
 import Image from "next/image";
 import "swiper/css/autoplay";
 const ImagesSlide = (props: ImagesSLideFragment) => {
+  const [slides, setSlides] = useState<any[]>();
+
+  const getImageAspectRatio = function (
+    imageSrc: string,
+    callback: (w: number, h: number) => void
+  ) {
+    var img = document.createElement("img");
+    img.onload = () => {
+      var w = img.naturalWidth;
+      var h = img.naturalHeight;
+      callback(w, h);
+    };
+    img.src = imageSrc;
+  };
+
+  useEffect(() => {
+    if (typeof document !== undefined) {
+      let result: any = [];
+      props.slides?.forEach((slide) => {
+        let dimention: {w: number; h: number} = {w: 0, h: 0};
+        getImageAspectRatio(slide?.image?.node.sourceUrl || "", (w, h) => {
+          console.log(w, h);
+
+          dimention.w = w;
+          dimention.h = h;
+        });
+        result = [...result, {...slide, dimention}];
+      });
+      setSlides(result);
+    }
+  }, []);
+
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
       <Swiper
@@ -38,17 +70,19 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         loop={true}
         // freeMode={true}
         speed={6000}>
-        {props.slides &&
-          [...props?.slides, ...props?.slides].map((ele, index) => {
+        {slides &&
+          [...slides, ...slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
 
             return (
               <SwiperSlide key={index}>
                 <div className="relative aspect-video w-full">
-                  <img
-                    src={ele?.image?.node.sourceUrl || ""}
+                  <Image
+                    src={ele?.image.node.sourceUrl || ""}
                     //   fill
 
+                    width={ele.dimention.w}
+                    height={ele.dimention.h}
                     loading="eager"
                     alt={" slide"}
                     className="aspect-auto min-h-[480px] object-contain"
