@@ -13,6 +13,7 @@ type Props = {
 };
 const RelatedPosts = ({posts}: Props) => {
   const router = useRouter();
+  if (!posts || posts.length < 1) return null;
   return (
     <div className=" bg-primary-midBlue-main px-6 pb-12 pt-12">
       <h4 className="mb-8 text-5xl font-bold 2xl:text-[64px] 2xl:leading-[89px]">
