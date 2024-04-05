@@ -47,9 +47,6 @@ const Parallax = ({
       });
 
       tl.fromTo(target.current, {yPercent: from}, {yPercent: to, ease: "none"});
-      return () => {
-        tl.kill();
-      };
     },
     {scope: trigger}
   );
