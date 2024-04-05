@@ -22,20 +22,22 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
 
   useEffect(() => {
     if (typeof document !== undefined) {
-      let result: any = [];
-      props.slides?.forEach((slide) => {
-        let dimention: {w: number; h: number} = {w: 0, h: 0};
+      let result: any[] = [];
+      props.slides?.forEach((slide: any) => {
+        let ratio: number;
         getImageAspectRatio(slide?.image?.node.sourceUrl || "", (w, h) => {
           console.log(w, h);
 
-          dimention.w = w;
-          dimention.h = h;
+          ratio = w / h;
+          let newSlide = {...slide, ratio: ratio};
+          result.push(newSlide);
         });
-        result = [...result, {...slide, dimention}];
       });
+      console.log("result ", result);
+
       setSlides(result);
     }
-  }, []);
+  }, [props.slides]);
 
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
@@ -73,21 +75,21 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         {slides &&
           [...slides, ...slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
-
+            // if (!ele.dimention.w || !ele.dimention.h) return null;
             return (
-              <SwiperSlide key={index}>
-                <div className="relative aspect-video w-full">
-                  <Image
-                    src={ele?.image.node.sourceUrl || ""}
-                    //   fill
+              <SwiperSlide key={index} className="h-[480px]">
+                {/* <div className="relative aspect-video w-full"> */}
+                <Image
+                  src={ele?.image?.node?.sourceUrl || ""}
+                  //   fill
 
-                    width={ele.dimention.w}
-                    height={ele.dimention.h}
-                    loading="eager"
-                    alt={" slide"}
-                    className="aspect-auto min-h-[480px] object-contain"
-                  />
-                </div>
+                  width={ele.ratio ? 480 * ele.ratio : 480}
+                  height={480}
+                  loading="eager"
+                  alt={" slide"}
+                  className="aspect-auto h-[480px] object-contain"
+                />
+                {/* </div> */}
               </SwiperSlide>
             );
           })}
