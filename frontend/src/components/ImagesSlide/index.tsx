@@ -5,6 +5,7 @@ import {Autoplay, Navigation, A11y} from "swiper/modules";
 import Image from "next/image";
 import "swiper/css/autoplay";
 import {useRatio} from "@/hooks/useRatio";
+import ImageWithRatio from "../ImageWithRatio";
 const ImagesSlide = (props: ImagesSLideFragment) => {
   const slides = props?.slides?.map((slide: any) => {
     let ratio = useRatio(slide);
@@ -45,23 +46,17 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         loop={true}
         // freeMode={true}
         speed={6000}>
-        {slides &&
-          [...slides, ...slides].map((ele, index) => {
+        {props.slides &&
+          [...props.slides, ...props.slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
             // if (!ele.dimention.w || !ele.dimention.h) return null;
-            const w = ele.ratio ? 480 * ele.ratio : 480;
+
             return (
               <SwiperSlide key={index} className="h-[480px]">
                 {/* <div className="relative aspect-video w-full"> */}
-                <Image
-                  src={ele?.image?.node?.sourceUrl || ""}
-                  //   fill
-
-                  width={w}
+                <ImageWithRatio
+                  imageSrc={ele?.image?.node.sourceUrl || ""}
                   height={480}
-                  loading="eager"
-                  alt={" slide"}
-                  className="aspect-auto h-[480px] object-contain"
                 />
                 {/* </div> */}
               </SwiperSlide>

@@ -1,7 +1,7 @@
 import {ImagesSLideFragment} from "@/__generated__/graphql";
 import {useState, useLayoutEffect} from "react";
 
-export const useRatio = (slide: any) => {
+export const useRatio = (slide: string) => {
   const [slideWithRatio, setSlideWithRatio] = useState<any[]>([]);
   const [ratio, setRatio] = useState<number>(0);
   const getImageAspectRatio = function (
@@ -19,7 +19,7 @@ export const useRatio = (slide: any) => {
   const getRatio = (s: any) => {
     let result: any[] = [];
 
-    getImageAspectRatio(s?.image?.node.sourceUrl || "", async (w, h) => {
+    getImageAspectRatio(s || "", async (w, h) => {
       let ratio = w / h;
       setRatio(ratio);
     });
