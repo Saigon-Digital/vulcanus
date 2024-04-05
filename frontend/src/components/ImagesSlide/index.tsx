@@ -72,8 +72,8 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         loop={true}
         // freeMode={true}
         speed={6000}>
-        {slides &&
-          [...slides, ...slides].map((ele, index) => {
+        {props.slides &&
+          [...props.slides, ...props.slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
             // if (!ele.dimention.w || !ele.dimention.h) return null;
             return (
@@ -83,11 +83,11 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
                   src={ele?.image?.node?.sourceUrl || ""}
                   //   fill
 
-                  width={ele.ratio ? 480 * ele.ratio : 480}
+                  width={480}
                   height={480}
                   loading="eager"
                   alt={" slide"}
-                  className="aspect-auto h-[480px] object-contain"
+                  className="aspect-auto h-[480px] object-cover"
                 />
                 {/* </div> */}
               </SwiperSlide>
