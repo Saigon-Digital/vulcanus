@@ -7,12 +7,6 @@ import "swiper/css/autoplay";
 import {useRatio} from "@/hooks/useRatio";
 import ImageWithRatio from "../ImageWithRatio";
 const ImagesSlide = (props: ImagesSLideFragment) => {
-  const slides = props?.slides?.map((slide: any) => {
-    let ratio = useRatio(slide);
-    return {...slide, ratio: ratio};
-  });
-  console.log("slides 123", slides);
-
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
       <Swiper
