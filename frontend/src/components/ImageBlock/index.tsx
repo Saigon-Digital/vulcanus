@@ -18,7 +18,7 @@ const ImageBlock: React.FC<
         from={-10}
         style={{maxHeight: `${props.height}px`}}
         targetClass="min-h-[400px] md:min-h-[450px] lg:min-h-[656px] 2xl:min-h-[700px]"
-        className="relative min-h-[300px] w-full overflow-hidden md:min-h-[400px] lg:min-h-[586px] 2xl:min-h-[689px]">
+        className="relative min-h-[300px] w-full overflow-hidden md:min-h-[400px] lg:min-h-[550px] 2xl:min-h-[600px]">
         {props.imageSrc ? (
           <Image
             fill
