@@ -4,40 +4,13 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, A11y} from "swiper/modules";
 import Image from "next/image";
 import "swiper/css/autoplay";
+import {useRatio} from "@/hooks/useRatio";
 const ImagesSlide = (props: ImagesSLideFragment) => {
-  const [slides, setSlides] = useState<any[]>();
-
-  const getImageAspectRatio = function (
-    imageSrc: string,
-    callback: (w: number, h: number) => void
-  ) {
-    var img = document.createElement("img");
-    img.onload = () => {
-      var w = img.naturalWidth;
-      var h = img.naturalHeight;
-      callback(w, h);
-    };
-    img.src = imageSrc;
-  };
-
-  useEffect(() => {
-    if (typeof document !== undefined) {
-      let result: any[] = [];
-      props.slides?.forEach((slide: any) => {
-        let ratio: number;
-        getImageAspectRatio(slide?.image?.node.sourceUrl || "", (w, h) => {
-          console.log(w, h);
-
-          ratio = w / h;
-          let newSlide = {...slide, ratio: ratio};
-          result.push(newSlide);
-        });
-      });
-      console.log("result ", result);
-
-      setSlides(result);
-    }
-  }, [props.slides]);
+  const slides = props?.slides?.map((slide: any) => {
+    let ratio = useRatio(slide);
+    return {...slide, ratio: ratio};
+  });
+  console.log("slides 123", slides);
 
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
@@ -72,10 +45,11 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         loop={true}
         // freeMode={true}
         speed={6000}>
-        {props.slides &&
-          [...props.slides, ...props.slides].map((ele, index) => {
+        {slides &&
+          [...slides, ...slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
             // if (!ele.dimention.w || !ele.dimention.h) return null;
+            const w = ele.ratio ? 480 * ele.ratio : 480;
             return (
               <SwiperSlide key={index} className="h-[480px]">
                 {/* <div className="relative aspect-video w-full"> */}
@@ -83,11 +57,11 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
                   src={ele?.image?.node?.sourceUrl || ""}
                   //   fill
 
-                  width={480}
+                  width={w}
                   height={480}
                   loading="eager"
                   alt={" slide"}
-                  className="aspect-auto h-[480px] object-cover"
+                  className="aspect-auto h-[480px] object-contain"
                 />
                 {/* </div> */}
               </SwiperSlide>
