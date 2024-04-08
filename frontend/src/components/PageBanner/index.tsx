@@ -35,7 +35,8 @@ const PageBanner: React.FC<PageBannerFragment> = ({
             targetClass="h-[110%]">
             <Image
               fill
-              loading="eager"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAABYkAAAWJAW1onfoAAACrSURBVDhPY+RhMPjPQEXABKWpBoaggSysLAysQMzOwcbAyMjIwMzMDMZMTExgGiTHxsYK5oMwOsCIFDMLPQZLGwOGb99+MGzffIjBxsGY4d/ffwwcHOxAy5gZHj96wSAoyMfAwcnO8O7tR4YtG/ZDdUIAhoHcPFwMikoyDP///2O4ffMhg5AwP9il////Z2AEuQrI/vXrNwMLCzPDz5+/wIYig9FkQylgYAAApEMpfsabUyMAAAAASUVORK5CYII="
               src={image?.node?.sourceUrl || ""}
               alt="banner img"
               className="object-cover"
