@@ -112,7 +112,6 @@ const Form = ({contactInformation, form}: TForm) => {
       fields: gfForm,
       data: data,
     });
-    console.log("form variable ", variables);
     if (Object.entries(errors).length > 0) return;
     try {
       setLoading(true);

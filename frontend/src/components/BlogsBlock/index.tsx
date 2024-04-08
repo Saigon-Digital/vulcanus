@@ -54,7 +54,6 @@ const BlogsBlock = (props: Props) => {
   const locale = router.locale;
   const [page, setPage] = useState(0);
   const max_page = Math.floor([...blockListing].length / PAGE_SIZE);
-  console.log("blog listing", blockListing);
 
   useEffect(() => {
     (async () => {
