@@ -42,8 +42,8 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
           className=" absolute min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] w-full">
           <Image
             fill
-            priority
-            quality={60}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAECAYAAAC3OK7NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAACjSURBVBhXHcpNC8FgAMDx/4O8rBS1HBTKjbgpVw6+jM+nfAEX4sJyELUaY83mvT1etodcf/3E2HypdEJxfoLhK+o5cIOInWUxNGyihEayUEUs7KeKx8Q/Ov6dyXSOeQlxUnm2P6yWK4T+ATEwLmo5G+Hd3oQZHfmS8AnwfImSJ0qa5O5YCL3WUw93TavTI6uXeRxWdNsNNkGRfvNK5r3ndLzyBV2qUIUDrZ3fAAAAAElFTkSuQmCC"
             src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
             alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
             className="parallax z-0 object-cover object-center"></Image>

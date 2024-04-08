@@ -4,7 +4,6 @@ import Image from "next/image";
 import Button from "../Button";
 import {getAcfLinkProps} from "@/utils";
 const index: React.FC<IconsBlock> = (props) => {
-  console.log("icons links", props);
 
   return (
     <div className="container-fluid py-16 lg:py-20 xl:py-28 ">
