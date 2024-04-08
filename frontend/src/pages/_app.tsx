@@ -7,7 +7,7 @@ import "../../faust.config";
 import "swiper/css";
 import {__DEV__} from "@apollo/client/utilities/globals";
 import {loadErrorMessages, loadDevMessages} from "@apollo/client/dev";
-import {DefaultSeo} from "next-seo";
+
 import seo from "@/next-seo.config";
 import {MenuItem, MenuItemsQuery} from "@/__generated__/graphql";
 import {ApolloProvider, useQuery} from "@apollo/client";

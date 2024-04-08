@@ -1,5 +1,5 @@
 import {useLocaleContext} from "@/context/LocaleContext";
-import {myConsoleLog} from "@/utils";
+import {useConsoleLog} from "@/utils";
 import clsx from "clsx";
 import {useRouter} from "next/router";
 import {useCallback} from "react";
@@ -36,7 +36,7 @@ const LanguageToggle = (props: Props) => {
   const {localeData} = useLocaleContext();
   const router = useRouter();
 
-  myConsoleLog("locale data ", localeData);
+  useConsoleLog("locale data ", localeData);
 
   const handleLanguageChange = useCallback(
     (locale: string) => {

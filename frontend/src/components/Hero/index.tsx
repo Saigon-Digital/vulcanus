@@ -1,5 +1,5 @@
 import {HeroBlockFragment} from "@/__generated__/graphql";
-import {getAcfLinkProps, myConsoleLog} from "@/utils";
+import {getAcfLinkProps, useConsoleLog} from "@/utils";
 import Image from "next/image";
 import React from "react";
 import Button from "../Button";
@@ -14,7 +14,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
       w: 1900,
       h: 800,
     }) || "";
-  myConsoleLog("image Style", imgStyle);
+  useConsoleLog("image Style", imgStyle);
 
   return (
     <div className="sm:container-fluid">

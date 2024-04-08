@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import {type ImageBlock} from "@/__generated__/graphql";
 import useImageStyle from "@/hooks/useImageCss";
-import {myConsoleLog} from "@/utils";
+import {useConsoleLog} from "@/utils";
 
 const ImageBlock: React.FC<
   ImageBlock & {
@@ -18,7 +18,7 @@ const ImageBlock: React.FC<
     h: 700,
     alt: props.image?.node.altText || "Image Block image",
   });
-  myConsoleLog("Image Block", props.image);
+  useConsoleLog("Image Block", props.image);
   return (
     <div
       style={{backgroundImage: imageStyle}}
