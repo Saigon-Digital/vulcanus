@@ -19,9 +19,9 @@ const Footer = (props: Props) => {
   if (!hierarchicalList) return null;
   return (
     <footer className="pt-20 sm:container-fluid">
-      <div className="mb-12 flex items-center justify-between px-5 sm:px-0">
+      <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
         <h3
-          className="text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] [&>strong]:text-primary-blue-main"
+          className="cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] [&>strong]:text-primary-blue-main"
           dangerouslySetInnerHTML={{
             __html: languages(router.locale)?.letStart || "",
           }}></h3>
@@ -34,6 +34,7 @@ const Footer = (props: Props) => {
           fill="none">
           <rect width={158} height={158} rx={79} fill="#E5F5FC" />
           <path
+            className="transition-all duration-300 group-hover:-translate-y-3 group-hover:translate-x-3"
             d="M67.29 51.7309C67.29 54.1562 69.2389 56.0619 71.621 56.0619H95.8312L48.6667 103.226C46.9776 104.915 46.9776 107.644 48.6667 109.333C50.3558 111.022 53.0843 111.022 54.7734 109.333L101.938 62.1686V86.3788C101.938 88.7609 103.887 90.7098 106.269 90.7098C108.651 90.7098 110.6 88.7609 110.6 86.3788V51.7309C110.6 49.3488 108.651 47.3999 106.269 47.3999H71.621C69.2389 47.3999 67.29 49.3488 67.29 51.7309Z"
             fill="#009EE0"
           />

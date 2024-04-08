@@ -14,6 +14,7 @@ import {ApolloProvider, useQuery} from "@apollo/client";
 import {GET_MENUS, client} from "@/libs/graphql/utils";
 import {languages} from "@/utils/language";
 import {LocaleContextProvider} from "@/context/LocaleContext";
+import {AnimatePresence} from "framer-motion";
 if (__DEV__) {
   // Adds messages only in a dev environment
   loadDevMessages();
@@ -35,16 +36,18 @@ export default function App({Component, pageProps}: AppProps) {
               pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang ||
               null,
           }}>
-          <Layout
-            headerMenu={pageProps?.headerMenu}
-            footerMenu={pageProps?.footerMenu}
-            key={`${router.asPath}-${router.locale}`}>
-            {/* > */}
-            <Component
-              {...pageProps}
-              key={`${router.asPath}-${router.locale}`}
-            />
-          </Layout>
+          <AnimatePresence initial={false} mode="wait">
+            <Layout
+              headerMenu={pageProps?.headerMenu}
+              footerMenu={pageProps?.footerMenu}
+              key={`${router.asPath}-${router.locale}`}>
+              {/* > */}
+              <Component
+                {...pageProps}
+                key={`${router.asPath}-${router.locale}`}
+              />
+            </Layout>
+          </AnimatePresence>
         </LocaleContextProvider>
       </FaustProvider>
     </ApolloProvider>
