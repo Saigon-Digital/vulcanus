@@ -1,13 +1,19 @@
 import React from "react";
 import {PageBannerFragment} from "@/__generated__/graphql";
 import parse from "html-react-parser";
-import Image from "next/image";
-import Parallax from "../Parallax";
+
+import useImageStyle from "@/hooks/useImageCss";
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
   description,
   image,
 }) => {
+  const imageStyle = useImageStyle({
+    src: image?.node.sourceUrl || "",
+    w: 1820,
+    h: 900,
+    alt: "page banner",
+  });
   return (
     <div className="container-fluid pb-10 lg:pb-16">
       <div className="flex flex-wrap items-center justify-between gap-y-5 py-10 ">
@@ -24,11 +30,11 @@ const PageBanner: React.FC<PageBannerFragment> = ({
       </div>
       {image && (
         <div
-          // style={{
-          //   backgroundImage: `url(${image?.node?.sourceUrl}` || "",
-          // }}
-          className="parallax relative aspect-[2/1] max-h-[600px] w-full object-cover lg:aspect-[1800/800]">
-          <Parallax
+          style={{
+            backgroundImage: imageStyle,
+          }}
+          className="parallax relative aspect-[2/1] max-h-[600px] w-full object-cover lg:aspect-[1800/850]">
+          {/* <Parallax
             from={-10}
             to={40}
             className="absolute h-full w-full overflow-hidden "
@@ -40,7 +46,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               alt="banner img"
               className="object-cover"
             />
-          </Parallax>
+          </Parallax> */}
         </div>
       )}
     </div>

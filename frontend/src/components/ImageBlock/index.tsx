@@ -1,7 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import {type ImageBlock} from "@/__generated__/graphql";
-import Parallax from "../Parallax";
+import useImageStyle from "@/hooks/useImageCss";
+import {myConsoleLog} from "@/utils";
 
 const ImageBlock: React.FC<
   ImageBlock & {
@@ -11,30 +12,17 @@ const ImageBlock: React.FC<
     maxWidth?: boolean;
   }
 > = (props) => {
+  const imageStyle = useImageStyle({
+    src: props.image?.node.sourceUrl || "",
+    w: 1820,
+    h: 700,
+    alt: props.image?.node.altText || "Image Block image",
+  });
+  myConsoleLog("Image Block", props.image);
   return (
-    <div className={` container-fluid px-0 md:px-[20px] ${props.className} `}>
-      <Parallax
-        to={35}
-        from={-10}
-        style={{maxHeight: `${props.height}px`}}
-        targetClass="min-h-[400px] md:min-h-[450px] lg:min-h-[656px] 2xl:min-h-[700px]"
-        className="relative min-h-[300px] w-full overflow-hidden md:min-h-[400px] lg:min-h-[550px] 2xl:min-h-[600px]">
-        {props.imageSrc ? (
-          <Image
-            fill
-            src={props.imageSrc || "/images/image-large.png"}
-            alt="image"
-            className="object-cover "></Image>
-        ) : (
-          <Image
-            fill
-            src={props.image?.node?.sourceUrl || "/images/image-large.png"}
-            alt="image"
-            className="object-cover"
-          />
-        )}
-      </Parallax>
-    </div>
+    <div
+      style={{backgroundImage: imageStyle}}
+      className={` parallax container-fluid min-h-[400px] w-full px-0 md:min-h-[450px] md:px-[20px] lg:min-h-[656px] 2xl:min-h-[700px] ${props.className} `}></div>
   );
 };
 

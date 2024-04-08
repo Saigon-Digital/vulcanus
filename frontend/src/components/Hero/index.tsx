@@ -1,10 +1,21 @@
 import {HeroBlockFragment} from "@/__generated__/graphql";
-import {getAcfLinkProps} from "@/utils";
+import {getAcfLinkProps, myConsoleLog} from "@/utils";
 import Image from "next/image";
 import React from "react";
 import Button from "../Button";
-import Parallax from "../Parallax";
+
+import useImageStyle from "@/hooks/useImageCss";
+
 const Hero: React.FC<HeroBlockFragment> = (props) => {
+  const imgStyle =
+    useImageStyle({
+      src: props.backgroundImage?.node.sourceUrl || "",
+      fill: false,
+      w: 1900,
+      h: 800,
+    }) || "";
+  myConsoleLog("image Style", imgStyle);
+
   return (
     <div className="sm:container-fluid">
       <div
@@ -22,8 +33,10 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             className="object-contain object-center"
           />
         </div>
-        {/* <div className="absolute h-full w-full"> */}
-        <Parallax
+        <div
+          style={{backgroundImage: imgStyle}}
+          className="parallax absolute  h-full w-full">
+          {/* <Parallax
           to={40}
           targetClass="min-h-[120vh]"
           className=" absolute min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] w-full">
@@ -34,8 +47,8 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
             alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
             className="parallax z-0 object-cover object-center"></Image>
-        </Parallax>
-        {/* </div> */}
+        </Parallax> */}
+        </div>
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
           <div className="relative z-10 mx-auto max-w-[85%] text-secondary-offWhite-white lg:col-span-full lg:col-start-2 lg:mx-0 lg:max-w-[868px]">
