@@ -9,10 +9,11 @@ const Parallax = ({
   className,
   children,
   from = -10,
-  to = 100,
-  start = 0,
+  to = 50,
+  start = -15,
   speed = 1,
   targetClass,
+  style,
 }: PropsWithChildren<{
   id?: string;
   from?: number;
@@ -21,6 +22,7 @@ const Parallax = ({
   start?: number;
   speed?: number;
   targetClass?: string;
+  style?: any;
 }>) => {
   const trigger = useRef(null);
   const target = useRef(null);
@@ -45,15 +47,12 @@ const Parallax = ({
       });
 
       tl.fromTo(target.current, {yPercent: from}, {yPercent: to, ease: "none"});
-      return () => {
-        tl.kill();
-      };
     },
     {scope: trigger}
   );
 
   return (
-    <div className={className} ref={trigger}>
+    <div style={style} className={className} ref={trigger}>
       <div
         id="parallax-target"
         className={twMerge(

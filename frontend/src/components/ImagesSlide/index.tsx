@@ -1,9 +1,11 @@
 import {ImagesSLideFragment} from "@/__generated__/graphql";
-import React from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, A11y} from "swiper/modules";
 import Image from "next/image";
 import "swiper/css/autoplay";
+import {useRatio} from "@/hooks/useRatio";
+import ImageWithRatio from "../ImageWithRatio";
 const ImagesSlide = (props: ImagesSLideFragment) => {
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
@@ -39,21 +41,18 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         // freeMode={true}
         speed={6000}>
         {props.slides &&
-          [...props?.slides, ...props?.slides].map((ele, index) => {
+          [...props.slides, ...props.slides].map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
+            // if (!ele.dimention.w || !ele.dimention.h) return null;
 
             return (
-              <SwiperSlide key={index}>
-                <div className="relative aspect-video w-full">
-                  <img
-                    src={ele?.image?.node.sourceUrl || ""}
-                    //   fill
-
-                    loading="eager"
-                    alt={" slide"}
-                    className="aspect-auto min-h-[480px] object-contain"
-                  />
-                </div>
+              <SwiperSlide key={index} className="h-[480px]">
+                {/* <div className="relative aspect-video w-full"> */}
+                <ImageWithRatio
+                  imageSrc={ele?.image?.node.sourceUrl || ""}
+                  height={480}
+                />
+                {/* </div> */}
               </SwiperSlide>
             );
           })}
