@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {PropsWithChildren, useEffect, useState} from "react";
+import {PropsWithChildren, useLayoutEffect, useState} from "react";
 import Footer from "../Footer";
 
 import {Overpass} from "next/font/google";
@@ -28,7 +28,7 @@ type fallBackData = {
 const Layout = ({children, headerMenu, footerMenu, seo}: Props) => {
   let [fallbackData, setFallbackData] = useState<fallBackData>({});
   const router = useRouter();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!headerMenu || !footerMenu) {
       getFallbackData();
     }
