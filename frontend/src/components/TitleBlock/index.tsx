@@ -1,10 +1,10 @@
 import React, {ReactNode, useEffect, useRef, useState} from "react";
 import {TitleBlockFragment} from "@/__generated__/graphql";
-import parse, {domToReact, Element, DOMNode} from "html-react-parser";
+
 import {TitleShape} from "../Icons";
 import {motion} from "framer-motion";
 import clsx from "clsx";
-import {SplitText} from "../SplitText";
+
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
   haveShape,
@@ -13,23 +13,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
 }) => {
   const size = textSize?.find((_, id) => id === 0) || textSize || "large";
   const titleRef = useRef<HTMLDivElement>(null);
-  const [nodes, setNodes] = useState<any>([]);
 
-  const renderSplitText = () => {
-    return nodes.map(({innerHTML, children}: any) => {
-      return (
-        <motion.div>
-          {innerHTML && innerHTML}
-          {children}
-        </motion.div>
-      );
-    });
-  };
-
-  useEffect(() => {
-    console.log(titleRef.current?.children);
-    setNodes(titleRef.current?.childNodes);
-  }, []);
   return (
     <section className="container-fluid relative">
       <div
