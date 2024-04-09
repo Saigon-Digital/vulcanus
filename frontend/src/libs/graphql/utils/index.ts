@@ -22,10 +22,31 @@ const menuLocations = {
 
 export const client = createApolloClient();
 
+export const getFooterButtonLink = async () => {
+  return await client.query({
+    query: gql(`
+    query GetFooterButton {
+      contactPage:page(id:"contact",idType:URI)
+ {
+   ENLink:translation(language:EN)
+   {
+     uri
+   }
+     DELink:translation(language:DE)
+   {
+     uri
+   }
+  }
+}
+    `),
+  });
+};
+
 async function getMenuItems(location: MenuLocationEnum) {
   return await client.query({
     query: gql(`
             query MenuItems($location: MenuLocationEnum!) {
+              
               menuItems(where: { location: $location }) {
                 nodes {
                   uri
