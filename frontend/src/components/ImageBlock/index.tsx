@@ -13,9 +13,9 @@ const ImageBlock: React.FC<
   }
 > = (props) => {
   const imageStyle = useImageStyle({
-    src: props.image?.node.sourceUrl || "",
+    src: props.imageSrc || props.image?.node.sourceUrl || "",
     w: 1820,
-    h: 700,
+    h: props.height,
     alt: props.image?.node.altText || "Image Block image",
   });
   useConsoleLog("Image Block", props.image);
@@ -28,6 +28,7 @@ const ImageBlock: React.FC<
 
 ImageBlock.defaultProps = {
   maxWidth: true,
+  height: 700,
 };
 
 export default ImageBlock;

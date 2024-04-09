@@ -28,17 +28,16 @@ const HalfPageContent: React.FC<TProps> = ({
 }) => {
   return (
     <div className="relative">
-      {haveShape && (
-        <Image
-          src={Shape}
-          className="absolute left-0 top-1/2 -translate-y-1/2 "
-          width={47}
-          alt="shape"
-          height={155}
-        />
-      )}
-
-      <div className="container-fluid my-14">
+      <div className="container-fluid relative my-14">
+        {haveShape && (
+          <Image
+            src={Shape}
+            className="absolute left-0 top-1/2 -translate-y-1/2 "
+            width={47}
+            alt="shape"
+            height={155}
+          />
+        )}
         <div className="relative flex flex-wrap gap-y-10">
           {extraGraphic && extraGraphic}
           <div className="w-full md:w-1/2">

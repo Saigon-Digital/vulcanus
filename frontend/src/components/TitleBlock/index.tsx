@@ -21,9 +21,10 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
           haveBorderBottom && " border-b border-[#E6ECF3]"
         }`}>
         <motion.div
-          initial={{y: "40%", opacity: 0}}
+          initial={{y: "50px", opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
-          transition={{duration: 0.5, delay: 0.3}}
+          viewport={{margin: "150px"}}
+          transition={{duration: 0.6, delay: 0.4}}
           ref={titleRef}
           className={clsx(
             "title col-span-full max-w-[1165px]  font-bold md:col-span-10 xl:text-5xl 3xl:col-span-8 [&>*]:text-4xl [&>*]:tracking-tight ",
