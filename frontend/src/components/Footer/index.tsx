@@ -33,11 +33,23 @@ const Footer = (props: Props) => {
   return (
     <footer className="pt-20 sm:container-fluid">
       <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
-        <h3
-          className="cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] [&>strong]:text-primary-blue-main"
+        <motion.h3
+          onViewportEnter={(entry) => {
+            console.log(entry);
+
+            if (entry?.target.classList.contains("footer-text")) {
+              entry.target.classList.add("active");
+            }
+          }}
+          onViewportLeave={(entry) => {
+            if (entry?.target.classList.contains("footer-text")) {
+              entry.target.classList.remove("active");
+            }
+          }}
+          className="footer-text  cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] "
           dangerouslySetInnerHTML={{
             __html: languages(router.locale)?.letStart || "",
-          }}></h3>
+          }}></motion.h3>
         <Link
           href={
             router.locale?.toLocaleLowerCase() === "en"
@@ -53,7 +65,8 @@ const Footer = (props: Props) => {
             fill="none">
             <rect width={158} height={158} rx={79} fill="#E5F5FC" />
             <motion.path
-              initial={{x: -12, y: 12}}
+              style={{x: -6, y: 6}}
+              // initial={{x: -12, y: 12}}
               whileInView={{x: 12, y: -12}}
               transition={{duration: 0.4, delay: 0.3, type: "just"}}
               className="transition-all duration-300 "
