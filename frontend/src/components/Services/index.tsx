@@ -86,7 +86,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
               <motion.div
                 initial={{scale: 1}}
                 whileInView={{scale: 1.2}}
-                transition={{duration: 0.5}}
+                transition={{duration: 0.6, delay: 0.4}}
                 className="relative h-full w-full">
                 <Image
                   fill
