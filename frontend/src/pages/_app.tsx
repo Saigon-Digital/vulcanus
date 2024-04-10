@@ -22,11 +22,11 @@ export default function App({Component, pageProps}: AppProps) {
         <LocaleContextProvider
           localeData={{
             DE:
-              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang ||
-              null,
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang
+                .link || null,
             EN:
-              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang ||
-              null,
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang
+                .link || null,
           }}>
           <AnimatePresence initial={false} mode="wait">
             <Layout

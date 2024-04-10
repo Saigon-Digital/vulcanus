@@ -92,8 +92,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                   fill
                   src={img.image}
                   alt="feature image"
-                  objectFit="cover"
-                  className=""
+                  className="object-cover"
                 />
               </motion.div>
             </div>
