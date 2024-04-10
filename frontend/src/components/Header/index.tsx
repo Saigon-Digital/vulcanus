@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import LanguageToggle from "./LanguageToggle";
 import dynamic from "next/dynamic";
 const HeaderDialog = dynamic(() => import("./HeaderDialog"));
+
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
 };
