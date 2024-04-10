@@ -11,10 +11,10 @@ const index = ({
     <section className="container-fluid relative  gap-4 py-14">
       <div className="relative grid grid-cols-12">
         <motion.h2
-          initial={{y: 30, opacity: 0}}
+          style={{y: "50px", opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
-          viewport={{margin: "150px"}}
-          transition={{duration: 0.6, delay: 0.4}}
+          viewport={{margin: "40%"}}
+          transition={{duration: 0.8, delay: 0.4}}
           className="title-xl col-span-10 md:col-span-8 lg:col-span-7">
           {title}
         </motion.h2>
