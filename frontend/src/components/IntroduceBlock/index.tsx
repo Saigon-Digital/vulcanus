@@ -17,7 +17,6 @@ type Props = {
 const IntroduceBlock = (props: Props) => {
   const [pages, setPages] = useState<any[]>([]);
 
-  //   useEffect(() => {
   // getPagesTypeAsync();
   //   }, []);
 

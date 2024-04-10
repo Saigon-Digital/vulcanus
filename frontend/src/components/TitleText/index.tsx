@@ -1,5 +1,6 @@
 import React from "react";
 import Shape from "./images/shape.svg";
+import {motion} from "framer-motion";
 type TText = {
   title?: string;
 };
@@ -9,9 +10,14 @@ const index = ({
   return (
     <section className="container-fluid relative  gap-4 py-14">
       <div className="relative grid grid-cols-12">
-        <h2 className="title-xl col-span-10 md:col-span-8 lg:col-span-7">
+        <motion.h2
+          style={{y: "50px", opacity: 0}}
+          whileInView={{y: 0, opacity: 1}}
+          viewport={{margin: "40%"}}
+          transition={{duration: 0.8, delay: 0.4}}
+          className="title-xl col-span-10 md:col-span-8 lg:col-span-7">
           {title}
-        </h2>
+        </motion.h2>
         <Shape className="absolute right-0 hidden aspect-square h-1/3 object-contain sm:top-1/2 sm:h-2/3 sm:-translate-y-1/2 md:block lg:h-full" />
       </div>
     </section>

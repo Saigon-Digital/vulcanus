@@ -3,7 +3,7 @@ import React from "react";
 import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
 import Image from "next/image";
-import parse from "html-react-parser";
+import {motion} from "framer-motion";
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   return (
     <div className="relative py-20 lg:pb-28">
@@ -40,13 +40,18 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                 )}>
                 {ele?.textOrImge === "image" ? (
                   <>
-                    <div className="relative h-[200px] w-full lg:h-[300px]">
-                      <Image
-                        fill
-                        src={ele?.galleryImage?.node?.sourceUrl || ""}
-                        className="object-cover"
-                        alt="gallery image"
-                      />
+                    <div className="relative h-[200px] w-full overflow-hidden lg:h-[300px]">
+                      <motion.div
+                        whileInView={{scale: 1.15}}
+                        transition={{type: "spring", duration: 1.5, delay: 0.3}}
+                        className="relative h-full w-full">
+                        <Image
+                          fill
+                          src={ele?.galleryImage?.node?.sourceUrl || ""}
+                          className="object-cover"
+                          alt="gallery image"
+                        />
+                      </motion.div>
                     </div>
                     <span className="text-2xl font-semibold  text-primary-blue-main">
                       0{id + 1}

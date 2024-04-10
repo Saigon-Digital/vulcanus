@@ -43,18 +43,20 @@ const RelatedPosts = ({posts}: Props) => {
             posts.map((ele, index) => {
               return (
                 <SwiperSlide key={index}>
-                  <div className="flex flex-col gap-4">
+                  <div className="group flex flex-col gap-4">
                     <Link href={`/blog/${ele.slug}`}>
-                      <Image
-                        className="aspect-[450/290] w-full"
-                        src={
-                          ele.featuredImage?.node.sourceUrl ||
-                          "/blogs/blog-1.png"
-                        }
-                        alt="related post"
-                        width={450}
-                        height={296}
-                      />
+                      <div className="relative aspect-[450/290] w-full overflow-hidden">
+                        <Image
+                          className="aspect-[450/290] w-full transition-all group-hover:scale-105"
+                          src={
+                            ele.featuredImage?.node.sourceUrl ||
+                            "/blogs/blog-1.png"
+                          }
+                          alt="related post"
+                          width={450}
+                          height={296}
+                        />
+                      </div>
                     </Link>
                     <p className="text-lg font-semibold uppercase leading-[20px] text-[#E6ECF3]">
                       {languages(router.locale)?.manufacturing}

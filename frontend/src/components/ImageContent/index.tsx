@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import {ImageShape} from "../Icons";
 import parse from "html-react-parser";
+import {motion} from "framer-motion";
 const ImageContent = ({
   image,
   contentGroup: content,
@@ -22,8 +23,17 @@ const ImageContent = ({
               reverse ? "-left-[45px] rotate-180" : "-right-[45px]"
             } top-5 hidden w-[45px] lg:block`}
           />
-          <div className="relative aspect-[700/400]  lg:p-6">
-            <Image fill src={image?.node?.sourceUrl || ""} alt="banner image" />
+          <div className="relative aspect-[700/400]  overflow-hidden  lg:p-6">
+            <motion.div
+              whileInView={{scale: 1.15}}
+              transition={{type: "spring", duration: 1.5, delay: 0.3}}
+              className="relative h-full w-full">
+              <Image
+                fill
+                src={image?.node?.sourceUrl || ""}
+                alt="banner image"
+              />
+            </motion.div>
           </div>
         </div>
         <div
