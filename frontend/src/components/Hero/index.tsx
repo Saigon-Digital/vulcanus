@@ -13,6 +13,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
       fill: false,
       w: 1900,
       h: 800,
+      priority: true,
     }) || "";
   useConsoleLog("image Style", imgStyle);
 

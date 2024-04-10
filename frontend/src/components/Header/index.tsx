@@ -6,7 +6,8 @@ import {useRouter} from "next/router";
 import HamburgerMenu from "public/icons/hamburger-menu.svg";
 import {useEffect, useState} from "react";
 import LanguageToggle from "./LanguageToggle";
-import HeaderDialog from "./HeaderDialog";
+import dynamic from "next/dynamic";
+const HeaderDialog = dynamic(() => import("./HeaderDialog"));
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
 };

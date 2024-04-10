@@ -1,25 +1,17 @@
-import Layout from "@/components/Layout";
-import "@/styles/globals.scss";
+import dynamic from "next/dynamic";
 import {FaustProvider} from "@faustwp/core";
 import type {AppProps} from "next/app";
 import {useRouter} from "next/router";
 import "../../faust.config";
 import "swiper/css";
-import {__DEV__} from "@apollo/client/utilities/globals";
-import {loadErrorMessages, loadDevMessages} from "@apollo/client/dev";
 
-import seo from "@/next-seo.config";
-import {MenuItem, MenuItemsQuery} from "@/__generated__/graphql";
-import {ApolloProvider, useQuery} from "@apollo/client";
-import {GET_MENUS, client} from "@/libs/graphql/utils";
-import {languages} from "@/utils/language";
+import "@/styles/globals.scss";
+
+import {ApolloProvider} from "@apollo/client";
+import {client} from "@/libs/graphql/utils";
 import {LocaleContextProvider} from "@/context/LocaleContext";
 import {AnimatePresence} from "framer-motion";
-if (__DEV__) {
-  // Adds messages only in a dev environment
-  loadDevMessages();
-  loadErrorMessages();
-}
+const Layout = dynamic(() => import("@/components/Layout"));
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();

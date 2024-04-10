@@ -1,9 +1,18 @@
 import {CareerBlockFragment, AcfLink} from "@/__generated__/graphql";
+import dynamic from "next/dynamic";
 import clsx from "clsx";
 import {useRef} from "react";
 import Button from "@/components/Button";
-import {MinusIcon, PlusIcon} from "@/components/Icons";
 import {getAcfLinkProps} from "@/utils";
+const MinusIcon = dynamic(
+  () => import("../../Icons").then((mod) => mod.MinusIcon),
+  {loading: () => <>loading</>}
+);
+const PlusIcon = dynamic(
+  () => import("../../Icons").then((mod) => mod.PlusIcon),
+  {loading: () => <>loading</>}
+);
+// const  {MinusIcon, PlusIcon}
 // { __typename?: 'CareersBlockCareers', careerDescription?: string | null, location?: string | null, title?: string | null, cta?: { __typename?: 'AcfLink', title?: string | null, url?: string | null, target?: string | null } | null }
 type Props = {
   itemKey: string;

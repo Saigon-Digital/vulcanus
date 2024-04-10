@@ -1,7 +1,11 @@
 import {CtaBannerBlockFragment} from "@/__generated__/graphql";
 import React from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import {ShapeTopRight} from "../Icons";
+const ShapeTopRight = dynamic(
+  () => import("../Icons").then((mod) => mod.ShapeTopRight),
+  {loading: () => <>loading</>}
+);
 import Button from "../Button";
 import {getAcfLinkProps} from "@/utils";
 const CTABannerBlock = ({

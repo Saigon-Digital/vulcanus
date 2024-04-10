@@ -1,15 +1,15 @@
 import clsx from "clsx";
 import {PropsWithChildren, useEffect, useLayoutEffect, useState} from "react";
-import Footer from "../Footer";
-
+import dynamic from "next/dynamic";
 import {Overpass} from "next/font/google";
-import Header from "../Header";
 import {MenuItemsQuery} from "@/__generated__/graphql";
 import SEO, {TSEO} from "../SEO";
 import {GET_MENUS, getGlobalSiteData} from "@/libs/graphql/utils";
 import {useQuery} from "@apollo/client";
 import {useRouter} from "next/router";
 import {motion} from "framer-motion";
+import Header from "../Header";
+const Footer = dynamic(() => import("../Footer"));
 const overpass = Overpass({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],

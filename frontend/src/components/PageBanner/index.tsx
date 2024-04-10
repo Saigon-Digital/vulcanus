@@ -11,7 +11,9 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   const imageStyle = useImageStyle({
     src: image?.node.sourceUrl || "",
     w: 1820,
+
     h: 900,
+    priority: true,
     alt: "page banner",
   });
   return (

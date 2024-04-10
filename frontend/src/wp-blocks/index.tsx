@@ -2,30 +2,39 @@ import {
   BlockSettingsFragment,
   PageBuilderFragment,
 } from "@/__generated__/graphql";
-import Cards from "@/components/Cards";
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
-import Team from "@/components/Team";
-import Service from "@/components/Services";
-import ImageBlock from "@/components/ImageBlock";
-import HalfPageContent from "@/components/HalfPageContent";
-import TitleBlock from "@/components/TitleBlock";
-import PageBanner from "@/components/PageBanner";
-import ImageTextBlock from "@/components/ImageTextBlock";
-import CompanyHistory from "@/components/CompanyHistory";
-
-import Gallery from "@/components/Gallery/index";
-import IconsBlock from "@/components/IconsBlock";
-import Video from "@/components/Video";
-import CareersBlock from "@/components/CareersBlock";
-import ChecklistBlock from "@/components/ChecklistBlock";
-import CTABannerBlock from "@/components/CTABannerBlock";
-import ImageContent from "@/components/ImageContent";
-import CenterTitleText from "@/components/CenterTitleText";
-import Form from "@/components/Form";
-import BlogsBlock from "@/components/BlogsBlock";
-import CertificateBlock from "@/components/CertificateBlock";
-import ImagesSlide from "@/components/ImagesSlide";
-import PrivacyPolicy from "@/components/PrivacyPolicy";
+const Cards = dynamic(() => import("@/components/Cards"), {});
+const Team = dynamic(() => import("@/components/Team"), {});
+const Service = dynamic(() => import("@/components/Services"), {});
+const ImageBlock = dynamic(() => import("@/components/ImageBlock"), {});
+const HalfPageContent = dynamic(
+  () => import("@/components/HalfPageContent"),
+  {}
+);
+const TitleBlock = dynamic(() => import("@/components/TitleBlock"), {});
+const PageBanner = dynamic(() => import("@/components/PageBanner"), {});
+const ImageTextBlock = dynamic(() => import("@/components/ImageTextBlock"), {});
+const CompanyHistory = dynamic(() => import("@/components/CompanyHistory"), {});
+const Gallery = dynamic(() => import("@/components/Gallery"), {});
+const IconsBlock = dynamic(() => import("@/components/IconsBlock"), {});
+const Video = dynamic(() => import("@/components/Video"), {});
+const CareersBlock = dynamic(() => import("@/components/CareersBlock"), {});
+const ChecklistBlock = dynamic(() => import("@/components/ChecklistBlock"), {});
+const CTABannerBlock = dynamic(() => import("@/components/CTABannerBlock"), {});
+const ImageContent = dynamic(() => import("@/components/ImageContent"), {});
+const CenterTitleText = dynamic(
+  () => import("@/components/CenterTitleText"),
+  {}
+);
+const Form = dynamic(() => import("@/components/Form"), {});
+const BlogsBlock = dynamic(() => import("@/components/BlogsBlock"), {});
+const CertificateBlock = dynamic(
+  () => import("@/components/CertificateBlock"),
+  {}
+);
+const ImagesSlide = dynamic(() => import("@/components/ImagesSlide"), {});
+const PrivacyPolicy = dynamic(() => import("@/components/PrivacyPolicy"), {});
 
 export type Blocks = Exclude<
   PageBuilderFragment["dynamicBlocks"],
