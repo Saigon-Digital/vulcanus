@@ -1,11 +1,18 @@
 import React, {ReactNode} from "react";
 import Button from "../Button";
-import {TitleTextBlock_Fields} from "@/__generated__/graphql";
-import {ArrowRight, ShapeLeftLarge} from "../Icons";
+import dynamic from "next/dynamic";
+// import {ArrowRight, ShapeLeftLarge} from "../Icons";
 import Shape from "./images/shape.png";
 import Image from "next/image";
 import parse from "html-react-parser";
 import {getAcfLinkProps} from "@/utils";
+import {TitleTextBlock_Fields} from "@/__generated__/graphql";
+const ArrowRight = dynamic(() =>
+  import("../Icons").then((mod) => mod.ArrowRight)
+);
+const ShapeLeftLarge = dynamic(() =>
+  import("../Icons").then((mod) => mod.ShapeLeftLarge)
+);
 // import Button from "../Button";
 type TProps = {
   extraGraphic?: ReactNode;

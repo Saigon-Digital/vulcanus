@@ -1,5 +1,7 @@
 const {withFaust, getWpHostname} = require("@faustwp/core");
-
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 /** @type {import('next').NextConfig} */
 const nextConfig = withFaust({
   reactStrictMode: true,
@@ -43,4 +45,4 @@ const nextConfig = withFaust({
   },
 });
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

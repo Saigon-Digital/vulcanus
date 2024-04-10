@@ -6,13 +6,15 @@ import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import Button from "../Button";
 import Link from "next/link";
-import {ButtonNext} from "../Icons";
 import {getPostThumb} from "@/libs/graphql/utils";
-import {GetPostsThumbQuery} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
-import {log} from "console";
 import {languages} from "@/utils/language";
 import {getAcfLinkProps, useConsoleLog} from "@/utils";
+import dynamic from "next/dynamic";
+const ButtonNext = dynamic(
+  () => import("../Icons").then((mod) => mod.ButtonNext),
+  {loading: () => <></>}
+);
 type TBlog = {
   category?: string;
   featureImage?: string;
