@@ -1,5 +1,7 @@
+import dynamic from "next/dynamic";
 import blocks, {Block} from ".";
 import BlockWrapper from "./BlockWrapper";
+const LazyImport = dynamic(() => import("@/components/LazyImport"));
 
 export type BlockViewerProps = {
   dynamicBlocks: Array<Block | null | undefined> | null | undefined;
@@ -21,7 +23,21 @@ function BlockViewer({dynamicBlocks, customRenderers}: BlockViewerProps) {
         }
         const customRenderer = customRenderers?.get(block.__typename);
         const Component = blocks?.get(block.__typename);
-        return (
+
+        return index > 1 ? (
+          <BlockWrapper
+            key={`${block.__typename}_${index}`}
+            data-block-type={block?.__typename}
+            blockSettings={block?.blockSettings}>
+            {customRenderer ? (
+              customRenderer.render(block)
+            ) : Component ? (
+              <LazyImport>
+                <Component {...block} />
+              </LazyImport>
+            ) : null}
+          </BlockWrapper>
+        ) : (
           <BlockWrapper
             key={`${block.__typename}_${index}`}
             data-block-type={block?.__typename}
