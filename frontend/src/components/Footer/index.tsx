@@ -33,7 +33,7 @@ const Footer = (props: Props) => {
   const [initialHeight, setInitialHeight] = useState<number | null>(null);
   const [rectTop, setRectTop] = useState<number | null>();
   const ref = useRef<HTMLDivElement>(null);
-  const {scrollY, scrollYProgress} = useScroll({container: ref});
+
   // console.log("scroll", scrollY, scrollYProgress);
   const containerRef = useRef(null);
   const ratio = useMemo(() => {
@@ -42,11 +42,12 @@ const Footer = (props: Props) => {
   }, [initialHeight, rectTop]);
 
   useEffect(() => {
-    (async () => {
-      const {data} = await getFooterButtonLink();
-      setButtonLink(data.contactPage);
-    })();
-
+    if (!buttonLink) {
+      (async () => {
+        const {data} = await getFooterButtonLink();
+        setButtonLink(data.contactPage);
+      })();
+    }
     const callback: IntersectionObserverCallback = (entries) => {
       entries.forEach((ele) => {
         const calcTop = () => {
@@ -111,7 +112,7 @@ const Footer = (props: Props) => {
             <motion.path
               style={{x: -10, y: 10}}
               // initial={{x: -12, y: 12}}
-              whileInView={{x: 0, y: 0}}
+              whileInView={{x: 6, y: -6}}
               transition={{duration: 0.4, delay: 0.3, type: "just"}}
               className="transition-all duration-300 "
               d="M67.29 51.7309C67.29 54.1562 69.2389 56.0619 71.621 56.0619H95.8312L48.6667 103.226C46.9776 104.915 46.9776 107.644 48.6667 109.333C50.3558 111.022 53.0843 111.022 54.7734 109.333L101.938 62.1686V86.3788C101.938 88.7609 103.887 90.7098 106.269 90.7098C108.651 90.7098 110.6 88.7609 110.6 86.3788V51.7309C110.6 49.3488 108.651 47.3999 106.269 47.3999H71.621C69.2389 47.3999 67.29 49.3488 67.29 51.7309Z"
