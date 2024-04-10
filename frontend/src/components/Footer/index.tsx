@@ -68,7 +68,7 @@ const Footer = (props: Props) => {
     };
     const observer = new IntersectionObserver(callback, {
       threshold: 1,
-      rootMargin: "150px",
+      rootMargin: "250px",
     });
     if (ref.current) {
       observer.observe(ref.current);
