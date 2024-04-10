@@ -116,22 +116,21 @@ p {
   }
 }
 
-@keyframes runningColor {
-  @for $i from 0 through 100 {
-    #{$i * 1%} {
-      background: linear-gradient(
-        to right,
-        #009ee0 #{$i * 1%},
-        #fff #{($i + 3) * 1%}
-      );
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  }
-}
-
 footer {
   .footer-text {
+    @for $i from 0 through 100 {
+      &.scroll-#{$i} {
+        strong {
+          background: linear-gradient(
+            to right,
+            #009ee0 #{$i * 1%},
+            #fff #{($i + 1) * 1%}
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
     strong {
       position: relative;
       display: inline-block;
@@ -140,21 +139,25 @@ footer {
       font-size: clamp(2.5rem, 8vw, 6rem);
       text-align: center;
       background: white;
-    }
-    &.active {
-      strong {
-        position: relative;
-        display: inline-block;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      // background: ;
 
-        color: white;
-        font-size: clamp(2.5rem, 8vw, 6rem);
-        text-align: center;
-        background: #009ee0;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      &.active {
+        strong {
+          position: relative;
+          display: inline-block;
 
-        animation: 1.5s ease-in runningColor;
-        // animation-delay: 0.3s;
+          color: white;
+          font-size: clamp(2.5rem, 8vw, 6rem);
+          text-align: center;
+          background: #009ee0;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+
+          animation: 1.5s ease-in runningColor;
+          // animation-delay: 0.3s;
+        }
       }
     }
   }
