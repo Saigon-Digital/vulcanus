@@ -9,6 +9,7 @@ import Gear from "./images/gear.svg";
 import {languages} from "@/utils/language";
 import {useRouter} from "next/router";
 import {GearIcon} from "../Icons";
+import {motion} from "framer-motion";
 type TService = {
   featureImage?: {image: string | StaticImport}[];
 } & ServiceComponent;
@@ -79,16 +80,22 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
           return (
             <div
               key={index}
-              className={`relative col-span-full min-h-[300px] ${
+              className={`relative col-span-full min-h-[300px] overflow-hidden ${
                 index === 0 ? "md:col-span-2" : "lg:col-span-1"
               }`}>
-              <Image
-                fill
-                src={img.image}
-                alt="feature image"
-                objectFit="cover"
-                className=""
-              />
+              <motion.div
+                initial={{scale: 1}}
+                whileInView={{scale: 1.2}}
+                transition={{duration: 0.6, delay: 0.4}}
+                className="relative h-full w-full">
+                <Image
+                  fill
+                  src={img.image}
+                  alt="feature image"
+                  objectFit="cover"
+                  className=""
+                />
+              </motion.div>
             </div>
           );
         })}

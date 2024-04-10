@@ -5,7 +5,9 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import {useConsoleLog} from "@/utils";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
+  useConsoleLog("card", props.cards);
 
   return (
     <div className="cards container-fluid py-14">

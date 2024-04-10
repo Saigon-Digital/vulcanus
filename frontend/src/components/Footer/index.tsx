@@ -1,9 +1,12 @@
-import {MenuItemsQuery} from "@/__generated__/graphql";
+import {GetFooterButtonQuery, MenuItemsQuery} from "@/__generated__/graphql";
 import Image from "next/image";
-import React from "react";
+import React, {useLayoutEffect, useState} from "react";
 import Link from "next/link";
 import {languages} from "@/utils/language";
 import {useRouter} from "next/router";
+import {motion} from "framer-motion";
+import {getFooterButtonLink} from "@/libs/graphql/utils";
+import {useConsoleLog} from "@/utils";
 // import {flatListToHierarchical} from "@faustwp/core";
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
@@ -12,32 +15,66 @@ type Props = {
 const Footer = (props: Props) => {
   const hierarchicalList = props.menuItems?.nodes.filter((ele: any) => {
     const {childItems} = ele;
-
     return childItems.nodes?.length > 0;
   });
+  let [buttonLink, setButtonLink] =
+    useState<GetFooterButtonQuery["contactPage"]>();
+
   const router = useRouter();
+
+  useLayoutEffect(() => {
+    (async () => {
+      const {data} = await getFooterButtonLink();
+      setButtonLink(data.contactPage);
+    })();
+  }, []);
   if (!hierarchicalList) return null;
+
   return (
     <footer className="pt-20 sm:container-fluid">
-      <div className="mb-12 flex items-center justify-between px-5 sm:px-0">
-        <h3
-          className="text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] [&>strong]:text-primary-blue-main"
+      <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
+        <motion.h3
+          onViewportEnter={(entry) => {
+            console.log(entry);
+
+            if (entry?.target.classList.contains("footer-text")) {
+              entry.target.classList.add("active");
+            }
+          }}
+          onViewportLeave={(entry) => {
+            if (entry?.target.classList.contains("footer-text")) {
+              entry.target.classList.remove("active");
+            }
+          }}
+          className="footer-text  cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] "
           dangerouslySetInnerHTML={{
             __html: languages(router.locale)?.letStart || "",
-          }}></h3>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width={158}
-          className="h-10 w-10 md:h-14 md:w-14 lg:h-28 lg:w-28 2xl:h-[158px] 2xl:w-[158px]"
-          height={158}
-          viewBox="0 0 158 158"
-          fill="none">
-          <rect width={158} height={158} rx={79} fill="#E5F5FC" />
-          <path
-            d="M67.29 51.7309C67.29 54.1562 69.2389 56.0619 71.621 56.0619H95.8312L48.6667 103.226C46.9776 104.915 46.9776 107.644 48.6667 109.333C50.3558 111.022 53.0843 111.022 54.7734 109.333L101.938 62.1686V86.3788C101.938 88.7609 103.887 90.7098 106.269 90.7098C108.651 90.7098 110.6 88.7609 110.6 86.3788V51.7309C110.6 49.3488 108.651 47.3999 106.269 47.3999H71.621C69.2389 47.3999 67.29 49.3488 67.29 51.7309Z"
-            fill="#009EE0"
-          />
-        </svg>
+          }}></motion.h3>
+        <Link
+          href={
+            router.locale?.toLocaleLowerCase() === "en"
+              ? buttonLink?.ENLink?.uri || ""
+              : buttonLink?.DELink?.uri || ""
+          }>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={158}
+            className="h-10 w-10 md:h-14 md:w-14 lg:h-28 lg:w-28 2xl:h-[158px] 2xl:w-[158px]"
+            height={158}
+            viewBox="0 0 158 158"
+            fill="none">
+            <rect width={158} height={158} rx={79} fill="#E5F5FC" />
+            <motion.path
+              style={{x: -6, y: 6}}
+              // initial={{x: -12, y: 12}}
+              whileInView={{x: 12, y: -12}}
+              transition={{duration: 0.4, delay: 0.3, type: "just"}}
+              className="transition-all duration-300 "
+              d="M67.29 51.7309C67.29 54.1562 69.2389 56.0619 71.621 56.0619H95.8312L48.6667 103.226C46.9776 104.915 46.9776 107.644 48.6667 109.333C50.3558 111.022 53.0843 111.022 54.7734 109.333L101.938 62.1686V86.3788C101.938 88.7609 103.887 90.7098 106.269 90.7098C108.651 90.7098 110.6 88.7609 110.6 86.3788V51.7309C110.6 49.3488 108.651 47.3999 106.269 47.3999H71.621C69.2389 47.3999 67.29 49.3488 67.29 51.7309Z"
+              fill="#009EE0"
+            />
+          </svg>
+        </Link>
       </div>
       <div className="relative rounded-md">
         <div className="relative grid grid-cols-12 rounded-md bg-primary-midBlue-main">
@@ -131,6 +168,7 @@ const Footer = (props: Props) => {
             {languages(router.locale)?.poweredBy}{" "}
             <Link
               className="hover:text-primary-blue-main"
+              target="_blank"
               href="https://saigon.digital/">
               saigon.digital
             </Link>{" "}

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import {PropsWithChildren, useEffect, useState} from "react";
+import {PropsWithChildren, useEffect, useLayoutEffect, useState} from "react";
 import Footer from "../Footer";
 
 import {Overpass} from "next/font/google";
@@ -9,7 +9,7 @@ import SEO, {TSEO} from "../SEO";
 import {GET_MENUS, getGlobalSiteData} from "@/libs/graphql/utils";
 import {useQuery} from "@apollo/client";
 import {useRouter} from "next/router";
-
+import {motion} from "framer-motion";
 const overpass = Overpass({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -44,7 +44,14 @@ const Layout = ({children, headerMenu, footerMenu, seo}: Props) => {
       <Header
         menuItems={headerMenu?.menuItems || fallbackData.headerMenu?.menuItems}
       />
-      <main>{children}</main>
+      <motion.main
+        initial={{opacity: 0, scale: 1}}
+        animate={{opacity: 1, scale: 1}}
+        transition={{
+          duration: 0.5,
+        }}>
+        {children}
+      </motion.main>
       <Footer
         menuItems={footerMenu?.menuItems || fallbackData.footerMenu?.menuItems}
       />

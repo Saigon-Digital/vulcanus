@@ -1,6 +1,7 @@
 import React from "react";
 import {GetStaticProps, GetServerSideProps} from "next";
 import {
+  ImageBlock as TImageBlock,
   LanguageCodeFilterEnum,
   PostFragmentFragment,
   SiteSettingFragment,
@@ -57,12 +58,14 @@ const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
             })}
           </p>
         </div>
+
         <ImageBlock
           height={575}
           maxWidth={false}
           className="px-5"
-          imageSrc={blog.featuredImage?.node?.sourceUrl || ""}
+          imageSrc={blog.featuredImage?.node?.sourceUrl || "/blogs/blog-3.png"}
         />
+
         <div
           className="mx-auto mb-20 mt-20 flex max-w-[912px] flex-col px-5  xl:mb-[140px] [&>*>strong]:mt-8 [&>*>strong]:inline-block [&>*>strong]:text-2xl [&>*>strong]:font-bold [&>h3]:text-4xl [&>h4]:text-4xl [&>h4]:font-bold
         [&>h5]:text-4xl [&>p]:mt-4 [&>p]:text-base [&>ul]:mt-2 [&>ul]:list-disc [&>ul]:pl-5

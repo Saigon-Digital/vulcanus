@@ -12,7 +12,7 @@ import {GetPostsThumbQuery} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
 import {log} from "console";
 import {languages} from "@/utils/language";
-import {getAcfLinkProps} from "@/utils";
+import {getAcfLinkProps, useConsoleLog} from "@/utils";
 type TBlog = {
   category?: string;
   featureImage?: string;
@@ -54,6 +54,8 @@ const BlogsBlock = (props: Props) => {
   const locale = router.locale;
   const [page, setPage] = useState(0);
   const max_page = Math.floor([...blockListing].length / PAGE_SIZE);
+
+  useConsoleLog("blog listing", blockListing);
 
   useEffect(() => {
     (async () => {
