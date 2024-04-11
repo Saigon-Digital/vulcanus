@@ -1,9 +1,12 @@
 import React, {ReactNode, useEffect, useRef, useState} from "react";
 import {TitleBlockFragment} from "@/__generated__/graphql";
-
-import {TitleShape} from "../Icons";
+import dynamic from "next/dynamic";
 import {motion} from "framer-motion";
 import clsx from "clsx";
+const TitleShape = dynamic(() =>
+  import("../Icons").then((mod) => mod.TitleShape)
+);
+const LazyImport = dynamic(() => import("../LazyImport"));
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
@@ -34,11 +37,13 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
           )}
           dangerouslySetInnerHTML={{__html: title || ""}}></motion.div>
         {haveShape && (
-          <TitleShape
-            h={200}
-            w={200}
-            className="absolute -right-[10px] top-1/2 hidden -translate-y-1/2 lg:block"
-          />
+          <LazyImport>
+            <TitleShape
+              h={200}
+              w={200}
+              className="absolute -right-[10px] top-1/2 hidden -translate-y-1/2 lg:block"
+            />
+          </LazyImport>
         )}
       </div>
     </section>

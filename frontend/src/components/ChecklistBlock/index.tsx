@@ -1,8 +1,12 @@
 import {ChecklistBlock as TCheckListBlock} from "@/__generated__/graphql";
 import React from "react";
 import Button from "../Button";
-import {CheckIcon} from "../Icons";
 import {getAcfLinkProps} from "@/utils";
+import dynamic from "next/dynamic";
+import LazyImport from "../LazyImport";
+const CheckIcon = dynamic(() =>
+  import("../Icons").then((mod) => mod.CheckIcon)
+);
 
 const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
   return (
@@ -40,7 +44,9 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
                   ${id === last && "border-b-transparent"}
                   `}>
                   <div className="w-10 flex-[40px]">
-                    <CheckIcon className="aspect-square h-6 w-6 flex-[1_60px]" />
+                    <LazyImport>
+                      <CheckIcon className="aspect-square h-6 w-6 flex-[1_60px]" />
+                    </LazyImport>
                   </div>
                   <p className="lg:text-lg">{ele?.item}</p>
                 </div>

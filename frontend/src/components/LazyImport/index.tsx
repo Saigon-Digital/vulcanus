@@ -2,9 +2,12 @@ import {PropsWithChildren, useEffect, useState} from "react";
 
 import {useRef} from "react";
 
-const ROOT_MARGIN = 150;
+const ROOT_MARGIN = 250;
 
-function LazyImport({children}: PropsWithChildren) {
+function LazyImport({
+  children,
+  containerClass,
+}: PropsWithChildren<{containerClass?: string}>) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [load, setLoad] = useState(false);
   useEffect(() => {
@@ -34,7 +37,7 @@ function LazyImport({children}: PropsWithChildren) {
 
   if (!load) return <div ref={ref}></div>;
 
-  return <div ref={ref}>{children}</div>;
+  return <>{children}</>;
 }
 
 export default LazyImport;

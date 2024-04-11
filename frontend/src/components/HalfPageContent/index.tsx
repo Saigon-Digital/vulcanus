@@ -7,6 +7,7 @@ import Image from "next/image";
 import parse from "html-react-parser";
 import {getAcfLinkProps} from "@/utils";
 import {TitleTextBlock_Fields} from "@/__generated__/graphql";
+import LazyImport from "../LazyImport";
 const ArrowRight = dynamic(() =>
   import("../Icons").then((mod) => mod.ArrowRight)
 );
@@ -50,7 +51,9 @@ const HalfPageContent: React.FC<TProps> = ({
           <div className="w-full md:w-1/2">
             {title && title?.length > 0 && (
               <h4 className="flex items-center gap-4 text-2xl font-bold leading-[33px]">
-                <ArrowRight w={26} h={24} className="ml-2 inline-block" />{" "}
+                <LazyImport>
+                  <ArrowRight w={26} h={24} className="ml-2 inline-block" />
+                </LazyImport>
                 {title}
               </h4>
             )}

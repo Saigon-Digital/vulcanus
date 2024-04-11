@@ -3,13 +3,15 @@ import Card from "../Card/index";
 import Image from "next/image";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
+import dynamic from "next/dynamic";
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
 import {ServiceComponent} from "@/__generated__/graphql";
-import Gear from "./images/gear.svg";
+
 import {languages} from "@/utils/language";
 import {useRouter} from "next/router";
-import {GearIcon} from "../Icons";
 import {motion} from "framer-motion";
+import LazyImport from "../LazyImport";
+const GearIcon = dynamic(() => import("../Icons").then((mod) => mod.GearIcon));
 type TService = {
   featureImage?: {image: string | StaticImport}[];
 } & ServiceComponent;
@@ -67,12 +69,14 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
             );
           })}
         <div className="col-span-1 col-start-2 row-start-1 hidden place-items-center items-end justify-center xl:flex">
-          <GearIcon
-            className="absolute left-[calc(25%-20px)] top-[180px] aspect-[394/217] w-4/5 scale-90 overflow-visible object-contain xl:static xl:w-auto"
-            w={394}
-            h={217}
-            // alt="gear"
-          />
+          <LazyImport containerClass="w-full aspect-[394/217] mt-auto">
+            <GearIcon
+              className="absolute left-[calc(25%-20px)] top-[180px] aspect-[394/217] w-4/5 scale-90 overflow-visible object-contain xl:static xl:w-auto"
+              w={394}
+              h={217}
+              // alt="gear"
+            />
+          </LazyImport>
         </div>
       </div>
       <div className="mt-6 grid h-full  grid-cols-1 gap-6 sm:grid-cols-2  lg:grid-cols-4 xl:min-h-[400px] ">

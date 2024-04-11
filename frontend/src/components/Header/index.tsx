@@ -88,6 +88,7 @@ const Header = (props: Props) => {
             </div>
           </div>
         </div>
+
         <HeaderDialog
           menuItems={props.menuItems}
           navIsOpen={navIsOpen}
