@@ -55,7 +55,7 @@ const Header = (props: Props) => {
             </Link>
 
             {!isMobile && (
-              <nav className=" items-center space-x-2 flex xl:space-x-4">
+              <nav className=" hidden items-center  space-x-2 lg:flex xl:space-x-4">
                 {props?.menuItems?.nodes?.map((item) => {
                   const isActive =
                     asPath !== "/" && item?.uri?.includes(asPath);
