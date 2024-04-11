@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import parse from "html-react-parser";
+
 import {useQuery} from "@apollo/client";
 import {LanguageCodeEnum} from "@/__generated__/graphql";
 import {getPageType} from "@/libs/graphql/utils";
@@ -15,40 +15,6 @@ type Props = {
 };
 
 const IntroduceBlock = (props: Props) => {
-  const [pages, setPages] = useState<any[]>([]);
-
-  // getPagesTypeAsync();
-  //   }, []);
-
-  //   const getPagesTypeAsync = async () => {
-  //     const {data} = await getPageType(props.language);
-  //     if (!data.pages) return;
-
-  //     let introducePages: any[] = [];
-  //     const nodes = data.pages?.nodes;
-  //     for (let index = 0; index < nodes.length; index++) {
-  //       const ele = nodes[index];
-  //       const {pageType} = ele;
-  //       //   console.log(pageType.nodes);
-  //       if (pageType.nodes.length > 0) {
-  //         if (
-  //           pageType?.nodes?.findIndex(
-  //             (ele: any) => ele.name === INTRODUCE_PAGE
-  //           ) !== -1
-  //         ) {
-  //           introducePages.push(ele);
-  //         }
-  //       }
-  //     }
-  //     // data.pages?.nodes?.forEach((ele: any) => {
-  //     //   //   console.log(ele);
-
-  //     //   return;
-  //     // });
-  //     // console.log(introducePages);
-
-  //     setPages(introducePages);
-  //   };
   return (
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
@@ -73,9 +39,11 @@ const IntroduceBlock = (props: Props) => {
             </ul>
           )} */}
         </div>
-        <div className="content col-span-full md:col-span-7 lg:col-span-5">
-          {props.content && parse(props.content || "")}
-        </div>
+        {props.content && (
+          <div
+            dangerouslySetInnerHTML={{__html: props.content}}
+            className="content col-span-full md:col-span-7 lg:col-span-5"></div>
+        )}
       </div>
     </section>
   );

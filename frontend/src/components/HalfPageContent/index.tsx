@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 // import {ArrowRight, ShapeLeftLarge} from "../Icons";
 import Shape from "./images/shape.png";
 import Image from "next/image";
-import parse from "html-react-parser";
+
 import {getAcfLinkProps} from "@/utils";
 import {TitleTextBlock_Fields} from "@/__generated__/graphql";
 import LazyImport from "../LazyImport";
@@ -62,18 +62,20 @@ const HalfPageContent: React.FC<TProps> = ({
             {content?.contents && (
               <>
                 {content.contentTitle && (
-                  <h4 className="[&>*>strong]:text-primary-blue-main [&>*]:text-2xl xl:[&>*]:text-3xl 2xl:[&>*]:text-[32px] 2xl:[&>*]:leading-[44px]">
-                    {content.contentTitle && parse(content.contentTitle)}
-                  </h4>
+                  <h4
+                    dangerouslySetInnerHTML={{__html: content.contentTitle}}
+                    className="[&>*>strong]:text-primary-blue-main [&>*]:text-2xl xl:[&>*]:text-3xl 2xl:[&>*]:text-[32px] 2xl:[&>*]:leading-[44px]"></h4>
                 )}
                 <div className="mt-6 flex flex-wrap justify-between xl:mt-8">
                   {content?.contents?.map((ele, id) => {
                     return (
-                      <div
-                        key={id}
-                        className="w-full text-lg font-light md:w-[calc(50%-10px)] ">
-                        {ele?.text && (parse(ele.text) as string)}
-                      </div>
+                      ele &&
+                      ele.text && (
+                        <div
+                          key={id}
+                          dangerouslySetInnerHTML={{__html: ele?.text}}
+                          className="w-full text-lg font-light md:w-[calc(50%-10px)] "></div>
+                      )
                     );
                   })}
                   {cta && (

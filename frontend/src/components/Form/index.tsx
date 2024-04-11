@@ -9,7 +9,7 @@ import {
 } from "@/__generated__/graphql";
 import React, {useEffect, useRef, useState} from "react";
 import {PhoneIcon, MailIcon, LocationIcon} from "../Icons";
-import parse from "html-react-parser";
+
 import Button from "../Button";
 import {useQuery, useMutation} from "@apollo/client";
 import {GET_FORM, SUBMIT_FORM} from "@/libs/graphql/utils";
@@ -163,13 +163,15 @@ const Form = ({contactInformation, form}: TForm) => {
             </p>
           </div>
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 lg:col-span-5">
-            <h2 className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]">
-              {form?.formTitle && parse(form.formTitle)}
-            </h2>
+            {form?.formTitle && (
+              <h2
+                dangerouslySetInnerHTML={{__html: form.formTitle}}
+                className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]"></h2>
+            )}
             {form?.copyrightText && (
-              <div className="[&>*>a]:text-primary-blue-main [&>*>a]:underline [&>*>a]:hover:text-primary-midBlue-main xl:[&>*]:text-lg xl:[&>*]:leading-[24px]">
-                {parse(form.copyrightText)}
-              </div>
+              <div
+                dangerouslySetInnerHTML={{__html: form.copyrightText}}
+                className="[&>*>a]:text-primary-blue-main [&>*>a]:underline [&>*>a]:hover:text-primary-midBlue-main xl:[&>*]:text-lg xl:[&>*]:leading-[24px]"></div>
             )}
             <hr className="h-[1px] w-full border-[0.5px]  border-b-white" />
             <form

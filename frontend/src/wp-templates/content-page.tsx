@@ -2,7 +2,7 @@ import {gql} from "@/__generated__";
 import {GetContentPageQuery, LanguageCodeEnum} from "@/__generated__/graphql";
 import IntroduceBlock from "@/components/IntroduceBlock";
 import {FaustTemplate} from "@faustwp/core";
-import parse from "html-react-parser";
+
 import Head from "next/head";
 import {useRouter} from "next/router";
 import React from "react";

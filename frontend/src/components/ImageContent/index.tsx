@@ -2,7 +2,7 @@ import {ImageContentBlock} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
 import {ImageShape} from "../Icons";
-import parse from "html-react-parser";
+
 import {motion} from "framer-motion";
 const ImageContent = ({
   image,
@@ -43,9 +43,11 @@ const ImageContent = ({
           <h3 className="text-4xl font-bold xl:text-5xl xl:leading-[67px]">
             {content?.title}
           </h3>
-          <div className="xl:[&>*>*]:text-xl [&>*>strong]:!text-primary-blue-main [&>*]:font-normal xl:[&>*]:text-xl [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 ">
-            {content?.description && parse(content.description)}
-          </div>
+          {content?.description && (
+            <div
+              dangerouslySetInnerHTML={{__html: content.description}}
+              className="xl:[&>*>*]:text-xl [&>*>strong]:!text-primary-blue-main [&>*]:font-normal xl:[&>*]:text-xl [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 "></div>
+          )}
           {content?.icons && content?.icons?.length > 0 && (
             <div className="flex  justify-center gap-10 2xl:gap-20">
               {content.icons.map((ele, index) => {
