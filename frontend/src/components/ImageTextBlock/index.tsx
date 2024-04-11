@@ -1,6 +1,9 @@
 import React from "react";
 import {ImageTextBlock} from "@/__generated__/graphql";
-import Image from "next/image";
+import LazyImport from "../LazyImport";
+import dynamic from "next/dynamic";
+const Image = dynamic(() => import("next/image"));
+
 const ImageText: React.FC<ImageTextBlock> = ({
   textRepeater,
   rightImage,
@@ -16,6 +19,7 @@ const ImageText: React.FC<ImageTextBlock> = ({
           <Image
             src={leftImage?.node?.sourceUrl || ""}
             fill
+            sizes="(max-width: 768px) 80vw, (max-width: 800px) 40vw"
             alt="left image"
             className="object-cover"
           />
@@ -24,6 +28,7 @@ const ImageText: React.FC<ImageTextBlock> = ({
           <Image
             src={rightImage?.node?.sourceUrl || ""}
             fill
+            sizes="(max-width: 768px) 80vw, (max-width: 800px) 40vw"
             className="object-cover"
             alt="left image"
           />

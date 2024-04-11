@@ -15,7 +15,6 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
       h: 800,
       priority: true,
     }) || "";
-  useConsoleLog("image Style", imgStyle);
 
   return (
     <div className="sm:container-fluid">
@@ -36,12 +35,16 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
           <div className="relative z-10 mx-auto max-w-[85%] text-secondary-offWhite-white lg:col-span-full lg:col-start-2 lg:mx-0 lg:max-w-[868px]">
-            <h1 className="relative z-10 break-words font-extrabold uppercase leading-[140%] tracking-tight min-max-[40_64]">
-              {props?.title}
-            </h1>
-            <p className="font-semibold leading-[140%] tracking-tight min-max-[18_32]">
-              {props?.description}
-            </p>
+            {props.title && (
+              <h1 className="relative z-10 break-words font-extrabold uppercase leading-[140%] tracking-tight min-max-[40_64]">
+                {props?.title}
+              </h1>
+            )}
+            {props.description && (
+              <p className="font-semibold leading-[140%] tracking-tight min-max-[18_32]">
+                {props?.description}
+              </p>
+            )}
             {props?.button?.url && props?.button?.title ? (
               <Button className="mt-10" {...getAcfLinkProps(props?.button)}>
                 {props?.button?.title}
