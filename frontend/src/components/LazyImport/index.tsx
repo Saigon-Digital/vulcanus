@@ -39,7 +39,7 @@ function LazyImport({
 
   return (
     <>
-      <Suspense fallback={<>loading</>}>{children}</Suspense>;
+      <Suspense fallback={<>loading</>}>{children}</Suspense>
     </>
   );
 }
