@@ -72,7 +72,9 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                   <h3 className="heading">
                     {id + 1}. {ele?.title}
                   </h3>
-                  {ele?.content && parse(ele.content || "")}
+                  {ele.content && (
+                    <div dangerouslySetInnerHTML={{__html: ele.content}}></div>
+                  )}
                 </div>
               );
             })}
