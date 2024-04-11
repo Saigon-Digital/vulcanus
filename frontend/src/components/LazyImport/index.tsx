@@ -35,12 +35,12 @@ function LazyImport({
     };
   }, [ref]);
 
-  if (!load) return <div ref={ref}></div>;
-
   return (
-    <>
-      <Suspense fallback={<>loading</>}>{children}</Suspense>
-    </>
+    <Suspense fallback={<>loading</>}>
+      <div className={containerClass} ref={ref}>
+        {load && children}
+      </div>
+    </Suspense>
   );
 }
 
