@@ -36,6 +36,7 @@ const LanguageToggle = (props: Props) => {
   const {localeData} = useLocaleContext();
   const router = useRouter();
   console.log(localeData);
+  console.log(localeData);
 
   useConsoleLog("locale data ", localeData);
 
@@ -46,7 +47,7 @@ const LanguageToggle = (props: Props) => {
       }
       //@ts-ignore
       let href = locale ? localeData[locale] : "";
-      router.push(href);
+      router.push(href, href, {locale: locale.toLocaleLowerCase()});
     },
     [localeData, router]
   );

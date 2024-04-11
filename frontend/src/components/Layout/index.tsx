@@ -9,6 +9,7 @@ import {useQuery} from "@apollo/client";
 import {useRouter} from "next/router";
 import {motion} from "framer-motion";
 import Header from "../Header";
+import LazyImport from "../LazyImport";
 const Footer = dynamic(() => import("../Footer"));
 const overpass = Overpass({
   subsets: ["latin"],
@@ -52,9 +53,13 @@ const Layout = ({children, headerMenu, footerMenu, seo}: Props) => {
         }}>
         {children}
       </motion.main>
-      <Footer
-        menuItems={footerMenu?.menuItems || fallbackData.footerMenu?.menuItems}
-      />
+      <LazyImport>
+        <Footer
+          menuItems={
+            footerMenu?.menuItems || fallbackData.footerMenu?.menuItems
+          }
+        />
+      </LazyImport>
     </div>
   );
 };

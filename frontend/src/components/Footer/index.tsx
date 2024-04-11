@@ -1,16 +1,24 @@
 import {GetFooterButtonQuery, MenuItemsQuery} from "@/__generated__/graphql";
 import Image from "next/image";
-import React, {useLayoutEffect, useState} from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Link from "next/link";
 import {languages} from "@/utils/language";
 import {useRouter} from "next/router";
-import {motion} from "framer-motion";
+import {motion, useScroll} from "framer-motion";
 import {getFooterButtonLink} from "@/libs/graphql/utils";
-import {useConsoleLog} from "@/utils";
+import clsx from "clsx";
 // import {flatListToHierarchical} from "@faustwp/core";
 type Props = {
   menuItems: MenuItemsQuery["menuItems"];
 };
+
+const ScrollMargin = 500;
 
 const Footer = (props: Props) => {
   const hierarchicalList = props.menuItems?.nodes.filter((ele: any) => {
@@ -22,31 +30,68 @@ const Footer = (props: Props) => {
 
   const router = useRouter();
 
-  useLayoutEffect(() => {
-    (async () => {
-      const {data} = await getFooterButtonLink();
-      setButtonLink(data.contactPage);
-    })();
+  const [initialHeight, setInitialHeight] = useState<number | null>(null);
+  const [rectTop, setRectTop] = useState<number | null>();
+  const ref = useRef<HTMLDivElement>(null);
+
+  // console.log("scroll", scrollY, scrollYProgress);
+  const containerRef = useRef(null);
+  const ratio = useMemo(() => {
+    if (initialHeight && rectTop)
+      return ((initialHeight - rectTop) * 100) / ScrollMargin;
+  }, [initialHeight, rectTop]);
+
+  useEffect(() => {
+    if (!buttonLink) {
+      (async () => {
+        const {data} = await getFooterButtonLink();
+        setButtonLink(data.contactPage);
+      })();
+    }
+    const callback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((ele) => {
+        const calcTop = () => {
+          const rect = ref.current?.getBoundingClientRect();
+          const top = rect ? rect.top : 0;
+          setRectTop(top);
+        };
+
+        if (ele.isIntersecting) {
+          let height = ele.boundingClientRect.top;
+
+          setInitialHeight(height);
+          document.addEventListener("scroll", calcTop);
+        } else {
+          document.removeEventListener("scroll", calcTop);
+        }
+      });
+    };
+    const observer = new IntersectionObserver(callback, {
+      threshold: 1,
+      rootMargin: "250px",
+    });
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
   }, []);
+
   if (!hierarchicalList) return null;
 
   return (
-    <footer className="pt-20 sm:container-fluid">
+    <footer ref={containerRef} className="pt-20 sm:container-fluid">
       <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
         <motion.h3
-          onViewportEnter={(entry) => {
-            console.log(entry);
-
-            if (entry?.target.classList.contains("footer-text")) {
-              entry.target.classList.add("active");
-            }
-          }}
-          onViewportLeave={(entry) => {
-            if (entry?.target.classList.contains("footer-text")) {
-              entry.target.classList.remove("active");
-            }
-          }}
-          className="footer-text  cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] "
+          ref={ref}
+          className={clsx(
+            "footer-text  cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] ",
+            ratio &&
+              `scroll-${
+                ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
+              }`
+          )}
           dangerouslySetInnerHTML={{
             __html: languages(router.locale)?.letStart || "",
           }}></motion.h3>
@@ -65,9 +110,9 @@ const Footer = (props: Props) => {
             fill="none">
             <rect width={158} height={158} rx={79} fill="#E5F5FC" />
             <motion.path
-              style={{x: -6, y: 6}}
+              style={{x: -10, y: 10}}
               // initial={{x: -12, y: 12}}
-              whileInView={{x: 12, y: -12}}
+              whileInView={{x: 6, y: -6}}
               transition={{duration: 0.4, delay: 0.3, type: "just"}}
               className="transition-all duration-300 "
               d="M67.29 51.7309C67.29 54.1562 69.2389 56.0619 71.621 56.0619H95.8312L48.6667 103.226C46.9776 104.915 46.9776 107.644 48.6667 109.333C50.3558 111.022 53.0843 111.022 54.7734 109.333L101.938 62.1686V86.3788C101.938 88.7609 103.887 90.7098 106.269 90.7098C108.651 90.7098 110.6 88.7609 110.6 86.3788V51.7309C110.6 49.3488 108.651 47.3999 106.269 47.3999H71.621C69.2389 47.3999 67.29 49.3488 67.29 51.7309Z"
