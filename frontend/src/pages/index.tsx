@@ -7,12 +7,8 @@ export default function Page(props: WordPressTemplateProps) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-  const {headerMenu, footerMenu} = await getGlobalSiteData(ctx?.locale);
+  // const {headerMenu, footerMenu} = await getGlobalSiteData(ctx?.locale);
   return getWordPressProps({
     ctx,
-    props: {
-      headerMenu,
-      footerMenu,
-    },
   });
 };

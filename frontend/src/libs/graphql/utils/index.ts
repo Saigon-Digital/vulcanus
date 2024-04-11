@@ -4,8 +4,6 @@ import {gql} from "@/__generated__";
 import {
   LanguageCodeFilterEnum,
   MenuLocationEnum,
-  LanguageCodeEnum,
-  PostFragmentFragment,
 } from "@/__generated__/graphql";
 import {createApolloClient} from "@faustwp/core/dist/cjs/client";
 // import { LanguageCodeEnum } from "@/__generated__/graphql";

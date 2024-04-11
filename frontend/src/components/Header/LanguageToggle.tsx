@@ -19,7 +19,7 @@ const LanguageButton = ({
       disabled={disabled}
       aria-disabled={disabled}
       className={clsx(
-        "rounded-full px-[14.7px] pb-[7.65px] pt-[9px] text-center text-[18px] font-semibold uppercase leading-[140%]",
+        "rounded-full px-2 pb-[7.65px] pt-[9px] text-center text-base font-semibold uppercase leading-[140%] xl:px-[14.7px] xl:text-[18px]",
         {
           "bg-primary-blue-main text-secondary-offWhite-white": isActive,
           "text-primary-blue-main": !isActive,
