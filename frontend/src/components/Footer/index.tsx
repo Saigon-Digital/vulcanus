@@ -86,7 +86,7 @@ const Footer = (props: Props) => {
         <motion.h3
           ref={ref}
           className={clsx(
-            "footer-text  cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[100px] ",
+            "footer-text  cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[67px] 2xl:leading-[87px] ",
             ratio &&
               `scroll-${
                 ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0

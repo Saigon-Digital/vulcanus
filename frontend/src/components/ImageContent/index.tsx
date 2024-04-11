@@ -1,7 +1,6 @@
 import {ImageContentBlock} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
-import {ImageShape} from "../Icons";
 
 import {motion} from "framer-motion";
 const ImageContent = ({
@@ -18,7 +17,11 @@ const ImageContent = ({
         <div
           style={{height: "fit-content"}}
           className="relative w-full rounded-[5px] border border-primary-blue-main p-4 lg:w-1/2">
-          <ImageShape
+          <Image
+            src="/shapes/imageShape.png"
+            height={155}
+            width={47}
+            alt="image shape"
             className={`absolute  ${
               reverse ? "-left-[45px] rotate-180" : "-right-[45px]"
             } top-5 hidden w-[45px] lg:block`}

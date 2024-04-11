@@ -11,9 +11,7 @@ import LazyImport from "../LazyImport";
 const ArrowRight = dynamic(() =>
   import("../Icons").then((mod) => mod.ArrowRight)
 );
-const ShapeLeftLarge = dynamic(() =>
-  import("../Icons").then((mod) => mod.ShapeLeftLarge)
-);
+
 // import Button from "../Button";
 type TProps = {
   extraGraphic?: ReactNode;

@@ -11,6 +11,7 @@ import {ApolloProvider} from "@apollo/client";
 import {client} from "@/libs/graphql/utils";
 import {LocaleContextProvider} from "@/context/LocaleContext";
 import {AnimatePresence} from "framer-motion";
+
 const Layout = dynamic(() => import("@/components/Layout"));
 
 export default function App({Component, pageProps}: AppProps) {

@@ -1,4 +1,4 @@
-import {PropsWithChildren, useEffect, useState} from "react";
+import {PropsWithChildren, Suspense, useEffect, useState} from "react";
 
 import {useRef} from "react";
 
@@ -37,7 +37,11 @@ function LazyImport({
 
   if (!load) return <div ref={ref}></div>;
 
-  return <>{children}</>;
+  return (
+    <>
+      <Suspense fallback={<>loading</>}>{children}</Suspense>;
+    </>
+  );
 }
 
 export default LazyImport;
