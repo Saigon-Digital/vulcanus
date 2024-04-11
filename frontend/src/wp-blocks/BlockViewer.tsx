@@ -24,20 +24,7 @@ function BlockViewer({dynamicBlocks, customRenderers}: BlockViewerProps) {
         const customRenderer = customRenderers?.get(block.__typename);
         const Component = blocks?.get(block.__typename);
 
-        return index > 2 ? (
-          <BlockWrapper
-            key={`${block.__typename}_${index}`}
-            data-block-type={block?.__typename}
-            blockSettings={block?.blockSettings}>
-            {customRenderer ? (
-              customRenderer.render(block)
-            ) : Component ? (
-              <LazyImport>
-                <Component {...block} />
-              </LazyImport>
-            ) : null}
-          </BlockWrapper>
-        ) : (
+        return (
           <BlockWrapper
             key={`${block.__typename}_${index}`}
             data-block-type={block?.__typename}
