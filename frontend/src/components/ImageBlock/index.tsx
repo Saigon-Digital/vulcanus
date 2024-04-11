@@ -3,6 +3,7 @@ import React from "react";
 import {type ImageBlock} from "@/__generated__/graphql";
 import useImageStyle from "@/hooks/useImageCss";
 import {useConsoleLog} from "@/utils";
+import LazyImport from "../LazyImport";
 
 const ImageBlock: React.FC<
   ImageBlock & {
@@ -18,7 +19,7 @@ const ImageBlock: React.FC<
     h: props.height,
     alt: props.image?.node.altText || "Image Block image",
   });
-  useConsoleLog("Image Block", props.image);
+
   return (
     <div
       style={{backgroundImage: imageStyle}}

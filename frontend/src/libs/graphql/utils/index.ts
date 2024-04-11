@@ -1,22 +1,13 @@
 import {gql} from "@/__generated__";
 // import {gql} from "@apollo/client";
-
+import siteData from "../../../data/site_data.json"
 import {
   LanguageCodeFilterEnum,
   MenuLocationEnum,
 } from "@/__generated__/graphql";
 import {createApolloClient} from "@faustwp/core/dist/cjs/client";
 // import { LanguageCodeEnum } from "@/__generated__/graphql";
-const menuLocations = {
-  de: {
-    header: MenuLocationEnum.Header,
-    footer: MenuLocationEnum.Footer,
-  },
-  en: {
-    header: MenuLocationEnum.HeaderEn,
-    footer: MenuLocationEnum.FooterEn,
-  },
-};
+
 
 export const client = createApolloClient();
 
@@ -40,36 +31,7 @@ export const getFooterButtonLink = async () => {
   });
 };
 
-async function getMenuItems(location: MenuLocationEnum) {
-  return await client.query({
-    query: gql(`
-            query MenuItems($location: MenuLocationEnum!) {
-              
-              menuItems(where: { location: $location }) {
-                nodes {
-                  uri
-                  label
-                  title
-                  parentId
-                  id
-                  target
-                  childItems {
-                    nodes {
-                      title
-                      uri
-                      label
-                    }
-                  }
-                }
-              }
-            }
-          `),
-    variables: {
-      location,
-    },
-  });
-}
-
+ 
 export const GET_MENUS = gql(`
   query MenuItems($location: MenuLocationEnum!) {
     menuItems(where: {location: $location}) {
@@ -313,13 +275,4 @@ export async function getAllPost() {
   });
 }
 
-export async function getGlobalSiteData(locale: string | undefined) {
-  const menuLocation = menuLocations[(locale as "de" | "en") || "de"];
-  const headerMenu = await getMenuItems(menuLocation.header);
-  const footerMenu = await getMenuItems(menuLocation.footer);
 
-  return {
-    headerMenu: headerMenu.data,
-    footerMenu: footerMenu.data,
-  };
-}

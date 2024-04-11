@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import dynamic from "next/dynamic";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
+import { TSiteData } from "../Layout";
 
 const Link = dynamic(() => import("next/link"));
 const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"));
@@ -12,7 +13,7 @@ const LanguageToggle = dynamic(() => import("./LanguageToggle"));
 const HeaderDialog = dynamic(() => import("./HeaderDialog"));
 
 type Props = {
-  menuItems: MenuItemsQuery["menuItems"];
+  menu: TSiteData["menus"];
 };
 
 const Header = (props: Props) => {
@@ -38,7 +39,8 @@ const Header = (props: Props) => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-
+ 
+  
   return (
     <>
       <header className=" sticky top-0 z-[100] py-[var(--header-py)]">
@@ -56,7 +58,8 @@ const Header = (props: Props) => {
 
             {!isMobile && (
               <nav className=" hidden items-center  space-x-2 lg:flex xl:space-x-4">
-                {props?.menuItems?.nodes?.map((item) => {
+                {props.menu && props?.menu.menuItems?.nodes?.map((item) => {
+                  
                   const isActive =
                     asPath !== "/" && item?.uri?.includes(asPath);
                   return (
@@ -97,7 +100,7 @@ const Header = (props: Props) => {
         </div>
         {isMobile && (
           <HeaderDialog
-            menuItems={props.menuItems}
+            menu={props.menu}
             navIsOpen={navIsOpen}
             setNavIsOpen={setNavIsOpen}
           />

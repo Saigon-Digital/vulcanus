@@ -31,8 +31,7 @@ export default function App({Component, pageProps}: AppProps) {
           }}>
           <AnimatePresence initial={false} mode="wait">
             <Layout
-              headerMenu={pageProps?.headerMenu}
-              footerMenu={pageProps?.footerMenu}
+              
               key={`${router.asPath}-${router.locale}`}>
               {/* > */}
               <Component
