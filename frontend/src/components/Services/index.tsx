@@ -94,6 +94,8 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 className="relative h-full w-full">
                 <Image
                   fill
+                  sizes="(max-width: 768px) 80vw, (max-width: 800px) 50vw"
+                  quality={70}
                   src={img.image}
                   alt="feature image"
                   className="object-cover"
