@@ -11,6 +11,7 @@ import {useRouter} from "next/router";
 import {languages} from "@/utils/language";
 import {getAcfLinkProps, useConsoleLog} from "@/utils";
 import dynamic from "next/dynamic";
+import LazyImport from "../LazyImport";
 const ButtonNext = dynamic(
   () => import("../Icons").then((mod) => mod.ButtonNext),
   {loading: () => <></>}
@@ -22,32 +23,7 @@ type TBlog = {
   description?: string;
   link?: string;
 };
-const DEFAULT_BLOG: TBlog[] = [
-  {
-    category: "Manufacturing",
-    featureImage: "/blogs/blog-1.png",
-    title: "Exploring the CNC Capabilities of Vulcanus Company",
-    link: "#",
-    description:
-      "Discover the technological prowess behind Vulcanus Company's CNC manufacturing. Learn about their state-of-the-art equipment, their capacity for large-scale productions, and the diverse materials they expertly handle.",
-  },
-  {
-    category: "Manufacturing",
-    featureImage: "/blogs/blog-1.png",
-    title: "Exploring the CNC Capabilities of Vulcanus Company",
-    link: "#",
-    description:
-      "Discover the technological prowess behind Vulcanus Company's CNC manufacturing. Learn about their state-of-the-art equipment, their capacity for large-scale productions, and the diverse materials they expertly handle.",
-  },
-  {
-    category: "Manufacturing",
-    featureImage: "`/blogs/blog-1.png`",
-    title: "Exploring the CNC Capabilities of Vulcanus Company",
-    link: "#",
-    description:
-      "Discover the technological prowess behind Vulcanus Company's CNC manufacturing. Learn about their state-of-the-art equipment, their capacity for large-scale productions, and the diverse materials they expertly handle.",
-  },
-];
+
 interface Props extends BlogsBlockFragment {}
 const PAGE_SIZE = 3;
 const BlogsBlock = (props: Props) => {
@@ -128,7 +104,9 @@ const BlogsBlock = (props: Props) => {
                         href={`/blog/${ele.slug}` as string}
                         className="group mt-5 text-primary-blue-main">
                         {languages(locale)?.readMore}
-                        <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
+                        <LazyImport>
+                          <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
+                        </LazyImport>
                       </Link>
                     </div>
                   </div>

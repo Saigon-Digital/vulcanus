@@ -2,20 +2,25 @@ import React from "react";
 
 import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
-import Image from "next/image";
 import {motion} from "framer-motion";
+import LazyImport from "../LazyImport";
+import dynamic from "next/dynamic";
+const Image = dynamic(() => import("next/image"));
+
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   return (
     <div className="relative py-20 lg:pb-28">
       <div className="container-fluid grid grid-cols-12 gap-5 lg:gap-6">
         <div className="relative col-span-full flex justify-start text-left md:col-span-3 md:justify-center">
-          <Image
-            src={"/shapes/left-shape.svg"}
-            width={47}
-            height={155}
-            alt="shape"
-            className="absolute -left-[25px] -top-5 hidden  md:block"
-          />
+          <LazyImport>
+            <Image
+              src={"/shapes/left-shape.svg"}
+              width={47}
+              height={155}
+              alt="shape"
+              className="absolute -left-[25px] -top-5 hidden  md:block"
+            />
+          </LazyImport>
           <h2 className="w-4/5 max-w-[279px] text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-3/4  2xl:text-5xl 2xl:leading-[67px]">
             {title}
           </h2>
