@@ -24,7 +24,7 @@ function BlockViewer({dynamicBlocks, customRenderers}: BlockViewerProps) {
         const customRenderer = customRenderers?.get(block.__typename);
         const Component = blocks?.get(block.__typename);
 
-        return index > 1 ? (
+        return index > 2 ? (
           <BlockWrapper
             key={`${block.__typename}_${index}`}
             data-block-type={block?.__typename}

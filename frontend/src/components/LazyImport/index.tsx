@@ -32,9 +32,9 @@ function LazyImport({children}: PropsWithChildren) {
     };
   }, [ref]);
 
-  // console.log(load);
+  if (!load) return <div ref={ref}></div>;
 
-  return <div ref={ref}>{load ? children : null}</div>;
+  return <div ref={ref}>{children}</div>;
 }
 
 export default LazyImport;
