@@ -1,6 +1,6 @@
 import {PrivacyPolicyFragment} from "@/__generated__/graphql";
 import * as React from "react";
-import parse from "html-react-parser";
+
 import clsx from "clsx";
 import {useState} from "react";
 import {languages} from "@/utils/language";
@@ -54,7 +54,9 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
             <h2 className="mb-5 !text-2xl font-semibold !leading-[30px] text-secondary-yellow ">
               {languages(router.locale)?.introduce}
             </h2>
-            {props.introduction && parse(props.introduction)}
+            {props.introduction && (
+              <div dangerouslySetInnerHTML={{__html: props.introduction}}></div>
+            )}
           </div>
           {props.terms &&
             props.terms.map((ele: any, id: number) => {

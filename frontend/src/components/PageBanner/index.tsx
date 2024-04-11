@@ -1,6 +1,5 @@
 import React from "react";
 import {PageBannerFragment} from "@/__generated__/graphql";
-import parse from "html-react-parser";
 
 import useImageStyle from "@/hooks/useImageCss";
 const PageBanner: React.FC<PageBannerFragment> = ({
@@ -25,9 +24,9 @@ const PageBanner: React.FC<PageBannerFragment> = ({
           </h1>
         )}
         {description && (
-          <div className="w-full text-lg font-[300] md:w-1/2 md:text-xl [&>*>strong]:font-medium xl:[&>*]:text-xl">
-            {description && parse(description)}
-          </div>
+          <div
+            dangerouslySetInnerHTML={{__html: description}}
+            className="w-full text-lg font-[300] md:w-1/2 md:text-xl [&>*>strong]:font-medium xl:[&>*]:text-xl"></div>
         )}
       </div>
       {image && (
