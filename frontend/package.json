@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm run generate && concurrently \"faust dev\" \"pnpm run watch-codegen\"",
+    "dev": "pnpm run generate-data && pnpm run generate && concurrently \"faust dev\" \"pnpm run watch-codegen\"",
     "dev:faust": "faust dev",
+    "generate-data": "ts-node ./src/generateData.ts",
     "analyze": "cross-env ANALYZE=true pnpm build",
-    "build": "pnpm run generate && pnpm run codegen && faust build",
+    "build": "pnpm run generate && pnpm run codegen && pnpm run generate-data && faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",
     "lint": "next lint",
@@ -60,6 +61,8 @@
     "lint-staged": "^15.1.0",
     "postcss": "^8",
     "prettier": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "tailwindcss": "3.3.6",
     "typescript": "^5"

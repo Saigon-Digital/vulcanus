@@ -5,14 +5,15 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import CloseIcon from "public/icons/x-close.svg";
 import LanguageToggle from "./LanguageToggle";
+import { TSiteData } from "../Layout";
 
 type Props = {
-  menuItems: MenuItemsQuery["menuItems"];
+  menu: TSiteData["menus"];
   navIsOpen: boolean;
   setNavIsOpen: (navIsOpen: boolean) => void;
 };
 
-const HeaderDialog = ({menuItems, navIsOpen, setNavIsOpen}: Props) => {
+const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
   const {asPath, locale} = useRouter();
   return (
     <div
@@ -48,7 +49,7 @@ const HeaderDialog = ({menuItems, navIsOpen, setNavIsOpen}: Props) => {
 
       <nav className="flex grow flex-col justify-between gap-y-10 overflow-y-auto py-[15%]">
         <ul className="flex flex-col items-center space-y-4">
-          {menuItems?.nodes?.map((item) => {
+          {menu && menu?.menuItems.nodes.map((item) => {
             const isActive = asPath !== "/" && item?.uri?.includes(asPath);
             return (
               <li key={item?.uri}>

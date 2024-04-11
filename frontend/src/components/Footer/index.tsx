@@ -13,15 +13,16 @@ import {useRouter} from "next/router";
 import {motion, useScroll} from "framer-motion";
 import {getFooterButtonLink} from "@/libs/graphql/utils";
 import clsx from "clsx";
+import { TSiteData } from "../Layout";
 // import {flatListToHierarchical} from "@faustwp/core";
 type Props = {
-  menuItems: MenuItemsQuery["menuItems"];
+  menu: TSiteData["menus"]
 };
 
 const ScrollMargin = 500;
 
 const Footer = (props: Props) => {
-  const hierarchicalList = props.menuItems?.nodes.filter((ele: any) => {
+  const hierarchicalList = props.menu?.menuItems?.nodes.filter((ele: any) => {
     const {childItems} = ele;
     return childItems.nodes?.length > 0;
   });

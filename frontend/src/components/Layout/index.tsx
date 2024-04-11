@@ -2,14 +2,15 @@ import clsx from "clsx";
 import {PropsWithChildren, useEffect, useState} from "react";
 import dynamic from "next/dynamic";
 import {Overpass} from "next/font/google";
-import {MenuItemsQuery} from "@/__generated__/graphql";
-import {GET_MENUS, getGlobalSiteData} from "@/libs/graphql/utils";
+import {MenuItemsQuery, MenuLocationEnum} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
 import {motion} from "framer-motion";
 import Header from "../Header";
 import LazyImport from "../LazyImport";
-
+import siteData from "../../data/site_data.json"
 const Footer = dynamic(() => import("../Footer"));
+
+
 const overpass = Overpass({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -17,35 +18,56 @@ const overpass = Overpass({
   preload: true,
 });
 
-type Props = PropsWithChildren & {
-  headerMenu: MenuItemsQuery;
-  footerMenu: MenuItemsQuery;
-};
-type fallBackData = {
-  headerMenu?: MenuItemsQuery;
-  footerMenu?: MenuItemsQuery;
-};
-const Layout = ({children, headerMenu, footerMenu}: Props) => {
-  let [fallbackData, setFallbackData] = useState<fallBackData>({});
-  const router = useRouter();
-  useEffect(() => {
-    if (!headerMenu || !footerMenu) {
-      getFallbackData();
-    }
-  }, []);
-  const getFallbackData = async () => {
-    const {headerMenu, footerMenu} = await getGlobalSiteData(router.locale);
+export type TSiteData = {
+  menus?: typeof siteData["menus"]["nodes"][number];
+  // footerMenu?: typeof siteData["menus"];
 
-    setFallbackData({headerMenu: headerMenu, footerMenu: footerMenu});
+};
+
+
+const menuLocations = {
+  de: {
+    header: MenuLocationEnum.Header,
+    footer: MenuLocationEnum.Footer,
+  },
+  en: {
+    header: MenuLocationEnum.HeaderEn,
+    footer: MenuLocationEnum.FooterEn,
+  },
+};
+
+function getMenu(location: MenuLocationEnum) {
+  const menu = siteData.menus.nodes.find(menu => menu.locations[0] === location )
+  return menu ;
+}
+
+
+ function getGlobalSiteData(locale: string | undefined) {
+  const menuLocation = menuLocations[(locale as "de" | "en") || "de"];
+  const headerMenu =  getMenu(menuLocation.header);
+  const footerMenu =  getMenu(menuLocation.footer);
+
+  return {
+    headerMenu: headerMenu,
+    footerMenu: footerMenu,
   };
+}
+
+
+const Layout = ({children}: PropsWithChildren) => {
+
+  
+  const router = useRouter();
+
+  const {headerMenu,footerMenu} = getGlobalSiteData(router.locale)
+  
+  
 
   return (
     <>
       <div className={clsx(overpass.variable, "overflow-x-clip")}>
         <Header
-          menuItems={
-            headerMenu?.menuItems || fallbackData.headerMenu?.menuItems
-          }
+          menu={headerMenu}
         />
         <motion.main
           initial={{opacity: 0, scale: 1}}
@@ -55,13 +77,11 @@ const Layout = ({children, headerMenu, footerMenu}: Props) => {
           }}>
           {children}
         </motion.main>
-        <LazyImport>
+     
           <Footer
-            menuItems={
-              footerMenu?.menuItems || fallbackData.footerMenu?.menuItems
-            }
+            menu={footerMenu}
           />
-        </LazyImport>
+       
       </div>
     </>
   );
