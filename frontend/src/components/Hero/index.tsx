@@ -19,16 +19,12 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
 
   return (
     <div className="sm:container-fluid">
-      <div
-        // style={{
-        //   backgroundImage:
-        //     `url(${props.backgroundImage?.node?.sourceUrl}` || "",
-        // }}
-        className="parallax relative flex min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px]">
+      <div className="parallax relative flex min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px]">
         <div className="absolute inset-0 z-[5] h-full w-full bg-black/20"></div>
         <div className="absolute -top-[26px] left-0  z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:-top-[28px] 3xl:w-[100px] ">
           <Image
             fill
+            sizes="33vw"
             src="/shapes/hero-shape.png"
             alt="Hero Shape"
             className="object-contain object-center"
@@ -36,20 +32,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         </div>
         <div
           style={{backgroundImage: imgStyle}}
-          className="parallax absolute  h-full w-full">
-          {/* <Parallax
-          to={40}
-          targetClass="min-h-[120vh]"
-          className=" absolute min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] w-full">
-          <Image
-            fill
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAECAYAAAC3OK7NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxMAAAsTAQCanBgAAACjSURBVBhXHcpNC8FgAMDx/4O8rBS1HBTKjbgpVw6+jM+nfAEX4sJyELUaY83mvT1etodcf/3E2HypdEJxfoLhK+o5cIOInWUxNGyihEayUEUs7KeKx8Q/Ov6dyXSOeQlxUnm2P6yWK4T+ATEwLmo5G+Hd3oQZHfmS8AnwfImSJ0qa5O5YCL3WUw93TavTI6uXeRxWdNsNNkGRfvNK5r3ndLzyBV2qUIUDrZ3fAAAAAElFTkSuQmCC"
-            src={props?.backgroundImage?.node?.sourceUrl || "/images/hero.jpg"}
-            alt={props?.backgroundImage?.node?.altText || "Hero Banner"}
-            className="parallax z-0 object-cover object-center"></Image>
-        </Parallax> */}
-        </div>
+          className="parallax absolute  h-full w-full"></div>
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
           <div className="relative z-10 mx-auto max-w-[85%] text-secondary-offWhite-white lg:col-span-full lg:col-start-2 lg:mx-0 lg:max-w-[868px]">
