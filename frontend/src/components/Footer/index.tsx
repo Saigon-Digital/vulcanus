@@ -9,12 +9,13 @@ import React, {
 } from "react";
 import Link from "next/link";
 import {languages} from "@/utils/language";
-import {useRouter} from "next/router";
+
 import {getFooterButtonLink} from "@/libs/graphql/utils";
 import clsx from "clsx";
 import {TSiteData} from "../Layout";
 import dynamic from "next/dynamic";
 import {m} from "framer-motion";
+import {useLocaleContext} from "@/context/LocaleContext";
 
 type Props = {
   menu: TSiteData["menus"];
@@ -30,7 +31,7 @@ const Footer = (props: Props) => {
   let [buttonLink, setButtonLink] =
     useState<GetFooterButtonQuery["contactPage"]>();
 
-  const router = useRouter();
+  const {locale} = useLocaleContext();
 
   const [initialHeight, setInitialHeight] = useState<number | null>(null);
   const [rectTop, setRectTop] = useState<number | null>();
@@ -96,11 +97,11 @@ const Footer = (props: Props) => {
               }`
           )}
           dangerouslySetInnerHTML={{
-            __html: languages(router.locale)?.letStart || "",
+            __html: languages(locale)?.letStart || "",
           }}></m.h3>
         <Link
           href={
-            router.locale?.toLocaleLowerCase() === "en"
+            locale?.toLocaleLowerCase() === "en"
               ? buttonLink?.ENLink?.uri || ""
               : buttonLink?.DELink?.uri || ""
           }>
@@ -136,7 +137,7 @@ const Footer = (props: Props) => {
 
           <div className="col-span-full flex flex-col justify-between p-8 !pr-0 md:col-span-11 md:p-16 lg:flex-row">
             <div className="flex w-4/5 max-w-[458px] flex-col gap-6 lg:w-1/2 lg:gap-16  xl:flex-[440px] xl:gap-10">
-              <Link href={"/"} locale={router.locale}>
+              <Link href={"/"} locale={locale}>
                 <Image src="/logo.svg" width={458} height={137} alt="logo" />
               </Link>
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
@@ -207,13 +208,13 @@ const Footer = (props: Props) => {
         </div>
         <div className="flex w-full flex-col justify-between gap-y-6 py-4 sm:flex-row">
           <p>
-            {languages(router.locale)?.copyRight.replace(
+            {languages(locale)?.copyRight.replace(
               "$year",
               String(new Date().getFullYear())
             )}
           </p>
           <p>
-            {languages(router.locale)?.poweredBy}{" "}
+            {languages(locale)?.poweredBy}{" "}
             <Link
               className="hover:text-primary-blue-main"
               target="_blank"

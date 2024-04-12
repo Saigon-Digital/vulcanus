@@ -7,11 +7,12 @@ import Image from "next/image";
 import Button from "../Button";
 import Link from "next/link";
 import {getPostThumb} from "@/libs/graphql/utils";
-import {useRouter} from "next/router";
+
 import {languages} from "@/utils/language";
 import {getAcfLinkProps, useConsoleLog} from "@/utils";
 import dynamic from "next/dynamic";
 import LazyImport from "../LazyImport";
+import {useLocaleContext} from "@/context/LocaleContext";
 const ButtonNext = dynamic(
   () => import("../Icons").then((mod) => mod.ButtonNext),
   {loading: () => <></>}
@@ -28,8 +29,7 @@ interface Props extends BlogsBlockFragment {}
 const PAGE_SIZE = 3;
 const BlogsBlock = (props: Props) => {
   const [blockListing, setBlockListing] = useState([]);
-  const router = useRouter();
-  const locale = router.locale;
+  const {locale} = useLocaleContext();
   const [page, setPage] = useState(0);
   const max_page = Math.floor([...blockListing].length / PAGE_SIZE);
 
@@ -73,8 +73,7 @@ const BlogsBlock = (props: Props) => {
                     key={id}
                     className=" flex flex-wrap gap-5 lg:min-h-[350px] ">
                     <div className="relative min-h-[250px] w-full md:w-[45%]">
-                      <Link
-                        href={`/${router.locale}/blog/${ele.slug}` as string}>
+                      <Link href={`/${locale}/blog/${ele.slug}` as string}>
                         <Image
                           fill
                           className=" max-h-[400px] w-full object-cover"
@@ -88,11 +87,11 @@ const BlogsBlock = (props: Props) => {
                     </div>
                     <div className="flex w-full flex-col justify-center gap-2 md:w-1/2">
                       <h2 className="text-lg font-semibold uppercase leading-5 text-primary-blue-main">
-                        {languages(router.locale)?.manufacturing}
+                        {languages(locale)?.manufacturing}
                       </h2>
                       <h3 className="text-3xl font-bold xl:text-4xl  xl:leading-[48px]">
                         <Link
-                          href={`/${router.locale}/blog/${ele.slug}` as string}
+                          href={`/${locale}/blog/${ele.slug}` as string}
                           className="group hover:text-primary-blue-main">
                           {ele.title}
                         </Link>
