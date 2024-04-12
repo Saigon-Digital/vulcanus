@@ -6,18 +6,18 @@ import {ButtonNext} from "../Icons";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Pagination} from "swiper/modules";
 import {languages} from "@/utils/language";
-import {useRouter} from "next/router";
+import {useLocaleContext} from "@/context/LocaleContext";
 
 type Props = {
   posts: PostFragmentFragment[];
 };
 const RelatedPosts = ({posts}: Props) => {
-  const router = useRouter();
+  const {locale} = useLocaleContext();
   if (!posts || posts.length < 1) return null;
   return (
     <div className=" bg-primary-midBlue-main px-6 pb-12 pt-12">
       <h4 className="mb-8 text-5xl font-bold 2xl:text-[64px] 2xl:leading-[89px]">
-        {languages(router.locale)?.relatedPost}
+        {languages(locale)?.relatedPost}
       </h4>
       <div className="w-full">
         <Swiper
@@ -59,7 +59,7 @@ const RelatedPosts = ({posts}: Props) => {
                       </div>
                     </Link>
                     <p className="text-lg font-semibold uppercase leading-[20px] text-[#E6ECF3]">
-                      {languages(router.locale)?.manufacturing}
+                      {languages(locale)?.manufacturing}
                     </p>
                     <h4 className="flex-[68px] text-2xl font-bold">
                       {ele.title}
@@ -74,7 +74,7 @@ const RelatedPosts = ({posts}: Props) => {
                     <Link
                       className="group flex gap-1 text-lg"
                       href={`/blog/${ele.slug}`}>
-                      {languages(router.locale)?.readMore}
+                      {languages(locale)?.readMore}
                       <ButtonNext className="text-white transition-all group-hover:translate-x-2" />
                     </Link>
                   </div>

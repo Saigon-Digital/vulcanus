@@ -25,6 +25,8 @@ type TBlog = {
   link?: string;
 };
 
+const defaultDesc = "";
+
 interface Props extends BlogsBlockFragment {}
 const PAGE_SIZE = 3;
 const BlogsBlock = (props: Props) => {
@@ -97,7 +99,8 @@ const BlogsBlock = (props: Props) => {
                         </Link>
                       </h3>
                       <p className="text text-base leading-[22px]">
-                        {ele.blogDescription?.blogDescription}
+                        {ele.blogDescription?.blogDescription ||
+                          languages(locale)?.blogDescription}
                       </p>
                       <Link
                         href={`/blog/${ele.slug}` as string}

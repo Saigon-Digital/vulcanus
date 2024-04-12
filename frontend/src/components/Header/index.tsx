@@ -1,7 +1,7 @@
 import {MenuItemsQuery} from "@/__generated__/graphql";
 import clsx from "clsx";
 import Image from "next/image";
-import {useRouter} from "next/router";
+
 import {useEffect, useState} from "react";
 import dynamic from "next/dynamic";
 import {useMediaQuery} from "@/hooks/useMediaQuery";

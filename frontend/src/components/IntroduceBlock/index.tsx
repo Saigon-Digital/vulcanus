@@ -2,11 +2,6 @@ import React, {useEffect, useState} from "react";
 
 import {useQuery} from "@apollo/client";
 import {LanguageCodeEnum} from "@/__generated__/graphql";
-import {getPageType} from "@/libs/graphql/utils";
-import {useRouter} from "next/router";
-
-import {INTRODUCE_PAGE} from "@/constant";
-import Link from "next/link";
 
 type Props = {
   content?: string | null | undefined;

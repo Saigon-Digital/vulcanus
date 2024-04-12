@@ -9,7 +9,8 @@ import Image from "next/image";
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
 import clsx from "clsx";
 import {languages} from "@/utils/language";
-import {useRouter} from "next/router";
+
+import {useLocaleContext} from "@/context/LocaleContext";
 type Props = {
   hoverImage?: string | StaticImport | undefined;
 } & CardsBlockCards_Fields &
@@ -26,13 +27,10 @@ const Card: React.FC<Props> = ({
   link,
   ...props
 }) => {
-  const locale = useRouter().locale;
-  // console.log("hover ", hoverImage);
+  const {locale} = useLocaleContext();
 
   const textRef = useRef<HTMLParagraphElement | null>(null);
-  // useEffect(() => {
-  //   console.log("hieght ", textRef.current?.offsetHeight);
-  // }, []);
+
   return (
     <div
       style={{background: backgroundColor || undefined}}
@@ -56,9 +54,9 @@ const Card: React.FC<Props> = ({
         <>
           <Image
             fill
-            quality={60}
+            quality={70}
             loading="lazy"
-            sizes="(max-width: 768px) 80vw, (max-width: 800px) 40vw ,(max-width:1280px) 33vw"
+            sizes="(max-width: 768px) 80vw, (max-width: 800px) 40vw ,(max-width:1280px) 25vw"
             alt="hover image"
             className="hover-image z-0 object-cover opacity-0 transition-all duration-300 group-hover:opacity-80"
             src={hoverImage}

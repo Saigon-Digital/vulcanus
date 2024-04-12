@@ -4,10 +4,11 @@ import * as React from "react";
 import clsx from "clsx";
 import {useState} from "react";
 import {languages} from "@/utils/language";
-import {useRouter} from "next/router";
+import {useLocaleContext} from "@/context/LocaleContext";
+
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
   const [active, setActive] = useState(0);
-  const router = useRouter();
+  const {locale} = useLocaleContext();
   React.useEffect(() => {
     if (typeof document === undefined) return;
     const id =
@@ -26,7 +27,7 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
       <div className="grid grid-cols-12 gap-y-10 px-5">
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
           <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
-            <p>{languages(router.locale)?.introduce}</p>
+            <p>{languages(locale)?.introduce}</p>
             <ul className="list-decimal pl-5">
               {props.terms?.map((ele: any, id: number) => {
                 let size = props.terms ? props.terms.length - 1 : 0;
@@ -49,10 +50,10 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
         <div className="content col-span-full flex flex-col md:col-span-7 lg:col-span-5">
           <div className="border-b border-white pb-4">
             <h1 className="mb-5 text-[32px] leading-[40px]">
-              {languages(router.locale)?.policy}
+              {languages(locale)?.policy}
             </h1>
             <h2 className="mb-5 !text-2xl font-semibold !leading-[30px] text-secondary-yellow ">
-              {languages(router.locale)?.introduce}
+              {languages(locale)?.introduce}
             </h2>
             {props.introduction && (
               <div dangerouslySetInnerHTML={{__html: props.introduction}}></div>

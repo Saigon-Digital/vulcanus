@@ -18,6 +18,7 @@ type Tlang = {
   loadMore: string;
   copyRight: string;
   contactInfo: string;
+  blogDescription: string;
   firstName: {label: string; placeholder: string};
   lastName: {label: string; placeholder: string};
   email: {label: string; placeholder: string};
@@ -46,6 +47,8 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         service: "Our Services",
         contactUs: "Contact Us",
         policy: "Privacy Policy",
+        blogDescription:
+          "Discover the technological prowess behind Vulcanus Company's CNC manufacturing. Learn about their state-of-the-art equipment, their capacity for large-scale productions, and the diverse materials they expertly handle.",
         poweredBy: "Powered by",
         copyRight: " Copyrights $year. All rights reserved.",
         introduce: "Introduce",
@@ -77,6 +80,8 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         relatedPost: "Verwandter Beitrag",
         introduce: "Einführen",
         poweredBy: "Angetrieben von",
+        blogDescription:
+          "Entdecken Sie die technologische Leistungsfähigkeit hinter der CNC-Fertigung der Vulcanus Company. Erfahren Sie mehr über ihre hochmoderne Ausrüstung, ihre Kapazität für Großproduktionen und die vielfältigen Materialien, mit denen sie fachmännisch umgehen.",
         copyRight: "Urheberrechte $year. Alle Rechte vorbehalten.",
         error: "Etwas ist schief gelaufen",
         thankyou: "Vielen Dank für das Absenden des Formulars!",
