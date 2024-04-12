@@ -1,8 +1,9 @@
 import {ImageContentBlock} from "@/__generated__/graphql";
-import Image from "next/image";
 import React from "react";
 
 import {m} from "framer-motion";
+import LazyImport from "../LazyImport";
+import Image from "next/image";
 const ImageContent = ({
   image,
   contentGroup: content,
@@ -55,7 +56,7 @@ const ImageContent = ({
             <div className="flex  justify-center gap-10 2xl:gap-20">
               {content.icons.map((ele, index) => {
                 return (
-                  <div
+                  <LazyImport
                     key={index}
                     className="mt-5 flex flex-col justify-center text-center">
                     <Image
@@ -66,7 +67,7 @@ const ImageContent = ({
                       alt="icon image"
                     />
                     <p>{ele?.text}</p>
-                  </div>
+                  </LazyImport>
                 );
               })}
             </div>
