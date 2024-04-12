@@ -6,9 +6,9 @@ const ROOT_MARGIN = 250;
 
 function LazyImport({
   children,
-  containerClass,
-  rootMargin
-}: PropsWithChildren<{containerClass?: string;rootMargin?:number}>) {
+  className,
+  rootMargin,
+}: PropsWithChildren<{className?: string; rootMargin?: number}>) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [load, setLoad] = useState(false);
   useEffect(() => {
@@ -38,7 +38,7 @@ function LazyImport({
 
   return (
     <Suspense fallback={<>loading</>}>
-      <div className={"lazy-import " + containerClass} ref={ref}>
+      <div className={"lazy-import " + className} ref={ref}>
         {load && children}
       </div>
     </Suspense>
