@@ -2,10 +2,11 @@ import {MenuItemsQuery} from "@/__generated__/graphql";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import {useRouter} from "next/router";
+
 import CloseIcon from "public/icons/x-close.svg";
 import LanguageToggle from "./LanguageToggle";
-import { TSiteData } from "../Layout";
+import {TSiteData} from "../Layout";
+import {useLocaleContext} from "@/context/LocaleContext";
 
 type Props = {
   menu: TSiteData["menus"];
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
-  const {asPath, locale} = useRouter();
+  const {asPath, locale} = useLocaleContext();
   return (
     <div
       role="dialog"
@@ -49,25 +50,27 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
 
       <nav className="flex grow flex-col justify-between gap-y-10 overflow-y-auto py-[15%]">
         <ul className="flex flex-col items-center space-y-4">
-          {menu && menu?.menuItems.nodes.map((item) => {
-            const isActive = asPath !== "/" && item?.uri?.includes(asPath);
-            return (
-              <li key={item?.uri}>
-                <Link
-                  href={item?.uri ?? "#"}
-                  locale={locale}
-                  className={clsx(
-                    "text-[20px] font-semibold uppercase leading-[200%] transition-all duration-300",
-                    {
-                      "text-primary-blue-300": isActive,
-                      "text-secondary-offWhite-white": !isActive,
-                    }
-                  )}>
-                  {item?.label}
-                </Link>
-              </li>
-            );
-          })}
+          {menu &&
+            menu?.menuItems.nodes.map((item) => {
+              const isActive =
+                asPath !== "/" && item?.uri?.includes(asPath || "");
+              return (
+                <li key={item?.uri}>
+                  <Link
+                    href={item?.uri ?? "#"}
+                    locale={locale}
+                    className={clsx(
+                      "text-[20px] font-semibold uppercase leading-[200%] transition-all duration-300",
+                      {
+                        "text-primary-blue-300": isActive,
+                        "text-secondary-offWhite-white": !isActive,
+                      }
+                    )}>
+                    {item?.label}
+                  </Link>
+                </li>
+              );
+            })}
         </ul>
         <div className="flex justify-center">
           <LanguageToggle />
