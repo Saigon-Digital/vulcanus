@@ -3,7 +3,7 @@ import Card from "../Card/index";
 import Image from "next/image";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
-import dynamic from "next/dynamic";
+
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
 import {ServiceComponent} from "@/__generated__/graphql";
 import {languages} from "@/utils/language";
@@ -15,27 +15,7 @@ type TService = {
   featureImage?: {image: string | StaticImport}[];
 } & ServiceComponent;
 
-const cardData: any[] = [
-  {
-    title: "Engineering",
-    description: `We have been a partner in machinery and plant engineering for many years.<br/>
-    Conveyor systems, special construction machinery and plant engineering, are part of our daily tasks.
-    Read more`,
-    link: "#",
-  },
-  {
-    title: "Sawing technology",
-    description: `As a specialist for split constructions, we segment rings up to 2200 mm in diameter.<br/>
-    We have been sawing high-strength hardened materials, tungsten and special alloys for years.`,
-    link: "#",
-  },
-  {
-    title: "Sawing technology",
-    description: `As a specialist for split constructions, we segment rings up to 2200 mm in diameter.<br/>
-    We have been sawing high-strength hardened materials, tungsten and special alloys for years.`,
-    link: "#",
-  },
-];
+
 const images = [
   {
     image: img1,
@@ -82,6 +62,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
       </div>
       <div className="mt-6 grid h-full  grid-cols-1 gap-6 sm:grid-cols-2  lg:grid-cols-4 xl:min-h-[400px] ">
         {featureImage?.map((img, index) => {
+          const size = index === 0 ? 40 : 25;
           return (
             <div
               key={index}
@@ -95,8 +76,9 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 className="relative h-full w-full">
                 <Image
                   fill
-                  sizes="(max-width: 768px) 80vw, (max-width: 800px) 50vw"
-                  quality={70}
+                  sizes={`(max-width: 768px) 80vw, (max-width: 800px) ${size}vw`}
+                  quality={60}
+                  loading="lazy"
                   src={img.image}
                   alt="feature image"
                   className="object-cover"

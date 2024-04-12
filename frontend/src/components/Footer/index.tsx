@@ -10,11 +10,14 @@ import React, {
 import Link from "next/link";
 import {languages} from "@/utils/language";
 import {useRouter} from "next/router";
-import {motion, useScroll} from "framer-motion";
 import {getFooterButtonLink} from "@/libs/graphql/utils";
 import clsx from "clsx";
 import { TSiteData } from "../Layout";
-// import {flatListToHierarchical} from "@faustwp/core";
+import dynamic from "next/dynamic";
+import {motion} from "framer-motion"
+
+
+
 type Props = {
   menu: TSiteData["menus"]
 };

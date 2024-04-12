@@ -22,7 +22,7 @@ export type TSiteData = {
   menus?: typeof siteData["menus"]["nodes"][number];
   // footerMenu?: typeof siteData["menus"];
 
-};
+};  
 
 
 const menuLocations = {
@@ -77,10 +77,11 @@ const Layout = ({children}: PropsWithChildren) => {
           }}>
           {children}
         </motion.main>
-     
+          <LazyImport>
           <Footer
             menu={footerMenu}
-          />
+            />
+          </LazyImport>
        
       </div>
     </>
