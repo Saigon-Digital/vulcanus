@@ -35,10 +35,6 @@ type Props = {};
 const LanguageToggle = (props: Props) => {
   const {localeData} = useLocaleContext();
   const router = useRouter();
-  console.log(localeData);
-  console.log(localeData);
-
-  useConsoleLog("locale data ", localeData);
 
   const handleLanguageChange = useCallback(
     (locale: string) => {

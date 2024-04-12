@@ -1,26 +1,25 @@
 import {
   EmailField,
-
-
   NameField,
   PhoneField,
   TextAreaField,
   Form as TForm,
 } from "@/__generated__/graphql";
-import React, { useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {PhoneIcon, MailIcon, LocationIcon} from "../Icons";
 
 import Button from "../Button";
 import {useQuery, useMutation} from "@apollo/client";
 import {GET_FORM, SUBMIT_FORM} from "@/libs/graphql/utils";
 
-import { FieldValues, SubmitHandler, useForm} from "react-hook-form";
+import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 
 import {getMutationVariables} from "@/utils/gravity-form";
-import {useRouter} from "next/router";
+
 import Loader from "../Loader";
 import {languages} from "@/utils/language";
 import Link from "next/link";
+import {useLocaleContext} from "@/context/LocaleContext";
 const FORM_ID = 1;
 const DELAY = 5000;
 enum adminLabelEmun {
@@ -43,7 +42,7 @@ const Form = ({contactInformation, form}: TForm) => {
   const {data, error} = useQuery(GET_FORM, {
     variables: {formId: String(FORM_ID)},
   });
-  const locale = useRouter().locale;
+  const {locale} = useLocaleContext();
 
   // useState
   const [formSuccess, setFormSuccess] = useState(false);
@@ -51,11 +50,11 @@ const Form = ({contactInformation, form}: TForm) => {
   //------------
 
   // useRef
-  
+
   //
   const {
     register,
-  
+
     reset,
     handleSubmit,
     setError,

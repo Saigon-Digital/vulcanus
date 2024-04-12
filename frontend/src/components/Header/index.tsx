@@ -1,11 +1,12 @@
 import {MenuItemsQuery} from "@/__generated__/graphql";
 import clsx from "clsx";
 import Image from "next/image";
-import {useRouter} from "next/router";
+
 import {useEffect, useState} from "react";
 import dynamic from "next/dynamic";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
-import { TSiteData } from "../Layout";
+import {TSiteData} from "../Layout";
+import {useLocaleContext} from "@/context/LocaleContext";
 
 const Link = dynamic(() => import("next/link"));
 const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"));
@@ -18,7 +19,7 @@ type Props = {
 
 const Header = (props: Props) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
-  const {locale, locales, defaultLocale, asPath} = useRouter();
+  const {locale, asPath} = useLocaleContext();
   const isMobile = useMediaQuery("(max-width:1024px)");
   useEffect(() => {
     if (navIsOpen) {
@@ -39,8 +40,7 @@ const Header = (props: Props) => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
- 
-  
+
   return (
     <>
       <header className=" sticky top-0 z-[100] py-[var(--header-py)]">
@@ -58,26 +58,26 @@ const Header = (props: Props) => {
 
             {!isMobile && (
               <nav className=" hidden items-center  space-x-2 lg:flex xl:space-x-4">
-                {props.menu && props?.menu.menuItems?.nodes?.map((item) => {
-                  
-                  const isActive =
-                    asPath !== "/" && item?.uri?.includes(asPath);
-                  return (
-                    <Link
-                      key={item?.uri}
-                      href={item?.uri ?? "#"}
-                      // locale={locale}
-                      className={clsx(
-                        "text-sm font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main xl:text-[16px]",
-                        {
-                          "text-primary-blue-main": isActive,
-                          "text-secondary-offWhite-white": !isActive,
-                        }
-                      )}>
-                      {item?.label}
-                    </Link>
-                  );
-                })}
+                {props.menu &&
+                  props?.menu.menuItems?.nodes?.map((item) => {
+                    const isActive =
+                      asPath !== "/" && item?.uri?.includes(asPath || "");
+                    return (
+                      <Link
+                        key={item?.uri}
+                        href={item?.uri ?? "#"}
+                        // locale={locale}
+                        className={clsx(
+                          "text-sm font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main xl:text-[16px]",
+                          {
+                            "text-primary-blue-main": isActive,
+                            "text-secondary-offWhite-white": !isActive,
+                          }
+                        )}>
+                        {item?.label}
+                      </Link>
+                    );
+                  })}
               </nav>
             )}
             {!isMobile && (
