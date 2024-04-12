@@ -4,12 +4,11 @@ import dynamic from "next/dynamic";
 import {Overpass} from "next/font/google";
 import {MenuItemsQuery, MenuLocationEnum} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
-import {motion} from "framer-motion";
+import {m} from "framer-motion";
 import Header from "../Header";
 import LazyImport from "../LazyImport";
-import siteData from "../../data/site_data.json"
+import siteData from "../../data/site_data.json";
 const Footer = dynamic(() => import("../Footer"));
-
 
 const overpass = Overpass({
   subsets: ["latin"],
@@ -19,11 +18,9 @@ const overpass = Overpass({
 });
 
 export type TSiteData = {
-  menus?: typeof siteData["menus"]["nodes"][number];
+  menus?: (typeof siteData)["menus"]["nodes"][number];
   // footerMenu?: typeof siteData["menus"];
-
-};  
-
+};
 
 const menuLocations = {
   de: {
@@ -37,15 +34,16 @@ const menuLocations = {
 };
 
 function getMenu(location: MenuLocationEnum) {
-  const menu = siteData.menus.nodes.find(menu => menu.locations[0] === location )
-  return menu ;
+  const menu = siteData.menus.nodes.find(
+    (menu) => menu.locations[0] === location
+  );
+  return menu;
 }
 
-
- function getGlobalSiteData(locale: string | undefined) {
+function getGlobalSiteData(locale: string | undefined) {
   const menuLocation = menuLocations[(locale as "de" | "en") || "de"];
-  const headerMenu =  getMenu(menuLocation.header);
-  const footerMenu =  getMenu(menuLocation.footer);
+  const headerMenu = getMenu(menuLocation.header);
+  const footerMenu = getMenu(menuLocation.footer);
 
   return {
     headerMenu: headerMenu,
@@ -53,36 +51,26 @@ function getMenu(location: MenuLocationEnum) {
   };
 }
 
-
 const Layout = ({children}: PropsWithChildren) => {
-
-  
   const router = useRouter();
 
-  const {headerMenu,footerMenu} = getGlobalSiteData(router.locale)
-  
-  
+  const {headerMenu, footerMenu} = getGlobalSiteData(router.locale);
 
   return (
     <>
       <div className={clsx(overpass.variable, "overflow-x-clip")}>
-        <Header
-          menu={headerMenu}
-        />
-        <motion.main
+        <Header menu={headerMenu} />
+        <m.main
           initial={{opacity: 0, scale: 1}}
           animate={{opacity: 1, scale: 1}}
           transition={{
             duration: 0.5,
           }}>
           {children}
-        </motion.main>
-          <LazyImport>
-          <Footer
-            menu={footerMenu}
-            />
-          </LazyImport>
-       
+        </m.main>
+        <LazyImport>
+          <Footer menu={footerMenu} />
+        </LazyImport>
       </div>
     </>
   );

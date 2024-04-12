@@ -8,13 +8,12 @@ import {StaticImport} from "next/dist/shared/lib/get-img-props";
 import {ServiceComponent} from "@/__generated__/graphql";
 import {languages} from "@/utils/language";
 import {useRouter} from "next/router";
-import {motion} from "framer-motion";
+import {m} from "framer-motion";
 import LazyImport from "../LazyImport";
 
 type TService = {
   featureImage?: {image: string | StaticImport}[];
 } & ServiceComponent;
-
 
 const images = [
   {
@@ -69,7 +68,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
               className={`relative col-span-full min-h-[300px] overflow-hidden ${
                 index === 0 ? "md:col-span-2" : "lg:col-span-1"
               }`}>
-              <motion.div
+              <m.div
                 initial={{scale: 1}}
                 whileInView={{scale: 1.2}}
                 transition={{duration: 0.6, delay: 0.4}}
@@ -83,7 +82,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                   alt="feature image"
                   className="object-cover"
                 />
-              </motion.div>
+              </m.div>
             </div>
           );
         })}

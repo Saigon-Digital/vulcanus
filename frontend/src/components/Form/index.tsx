@@ -1,21 +1,21 @@
 import {
   EmailField,
-  GetContentPageQuery,
-  LanguageCodeEnum,
+
+
   NameField,
   PhoneField,
   TextAreaField,
   Form as TForm,
 } from "@/__generated__/graphql";
-import React, {useEffect, useRef, useState} from "react";
+import React, { useRef, useState} from "react";
 import {PhoneIcon, MailIcon, LocationIcon} from "../Icons";
 
 import Button from "../Button";
 import {useQuery, useMutation} from "@apollo/client";
 import {GET_FORM, SUBMIT_FORM} from "@/libs/graphql/utils";
-import {GetGravityFormQuery} from "@/__generated__/graphql";
-import {FieldValue, FieldValues, SubmitHandler, useForm} from "react-hook-form";
-import {log} from "console";
+
+import { FieldValues, SubmitHandler, useForm} from "react-hook-form";
+
 import {getMutationVariables} from "@/utils/gravity-form";
 import {useRouter} from "next/router";
 import Loader from "../Loader";
@@ -51,11 +51,11 @@ const Form = ({contactInformation, form}: TForm) => {
   //------------
 
   // useRef
-  const phoneRef = useRef<HTMLInputElement>(null);
+  
   //
   const {
     register,
-    watch,
+  
     reset,
     handleSubmit,
     setError,

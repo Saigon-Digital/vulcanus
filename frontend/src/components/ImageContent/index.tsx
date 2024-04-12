@@ -2,7 +2,7 @@ import {ImageContentBlock} from "@/__generated__/graphql";
 import Image from "next/image";
 import React from "react";
 
-import {motion} from "framer-motion";
+import {m} from "framer-motion";
 const ImageContent = ({
   image,
   contentGroup: content,
@@ -27,7 +27,7 @@ const ImageContent = ({
             } top-5 hidden w-[45px] lg:block`}
           />
           <div className="relative aspect-[700/400]  overflow-hidden  lg:p-6">
-            <motion.div
+            <m.div
               whileInView={{scale: 1.15}}
               transition={{type: "spring", duration: 1.5, delay: 0.3}}
               className="relative h-full w-full">
@@ -36,7 +36,7 @@ const ImageContent = ({
                 src={image?.node?.sourceUrl || ""}
                 alt="banner image"
               />
-            </motion.div>
+            </m.div>
           </div>
         </div>
         <div

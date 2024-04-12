@@ -12,14 +12,12 @@ import {languages} from "@/utils/language";
 import {useRouter} from "next/router";
 import {getFooterButtonLink} from "@/libs/graphql/utils";
 import clsx from "clsx";
-import { TSiteData } from "../Layout";
+import {TSiteData} from "../Layout";
 import dynamic from "next/dynamic";
-import {motion} from "framer-motion"
-
-
+import {m} from "framer-motion";
 
 type Props = {
-  menu: TSiteData["menus"]
+  menu: TSiteData["menus"];
 };
 
 const ScrollMargin = 500;
@@ -40,6 +38,7 @@ const Footer = (props: Props) => {
 
   // console.log("scroll", scrollY, scrollYProgress);
   const containerRef = useRef(null);
+
   const ratio = useMemo(() => {
     if (initialHeight && rectTop)
       return ((initialHeight - rectTop) * 100) / ScrollMargin;
@@ -87,7 +86,7 @@ const Footer = (props: Props) => {
   return (
     <footer ref={containerRef} className="pt-20 sm:container-fluid">
       <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
-        <motion.h3
+        <m.h3
           ref={ref}
           className={clsx(
             "footer-text  cursor-default select-none text-3xl font-bold text-white md:text-5xl xl:text-6xl 2xl:text-[67px] 2xl:leading-[87px] ",
@@ -98,7 +97,7 @@ const Footer = (props: Props) => {
           )}
           dangerouslySetInnerHTML={{
             __html: languages(router.locale)?.letStart || "",
-          }}></motion.h3>
+          }}></m.h3>
         <Link
           href={
             router.locale?.toLocaleLowerCase() === "en"
@@ -113,7 +112,7 @@ const Footer = (props: Props) => {
             viewBox="0 0 158 158"
             fill="none">
             <rect width={158} height={158} rx={79} fill="#E5F5FC" />
-            <motion.path
+            <m.path
               style={{x: -10, y: 10}}
               // initial={{x: -12, y: 12}}
               whileInView={{x: 6, y: -6}}
