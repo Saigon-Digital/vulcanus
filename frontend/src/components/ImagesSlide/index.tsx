@@ -1,10 +1,10 @@
 import {ImagesSLideFragment} from "@/__generated__/graphql";
-import React, {useEffect, useMemo, useState} from "react";
+import React from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, A11y} from "swiper/modules";
-import Image from "next/image";
+
 import "swiper/css/autoplay";
-import {useRatio} from "@/hooks/useRatio";
+
 import ImageWithRatio from "../ImageWithRatio";
 const ImagesSlide = (props: ImagesSLideFragment) => {
   return (

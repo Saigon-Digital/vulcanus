@@ -56,20 +56,16 @@ Page.query = gql(`
       content
       slug
       isPreview
-      pageType {
-        nodes {
-         name
-        }
-      }
+     
       language {
         code
       }
 
-      pagesSetting {
+      pagesSetting @include(if:$asPreview) {
         ...pagesSetting
       }
 
-      pageBuilder {
+      pageBuilder @include(if:$asPreview) {
       ...PageBuilder
 
       }
@@ -101,9 +97,7 @@ Page.query = gql(`
         ...PageBuilder
         }
       }
-      seo {
-        opengraphUrl
-      }
+      
     }
 
     siteSettings {
