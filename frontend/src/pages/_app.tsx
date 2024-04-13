@@ -1,16 +1,22 @@
 import dynamic from "next/dynamic";
 import {FaustProvider} from "@faustwp/core";
 import type {AppProps} from "next/app";
+import {useRouter} from "next/router";
 import "../../faust.config";
 import "swiper/css";
+
 import "@/styles/globals.scss";
+
 import {LocaleContextProvider} from "@/context/LocaleContext";
 import {AnimatePresence, LazyMotion} from "framer-motion";
+
 const Layout = dynamic(() => import("@/components/Layout"));
 const features = () =>
   import("@/components/motionFeature").then((mod) => mod.default);
 
 export default function App({Component, pageProps}: AppProps) {
+  const router = useRouter();
+
   return (
     <FaustProvider pageProps={pageProps}>
       <LocaleContextProvider
@@ -24,8 +30,12 @@ export default function App({Component, pageProps}: AppProps) {
         }}>
         <LazyMotion features={features}>
           <AnimatePresence initial={false} mode="wait">
-            <Layout>
-              <Component {...pageProps} />
+            <Layout key={`${router.asPath}-${router.locale}`}>
+              {/* > */}
+              <Component
+                {...pageProps}
+                key={`${router.asPath}-${router.locale}`}
+              />
             </Layout>
           </AnimatePresence>
         </LazyMotion>
