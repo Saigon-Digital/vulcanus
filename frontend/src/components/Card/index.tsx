@@ -56,7 +56,7 @@ const Card: React.FC<Props> = ({
             fill
             quality={70}
             loading="lazy"
-            sizes="(max-width: 768px) 80vw, (max-width: 800px) 40vw ,(max-width:1280px) 25vw"
+            sizes="(max-width: 768px) 80vw, (max-width: 800px) 30vw ,(max-width:1080px) 20vw,(max-width:2550px) 400px "
             alt="hover image"
             className="hover-image z-0 object-cover opacity-0 transition-all duration-300 group-hover:opacity-80"
             src={hoverImage}
