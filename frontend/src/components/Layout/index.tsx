@@ -5,9 +5,9 @@ import {Overpass} from "next/font/google";
 import {MenuLocationEnum} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
 import {m} from "framer-motion";
-import Header from "../Header";
 import LazyImport from "../LazyImport";
 import siteData from "../../data/site_data.json";
+const Header = dynamic(() => import("../Header"));
 const Footer = dynamic(() => import("../Footer"));
 
 const overpass = Overpass({
