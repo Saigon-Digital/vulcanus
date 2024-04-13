@@ -1,4 +1,3 @@
-
 import {WordPressTemplateProps} from "@/types";
 import {WordPressTemplate, getWordPressProps} from "@faustwp/core";
 import {GetStaticProps} from "next";
@@ -7,9 +6,7 @@ export default function Page(props: WordPressTemplateProps) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
- 
   return getWordPressProps({
     ctx,
-   
   });
 };

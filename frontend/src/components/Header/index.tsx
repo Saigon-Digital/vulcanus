@@ -19,7 +19,10 @@ type Props = {
 
 const Header = (props: Props) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
-  const {locale, asPath} = useLocaleContext();
+  const {locale, asPath, pathname} = useLocaleContext();
+
+  console.log(asPath);
+
   const isMobile = useMediaQuery("(max-width:1024px)");
   useEffect(() => {
     if (navIsOpen) {

@@ -1,5 +1,7 @@
-import {PropsWithChildren, Suspense, useEffect, useState} from "react";
-import {m} from "framer-motion";
+import {PropsWithChildren} from "react";
+
+import LazyLoad from "react-lazyload";
+
 const ROOT_MARGIN = 250;
 
 function LazyImport({
@@ -7,19 +9,12 @@ function LazyImport({
   className,
   rootMargin,
 }: PropsWithChildren<{className?: string; rootMargin?: number}>) {
-  const [load, setLoad] = useState(false);
-
   return (
-    <Suspense fallback={<>loading</>}>
-      <m.div
-        onViewportEnter={(entry) => {
-          setLoad(true);
-        }}
-        viewport={{margin: `${rootMargin || ROOT_MARGIN}px`}}
-        className={"lazy-import " + className}>
-        {load && children}
-      </m.div>
-    </Suspense>
+    <LazyLoad
+      offset={rootMargin || ROOT_MARGIN}
+      className={"lazy-import " + className}>
+      {children}
+    </LazyLoad>
   );
 }
 

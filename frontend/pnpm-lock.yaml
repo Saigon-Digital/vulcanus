@@ -68,6 +68,9 @@ dependencies:
   react-hook-form:
     specifier: ^7.51.1
     version: 7.51.1(react@18.2.0)
+  react-lazyload:
+    specifier: ^3.2.1
+    version: 3.2.1(react-dom@18.2.0)(react@18.2.0)
   react-player:
     specifier: ^2.14.1
     version: 2.14.1(react@18.2.0)
@@ -103,6 +106,9 @@ devDependencies:
   '@types/react-dom':
     specifier: 18.2.17
     version: 18.2.17
+  '@types/react-lazyload':
+    specifier: ^3.2.3
+    version: 3.2.3
   autoprefixer:
     specifier: ^10
     version: 10.4.16(postcss@8.4.31)
@@ -2970,6 +2976,12 @@ packages:
 
   /@types/react-dom@18.2.17:
     resolution: {integrity: sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==}
+    dependencies:
+      '@types/react': 18.2.42
+    dev: true
+
+  /@types/react-lazyload@3.2.3:
+    resolution: {integrity: sha512-s03gWlHXiFqZr7TEFDTx8Lkl+ZEYrwTkXP9MNZ3Z3blzsPrnkYjgeSK2tjfzVv/TYVCnDk6TZwNRDHQlHy/1Ug==}
     dependencies:
       '@types/react': 18.2.42
     dev: true
@@ -7027,6 +7039,16 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  /react-lazyload@3.2.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-oDLlLOI/rRLY0fUh/HYFCy4CqCe7zdJXv6oTl2pC30tN3ezWxvwcdHYfD/ZkrGOMOOT5pO7hNLSvg7WsmAij1w==}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /react-player@2.14.1(react@18.2.0):
     resolution: {integrity: sha512-jILj7F9o+6NHzrJ1GqZIxfJgskvGmKeJ05FNhPvgiCpvMZFmFneKEkukywHcULDO2lqITm+zcEkLSq42mX0FbA==}
