@@ -1,13 +1,13 @@
 import clsx from "clsx";
-import {PropsWithChildren, useEffect, useState} from "react";
+import {PropsWithChildren} from "react";
 import dynamic from "next/dynamic";
 import {Overpass} from "next/font/google";
-import {MenuItemsQuery, MenuLocationEnum} from "@/__generated__/graphql";
+import {MenuLocationEnum} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
 import {m} from "framer-motion";
-import Header from "../Header";
 import LazyImport from "../LazyImport";
 import siteData from "../../data/site_data.json";
+const Header = dynamic(() => import("../Header"));
 const Footer = dynamic(() => import("../Footer"));
 
 const overpass = Overpass({
@@ -19,7 +19,6 @@ const overpass = Overpass({
 
 export type TSiteData = {
   menus?: (typeof siteData)["menus"]["nodes"][number];
-  // footerMenu?: typeof siteData["menus"];
 };
 
 const menuLocations = {
@@ -57,22 +56,20 @@ const Layout = ({children}: PropsWithChildren) => {
   const {headerMenu, footerMenu} = getGlobalSiteData(router.locale);
 
   return (
-    <>
-      <div className={clsx(overpass.variable, "overflow-x-clip")}>
-        <Header menu={headerMenu} />
-        <m.main
-          initial={{opacity: 0, scale: 1}}
-          animate={{opacity: 1, scale: 1}}
-          transition={{
-            duration: 0.5,
-          }}>
-          {children}
-        </m.main>
-        <LazyImport>
-          <Footer menu={footerMenu} />
-        </LazyImport>
-      </div>
-    </>
+    <div className={clsx(overpass.variable, "overflow-x-clip")}>
+      <Header menu={headerMenu} />
+      <m.main
+        initial={{opacity: 0, scale: 1}}
+        animate={{opacity: 1, scale: 1}}
+        transition={{
+          duration: 0.5,
+        }}>
+        {children}
+      </m.main>
+      <LazyImport>
+        <Footer menu={footerMenu} />
+      </LazyImport>
+    </div>
   );
 };
 

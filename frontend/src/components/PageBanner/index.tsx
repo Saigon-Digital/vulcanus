@@ -1,4 +1,3 @@
-import React from "react";
 import {PageBannerFragment} from "@/__generated__/graphql";
 
 import useImageStyle from "@/hooks/useImageCss";

@@ -1,6 +1,6 @@
-import {PropsWithChildren, Suspense, useEffect, useState} from "react";
+import {PropsWithChildren} from "react";
 
-import {useRef} from "react";
+import LazyLoad from "react-lazyload";
 
 const ROOT_MARGIN = 250;
 
@@ -9,39 +9,12 @@ function LazyImport({
   className,
   rootMargin,
 }: PropsWithChildren<{className?: string; rootMargin?: number}>) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [load, setLoad] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (ref.current) {
-              observer.unobserve(ref.current);
-              setLoad(true);
-            }
-          }
-        });
-      },
-      {rootMargin: `${rootMargin || ROOT_MARGIN}px`}
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, [ref]);
-
   return (
-    <Suspense fallback={<>loading</>}>
-      <div className={"lazy-import " + className} ref={ref}>
-        {load && children}
-      </div>
-    </Suspense>
+    <LazyLoad
+      offset={rootMargin || ROOT_MARGIN}
+      className={"lazy-import " + className}>
+      {children}
+    </LazyLoad>
   );
 }
 

@@ -1,5 +1,5 @@
 import {CertificateBlock as T} from "@/__generated__/graphql";
-import React from "react";
+
 import Image from "next/image";
 const CertificateBlock = (props: T) => {
   return (

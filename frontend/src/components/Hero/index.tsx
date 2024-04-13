@@ -1,7 +1,6 @@
 import {HeroBlockFragment} from "@/__generated__/graphql";
 import {getAcfLinkProps, useConsoleLog} from "@/utils";
 import Image from "next/image";
-import React from "react";
 import Button from "../Button";
 
 import useImageStyle from "@/hooks/useImageCss";

@@ -1,4 +1,3 @@
-import React from "react";
 import {CareerBlockFragment} from "@/__generated__/graphql";
 import Accordion from "./Accordion";
 

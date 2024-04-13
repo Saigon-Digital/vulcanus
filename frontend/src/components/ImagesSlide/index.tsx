@@ -1,5 +1,4 @@
 import {ImagesSLideFragment} from "@/__generated__/graphql";
-import React from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, A11y} from "swiper/modules";
 

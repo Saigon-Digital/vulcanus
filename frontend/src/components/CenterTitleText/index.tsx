@@ -1,5 +1,4 @@
 import {CenterTitleText} from "@/__generated__/graphql";
-import React from "react";
 
 const CenterTitleTextBlock = (props: CenterTitleText) => {
   return (

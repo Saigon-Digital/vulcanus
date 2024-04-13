@@ -1,10 +1,8 @@
 import {IconsBlock} from "@/__generated__/graphql";
-import React from "react";
 import Image from "next/image";
 import Button from "../Button";
 import {getAcfLinkProps} from "@/utils";
 const index: React.FC<IconsBlock> = (props) => {
-
   return (
     <div className="container-fluid py-16 lg:py-20 xl:py-28 ">
       {props.preHeader && (

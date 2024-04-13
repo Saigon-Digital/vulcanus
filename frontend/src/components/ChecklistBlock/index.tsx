@@ -1,5 +1,4 @@
 import {ChecklistBlock as TCheckListBlock} from "@/__generated__/graphql";
-import React from "react";
 import Button from "../Button";
 import {getAcfLinkProps} from "@/utils";
 import dynamic from "next/dynamic";
