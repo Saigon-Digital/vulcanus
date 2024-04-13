@@ -1,4 +1,3 @@
-import React from "react";
 import {TeamBlock} from "@/__generated__/graphql";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay} from "swiper/modules";

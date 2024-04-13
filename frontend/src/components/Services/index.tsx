@@ -1,15 +1,13 @@
-import React from "react";
 import Card from "../Card/index";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
-
-import {StaticImport} from "next/dist/shared/lib/get-img-props";
+import type {StaticImport} from "next/dist/shared/lib/get-img-props";
 import {ServiceComponent} from "@/__generated__/graphql";
 import {languages} from "@/utils/language";
-import {useRouter} from "next/router";
 import {m} from "framer-motion";
 import LazyImport from "../LazyImport";
 import dynamic from "next/dynamic";
+import {useLocaleContext} from "@/context/LocaleContext";
 const Image = dynamic(() => import("next/image"));
 
 type TService = {
@@ -25,15 +23,14 @@ const images = [
   },
 ];
 const Service: React.FC<TService> = ({services, featureImage = images}) => {
-  const router = useRouter();
+  const {locale} = useLocaleContext();
 
   return (
     <div className="container-fluid py-20">
       <h2 className="mb-14 text-3xl font-bold leading-[89px] lg:text-6xl lg:leading-[84px] xl:text-[64px]">
-        {languages(router.locale)?.service}
+        {languages(locale)?.service}
       </h2>
       <div className="relative grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:min-h-[400px] xl:grid-cols-4 xl:gap-6 ">
-        {/* Check emty array instead check null value: services.length >0 ... */}
         {services &&
           services.map((ele, index) => {
             return (

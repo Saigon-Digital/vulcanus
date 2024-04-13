@@ -1,4 +1,3 @@
-import React from "react";
 import dynamic from "next/dynamic";
 import LazyImport from "../LazyImport";
 import {m} from "framer-motion";

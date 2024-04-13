@@ -1,6 +1,5 @@
 import {useRatio} from "@/hooks/useRatio";
 import Image from "next/image";
-import React from "react";
 
 type Props = {
   imageSrc?: string | null | undefined;

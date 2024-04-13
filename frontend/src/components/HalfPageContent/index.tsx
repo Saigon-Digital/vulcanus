@@ -1,4 +1,4 @@
-import React, {ReactNode} from "react";
+import type {ReactNode} from "react";
 import Button from "../Button";
 import dynamic from "next/dynamic";
 // import {ArrowRight, ShapeLeftLarge} from "../Icons";

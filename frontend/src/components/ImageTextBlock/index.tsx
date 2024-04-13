@@ -1,4 +1,3 @@
-import React from "react";
 import {ImageTextBlock} from "@/__generated__/graphql";
 import LazyImport from "../LazyImport";
 import dynamic from "next/dynamic";
