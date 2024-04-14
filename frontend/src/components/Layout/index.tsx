@@ -1,7 +1,5 @@
-import clsx from "clsx";
 import {PropsWithChildren} from "react";
 import dynamic from "next/dynamic";
-import {Overpass} from "next/font/google";
 import {MenuLocationEnum} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
 import {m} from "framer-motion";
@@ -9,13 +7,6 @@ import LazyImport from "../LazyImport";
 import siteData from "../../data/site_data.json";
 const Header = dynamic(() => import("../Header"));
 const Footer = dynamic(() => import("../Footer"));
-
-const overpass = Overpass({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-overpass",
-  preload: true,
-});
 
 export type TSiteData = {
   menus?: (typeof siteData)["menus"]["nodes"][number];
@@ -56,20 +47,21 @@ const Layout = ({children}: PropsWithChildren) => {
   const {headerMenu, footerMenu} = getGlobalSiteData(router.locale);
 
   return (
-    <div className={clsx(overpass.variable, "overflow-x-clip")}>
+    <>
       <Header menu={headerMenu} />
-      <m.main
+
+      <m.div
         initial={{opacity: 0, scale: 1}}
         animate={{opacity: 1, scale: 1}}
         transition={{
           duration: 0.5,
         }}>
         {children}
-      </m.main>
+      </m.div>
       <LazyImport>
         <Footer menu={footerMenu} />
       </LazyImport>
-    </div>
+    </>
   );
 };
 

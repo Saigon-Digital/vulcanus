@@ -6,13 +6,21 @@ import "../../faust.config";
 import "swiper/css";
 
 import "@/styles/globals.scss";
-
+import clsx from "clsx";
 import {LocaleContextProvider} from "@/context/LocaleContext";
 import {AnimatePresence, LazyMotion} from "framer-motion";
-
+import {Overpass} from "next/font/google";
 const Layout = dynamic(() => import("@/components/Layout"));
 const features = () =>
   import("@/components/motionFeature").then((mod) => mod.default);
+
+//font
+const overpass = Overpass({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-overpass",
+  preload: true,
+});
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
@@ -30,13 +38,15 @@ export default function App({Component, pageProps}: AppProps) {
         }}>
         <LazyMotion features={features}>
           <AnimatePresence initial={false} mode="wait">
-            <Layout key={`${router.asPath}-${router.locale}`}>
-              {/* > */}
-              <Component
-                {...pageProps}
-                key={`${router.asPath}-${router.locale}`}
-              />
-            </Layout>
+            <main className={clsx(overpass.variable, "overflow-x-clip")}>
+              <Layout key={`${router.asPath}-${router.locale}`}>
+                {/* > */}
+                <Component
+                  {...pageProps}
+                  key={`${router.asPath}-${router.locale}`}
+                />
+              </Layout>
+            </main>
           </AnimatePresence>
         </LazyMotion>
       </LocaleContextProvider>
