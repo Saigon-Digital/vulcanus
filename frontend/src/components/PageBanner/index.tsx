@@ -10,16 +10,14 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   image,
 }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
-  const imageStyle = !isMobile
-    ? useImageStyle({
-        src: image?.node.sourceUrl || "",
-        w: 1800,
+  const imageStyle = useImageStyle({
+    src: image?.node.sourceUrl || "",
+    w: 1800,
 
-        h: 900,
-        priority: true,
-        alt: "page banner",
-      })
-    : "";
+    h: 900,
+    priority: true,
+    alt: "page banner",
+  });
 
   return (
     <div className="container-fluid pb-10 lg:pb-16">
