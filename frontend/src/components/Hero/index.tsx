@@ -2,16 +2,18 @@ import {HeroBlockFragment} from "@/__generated__/graphql";
 import {getAcfLinkProps, useConsoleLog} from "@/utils";
 import Image from "next/image";
 import Button from "../Button";
-
+import {useWindowSize} from "usehooks-ts";
 import useImageStyle from "@/hooks/useImageCss";
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
+  const {width} = useWindowSize();
+  const fixedWidth = width > 1900 ? 1900 : width;
   const imgStyle =
     useImageStyle({
       src: props.backgroundImage?.node.sourceUrl || "",
       fill: false,
-      w: 1900,
-      h: 800,
+      w: fixedWidth,
+      h: (fixedWidth * 3) / 4,
       priority: true,
     }) || "";
 

@@ -1,16 +1,19 @@
 import {PageBannerFragment} from "@/__generated__/graphql";
-
 import useImageStyle from "@/hooks/useImageCss";
+import {useWindowSize} from "usehooks-ts";
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
   description,
   image,
 }) => {
+  const {width} = useWindowSize();
+  const fixedWidth = width > 1900 ? 1900 : width;
+
   const imageStyle = useImageStyle({
     src: image?.node.sourceUrl || "",
-    w: 1820,
+    w: fixedWidth,
 
-    h: 900,
+    h: fixedWidth * 0.666,
     priority: true,
     alt: "page banner",
   });
@@ -33,22 +36,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
           style={{
             backgroundImage: imageStyle,
           }}
-          className="parallax relative aspect-[2/1] max-h-[600px] w-full object-cover lg:aspect-[1800/850]">
-          {/* <Parallax
-            from={-10}
-            to={40}
-            className="absolute h-full w-full overflow-hidden "
-            targetClass="h-[110%]">
-            <Image
-              fill
-              placeholder="blur"
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAABYkAAAWJAW1onfoAAACrSURBVDhPY+RhMPjPQEXABKWpBoaggSysLAysQMzOwcbAyMjIwMzMDMZMTExgGiTHxsYK5oMwOsCIFDMLPQZLGwOGb99+MGzffIjBxsGY4d/ffwwcHOxAy5gZHj96wSAoyMfAwcnO8O7tR4YtG/ZDdUIAhoHcPFwMikoyDP///2O4ffMhg5AwP9il////Z2AEuQrI/vXrNwMLCzPDz5+/wIYig9FkQylgYAAApEMpfsabUyMAAAAASUVORK5CYII="
-              src={image?.node?.sourceUrl || ""}
-              alt="banner img"
-              className="object-cover"
-            />
-          </Parallax> */}
-        </div>
+          className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]"></div>
       )}
     </div>
   );
