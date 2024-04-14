@@ -2,18 +2,18 @@ import {HeroBlockFragment} from "@/__generated__/graphql";
 import {getAcfLinkProps, useConsoleLog} from "@/utils";
 import Image from "next/image";
 import Button from "../Button";
-import {useWindowSize} from "usehooks-ts";
+
 import useImageStyle from "@/hooks/useImageCss";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
-  const {width} = useWindowSize();
-  const fixedWidth = width > 1900 ? 1900 : width;
+  const isMobile = useMediaQuery("(max-width:768px)");
   const imgStyle =
     useImageStyle({
       src: props.backgroundImage?.node.sourceUrl || "",
       fill: false,
-      w: fixedWidth,
-      h: (fixedWidth * 3) / 4,
+      w: 1800,
+      h: 900,
       priority: true,
     }) || "";
 
@@ -30,9 +30,19 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             className="object-contain object-center"
           />
         </div>
-        <div
-          style={{backgroundImage: imgStyle}}
-          className="parallax absolute  h-full w-full"></div>
+        {!isMobile ? (
+          <div
+            style={{backgroundImage: imgStyle}}
+            className="parallax absolute  h-full w-full"></div>
+        ) : (
+          <Image
+            fill
+            sizes="80vw"
+            alt="hero image"
+            src={props.backgroundImage?.node.sourceUrl || ""}
+            className="hero image"
+          />
+        )}
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
           <div className="relative z-10 mx-auto max-w-[85%] text-secondary-offWhite-white lg:col-span-full lg:col-start-2 lg:mx-0 lg:max-w-[868px]">
