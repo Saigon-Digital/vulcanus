@@ -3,8 +3,6 @@ import Image from "next/image";
 import {type ImageBlock} from "@/__generated__/graphql";
 import useImageStyle from "@/hooks/useImageCss";
 
-import LazyImport from "../LazyImport";
-
 const ImageBlock: React.FC<
   ImageBlock & {
     imageSrc?: string;
