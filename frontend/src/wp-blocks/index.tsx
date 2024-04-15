@@ -4,6 +4,7 @@ import {
 } from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
+// import MapCache from "map-cache"
 const Cards = dynamic(() => import("@/components/Cards"), {});
 const Team = dynamic(() => import("@/components/Team"), {});
 const Service = dynamic(() => import("@/components/Services"), {});
