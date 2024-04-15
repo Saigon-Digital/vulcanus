@@ -24,6 +24,7 @@ type Tlang = {
   email: {label: string; placeholder: string};
   phone: {label: string; placeholder: string};
   message: {label: string; placeholder: string};
+  notFound: {title: string; description: string; btnText: string};
 };
 
 type Tlangs = {
@@ -47,6 +48,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         service: "Our Services",
         contactUs: "Contact Us",
         policy: "Privacy Policy",
+
         blogDescription:
           "Discover the technological prowess behind Vulcanus Company's CNC manufacturing. Learn about their state-of-the-art equipment, their capacity for large-scale productions, and the diverse materials they expertly handle.",
         poweredBy: "Powered by",
@@ -62,6 +64,11 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         email: {label: "Email", placeholder: "Your Email"},
         phone: {label: "Phone", placeholder: "Your Telephone Number"},
         message: {label: "Message", placeholder: "Your Message"},
+        notFound: {
+          title: "Page not found",
+          description: "Sorry, we couldn’t find the page you’re looking for.",
+          btnText: "Go back home",
+        },
       },
     },
     {
@@ -93,6 +100,12 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         phone: {label: "Telefon", placeholder: "Deine Telefonnummer"},
         email: {label: "Email", placeholder: "deine E-Mail"},
         message: {label: "Nachricht", placeholder: "Ihre Nachricht"},
+        notFound: {
+          title: "Seite nicht gefunden",
+          description:
+            "Leider konnten wir die von Ihnen gesuchte Seite nicht finden.",
+          btnText: "Gehen Sie zur Startseite",
+        },
       },
     },
   ];
