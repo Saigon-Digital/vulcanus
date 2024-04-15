@@ -53,6 +53,7 @@ const Header = (props: Props) => {
               <Image
                 src="/logo/combination-logo-shape.svg"
                 alt="logo"
+                priority
                 width={226}
                 height={65}
                 className="aspect-[226/65] max-w-[50vw] object-contain md:max-w-[150px] xl:max-w-[226px]"

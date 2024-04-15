@@ -7,12 +7,13 @@
     "dev:faust": "faust dev",
     "generate-data": "ts-node ./src/generateData.ts",
     "analyze": "cross-env ANALYZE=true pnpm build",
-    "build": "pnpm run generate && pnpm run codegen && pnpm run generate-data && faust build",
+    "build": "pnpm run generate && pnpm run codegen && pnpm run generate-data && pnpm sitemap && faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",
     "lint": "next lint",
     "find:unused": "next-unused",
     "codegen": "graphql-codegen",
+    "sitemap": "next-sitemap",
     "watch-codegen": "graphql-codegen -w"
   },
   "next-unused": {
@@ -45,6 +46,7 @@
     "next": "14.2.0",
     "next-gravity-forms": "^2.0.0",
     "next-seo": "^6.5.0",
+    "next-sitemap": "^4.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.1",
