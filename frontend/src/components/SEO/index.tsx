@@ -1,6 +1,6 @@
 import {
   PagesSettingFragment,
-  SiteSettingFragment
+  SiteSettingFragment,
 } from "@/__generated__/graphql";
 import Head from "next/head";
 export type TSEO = {
@@ -9,7 +9,7 @@ export type TSEO = {
   DEUri?: string | null | undefined;
   defaultSEO?: SiteSettingFragment | null | undefined;
   link?: string | null | undefined;
-  pageTitle?:string
+  pageTitle?: string;
 };
 const SEO = (props: TSEO) => {
   const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props;
@@ -21,8 +21,8 @@ const SEO = (props: TSEO) => {
     image:
       onPageSeo?.socialGraphImage?.node?.sourceUrl ||
       defaultSEO?.openGraphImage?.node.sourceUrl,
-    seoCanonical: onPageSeo?.canonicalUrl || link?.replace("homepage/",""),
-    url: link?.replace("homepage/",""),
+    seoCanonical: onPageSeo?.canonicalUrl || link?.replace("homepage/", ""),
+    url: link?.replace("homepage/", ""),
   };
 
   return (
@@ -78,9 +78,19 @@ const SEO = (props: TSEO) => {
           <meta property="twitter:url" content={seo.url} />
         </>
       )}
+      {props.seo?.noIndexNoFollow && (
+        <meta name="robots" content="noindex, nofollow" />
+      )}
+
       {seo.seoCanonical && <link rel="canonical" href={seo.seoCanonical} />}
       {DEUri && <link rel="alternate" hrefLang="x-default" href={DEUri} />}
-      {ENUri && <link rel="alternate" hrefLang="en" href={ENUri?.replace("homepage/","")} />}
+      {ENUri && (
+        <link
+          rel="alternate"
+          hrefLang="en"
+          href={ENUri?.replace("homepage/", "")}
+        />
+      )}
     </Head>
   );
 };
