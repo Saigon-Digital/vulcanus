@@ -21,11 +21,9 @@ const ImageBlock: React.FC<
   });
 
   return (
-    <LazyImport>
-      <div
-        style={{backgroundImage: imageStyle}}
-        className={` parallax container-fluid min-h-[400px] w-full px-0 md:min-h-[450px] md:px-[20px] lg:min-h-[656px] 2xl:min-h-[700px] ${props.className} `}></div>
-    </LazyImport>
+    <div
+      style={{backgroundImage: imageStyle}}
+      className={` parallax container-fluid min-h-[400px] w-full px-0 md:min-h-[450px] md:px-[20px] lg:min-h-[656px] 2xl:min-h-[700px] ${props.className} `}></div>
   );
 };
 

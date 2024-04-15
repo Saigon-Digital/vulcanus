@@ -5,7 +5,7 @@ import type {StaticImport} from "next/dist/shared/lib/get-img-props";
 import {ServiceComponent} from "@/__generated__/graphql";
 import {languages} from "@/utils/language";
 import {m} from "framer-motion";
-import LazyImport from "../LazyImport";
+
 import dynamic from "next/dynamic";
 import {useLocaleContext} from "@/context/LocaleContext";
 const Image = dynamic(() => import("next/image"));
@@ -45,7 +45,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
             );
           })}
         <div className="col-span-1 col-start-2 row-start-1 hidden place-items-center items-end justify-center xl:flex">
-          <LazyImport className="mt-auto aspect-[394/217] w-full">
+          <div className="mt-auto aspect-[394/217] w-full">
             <Image
               src={"/shapes/gearIcon.svg"}
               alt="gear icon"
@@ -54,14 +54,14 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
               height={217}
               // alt="gear"
             />
-          </LazyImport>
+          </div>
         </div>
       </div>
       <div className="mt-6 grid h-full  grid-cols-1 gap-6 sm:grid-cols-2  lg:grid-cols-4 xl:min-h-[400px] ">
         {featureImage?.map((img, index) => {
           const size = index === 0 ? 40 : 25;
           return (
-            <LazyImport
+            <div
               key={index}
               className={`relative col-span-full min-h-[300px] overflow-hidden ${
                 index === 0 ? "md:col-span-2" : "lg:col-span-1"
@@ -81,7 +81,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                   className="object-cover"
                 />
               </m.div>
-            </LazyImport>
+            </div>
           );
         })}
       </div>

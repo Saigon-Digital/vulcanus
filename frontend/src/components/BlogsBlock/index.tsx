@@ -11,7 +11,7 @@ import {getPostThumb} from "@/libs/graphql/utils";
 import {languages} from "@/utils/language";
 import {getAcfLinkProps, useConsoleLog} from "@/utils";
 import dynamic from "next/dynamic";
-import LazyImport from "../LazyImport";
+
 import {useLocaleContext} from "@/context/LocaleContext";
 const ButtonNext = dynamic(
   () => import("../Icons").then((mod) => mod.ButtonNext),
@@ -106,9 +106,8 @@ const BlogsBlock = (props: Props) => {
                         href={`/blog/${ele.slug}` as string}
                         className="group mt-5 text-primary-blue-main">
                         {languages(locale)?.readMore}
-                        <LazyImport>
-                          <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
-                        </LazyImport>
+
+                        <ButtonNext className="ml-2 inline transition-all group-hover:translate-x-2" />
                       </Link>
                     </div>
                   </div>

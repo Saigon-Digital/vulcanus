@@ -6,7 +6,6 @@ import clsx from "clsx";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
-const LazyImport = dynamic(() => import("../LazyImport"));
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
@@ -37,13 +36,13 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
           )}
           dangerouslySetInnerHTML={{__html: title || ""}}></m.div>
         {haveShape && (
-          <LazyImport>
+          <div>
             <TitleShape
               h={200}
               w={200}
               className="absolute -right-[10px] top-1/2 hidden -translate-y-1/2 lg:block"
             />
-          </LazyImport>
+          </div>
         )}
       </div>
     </section>

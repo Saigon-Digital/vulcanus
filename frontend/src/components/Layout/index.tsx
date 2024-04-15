@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import {MenuLocationEnum} from "@/__generated__/graphql";
 import {useRouter} from "next/router";
 import {m} from "framer-motion";
-import LazyImport from "../LazyImport";
+
 import siteData from "../../data/site_data.json";
 const Header = dynamic(() => import("../Header"));
 const Footer = dynamic(() => import("../Footer"));
@@ -58,9 +58,8 @@ const Layout = ({children}: PropsWithChildren) => {
         }}>
         {children}
       </m.div>
-      <LazyImport>
-        <Footer menu={footerMenu} />
-      </LazyImport>
+
+      <Footer menu={footerMenu} />
     </>
   );
 };

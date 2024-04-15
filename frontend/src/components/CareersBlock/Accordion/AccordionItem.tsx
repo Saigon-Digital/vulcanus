@@ -4,7 +4,7 @@ import clsx from "clsx";
 import {useRef} from "react";
 import Button from "@/components/Button";
 import {getAcfLinkProps} from "@/utils";
-import LazyImport from "@/components/LazyImport";
+
 const MinusIcon = dynamic(
   () => import("../../Icons").then((mod) => mod.MinusIcon),
   {loading: () => <>loading</>}
@@ -53,9 +53,7 @@ const TriggerLabel = ({expanded, className}: Props) => {
               "hidden ": expanded,
             }
           )}>
-          <LazyImport>
-            <PlusIcon />
-          </LazyImport>
+          <PlusIcon />
         </div>
         <div
           className={clsx(
@@ -64,9 +62,7 @@ const TriggerLabel = ({expanded, className}: Props) => {
               hidden: !expanded,
             }
           )}>
-          <LazyImport>
-            <MinusIcon />
-          </LazyImport>
+          <MinusIcon />
         </div>
       </div>
     </div>
