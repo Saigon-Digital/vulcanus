@@ -20,7 +20,7 @@ const client = new ApolloClient({
     const {data} = await client.query({
       query: gql(`
     query getSiteMap {
-      pages {
+      pages(first: 500) {
     nodes {
       uri
      EN:translation(language:EN)

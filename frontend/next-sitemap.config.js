@@ -8,13 +8,13 @@ module.exports = {
   priority: 0.7,
   additionalPaths: async (config) => {
     const result = [];
-    paths.forEach((path) => {
+    for (let path of paths) {
       result.push({
         loc: path.uri,
         priority: config.priority,
         lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
       });
-    });
+    }
 
     return result;
   },
