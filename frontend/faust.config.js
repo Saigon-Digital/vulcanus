@@ -8,7 +8,8 @@ import templates from "./src/wp-templates";
 
 export default setConfig({
   templates,
-  experimentalPlugins: [],
+  plugins: [],
   possibleTypes,
   useGETForQueries: false,
+  usePersistedQueries: true,
 });

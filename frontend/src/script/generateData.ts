@@ -71,7 +71,11 @@ const client = new ApolloClient({
     `),
     });
     //@ts-ignore
-    paths = [...data.pages?.nodes, ...data.posts?.nodes];
+    paths = data.pages?.nodes.map((ele) => ({
+      ...ele,
+      uri: ele.uri?.replace("posts", "blog"),
+    }));
+
     if (!existsSync(DATA_DIR)) {
       mkdirSync(DATA_DIR);
     }
