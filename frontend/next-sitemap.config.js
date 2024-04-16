@@ -13,16 +13,6 @@ module.exports = {
         loc: path.uri,
         priority: config.priority,
         lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
-        alternateRefs: [
-          {
-            href: path.EN?.language?.uri || config.siteUrl,
-            hreflang: "en",
-          },
-          {
-            href: path.DE?.language?.uri || config.siteUrl,
-            hreflang: "de",
-          },
-        ],
       });
     });
 
