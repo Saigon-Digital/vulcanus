@@ -9,11 +9,11 @@ dependencies:
     specifier: ^3.8.8
     version: 3.8.8(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
   '@faustwp/cli':
-    specifier: ^3.0.0
-    version: 3.0.0(glob@8.1.0)(webpack@5.91.0)
+    specifier: ^3.0.1
+    version: 3.0.1(glob@8.1.0)(webpack@5.91.0)
   '@faustwp/core':
-    specifier: ^3.0.0
-    version: 3.0.0(@apollo/client@3.8.8)(next@14.2.0)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^3.0.1
+    version: 3.0.1(@apollo/client@3.8.8)(next@14.2.0)(react-dom@18.2.0)(react@18.2.0)
   '@graphql-typed-document-node/core':
     specifier: ^3.2.0
     version: 3.2.0(graphql@16.8.1)
@@ -59,6 +59,9 @@ dependencies:
   next-seo:
     specifier: ^6.5.0
     version: 6.5.0(next@14.2.0)(react-dom@18.2.0)(react@18.2.0)
+  next-sitemap:
+    specifier: ^4.2.3
+    version: 4.2.3(next@14.2.0)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -1569,6 +1572,10 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
+  /@corex/deepmerge@4.0.43:
+    resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
+    dev: false
+
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
@@ -1779,8 +1786,8 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /@faustwp/cli@3.0.0(glob@8.1.0)(webpack@5.91.0):
-    resolution: {integrity: sha512-n1k8vm2M5Dg8OTtIfFNcobCvQ6QeAxZT91PwjhAcx++A1qzRA2Fd4Kzc4Axx/QDVC8XXIHN/jgDUAAkVFrUFjA==}
+  /@faustwp/cli@3.0.1(glob@8.1.0)(webpack@5.91.0):
+    resolution: {integrity: sha512-90YlB4fM3UvNsSZ8O1zw6EvE8lfMjh8QpEkY//JcxvTctRE55Awb3N3ntY20gCODk5dAmK4mFtgz92bRMnsPnw==}
     engines: {node: '>=18', npm: '>=8'}
     hasBin: true
     dependencies:
@@ -1802,8 +1809,8 @@ packages:
       - webpack-dev-server
     dev: false
 
-  /@faustwp/core@3.0.0(@apollo/client@3.8.8)(next@14.2.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-BQLNqOyhtugJE243EOYhqebScyEY9CDZPedZzaPFG4WSpUL1J0ISxt6KifWZdcrFt2WesRVlD6c+W2k1pZsDLw==}
+  /@faustwp/core@3.0.1(@apollo/client@3.8.8)(next@14.2.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-a/YFl93reW1QxQqHzvR37Lgt1M1mMJa5Q2MYO6qeoB4K8Lf6LEAvOHNl4/pwDQJ3Jnf044RzolDMUGVs88M4RA==}
     engines: {node: '>=18', npm: '>=8'}
     peerDependencies:
       '@apollo/client': '>=3.6.6'
@@ -1819,6 +1826,7 @@ packages:
       deepmerge: 4.3.1
       fast-xml-parser: 4.3.6
       isomorphic-fetch: 3.0.0
+      js-cookie: 3.0.5
       js-sha256: 0.9.0
       lodash: 4.17.21
       next: 14.2.0(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
@@ -6308,6 +6316,11 @@ packages:
     resolution: {integrity: sha512-GPExOkcMsCLBTi1YetY2LmkoY559fss0+0KVa6kOfb2YFe84nAM7Nm/XzuZozah4iHgmBGrCOHL5/cy670SBRw==}
     dev: true
 
+  /js-cookie@3.0.5:
+    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
+    engines: {node: '>=14'}
+    dev: false
+
   /js-sha256@0.9.0:
     resolution: {integrity: sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==}
     dev: false
@@ -6762,7 +6775,6 @@ packages:
 
   /minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
-    dev: true
 
   /module-definition@3.4.0:
     resolution: {integrity: sha512-XxJ88R1v458pifaSkPNLUTdSPNVGMP2SXVncVmApGO+gAfrLANiYe6JofymCzVceGOMwQE2xogxBSc8uB7XegA==}
@@ -6862,6 +6874,20 @@ packages:
       next: 14.2.0(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /next-sitemap@4.2.3(next@14.2.0):
+    resolution: {integrity: sha512-vjdCxeDuWDzldhCnyFCQipw5bfpl4HmZA7uoo3GAaYGjGgfL4Cxb1CiztPuWGmS+auYs7/8OekRS8C2cjdAsjQ==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.43
+      '@next/env': 13.5.6
+      fast-glob: 3.3.2
+      minimist: 1.2.8
+      next: 14.2.0(@babel/core@7.23.5)(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
     dev: false
 
   /next-unused@0.0.6:

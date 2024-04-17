@@ -5,14 +5,15 @@
   "scripts": {
     "dev": "pnpm run generate-data && pnpm run generate && concurrently \"faust dev\" \"pnpm run watch-codegen\"",
     "dev:faust": "faust dev",
-    "generate-data": "ts-node ./src/generateData.ts",
+    "generate-data": "ts-node ./src/script/generateData.ts",
     "analyze": "cross-env ANALYZE=true pnpm build",
-    "build": "pnpm run generate && pnpm run codegen && pnpm run generate-data && faust build",
+    "build": "pnpm run generate && pnpm run codegen && pnpm run generate-data && pnpm sitemap && faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",
     "lint": "next lint",
     "find:unused": "next-unused",
     "codegen": "graphql-codegen",
+    "sitemap": "next-sitemap",
     "watch-codegen": "graphql-codegen -w"
   },
   "next-unused": {
@@ -28,8 +29,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",
-    "@faustwp/cli": "^3.0.0",
-    "@faustwp/core": "^3.0.0",
+    "@faustwp/cli": "^3.0.1",
+    "@faustwp/core": "^3.0.1",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@netlify/plugin-nextjs": "5.0.0-rc.8",
     "@next/bundle-analyzer": "^14.1.4",
@@ -45,6 +46,7 @@
     "next": "14.2.0",
     "next-gravity-forms": "^2.0.0",
     "next-seo": "^6.5.0",
+    "next-sitemap": "^4.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.1",

@@ -10,6 +10,8 @@ import clsx from "clsx";
 import {LocaleContextProvider} from "@/context/LocaleContext";
 import {AnimatePresence, LazyMotion} from "framer-motion";
 import {Overpass} from "next/font/google";
+import {ApolloProvider} from "@apollo/client";
+import {client} from "@/libs/graphql/utils";
 const Layout = dynamic(() => import("@/components/Layout"));
 const features = () =>
   import("@/components/motionFeature").then((mod) => mod.default);
@@ -26,30 +28,32 @@ export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
 
   return (
-    <FaustProvider pageProps={pageProps}>
-      <LocaleContextProvider
-        localeData={{
-          DE:
-            pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang.link ||
-            null,
-          EN:
-            pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang.link ||
-            null,
-        }}>
-        <LazyMotion features={features}>
-          <AnimatePresence initial={false} mode="wait">
-            <main className={clsx(overpass.variable, "overflow-x-clip")}>
-              <Layout key={`${router.asPath}-${router.locale}`}>
-                {/* > */}
-                <Component
-                  {...pageProps}
-                  key={`${router.asPath}-${router.locale}`}
-                />
-              </Layout>
-            </main>
-          </AnimatePresence>
-        </LazyMotion>
-      </LocaleContextProvider>
-    </FaustProvider>
+    <ApolloProvider client={client}>
+      <FaustProvider pageProps={pageProps}>
+        <LocaleContextProvider
+          localeData={{
+            DE:
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang
+                .link || null,
+            EN:
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang
+                .link || null,
+          }}>
+          <LazyMotion features={features}>
+            <AnimatePresence initial={false} mode="wait">
+              <main className={clsx(overpass.variable, "overflow-x-clip")}>
+                <Layout key={`${router.asPath}-${router.locale}`}>
+                  {/* > */}
+                  <Component
+                    {...pageProps}
+                    key={`${router.asPath}-${router.locale}`}
+                  />
+                </Layout>
+              </main>
+            </AnimatePresence>
+          </LazyMotion>
+        </LocaleContextProvider>
+      </FaustProvider>
+    </ApolloProvider>
   );
 }

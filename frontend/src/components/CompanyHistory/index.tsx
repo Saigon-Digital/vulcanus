@@ -12,7 +12,6 @@ import {
   SwiperSlide,
   SwiperClass,
   useSwiper,
-  useSwiperSlide,
   SwiperRef,
 } from "swiper/react";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
@@ -101,7 +100,6 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 className="h-[300%] sm:h-full"
                 // simulateTouch
                 ref={swiperRef}
-                // onTouchStart={(swiper) => onSwiperChange(swiper)}
                 initialSlide={activeSlide}
                 centeredSlides={!isMobile}
                 onSlideChange={(swiper: any) => onSwiperChange(swiper)}
