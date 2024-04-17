@@ -43,10 +43,14 @@ const client = new ApolloClient({
       }
     }
   }
-  posts {
+  posts (first:500) {
     nodes
     {
     uri
+    slug
+    language {
+        code
+      }
       EN:translation(language:EN)
       {
         uri
@@ -76,10 +80,20 @@ const client = new ApolloClient({
       uri: ele.uri?.replace("posts", "blog"),
     }));
 
+    const concatPaths = paths.concat(
+      data.posts?.nodes.map((ele) => {
+        const localePart =
+          ele.language?.code?.toLocaleLowerCase() === "en"
+            ? "en/blog/"
+            : "weblog/";
+        return {...ele, uri: `/${localePart}${ele.slug}`};
+      })
+    );
+
     if (!existsSync(DATA_DIR)) {
       mkdirSync(DATA_DIR);
     }
-    writeFileSync(`${DATA_DIR}/site_map.json`, JSON.stringify(paths));
+    writeFileSync(`${DATA_DIR}/site_map.json`, JSON.stringify(concatPaths));
   } catch (err) {
     console.error(err);
   }
