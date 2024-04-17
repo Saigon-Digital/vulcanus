@@ -2,6 +2,7 @@ fragment pagesSetting on PagesSetting {
   __typename
   title
   description
+  noIndexNoFollow
   canonicalUrl
   socialGraphImage {
     node {

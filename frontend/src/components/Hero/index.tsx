@@ -47,7 +47,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
           <div className="relative z-10 mx-auto max-w-[85%] text-secondary-offWhite-white lg:col-span-full lg:col-start-2 lg:mx-0 lg:max-w-[868px]">
             {props.title && (
-              <h1 className="relative z-10 break-words font-extrabold uppercase leading-[140%] tracking-tight min-max-[40_64]">
+              <h1 className="2x:text-[64px] relative z-10 break-words text-4xl font-extrabold uppercase leading-[140%] tracking-tight lg:text-5xl">
                 {props?.title}
               </h1>
             )}
