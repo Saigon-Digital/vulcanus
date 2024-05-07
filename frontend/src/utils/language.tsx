@@ -78,7 +78,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         contactInfo: "Kontaktinformationen",
         loading: "Wird geladen",
         posted: "Veröffentlicht am",
-        letStart: "Beginnen wir mit <strong>der Arbeit</strong>",
+        letStart: "Bereit für Neues? <strong> Starte jetzt mit uns!</strong>",
         require: "Dieses Feld ist erforderlich",
         contactUs: "kontaktiere uns",
         manufacturing: "Herstellung",
