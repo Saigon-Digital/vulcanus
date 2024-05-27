@@ -24,19 +24,23 @@ import clsx from "clsx";
 const CompanyHistory = (props: CompanyHistoryBlock) => {
   // Slider not work as expected, check logic again
   const isMobile = useMediaQuery("(max-width:768px)");
+  let sizes = props.histories ? props.histories.length : 0;
   const activeSlide = !isMobile
-    ? props.histories
-      ? Math.floor(props.histories?.length / 2) - 1
-      : 0
+    ? sizes > 5
+      ? 2
+      : Math.floor(sizes / 2) - 1
     : 0;
 
   const [currentSlide, setCurentSlide] = useState<number | undefined>(
     activeSlide
   );
+  let histories = props.histories ? [...props.histories] : [];
 
-  const [mobileSlide, setMobileSlide] = useState<typeof props.histories>(
-    props.histories
-  );
+  // return;
+  histories.sort((a, b) => (a?.year && b?.year ? a?.year - b?.year : -1));
+
+  const [mobileSlide, setMobileSlide] =
+    useState<typeof props.histories>(histories);
 
   const swiperRef = useRef<SwiperRef | null>(null);
 
@@ -50,10 +54,17 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
     if (isMobile) {
       return mobileSlide?.at(0);
     }
-    return (
-      props.histories && props.histories.find((ele, id) => id === currentSlide)
-    );
+    return histories && histories.find((ele, id) => id === currentSlide);
   }, [currentSlide, mobileSlide]);
+
+  const prevHistory = useMemo(() => {
+    if (isMobile) return mobileSlide?.at(0);
+    if (currentSlide && currentSlide - 1 > 0) {
+      return histories && histories.find((ele, id) => id === currentSlide - 1);
+    } else {
+      return histories && histories.find((ele, id) => id === currentSlide);
+    }
+  }, [currentSlide]);
 
   const onMobileSlide = (index: number) => {
     let result = mobileSlide ? [...mobileSlide] : [];
@@ -104,7 +115,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 centeredSlides={!isMobile}
                 onSlideChange={(swiper: any) => onSwiperChange(swiper)}
                 slidesPerView={isMobile ? 4 : 5}>
-                {props.histories?.map((ele, id) => {
+                {histories?.map((ele, id) => {
                   return (
                     <SwiperSlide
                       onClick={(e) => {
@@ -157,9 +168,9 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
               alt="history"
               width={360}
               height={267}
+              loading="eager"
               src={
-                activeHistory?.supportingImage?.node?.sourceUrl ||
-                "/images/photo-1.png"
+                prevHistory?.mainImage?.node?.sourceUrl || "/images/photo-1.png"
               }
             />
           </div>
@@ -169,6 +180,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
               alt="history"
               width={920}
               height={540}
+              loading="eager"
               src={
                 activeHistory?.mainImage?.node.sourceUrl ||
                 "/images/hero-banner.png"
