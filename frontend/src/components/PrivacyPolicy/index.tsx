@@ -5,10 +5,12 @@ import clsx from "clsx";
 import {useState} from "react";
 import {languages} from "@/utils/language";
 import {useLocaleContext} from "@/context/LocaleContext";
+import {twMerge} from "tailwind-merge";
 
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
   const [active, setActive] = useState(0);
   const {locale} = useLocaleContext();
+  const sizes = props.terms?.length || 0;
   React.useEffect(() => {
     if (typeof document === undefined) return;
     const id =
@@ -26,28 +28,37 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
-          <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
-            <p>{languages(locale)?.introduce}</p>
-            <ul className="list-decimal pl-5">
-              {props.terms?.map((ele: any, id: number) => {
-                let size = props.terms ? props.terms.length - 1 : 0;
-                return (
-                  <li
-                    key={id}
-                    className={clsx(
-                      `relative cursor-pointer font-normal`,
-                      active === id &&
-                        "font-semibold text-primary-blue-main after:absolute after:-left-[46px] after:top-0 after:h-5 after:w-[2px] after:border-l-2 after:border-primary-blue-main",
-                      id === size ? "-mb-2" : "mb-3"
-                    )}>
-                    <button onClick={(e) => setActive(id)}>{ele?.title}</button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          {sizes > 1 && (
+            <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
+              <p>{languages(locale)?.introduce}</p>
+              <ul className={twMerge("pl-5", sizes > 1 && "list-disc")}>
+                {props.terms?.map((ele: any, id: number) => {
+                  let size = props.terms ? props.terms.length - 1 : 0;
+                  return (
+                    <li
+                      key={id}
+                      className={clsx(
+                        `relative cursor-pointer font-normal`,
+                        active === id &&
+                          "font-semibold text-primary-blue-main after:absolute after:-left-[46px] after:top-0 after:h-5 after:w-[2px] after:border-l-2 after:border-primary-blue-main",
+                        id === size ? "-mb-2" : "mb-3"
+                      )}>
+                      <button onClick={(e) => setActive(id)}>
+                        {ele?.title}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
         </div>
-        <div className="content col-span-full flex flex-col md:col-span-7 lg:col-span-5">
+        <div
+          className={twMerge(
+            "content col-span-full flex flex-col md:col-span-7 lg:col-span-5",
+            sizes < 2 &&
+              "md:col-span-full md:col-start-3 lg:col-span-10 lg:col-start-2"
+          )}>
           <div className="border-b border-white pb-4">
             <h1 className="mb-5 text-[32px] leading-[40px]">
               {languages(locale)?.policy}
@@ -71,7 +82,7 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                   )}
                   key={id}>
                   <h3 className="heading">
-                    {id + 1}. {ele?.title}
+                    {sizes > 1 && id + 1}. {ele?.title}
                   </h3>
                   {ele.content && (
                     <div dangerouslySetInnerHTML={{__html: ele.content}}></div>

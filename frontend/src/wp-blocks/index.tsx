@@ -4,6 +4,7 @@ import {
 } from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
+import RichText from "@/components/RichText";
 // import MapCache from "map-cache"
 const Cards = dynamic(() => import("@/components/Cards"), {});
 const Team = dynamic(() => import("@/components/Team"), {});
@@ -72,5 +73,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksCertificateBlockLayout", CertificateBlock],
   ["PageBuilderDynamicBlocksImagesSlideLayout", ImagesSlide],
   ["PageBuilderDynamicBlocksPrivacyPolicyLayout", PrivacyPolicy],
+  ["PageBuilderDynamicBlocksRichTextLayout", RichText],
 ]);
 export default blocks;

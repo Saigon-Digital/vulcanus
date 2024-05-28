@@ -34,10 +34,10 @@ export default function App({Component, pageProps}: AppProps) {
           localeData={{
             DE:
               pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang
-                .link || null,
+                ?.link || null,
             EN:
               pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang
-                .link || null,
+                ?.link || null,
           }}>
           <LazyMotion features={features}>
             <AnimatePresence initial={false} mode="wait">
