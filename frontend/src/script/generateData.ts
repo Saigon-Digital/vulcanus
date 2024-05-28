@@ -20,27 +20,10 @@ const client = new ApolloClient({
     const {data} = await client.query({
       query: gql(`
     query getSiteMap {
-      pages(first: 500) {
+      pages(first: 1000) {
     nodes {
       uri
-     EN:translation(language:EN)
-      {
-        uri
-        language 
-        {
-          locale
-          code
-        }
-      }
-     	 DE:translation(language:DE)
-      {
-        uri
-        language 
-        {
-          locale
-          code
-        }
-      }
+      slug
     }
   }
   posts (first:500) {
@@ -81,7 +64,7 @@ const client = new ApolloClient({
     }));
 
     const concatPaths = paths.concat(
-      data.posts?.nodes.map((ele) => {
+      data.posts?.nodes.map((ele: any) => {
         const localePart =
           ele.language?.code?.toLocaleLowerCase() === "en"
             ? "en/blog/"
