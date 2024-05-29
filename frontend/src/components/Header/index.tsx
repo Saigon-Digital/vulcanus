@@ -69,6 +69,7 @@ const Header = (props: Props) => {
                     return (
                       <Link
                         key={item?.uri}
+                        locale={locale}
                         href={item?.uri ?? "#"}
                         // locale={locale}
                         className={clsx(
