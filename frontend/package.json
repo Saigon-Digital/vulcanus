@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "pnpm run generate-data && pnpm run generate && concurrently \"faust dev\" \"pnpm run watch-codegen\"",
     "dev:faust": "faust dev",
-    "generate-data": "ts-node --esm ./src/script/generateData.ts",
+    "generate-data": "ts-node ./src/script/generateData.ts",
     "analyze": "cross-env ANALYZE=true pnpm build",
     "build": "pnpm run generate && pnpm run codegen && pnpm run generate-data && pnpm sitemap && faust build",
     "generate": "faust generatePossibleTypes",
