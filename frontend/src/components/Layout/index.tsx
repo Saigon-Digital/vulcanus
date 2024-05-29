@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 import {m} from "framer-motion";
 
 import siteData from "../../data/site_data.json";
+import {useLocaleContext} from "@/context/LocaleContext";
 const Header = dynamic(() => import("../Header"));
 const Footer = dynamic(() => import("../Footer"));
 
@@ -42,9 +43,9 @@ function getGlobalSiteData(locale: string | undefined) {
 }
 
 const Layout = ({children}: PropsWithChildren) => {
-  const router = useRouter();
+  const {locale} = useLocaleContext();
 
-  const {headerMenu, footerMenu} = getGlobalSiteData(router.locale);
+  const {headerMenu, footerMenu} = getGlobalSiteData(locale);
 
   return (
     <>

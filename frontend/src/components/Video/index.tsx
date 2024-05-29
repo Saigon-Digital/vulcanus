@@ -6,12 +6,12 @@ const ReactPlayer = dynamic(() => import("react-player"));
 const index: React.FC<VideoBlock> = (props) => {
   return (
     <div className="container-fluid py-20 text-center">
-      <h3 className="mb-10 text-left text-3xl font-bold text-white xl:text-5xl">
+      <h3 className="mb-10 text-center text-3xl font-bold text-white xl:text-5xl">
         {props.title}
       </h3>
 
       <ReactPlayer
-        width="100%"
+        width="90%"
         height="auto"
         playIcon={<PlayIcon />}
         controls
@@ -26,7 +26,13 @@ const index: React.FC<VideoBlock> = (props) => {
             },
           },
         }}
-        style={{width: "100%", aspectRatio: "1860/1080"}}
+        style={{
+          width: "100%",
+          maxWidth: "900px",
+          aspectRatio: "1860/1080",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
         url={props.videoLink?.url || ""}
       />
     </div>
