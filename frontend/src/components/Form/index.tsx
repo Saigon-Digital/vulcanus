@@ -124,7 +124,7 @@ const Form = ({contactInformation, form}: TForm) => {
     setLoading(false);
   };
 
-  console.log("errors ", errors);
+  // console.log("errors ", errors);
 
   return (
     <div className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">

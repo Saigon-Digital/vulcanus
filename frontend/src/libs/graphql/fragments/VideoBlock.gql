@@ -1,5 +1,6 @@
 fragment VideoBlock on PageBuilderDynamicBlocksVideoBlockLayout_Fields {
   fieldGroupName
+  title
   videoLink {
     url
   }
