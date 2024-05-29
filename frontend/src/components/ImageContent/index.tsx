@@ -52,17 +52,17 @@ const ImageContent = ({
               className="xl:[&>*>*]:text-xl [&>*>strong]:!text-primary-blue-main [&>*]:font-normal xl:[&>*]:text-xl [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 "></div>
           )}
           {content?.icons && content?.icons?.length > 0 && (
-            <div className="flex  justify-center gap-10 2xl:gap-20">
+            <div className="flex  justify-center  gap-4 xl:gap-10 2xl:gap-20">
               {content.icons.map((ele, index) => {
                 return (
                   <div
                     key={index}
-                    className="mt-5 flex flex-col justify-center text-center">
+                    className="mt-5 flex flex-col justify-start  gap-6 text-center">
                     <Image
                       src={ele?.icon?.node?.sourceUrl || ""}
                       width={98}
                       height={98}
-                      className="mx-auto"
+                      className="mx-auto aspect-square w-full max-w-[80px]"
                       alt="icon image"
                     />
                     <p>{ele?.text}</p>
