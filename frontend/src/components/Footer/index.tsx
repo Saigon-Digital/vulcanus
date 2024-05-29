@@ -204,7 +204,7 @@ const Footer = (props: Props) => {
                     </div>
                   );
                 })}
-              <div className="col-span-full flex gap-4 lg:col-span-1 lg:col-start-3">
+              <div className="col-span-full flex items-center gap-4 lg:col-span-1 lg:col-start-3">
                 <Link
                   target="_blank"
                   href="https://www.facebook.com/vulcanusstahl.de/">
