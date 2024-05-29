@@ -55,6 +55,7 @@ const Footer = (props: Props) => {
     }
     const callback: IntersectionObserverCallback = (entries) => {
       entries.forEach((ele) => {
+        if (!ele && !ref.current) return;
         const calcTop = () => {
           const rect = ref.current?.getBoundingClientRect();
           const top = rect ? rect.top : 0;
