@@ -16,6 +16,7 @@ import {TSiteData} from "../Layout";
 import dynamic from "next/dynamic";
 import {m} from "framer-motion";
 import {useLocaleContext} from "@/context/LocaleContext";
+import {FaceBookIcon, InstagramIcon, LinkedInIcon} from "../Icons";
 
 type Props = {
   menu: TSiteData["menus"];
@@ -203,6 +204,23 @@ const Footer = (props: Props) => {
                     </div>
                   );
                 })}
+              <div className="col-span-full flex gap-4 lg:col-span-1 lg:col-start-3">
+                <Link
+                  target="_blank"
+                  href="https://www.facebook.com/vulcanusstahl.de/">
+                  <FaceBookIcon />
+                </Link>
+                <Link
+                  target="_blank"
+                  href="https://www.linkedin.com/company/vulcanus-stahl-und-maschinenbau-gmbh">
+                  <LinkedInIcon />
+                </Link>
+                <Link
+                  target="_blank"
+                  href="https://www.instagram.com/vulcanusstahl.de/">
+                  <InstagramIcon />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
