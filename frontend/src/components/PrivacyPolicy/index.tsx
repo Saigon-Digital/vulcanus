@@ -31,7 +31,11 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
           {sizes > 1 && (
             <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
               <p>{languages(locale)?.introduce}</p>
-              <ul className={twMerge("pl-5", sizes > 1 && "list-disc")}>
+              <ul
+                className={twMerge(
+                  "pl-5",
+                  sizes > 1 ? "list-decimal" : "list-disc"
+                )}>
                 {props.terms?.map((ele: any, id: number) => {
                   let size = props.terms ? props.terms.length - 1 : 0;
                   return (

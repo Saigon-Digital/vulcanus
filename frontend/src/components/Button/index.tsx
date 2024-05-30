@@ -1,3 +1,4 @@
+import {useLocaleContext} from "@/context/LocaleContext";
 import Link from "next/link";
 import React, {forwardRef} from "react";
 import {twMerge} from "tailwind-merge";
@@ -5,6 +6,7 @@ import {twMerge} from "tailwind-merge";
 type Props =
   | (React.ComponentProps<typeof Link> & {
       as?: "link";
+      locale?: string;
     })
   | (React.ButtonHTMLAttributes<HTMLButtonElement> & {
       as: "button";
@@ -29,8 +31,10 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
         />
       );
     }
+    const {locale} = useLocaleContext();
     return (
       <Link
+        locale={locale}
         ref={ref as React.ForwardedRef<HTMLAnchorElement>}
         {...commonProps}
       />
