@@ -14,6 +14,8 @@ type Props =
 
 const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
   (props, ref) => {
+    const {locale} = useLocaleContext();
+
     const commonProps = {
       ...props,
       style: {width: "fit-content"},
@@ -31,7 +33,6 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
         />
       );
     }
-    const {locale} = useLocaleContext();
     return (
       <Link
         locale={locale}
