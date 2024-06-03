@@ -33,7 +33,7 @@
     "@faustwp/cli": "^3.0.1",
     "@faustwp/core": "^3.0.1",
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@netlify/plugin-nextjs": "5.0.0-rc.8",
+    "@netlify/plugin-nextjs": "5.3.2",
     "@next/bundle-analyzer": "^14.1.4",
     "@next/env": "13.5.6",
     "@tailwindcss/container-queries": "^0.1.1",
