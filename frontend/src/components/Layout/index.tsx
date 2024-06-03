@@ -42,7 +42,10 @@ function getGlobalSiteData(locale: string | undefined) {
   };
 }
 
-const Layout = ({children}: PropsWithChildren) => {
+const Layout = ({
+  children,
+  footerText,
+}: PropsWithChildren & {footerText?: string}) => {
   const {locale} = useLocaleContext();
 
   const {headerMenu, footerMenu} = getGlobalSiteData(locale);
@@ -60,7 +63,7 @@ const Layout = ({children}: PropsWithChildren) => {
         {children}
       </m.div>
 
-      <Footer menu={footerMenu} />
+      <Footer footerText={footerText} menu={footerMenu} />
     </>
   );
 };
