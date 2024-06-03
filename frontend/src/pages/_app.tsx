@@ -27,6 +27,10 @@ const overpass = Overpass({
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
 
+  // console.log("page data ", page);
+  // const footerText = page?.translation?.pagesSetting
+  //   ? page?.translation?.pagesSetting.footerText
+  //   : "";
   return (
     <ApolloProvider client={client}>
       <FaustProvider pageProps={pageProps}>
@@ -42,7 +46,12 @@ export default function App({Component, pageProps}: AppProps) {
           <LazyMotion features={features}>
             <AnimatePresence initial={false} mode="wait">
               <main className={clsx(overpass.variable, "overflow-x-clip")}>
-                <Layout key={`${router.asPath}-${router.locale}`}>
+                <Layout
+                  footerText={
+                    pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
+                      ?.pagesSetting?.footerText
+                  }
+                  key={`${router.asPath}-${router.locale}`}>
                   {/* > */}
                   <Component
                     {...pageProps}

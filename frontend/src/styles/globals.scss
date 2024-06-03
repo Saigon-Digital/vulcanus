@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "introduce";
+@import "richtext";
 
 :root {
   --header-height: 88px;
@@ -114,6 +115,14 @@ p {
     p {
       @apply text-lg;
     }
+  }
+}
+.rich-text {
+  h2,
+  strong,
+  h3,
+  h4 {
+    @apply text-[34px] font-bold;
   }
 }
 

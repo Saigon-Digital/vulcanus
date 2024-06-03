@@ -41,7 +41,13 @@ const index: React.FC<IconsBlock> = (props) => {
                     className=""
                   />
                   <h3 className="text-2xl font-semibold">{ele?.iconTitle}</h3>
-                  <p className="text-lg font-[300]">{ele?.iconDescription}</p>
+                  {ele?.iconDescription && (
+                    <p
+                      className="text-lg font-[300] [&>*>p]:font-bold "
+                      dangerouslySetInnerHTML={{
+                        __html: ele.iconDescription,
+                      }}></p>
+                  )}
                 </div>
               );
             })}

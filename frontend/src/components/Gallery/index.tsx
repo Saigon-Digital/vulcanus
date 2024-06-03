@@ -10,7 +10,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   return (
     <div className="relative py-20 lg:pb-28">
       <div className="container-fluid grid grid-cols-12 gap-5 lg:gap-6">
-        <div className="relative col-span-full flex justify-start text-left md:col-span-3 md:justify-center">
+        <div className="relative col-span-full flex justify-start text-left md:col-span-4 md:justify-start 2xl:col-span-3">
           <Image
             src={"/shapes/left-shape.svg"}
             width={47}
@@ -19,11 +19,12 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             className="absolute -left-[25px] -top-5 hidden  md:block"
           />
 
-          <h2 className="w-4/5 max-w-[279px] text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-3/4  2xl:text-5xl 2xl:leading-[67px]">
+          <h2 className="ml-[50px] max-w-[579px] whitespace-pre-wrap text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-[4/5]  2xl:leading-[67px] 3xl:text-5xl">
             {title}
           </h2>
         </div>
-        <div className={`col-span-full grid grid-cols-4 gap-5 md:col-span-9 `}>
+        <div
+          className={`col-span-full grid grid-cols-4 gap-5 md:col-span-8 2xl:col-span-9 `}>
           {gallery?.map((ele, id) => {
             return (
               <div

@@ -7,7 +7,7 @@ import {m} from "framer-motion";
 import siteData from "../../data/site_data.json";
 import {useLocaleContext} from "@/context/LocaleContext";
 const Header = dynamic(() => import("../Header"));
-const Footer = dynamic(() => import("../Footer"));
+const Footer = dynamic(() => import("../Footer"), {ssr: false});
 
 export type TSiteData = {
   menus?: (typeof siteData)["menus"]["nodes"][number];
@@ -42,7 +42,10 @@ function getGlobalSiteData(locale: string | undefined) {
   };
 }
 
-const Layout = ({children}: PropsWithChildren) => {
+const Layout = ({
+  children,
+  footerText,
+}: PropsWithChildren & {footerText?: string | null | undefined}) => {
   const {locale} = useLocaleContext();
 
   const {headerMenu, footerMenu} = getGlobalSiteData(locale);
@@ -60,7 +63,7 @@ const Layout = ({children}: PropsWithChildren) => {
         {children}
       </m.div>
 
-      <Footer menu={footerMenu} />
+      <Footer footerText={footerText} menu={footerMenu} />
     </>
   );
 };

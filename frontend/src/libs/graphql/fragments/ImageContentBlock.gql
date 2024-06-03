@@ -18,4 +18,7 @@ fragment ImageContent on PageBuilderDynamicBlocksImageContentLayout_Fields {
     }
     title
   }
+  blockSettings {
+    ...BlockSettings
+  }
 }

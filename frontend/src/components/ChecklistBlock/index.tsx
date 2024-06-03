@@ -45,7 +45,11 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
                   <div className="w-10 flex-[40px]">
                     <CheckIcon className="aspect-square h-6 w-6 flex-[1_60px]" />
                   </div>
-                  <p className="lg:text-lg">{ele?.item}</p>
+                  {ele?.item && (
+                    <p
+                      className="lg:text-lg [&>*>strong]:font-bold"
+                      dangerouslySetInnerHTML={{__html: ele.item}}></p>
+                  )}
                 </div>
               );
             })}

@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://vulcanus.netlify.app/
+Host: https://vulcanus.netlify.app
 
 # Sitemaps
 Sitemap: https://vulcanus.netlify.app/sitemap.xml
