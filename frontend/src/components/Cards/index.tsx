@@ -10,7 +10,7 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
     <div className="cards container-fluid py-14">
       <h2 className="heading-2 mb-14">{props?.title}</h2>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 ">
+      <div className="grid grid-cols-1 gap-4  md:grid-cols-2 xl:grid-cols-4 ">
         {props?.cards?.map((card, id) => {
           return (
             <Card

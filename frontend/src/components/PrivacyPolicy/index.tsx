@@ -6,13 +6,16 @@ import {useState} from "react";
 import {languages} from "@/utils/language";
 import {useLocaleContext} from "@/context/LocaleContext";
 import {twMerge} from "tailwind-merge";
-
+import {motion} from "framer-motion";
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
   const [active, setActive] = useState(0);
   const {locale} = useLocaleContext();
   const sizes = props.terms?.length || 0;
-  React.useEffect(() => {
-    if (typeof document === undefined) return;
+  React.useEffect(() => {}, [active]);
+
+  const scrollTo = (active: number) => {
+    if (typeof document === undefined || typeof window === undefined) return;
+    setActive(active);
     const id =
       //@ts-ignore
       props.terms?.find((ele, id) => id === active)?.title?.replace(" ", "") ||
@@ -23,7 +26,9 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
 
       window.scrollTo({top: top, behavior: "smooth"});
     }
-  }, [active]);
+  };
+  console.log(active);
+
   return (
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
@@ -39,7 +44,8 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                 {props.terms?.map((ele: any, id: number) => {
                   let size = props.terms ? props.terms.length - 1 : 0;
                   return (
-                    <li
+                    <motion.li
+                      // onViewportEnter={() => setActive(id)}
                       key={id}
                       className={clsx(
                         `relative cursor-pointer font-normal`,
@@ -47,10 +53,10 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                           "font-semibold text-primary-blue-main after:absolute after:-left-[46px] after:top-0 after:h-5 after:w-[2px] after:border-l-2 after:border-primary-blue-main",
                         id === size ? "-mb-2" : "mb-3"
                       )}>
-                      <button onClick={(e) => setActive(id)}>
+                      <button onClick={(e) => scrollTo(id)}>
                         {ele?.title}
                       </button>
-                    </li>
+                    </motion.li>
                   );
                 })}
               </ul>
