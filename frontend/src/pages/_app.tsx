@@ -28,7 +28,9 @@ export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
   const {page} = pageProps?.__TEMPLATE_QUERY_DATA__;
   console.log("page data ", page);
-
+  const footerText = page?.translation?.pagesSetting
+    ? page?.translation?.pagesSetting.footerText
+    : "";
   return (
     <ApolloProvider client={client}>
       <FaustProvider pageProps={pageProps}>
@@ -41,7 +43,7 @@ export default function App({Component, pageProps}: AppProps) {
             <AnimatePresence initial={false} mode="wait">
               <main className={clsx(overpass.variable, "overflow-x-clip")}>
                 <Layout
-                  footerText={page?.translation?.pagesSetting?.footerText}
+                  footerText={footerText}
                   key={`${router.asPath}-${router.locale}`}>
                   {/* > */}
                   <Component
