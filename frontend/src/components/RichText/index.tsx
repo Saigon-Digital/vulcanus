@@ -4,7 +4,7 @@ import {twMerge} from "tailwind-merge";
 
 const RichText: React.FC<RichTextFragment> = (props) => {
   return (
-    <section className="container-block richtext py-28 ">
+    <section className="container-block  py-14 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
         <div
           className={twMerge(
@@ -13,7 +13,9 @@ const RichText: React.FC<RichTextFragment> = (props) => {
             "md:col-span-full md:col-start-3 lg:col-span-10 lg:col-start-2"
           )}>
           {props.richText && (
-            <div dangerouslySetInnerHTML={{__html: props.richText}}></div>
+            <div
+              dangerouslySetInnerHTML={{__html: props.richText}}
+              className="richtext"></div>
           )}
         </div>
       </div>
