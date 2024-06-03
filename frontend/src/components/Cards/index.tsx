@@ -3,6 +3,7 @@ import Card from "../Card";
 import "swiper/css";
 import "swiper/css/pagination";
 import {useConsoleLog} from "@/utils";
+import {twMerge} from "tailwind-merge";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
   useConsoleLog("card", props.cards);
 
@@ -10,7 +11,13 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
     <div className="cards container-fluid py-14">
       <h2 className="heading-2 mb-14">{props?.title}</h2>
 
-      <div className="grid grid-cols-1 gap-4  md:grid-cols-2 xl:grid-cols-4 ">
+      <div
+        className={twMerge(
+          "grid grid-cols-1 gap-4 md:grid-cols-3  ",
+          props.cards?.length &&
+            props.cards.length > 3 &&
+            "md:grid-cols-2 xl:grid-cols-4"
+        )}>
         {props?.cards?.map((card, id) => {
           return (
             <Card
