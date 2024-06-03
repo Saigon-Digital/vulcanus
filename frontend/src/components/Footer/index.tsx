@@ -20,7 +20,7 @@ import {FaceBookIcon, InstagramIcon, LinkedInIcon} from "../Icons";
 
 type Props = {
   menu: TSiteData["menus"];
-  footerText?: string;
+  footerText?: string | null | undefined;
 };
 
 const ScrollMargin = 500;
@@ -93,7 +93,7 @@ const Footer = (props: Props) => {
         <m.div
           ref={ref}
           className={clsx(
-            "footer-text  cursor-default select-none font-bold text-white [&>*]:text-3xl [&>*]:md:text-4xl [&>*]:xl:text-[40px]  [&>*]:3xl:text-[57px] [&>*]:3xl:leading-[87px]  ",
+            "footer-text  cursor-default select-none font-bold text-white [&>*]:text-3xl [&>*]:md:text-4xl [&>*]:xl:text-[45px]  [&>*]:3xl:text-[57px] [&>*]:3xl:leading-[87px]  ",
             ratio &&
               `scroll-${
                 ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
@@ -101,7 +101,15 @@ const Footer = (props: Props) => {
           )}
           dangerouslySetInnerHTML={{
             __html: props.footerText || languages(locale)?.letStart || "",
-          }}></m.div>
+          }}>
+          {/* <style jsx>{`
+            @media and (min-width: 1550px) {
+              & > * {
+                font-size: 100px !important;
+              }
+            }
+          `}</style> */}
+        </m.div>
         <Link
           href={
             locale?.toLocaleLowerCase() === "en"

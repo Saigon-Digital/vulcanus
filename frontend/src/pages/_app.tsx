@@ -26,24 +26,31 @@ const overpass = Overpass({
 
 export default function App({Component, pageProps}: AppProps) {
   const router = useRouter();
-  const {page} = pageProps?.__TEMPLATE_QUERY_DATA__;
-  console.log("page data ", page);
-  const footerText = page?.translation?.pagesSetting
-    ? page?.translation?.pagesSetting.footerText
-    : "";
+
+  // console.log("page data ", page);
+  // const footerText = page?.translation?.pagesSetting
+  //   ? page?.translation?.pagesSetting.footerText
+  //   : "";
   return (
     <ApolloProvider client={client}>
       <FaustProvider pageProps={pageProps}>
         <LocaleContextProvider
           localeData={{
-            DE: page.translation?.DELang?.link || null,
-            EN: page.translation?.ENLang?.link || null,
+            DE:
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang
+                ?.link || null,
+            EN:
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang
+                ?.link || null,
           }}>
           <LazyMotion features={features}>
             <AnimatePresence initial={false} mode="wait">
               <main className={clsx(overpass.variable, "overflow-x-clip")}>
                 <Layout
-                  footerText={footerText}
+                  footerText={
+                    pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
+                      ?.pagesSetting?.footerText
+                  }
                   key={`${router.asPath}-${router.locale}`}>
                   {/* > */}
                   <Component
