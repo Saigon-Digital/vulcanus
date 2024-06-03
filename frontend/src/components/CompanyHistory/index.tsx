@@ -80,6 +80,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                   },
                   640: {
                     slidesPerView: 5,
+                    direction: "horizontal",
                   },
                   768: {
                     slidesPerView: 7,
@@ -113,15 +114,24 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
             </div>
           </div>
         </div>
-        <div
-          className="relative col-span-full gap-4 transition-all duration-300 md:col-span-8 lg:col-start-5 xl:mt-16"
-          style={{minHeight: `${imgSlideHeight}px`}}>
+        <div className="relative col-span-full gap-4 transition-all duration-300 md:col-span-8 lg:col-start-5 xl:mt-16">
+          {/* To make the placeholder */}
+          <div className="pointer-events-none invisible flex overflow-hidden">
+            {imagePairs?.map((pair, index) => {
+              return (
+                <SlidePlaceHolder
+                  key={index}
+                  description={pair?.current?.description}
+                />
+              );
+            })}
+          </div>
+
           {imagePairs?.map((pair, index) => {
             const isActive = currentSlide === index;
             return (
               <ImageSlide
                 key={index}
-                setImgSlideHeight={setImgSlideHeight}
                 isActive={isActive}
                 preUrl={pair?.pre?.mainImage?.node?.sourceUrl}
                 currUrl={pair?.current?.mainImage?.node.sourceUrl}
@@ -140,36 +150,11 @@ const ImageSlide = (props: {
   preUrl?: Maybe<string>;
   currUrl?: Maybe<string>;
   description?: Maybe<string>;
-  setImgSlideHeight: Dispatch<number>;
 }) => {
-  const {isActive, currUrl, description, preUrl, setImgSlideHeight} =
-    props || {};
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isActive) {
-      ref.current?.clientHeight && setImgSlideHeight(ref.current?.clientHeight);
-    }
-
-    window.addEventListener("resize", () => {
-      if (isActive) {
-        ref.current?.clientHeight &&
-          setImgSlideHeight(ref.current?.clientHeight);
-      }
-    });
-
-    return () =>
-      window.removeEventListener("resize", () => {
-        if (isActive) {
-          ref.current?.clientHeight &&
-            setImgSlideHeight(ref.current?.clientHeight);
-        }
-      });
-  }, [isActive]);
+  const {isActive, currUrl, description, preUrl} = props || {};
 
   return (
     <div
-      ref={ref}
       className={clsx(
         "absolute top-0 flex w-full flex-col gap-5 transition-opacity duration-500 xl:flex-row xl:items-start",
         isActive ? "z-10" : "opacity-0"
@@ -191,6 +176,22 @@ const ImageSlide = (props: {
             src={currUrl || "/images/hero-banner.png"}
           />
         </div>
+
+        <div className="mt-5 font-light xl:text-xl">{description}</div>
+      </div>
+    </div>
+  );
+};
+
+const SlidePlaceHolder = ({description}: {description?: Maybe<string>}) => {
+  return (
+    <div
+      className={clsx(
+        "flex w-full shrink-0 flex-col gap-5 xl:flex-row xl:items-start"
+      )}>
+      <div className="relative ml-auto aspect-[316/267] max-h-52 w-1/2 overflow-hidden rounded-md xl:max-h-none xl:w-full xl:flex-1"></div>
+      <div className="xl:flex-[2.92]">
+        <div className="aspect-video w-full"></div>
 
         <div className="mt-5 font-light xl:text-xl">{description}</div>
       </div>
