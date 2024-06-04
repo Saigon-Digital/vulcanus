@@ -18,6 +18,9 @@
   p {
     @apply mb-3 text-lg font-light leading-[25px];
   }
+  a {
+    @apply text-primary-blue-main underline;
+  }
   strong {
     @apply text-lg font-semibold;
   }
