@@ -11,9 +11,20 @@
 body {
   @apply scroll-smooth bg-primary-black-background text-secondary-offWhite-white;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+strong {
+  @apply break-words;
+  word-break: break-word;
+}
 * {
-  @apply font-overpass;
+  @apply break-words font-overpass;
 }
 .title-xl {
   @apply text-4xl font-bold lg:text-5xl 3xl:text-[64px] 3xl:leading-[84px];

@@ -19,7 +19,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             className="absolute -left-[25px] -top-5 hidden  md:block"
           />
 
-          <h2 className="ml-[50px] max-w-[579px] whitespace-pre-wrap text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-[4/5]  2xl:leading-[67px] 3xl:text-5xl">
+          <h2 className="ml-[50px] max-w-[579px] whitespace-pre-wrap text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-[4/5]  2xl:text-5xl 2xl:leading-[67px]">
             {title}
           </h2>
         </div>

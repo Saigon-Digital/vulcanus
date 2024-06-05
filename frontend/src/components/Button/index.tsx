@@ -20,7 +20,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, Props>(
       ...props,
       style: {width: "fit-content"},
       className: twMerge(
-        "inline-flex items-center fit-content justify-center text-secondary-offWhite-white lg:px-[60px] px-10 py-[17px] bg-primary-blue-main uppercase leading-[125%] text-center hover:bg-primary-blue-400 font-bold transition-all duration-300",
+        "inline-flex items-center whitespace-nowrap fit-content justify-center text-secondary-offWhite-white lg:px-[60px] px-10 py-[17px] bg-primary-blue-main uppercase leading-[125%] text-center hover:bg-primary-blue-400 font-bold transition-all duration-300",
         props.className
       ),
     } satisfies Props;

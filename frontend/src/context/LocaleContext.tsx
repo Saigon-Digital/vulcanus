@@ -22,7 +22,10 @@ export const LocaleContextProvider = ({
   children,
   localeData,
 }: PropsWithChildren<LocaleContextType>) => {
+  //#region locale
   const {locale, pathname, asPath} = useRouter();
+
+  //#endregion
   return (
     <LocaleContext.Provider
       value={{

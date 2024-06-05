@@ -1,3 +1,6 @@
 fragment richText on PageBuilderDynamicBlocksRichTextLayout {
   richText
+  blockSettings {
+    ...BlockSettings
+  }
 }
