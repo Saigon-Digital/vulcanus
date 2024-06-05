@@ -17,6 +17,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
   const titleRef = useRef<HTMLDivElement>(null);
 
   return (
+    //#region
     <section className="container-fluid relative">
       <div
         className={`title-block   grid grid-cols-12 py-16 lg:py-20 ${
