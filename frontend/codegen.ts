@@ -7,7 +7,10 @@ const endpointUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
 const config: CodegenConfig = {
   overwrite: true,
   schema: `${endpointUrl}/graphql`,
-  documents: ["src/**/*.{tsx,ts,graphql,gql}"],
+  documents: [
+    "src/**/**/*.{tsx,ts,graphql,gql}",
+    "src/**/*.{tsx,ts,graphql,gql}",
+  ],
   generates: {
     "./src/__generated__/": {
       preset: "client",

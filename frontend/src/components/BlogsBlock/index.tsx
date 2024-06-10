@@ -1,5 +1,6 @@
 import {
   BlogsBlockFragment,
+  GetPostsThumbQuery,
   LanguageCodeFilterEnum,
   PostThumbFragment,
 } from "@/__generated__/graphql";
@@ -32,25 +33,28 @@ interface Props extends BlogsBlockFragment {}
 const PAGE_SIZE = 3;
 
 const BlogsBlock = (props: Props) => {
-  const [blockListing, setBlockListing] = useState<PostThumbFragment[]>([]);
+  const [blockListing, setBlockListing] =
+    useState<GetPostsThumbQuery["posts"]>();
   const {locale} = useLocaleContext();
   const [page, setPage] = useState(0);
-  const max_page = Math.floor([...blockListing].length / PAGE_SIZE);
+
+  const sizes = blockListing ? blockListing.nodes.length : 0;
+  const max_page = blockListing
+    ? Math.floor(blockListing?.nodes?.length / PAGE_SIZE)
+    : 0;
 
   useConsoleLog("blog listing", blockListing);
 
   useEffect(() => {
     (async () => {
-      const {data} = await getPostThumb();
-      const blogs =
-        data.posts?.nodes.filter(
-          (blog) => blog.language?.code === locale?.toLocaleUpperCase()
-        ) || [];
-      setBlockListing(blogs as any);
+      const {data} = await getPostThumb(
+        locale === "en" ? LanguageCodeFilterEnum.En : LanguageCodeFilterEnum.De
+      );
+      const blogs = setBlockListing(data.posts);
     })();
   }, []);
 
-  if (blockListing.length < 1)
+  if (!blockListing && sizes < 1)
     return (
       <div className="container-fluid min-h-[500px] pt-10">
         {locale?.toUpperCase() === LanguageCodeFilterEnum.En
@@ -64,12 +68,10 @@ const BlogsBlock = (props: Props) => {
       <div className="grid grid-cols-12">
         <div className="col-span-full flex  flex-col gap-10 md:col-span-8">
           {blockListing &&
-            blockListing
+            blockListing.nodes
               .slice(
                 0,
-                (page + 1) * PAGE_SIZE > blockListing.length
-                  ? blockListing.length
-                  : (page + 1) * PAGE_SIZE
+                (page + 1) * PAGE_SIZE > sizes ? sizes : (page + 1) * PAGE_SIZE
               )
               .map((ele, id) => {
                 return (
@@ -116,18 +118,17 @@ const BlogsBlock = (props: Props) => {
                 );
               })}
           <div className="mt-10 flex w-full justify-center">
-            {blockListing.length > PAGE_SIZE &&
-              (page + 1) * PAGE_SIZE < blockListing.length && (
-                <Button
-                  onClick={() =>
-                    setPage((prev) => {
-                      return prev + 1 >= max_page ? max_page : prev + 1;
-                    })
-                  }
-                  as="button">
-                  {languages(locale)?.loadMore}
-                </Button>
-              )}
+            {sizes > PAGE_SIZE && (page + 1) * PAGE_SIZE < sizes && (
+              <Button
+                onClick={() =>
+                  setPage((prev) => {
+                    return prev + 1 >= max_page ? max_page : prev + 1;
+                  })
+                }
+                as="button">
+                {languages(locale)?.loadMore}
+              </Button>
+            )}
           </div>
         </div>
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">
