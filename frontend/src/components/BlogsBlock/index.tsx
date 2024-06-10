@@ -1,6 +1,7 @@
 import {
   BlogsBlockFragment,
   LanguageCodeFilterEnum,
+  PostThumbFragment,
 } from "@/__generated__/graphql";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
@@ -29,8 +30,9 @@ const defaultDesc = "";
 
 interface Props extends BlogsBlockFragment {}
 const PAGE_SIZE = 3;
+
 const BlogsBlock = (props: Props) => {
-  const [blockListing, setBlockListing] = useState([]);
+  const [blockListing, setBlockListing] = useState<PostThumbFragment[]>([]);
   const {locale} = useLocaleContext();
   const [page, setPage] = useState(0);
   const max_page = Math.floor([...blockListing].length / PAGE_SIZE);
@@ -69,7 +71,7 @@ const BlogsBlock = (props: Props) => {
                   ? blockListing.length
                   : (page + 1) * PAGE_SIZE
               )
-              .map((ele: any, id) => {
+              .map((ele, id) => {
                 return (
                   <div
                     key={id}
@@ -145,7 +147,7 @@ const BlogsBlock = (props: Props) => {
                     <Button
                       className="mt-4"
                       {...getAcfLinkProps(ele.ctaButton.link)}>
-                      {ele?.ctaButton?.text}
+                      {ele?.ctaButton?.link?.title}
                     </Button>
                   )}
                 </div>
@@ -165,7 +167,7 @@ const BlogsBlock = (props: Props) => {
                     <Button
                       className="mt-4"
                       {...getAcfLinkProps(ele.ctaButton.link)}>
-                      {ele?.ctaButton?.text}
+                      {ele?.ctaButton?.link?.title}
                     </Button>
                   )}
                 </div>

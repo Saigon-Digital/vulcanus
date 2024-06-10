@@ -1,13 +1,12 @@
 import {gql} from "@/__generated__";
 // import {gql} from "@apollo/client";
-import siteData from "../../../data/site_data.json"
+import siteData from "../../../data/site_data.json";
 import {
   LanguageCodeFilterEnum,
   MenuLocationEnum,
 } from "@/__generated__/graphql";
 import {createApolloClient} from "@faustwp/core/dist/cjs/client";
 // import { LanguageCodeEnum } from "@/__generated__/graphql";
-
 
 export const client = createApolloClient();
 
@@ -31,7 +30,6 @@ export const getFooterButtonLink = async () => {
   });
 };
 
- 
 export const GET_MENUS = gql(`
   query MenuItems($location: MenuLocationEnum!) {
     menuItems(where: {location: $location}) {
@@ -185,7 +183,7 @@ export async function getPostThumb() {
   return await client.query({
     query: gql(`
     query GetPostsThumb {
-      posts {
+      posts(first:100) {
         nodes {
           language {
             code
@@ -274,5 +272,3 @@ export async function getAllPost() {
     `,
   });
 }
-
-
