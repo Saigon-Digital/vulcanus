@@ -179,11 +179,11 @@ export const SUBMIT_FORM = gql(`
   }
 `);
 
-export async function getPostThumb() {
+export async function getPostThumb(lang: LanguageCodeFilterEnum) {
   return await client.query({
     query: gql(`
-    query GetPostsThumb {
-      posts(first:100) {
+    query GetPostsThumb($lang:LanguageCodeFilterEnum!) {
+      posts(first:100,where:{language:$lang}) {
         nodes {
           language {
             code
@@ -202,6 +202,9 @@ export async function getPostThumb() {
       }
     }
     `),
+    variables: {
+      lang: lang,
+    },
   });
 }
 
