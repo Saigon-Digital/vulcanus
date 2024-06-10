@@ -1,0 +1,15 @@
+fragment postThumb on Post {
+  language {
+    code
+  }
+  featuredImage {
+    node {
+      sourceUrl
+    }
+  }
+  title
+  slug
+  blogDescription {
+    blogDescription
+  }
+}
