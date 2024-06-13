@@ -79,6 +79,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
               <Swiper
                 modules={[Mousewheel]}
                 mousewheel={true}
+                speed={150}
                 breakpoints={{
                   320: {
                     slidesPerView: 3,
@@ -120,7 +121,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
             </div>
           </div>
         </div>
-        <div className="relative col-span-full gap-4 transition-all duration-300 md:col-span-8 lg:col-start-5 xl:mt-16">
+        <div className="relative col-span-full gap-4 transition-all duration-150 md:col-span-8 lg:col-start-5 xl:mt-16">
           {/* To make the placeholder */}
           <div className="pointer-events-none invisible flex overflow-hidden">
             {imagePairs?.map((pair, index) => {
