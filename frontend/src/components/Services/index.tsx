@@ -39,7 +39,6 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 title={ele?.title || ""}
                 description={ele?.description || ""}
                 link={ele?.link}
-                hoverImage={ele?.featuredImage?.node?.sourceUrl || ""}
                 className={`col-span-1 ${index == 1 ? "xl:col-start-3" : ""}`}
               />
             );
@@ -58,7 +57,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
         </div>
       </div>
       <div className="mt-6 grid h-full  grid-cols-1 gap-6 sm:grid-cols-2  lg:grid-cols-4 xl:min-h-[400px] ">
-        {featureImage?.map((img, index) => {
+        {services?.slice(0, 2).map((img, index) => {
           const size = index === 0 ? 40 : 25;
           return (
             <div
@@ -74,9 +73,9 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 <Image
                   fill
                   sizes={`(max-width: 768px) 80vw, (max-width: 800px) ${size}vw`}
-                  quality={60}
+                  quality={80}
                   loading="lazy"
-                  src={img.image}
+                  src={img?.featuredImage?.node.sourceUrl || ""}
                   alt="feature image"
                   className="object-cover"
                 />
