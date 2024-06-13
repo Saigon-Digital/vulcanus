@@ -29,6 +29,13 @@ interface HistoryObject {
 const CompanyHistory = (props: CompanyHistoryBlock) => {
   // Slider not work as expected, check logic again
   let sizes = props.histories ? props.histories.length : 0;
+
+  let sortedHistory = useMemo(() => {
+    let temp = props.histories ? [...props.histories] : [];
+    temp = temp.sort((a, b) => (Number(a?.year) - Number(b?.year)) * -1);
+    return temp;
+  }, [props.histories]);
+
   function transformArray(arr: Histories): HistoryObject[] | null {
     if (!arr) return null;
     if (arr?.length === 0) return [];
@@ -44,10 +51,9 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
     return result;
   }
 
-  const imagePairs = props.histories && transformArray(props.histories);
-  const [imgSlideHeight, setImgSlideHeight] = useState(0);
+  const imagePairs = sortedHistory && transformArray(sortedHistory);
 
-  const initialSlide = Math.floor(sizes / 2) + 1;
+  const initialSlide = 2;
 
   const [currentSlide, setCurentSlide] = useState<number>(initialSlide);
 
@@ -92,7 +98,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 centeredSlides={true}
                 onSlideChange={(swiper: any) => onSwiperChange(swiper)}
                 slidesPerView={"auto"}>
-                {props?.histories?.map((ele, id) => {
+                {sortedHistory.map((ele, id) => {
                   const distanceWithActive = currentSlide - id;
                   const isActive = id === currentSlide;
                   return (
