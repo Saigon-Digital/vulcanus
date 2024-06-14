@@ -4,4 +4,9 @@ fragment VideoBlock on PageBuilderDynamicBlocksVideoBlockLayout_Fields {
   videoLink {
     url
   }
+  thumbnailImage {
+    node {
+      sourceUrl
+    }
+  }
 }

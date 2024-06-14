@@ -15,12 +15,15 @@ const index: React.FC<VideoBlock> = (props) => {
         height="auto"
         playIcon={<PlayIcon />}
         controls
-        light
+        light={
+          props.thumbnailImage?.node.sourceUrl || "/images/video-thumb.png"
+        }
         config={{
           vimeo: {
             playerOptions: {
-              autoplay: true,
+              autoplay: false,
               controls: true,
+              quality: "720p",
               vimeo_logo: false,
               play_button_position: "center",
             },
@@ -29,9 +32,11 @@ const index: React.FC<VideoBlock> = (props) => {
         style={{
           width: "100%",
           maxWidth: "900px",
+
           aspectRatio: "1860/1080",
           marginLeft: "auto",
           marginRight: "auto",
+          objectFit: "cover",
         }}
         url={props.videoLink?.url || ""}
       />
