@@ -77,7 +77,7 @@ const Footer = (props: Props) => {
       threshold: 1,
       rootMargin: "250px",
     });
-    if (ref.current) {
+    if (ref.current && typeof document !== undefined) {
       observer.observe(ref.current);
     }
     return () => {
@@ -93,7 +93,7 @@ const Footer = (props: Props) => {
         <m.div
           ref={ref}
           className={clsx(
-            "footer-text  cursor-default select-none font-bold text-white [&>*]:text-3xl [&>*]:md:text-4xl [&>*]:xl:text-[45px]  [&>*]:3xl:text-[57px] [&>*]:3xl:leading-[87px]  ",
+            "footer-text cursor-default  select-none font-bold  text-white [&>*]:text-3xl [&>*]:md:text-4xl [&>*]:xl:text-[45px]  [&>*]:3xl:text-[57px] [&>*]:3xl:leading-[87px]  ",
             ratio &&
               `scroll-${
                 ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
