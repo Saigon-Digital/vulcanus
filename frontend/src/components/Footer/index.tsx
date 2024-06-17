@@ -1,4 +1,9 @@
-import {GetFooterButtonQuery, MenuItemsQuery} from "@/__generated__/graphql";
+import {
+  FooterSetting,
+  GetFooterButtonQuery,
+  GetFooterSettingQuery,
+  MenuItemsQuery,
+} from "@/__generated__/graphql";
 import Image from "next/image";
 import React, {
   useEffect,
@@ -10,7 +15,11 @@ import React, {
 import Link from "next/link";
 import {languages} from "@/utils/language";
 
-import {getFooterButtonLink} from "@/libs/graphql/utils";
+import {
+  client,
+  FOOTER_SETTING,
+  getFooterButtonLink,
+} from "@/libs/graphql/utils";
 import clsx from "clsx";
 import {TSiteData} from "../Layout";
 import dynamic from "next/dynamic";
@@ -36,6 +45,8 @@ const Footer = (props: Props) => {
   const {locale} = useLocaleContext();
 
   const [initialHeight, setInitialHeight] = useState<number | null>(null);
+  const [footerInfo, setFooterInfo] =
+    useState<GetFooterSettingQuery["siteSettings"]>();
   const [rectTop, setRectTop] = useState<number | null>();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -48,6 +59,13 @@ const Footer = (props: Props) => {
   }, [initialHeight, rectTop]);
 
   useEffect(() => {
+    (async () => {
+      const {data} = await client.query({
+        query: FOOTER_SETTING,
+      });
+      setFooterInfo(data.siteSettings);
+    })();
+
     if (!buttonLink) {
       (async () => {
         const {data} = await getFooterButtonLink();
@@ -154,31 +172,35 @@ const Footer = (props: Props) => {
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
                 <div className="text-primary-blue-100 lg:flex-[122px]">
                   <Link
-                    href="/#"
+                    href={footerInfo?.footerSetting?.locationLink?.url || "#"}
                     className="transition hover:text-primary-blue-main">
-                    Runtestraße 13 59457 Werl Germany
+                    {footerInfo?.footerSetting?.officeLocation}
                   </Link>
                 </div>
                 <ul className="text-primary-blue-100 lg:flex-[240px]">
                   <li>
                     <Link
                       className="transition hover:text-primary-blue-main"
-                      href="tel:+492922974999">
-                      Tel.: +49 (0) 2922 / 97 49 0
+                      href={footerInfo?.footerSetting?.phone?.url || ""}>
+                      <strong>Tel:</strong>{" "}
+                      {footerInfo?.footerSetting?.phone?.title}
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="transition hover:text-primary-blue-main"
-                      href="fax:+492922974999">
-                      Fax: +49 (0) 2922 / 97 49 99
+                      href={footerInfo?.footerSetting?.fax?.title || ""}>
+                      <strong>Fax:</strong>
+                      {footerInfo?.footerSetting?.fax?.title}
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="transition hover:text-primary-blue-main"
-                      href="mailto:info@vulcanus-stahl.de">
-                      Email: info@vulcanus-stahl.de
+                      href={footerInfo?.footerSetting?.email?.url || ""}>
+                      <strong>Email:</strong>
+
+                      {footerInfo?.footerSetting?.email?.title}
                     </Link>
                   </li>
                 </ul>

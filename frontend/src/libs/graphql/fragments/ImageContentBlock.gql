@@ -6,6 +6,7 @@ fragment ImageContent on PageBuilderDynamicBlocksImageContentLayout_Fields {
       sourceUrl
     }
   }
+
   contentGroup {
     description
     icons {
