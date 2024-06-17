@@ -98,7 +98,7 @@ const Form = ({contactInformation, form}: TForm) => {
     );
 
   gfForm = data.gfForm;
-  console.log("form error ", error);
+  // console.log("form error ", error);
 
   // console.log("number", watch());
 

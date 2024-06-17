@@ -103,6 +103,8 @@ const Footer = (props: Props) => {
     };
   }, []);
 
+  // console.log(footerInfo);
+
   if (!hierarchicalList) return null;
 
   return (
@@ -181,7 +183,10 @@ const Footer = (props: Props) => {
                   <li>
                     <Link
                       className="transition hover:text-primary-blue-main"
-                      href={footerInfo?.footerSetting?.phone?.url || ""}>
+                      href={
+                        footerInfo?.footerSetting?.phone?.url ||
+                        "fax:492922974999"
+                      }>
                       <strong>Tel:</strong>{" "}
                       {footerInfo?.footerSetting?.phone?.title}
                     </Link>
@@ -189,8 +194,8 @@ const Footer = (props: Props) => {
                   <li>
                     <Link
                       className="transition hover:text-primary-blue-main"
-                      href={footerInfo?.footerSetting?.fax?.title || ""}>
-                      <strong>Fax:</strong>
+                      href={footerInfo?.footerSetting?.fax?.url || ""}>
+                      <strong>Fax:</strong>{" "}
                       {footerInfo?.footerSetting?.fax?.title}
                     </Link>
                   </li>
@@ -198,8 +203,7 @@ const Footer = (props: Props) => {
                     <Link
                       className="transition hover:text-primary-blue-main"
                       href={footerInfo?.footerSetting?.email?.url || ""}>
-                      <strong>Email:</strong>
-
+                      <strong>Email:</strong>{" "}
                       {footerInfo?.footerSetting?.email?.title}
                     </Link>
                   </li>
