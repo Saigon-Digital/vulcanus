@@ -103,7 +103,7 @@ const Footer = (props: Props) => {
     };
   }, []);
 
-  console.log(footerInfo);
+  // console.log(footerInfo);
 
   if (!hierarchicalList) return null;
 
