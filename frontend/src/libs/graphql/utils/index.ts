@@ -179,6 +179,32 @@ export const SUBMIT_FORM = gql(`
   }
 `);
 
+export const FOOTER_SETTING = gql(`
+    query GetFooterSetting {
+ siteSettings {
+  footerSetting {
+    locationLink {
+    	url  
+    }
+    officeLocation
+    phone
+    {
+      url
+      title
+    }
+    email {
+      url
+      title
+    }
+    fax {
+      url
+      title
+    }
+  }
+}
+}
+  `);
+
 export async function getPostThumb(lang: LanguageCodeFilterEnum) {
   return await client.query({
     query: gql(`
