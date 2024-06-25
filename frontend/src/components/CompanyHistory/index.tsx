@@ -67,7 +67,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
 
   return (
     <div
-      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14 lg:px-12 lg:py-20`}>
+      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14 lg:px-12 lg:py-20 xl:pb-40`}>
       <div className="grid grid-cols-12 gap-5">
         <div className="col-span-full md:col-span-4 lg:col-span-3">
           <h2 className="col-span-full text-4xl font-bold lg:text-5xl xl:text-[64px]">
@@ -163,18 +163,17 @@ const ImageSlide = (props: {
   return (
     <div
       className={clsx(
-        "absolute top-0 flex w-full flex-col gap-5 transition-opacity duration-500 xl:flex-row xl:items-start",
+        "absolute top-0 flex w-full flex-col gap-5 transition-opacity duration-500 ",
         isActive ? "z-10" : "opacity-0"
       )}>
-      <div className="relative ml-auto aspect-[316/267] max-h-52 w-1/2 overflow-hidden rounded-md xl:max-h-none xl:w-full xl:flex-1">
-        <Image
-          className="object-cover"
-          alt="history"
-          fill
-          src={preUrl || "/images/photo-1.png"}
-        />
+      <div className="relative order-2  max-h-52  w-full overflow-hidden rounded-md xl:max-h-none  xl:w-4/5 ">
+        {description && (
+          <div
+            className="rich-text mt-5 font-light xl:text-xl"
+            dangerouslySetInnerHTML={{__html: description}}></div>
+        )}
       </div>
-      <div className="xl:flex-[2.92]">
+      <div className="aspect-video xl:w-3/5">
         <div className="relative aspect-video  w-full overflow-hidden rounded-md ">
           <Image
             className="object-cover"
@@ -184,13 +183,17 @@ const ImageSlide = (props: {
           />
         </div>
 
-        <div className="mt-5 font-light xl:text-xl">{description}</div>
+        {/* <div className="mt-5 font-light xl:text-xl">{description}</div> */}
       </div>
     </div>
   );
 };
 
-const SlidePlaceHolder = ({description}: {description?: Maybe<string>}) => {
+const SlidePlaceHolder = ({
+  description,
+}: {
+  description?: Maybe<TrustedHTML>;
+}) => {
   return (
     <div
       className={clsx(
@@ -200,7 +203,11 @@ const SlidePlaceHolder = ({description}: {description?: Maybe<string>}) => {
       <div className="xl:flex-[2.92]">
         <div className="aspect-video w-full"></div>
 
-        <div className="mt-5 font-light xl:text-xl">{description}</div>
+        {/* {description && (
+          <div
+            className="mt-5 font-light xl:text-xl"
+            dangerouslySetInnerHTML={{__html: description}}></div>
+        )} */}
       </div>
     </div>
   );
