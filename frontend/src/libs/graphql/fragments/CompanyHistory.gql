@@ -5,11 +5,6 @@ fragment CompanyHistory on PageBuilderDynamicBlocksCompanyHistoryBlockLayout_Fie
     description
     year
 
-    supportingImage {
-      node {
-        sourceUrl
-      }
-    }
     mainImage {
       node {
         sourceUrl
