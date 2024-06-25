@@ -103,8 +103,6 @@ const Footer = (props: Props) => {
     };
   }, []);
 
-  // console.log(footerInfo);
-
   if (!hierarchicalList) return null;
 
   return (
@@ -266,15 +264,6 @@ const Footer = (props: Props) => {
               "$year",
               String(new Date().getFullYear())
             )}
-          </p>
-          <p>
-            {languages(locale)?.poweredBy}{" "}
-            <Link
-              className="hover:text-primary-blue-main"
-              target="_blank"
-              href="https://saigon.digital/">
-              saigon.digital
-            </Link>{" "}
           </p>
         </div>
       </div>
