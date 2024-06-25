@@ -22,7 +22,7 @@ const ImageContent = ({
             height={155}
             width={47}
             alt="image shape"
-            className={`absolute  ${
+            className={`absolute  object-cover ${
               reverse ? "-left-[45px] rotate-180" : "-right-[45px]"
             } top-5 hidden w-[45px] lg:block`}
           />
@@ -33,6 +33,7 @@ const ImageContent = ({
               className="relative h-full w-full">
               <Image
                 fill
+                className="object-cover"
                 src={image?.node?.sourceUrl || ""}
                 alt="banner image"
               />
