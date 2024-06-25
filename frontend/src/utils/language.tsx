@@ -89,7 +89,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         poweredBy: "Angetrieben von",
         blogDescription:
           "Entdecken Sie die technologische Leistungsfähigkeit hinter der CNC-Fertigung der Vulcanus Company. Erfahren Sie mehr über ihre hochmoderne Ausrüstung, ihre Kapazität für Großproduktionen und die vielfältigen Materialien, mit denen sie fachmännisch umgehen.",
-        copyRight: "Urheberrechte $year. Alle Rechte vorbehalten.",
+        copyRight: "Copyrights $year. All rights reserved.",
         error: "Etwas ist schief gelaufen",
         thankyou: "Vielen Dank für das Absenden des Formulars!",
         errorFormatEmail: "Bitte geben Sie das korrekte E-Mail-Format ein",
