@@ -176,7 +176,7 @@ const ImageSlide = (props: {
       <div className="aspect-video xl:w-3/5">
         <div className="relative aspect-video  w-full overflow-hidden rounded-md ">
           <Image
-            className="object-cover"
+            className="object-cover object-top"
             alt="history"
             fill
             src={currUrl || "/images/hero-banner.png"}
