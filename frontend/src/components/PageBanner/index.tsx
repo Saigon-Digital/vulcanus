@@ -3,11 +3,14 @@ import useImageStyle from "@/hooks/useImageCss";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import {useMemo} from "react";
+import ReactPlayer from "react-player";
 
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
   description,
   image,
+  videoLink,
+  videoOrImage,
 }) => {
   const isMobile = useMediaQuery("(max-width:768px)");
   const imageStyle = useImageStyle({
@@ -33,7 +36,35 @@ const PageBanner: React.FC<PageBannerFragment> = ({
             className="w-full text-lg font-[300] md:w-1/2 md:text-xl [&>*>strong]:font-medium xl:[&>*]:text-xl"></div>
         )}
       </div>
-      {image &&
+      {videoOrImage?.at(0) === "video" ? (
+        <div className="parallax relative mx-auto aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850] xl:w-4/5">
+          <ReactPlayer
+            width="100%"
+            height="auto"
+            controls
+            config={{
+              vimeo: {
+                playerOptions: {
+                  autoplay: true,
+                  controls: true,
+                  vimeo_logo: false,
+                  play_button_position: "center",
+                },
+              },
+            }}
+            style={{
+              width: "100%",
+              background: "transparent",
+              aspectRatio: "1800/850",
+              borderRadius: "10px",
+              overflow: "hidden",
+            }}
+            className="relative z-20 translate-x-3 overflow-hidden rounded-md "
+            url={videoLink?.url || ""}
+          />
+        </div>
+      ) : (
+        image &&
         (!isMobile ? (
           <div
             style={{
@@ -50,7 +81,8 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               src={image.node.sourceUrl || ""}
             />
           </div>
-        ))}
+        ))
+      )}
     </div>
   );
 };

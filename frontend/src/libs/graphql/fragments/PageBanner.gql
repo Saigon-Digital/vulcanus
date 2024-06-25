@@ -1,6 +1,10 @@
 fragment PageBanner on PageBuilderDynamicBlocksPageBannerBlockLayout_Fields {
   description
   title
+  videoLink {
+    url
+  }
+  videoOrImage
   image {
     node {
       sourceUrl
