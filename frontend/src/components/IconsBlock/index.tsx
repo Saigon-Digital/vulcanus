@@ -23,7 +23,7 @@ const index: React.FC<IconsBlock> = (props) => {
           {props.ctaLink && (
             <Button
               className="mt-5 max-w-[250px]"
-              {...getAcfLinkProps(props.ctaLink.ctaLink)}>
+              href={props.ctaLink.ctaLink?.url || ""}>
               {props.ctaLink?.ctaText}
             </Button>
           )}
