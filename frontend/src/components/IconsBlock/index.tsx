@@ -18,7 +18,7 @@ const index: React.FC<IconsBlock> = (props) => {
             </h2>
           )}
           {props.description && (
-            <p className=" lg:text-lg">{props.description}</p>
+            <p className=" font-light lg:text-lg">{props.description}</p>
           )}
           {props.ctaLink && (
             <Button

@@ -33,7 +33,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         {description && (
           <div
             dangerouslySetInnerHTML={{__html: description}}
-            className="w-full text-lg font-[300] md:w-1/2 md:text-xl [&>*>strong]:font-semibold xl:[&>*]:text-xl"></div>
+            className="w-full text-lg font-light md:w-1/2 md:text-xl [&>*>strong]:font-semibold xl:[&>*]:text-xl"></div>
         )}
       </div>
       {videoOrImage?.at(0) === "video" ? (
