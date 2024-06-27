@@ -5,7 +5,8 @@ import {useState} from "react";
 import {m} from "framer-motion";
 const PlayIcon = dynamic(() => import("../Icons").then((mod) => mod.PlayIcon));
 const ReactPlayer = dynamic(() => import("react-player"));
-const index: React.FC<VideoBlock> = (props) => {
+
+const Video: React.FC<VideoBlock> = (props) => {
   const [inview, setInview] = useState(false);
   return (
     <m.div
@@ -52,4 +53,4 @@ const index: React.FC<VideoBlock> = (props) => {
   );
 };
 
-export default index;
+export default Video;
