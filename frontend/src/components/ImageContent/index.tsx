@@ -1,4 +1,5 @@
 import {ImageContentBlock} from "@/__generated__/graphql";
+import {useRatio} from "@/hooks/useRatio";
 
 import {m} from "framer-motion";
 
@@ -16,7 +17,7 @@ const ImageContent = ({
         }`}>
         <div
           style={{height: "fit-content"}}
-          className="relative w-full rounded-[5px] border border-primary-blue-main p-4 lg:w-1/2">
+          className="relative flex min-h-[350px] w-full flex-col justify-center rounded-[5px] border border-primary-blue-main p-0 lg:w-1/2 xl:min-h-[450px] 3xl:min-h-[550px]">
           <Image
             src="/shapes/imageShape.png"
             height={155}
@@ -26,11 +27,11 @@ const ImageContent = ({
               reverse ? "-left-[45px] rotate-180" : "-right-[45px]"
             } top-5 hidden w-[45px] lg:block`}
           />
-          <div className="relative aspect-[700/400]  overflow-hidden  lg:p-6">
+          <div className="relative my-auto aspect-[742/580] w-full  overflow-hidden  lg:p-6">
             <m.div
-              whileInView={{scale: 1.15}}
+              whileInView={{scale: 1}}
               transition={{type: "spring", duration: 1.5, delay: 0.3}}
-              className="relative h-full w-full">
+              className="relative h-full w-full overflow-hidden">
               <Image
                 fill
                 className="object-cover"

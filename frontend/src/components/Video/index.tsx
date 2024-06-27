@@ -21,7 +21,7 @@ const index: React.FC<VideoBlock> = (props) => {
         config={{
           vimeo: {
             playerOptions: {
-              autoplay: false,
+              autoplay: true,
               controls: true,
               quality: "720p",
               vimeo_logo: false,

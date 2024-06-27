@@ -30,9 +30,9 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
           transition={{duration: 0.8, delay: 0.4}}
           ref={titleRef}
           className={clsx(
-            "title col-span-full max-w-[1165px]  font-bold md:col-span-10 xl:text-5xl 3xl:col-span-8 [&>*]:text-4xl [&>*]:tracking-tight ",
+            "title col-span-full max-w-[1565px]  font-bold md:col-span-10 xl:text-6xl 3xl:col-span-9 [&>*]:text-4xl [&>*]:tracking-tight ",
             size === "large"
-              ? "2xl:leading-[89px] 2xl:[&>*]:text-[64px] 2xl:[&>*]:leading-[89px]"
+              ? "2xl:leading-[76px] 3xl:leading-[89px] 3xl:[&>*]:text-[64px] 3xl:[&>*]:leading-[89px]"
               : "2xl:leading-[67px] xl:[&>*]:text-5xl 2xl:[&>*]:leading-[67px]"
           )}
           dangerouslySetInnerHTML={{__html: title || ""}}></m.div>

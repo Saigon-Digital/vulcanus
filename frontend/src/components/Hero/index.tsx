@@ -52,7 +52,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
               </h1>
             )}
             {props.description && (
-              <p className="font-semibold leading-[140%] tracking-tight min-max-[18_32]">
+              <p className="font-normal leading-[140%] tracking-tight min-max-[18_32]">
                 {props?.description}
               </p>
             )}

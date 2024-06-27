@@ -19,7 +19,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             className="absolute -left-[25px] -top-5 hidden  md:block"
           />
 
-          <h2 className="ml-[50px] max-w-[579px] whitespace-pre-wrap text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-[4/5]  2xl:text-5xl 2xl:leading-[67px]">
+          <h2 className="ml-[50px] max-w-[579px] whitespace-pre-wrap text-center text-2xl font-bold tracking-tight xl:text-left xl:text-3xl 2xl:w-[4/5]  3xl:text-5xl 3xl:leading-[67px]">
             {title}
           </h2>
         </div>
@@ -44,7 +44,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                 )}>
                 {ele?.textOrImge === "image" ? (
                   <>
-                    <div className="relative h-[200px] w-full overflow-hidden lg:h-[300px]">
+                    <div className="relative h-[200px] w-full overflow-hidden lg:h-[300px]  2xl:h-[360px]">
                       <m.div
                         whileInView={{scale: 1.15}}
                         transition={{type: "spring", duration: 1.5, delay: 0.3}}
@@ -52,7 +52,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                         <Image
                           fill
                           src={ele?.galleryImage?.node?.sourceUrl || ""}
-                          className="object-cover"
+                          className="object-cover object-bottom"
                           alt="gallery image"
                         />
                       </m.div>

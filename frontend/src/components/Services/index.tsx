@@ -62,7 +62,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
           return (
             <div
               key={index}
-              className={`relative col-span-full min-h-[300px] overflow-hidden ${
+              className={`relative col-span-full min-h-[300px] overflow-hidden object-top lg:min-h-[420px] ${
                 index === 0 ? "md:col-span-2" : "lg:col-span-1"
               }`}>
               <m.div
