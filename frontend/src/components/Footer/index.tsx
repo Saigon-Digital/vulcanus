@@ -104,7 +104,6 @@ const Footer = (props: Props) => {
   }, []);
 
   if (!hierarchicalList) return null;
-  console.log(hierarchicalList);
 
   return (
     <footer ref={containerRef} className="pt-20 sm:container-fluid">

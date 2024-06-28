@@ -43,8 +43,6 @@ const BlogsBlock = (props: Props) => {
     ? Math.floor(blockListing?.nodes?.length / PAGE_SIZE)
     : 0;
 
-  useConsoleLog("blog listing", blockListing);
-
   useEffect(() => {
     (async () => {
       const {data} = await getPostThumb(

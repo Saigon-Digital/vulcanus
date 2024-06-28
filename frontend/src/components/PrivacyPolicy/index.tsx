@@ -27,7 +27,6 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
       window.scrollTo({top: top, behavior: "smooth"});
     }
   };
-  console.log(active);
 
   return (
     <section className="container-block introduce-block py-28 ">

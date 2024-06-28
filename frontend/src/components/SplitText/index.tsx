@@ -5,7 +5,7 @@ import {useConsoleLog} from "@/utils";
 export function SplitText({children, ...rest}: PropsWithChildren<MotionProps>) {
   //@ts-ignore
   let words: string[] = children;
-  useConsoleLog(children?.toString);
+
   //   return;
   const ref = useRef(null);
   return words.map((word, i) => {
