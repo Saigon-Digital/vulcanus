@@ -4,6 +4,7 @@ import {useMediaQuery} from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import {useMemo} from "react";
 import ReactPlayer from "react-player";
+import {PlayIcon} from "../Icons";
 
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
@@ -45,7 +46,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
             config={{
               vimeo: {
                 playerOptions: {
-                  autoplay: true,
+                  autoplay: false,
                   loop: true,
                   controls: true,
                   vimeo_logo: false,

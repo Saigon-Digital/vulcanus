@@ -10,7 +10,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   return (
     <div className="relative py-20 lg:pb-28">
       <div className="container-fluid grid grid-cols-12 gap-5 lg:gap-6">
-        <div className="relative col-span-full flex justify-start text-left md:col-span-4 md:justify-start 2xl:col-span-3">
+        <div className="relative col-span-full flex justify-start text-left md:col-span-3 md:justify-start 2xl:col-span-3">
           <Image
             src={"/shapes/left-shape.svg"}
             width={47}
@@ -24,7 +24,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
           </h2>
         </div>
         <div
-          className={`col-span-full grid grid-cols-4 gap-5 md:col-span-8 2xl:col-span-9 `}>
+          className={`col-span-full grid grid-cols-4 gap-5 md:col-span-9 2xl:col-span-9  `}>
           {gallery?.map((ele, id) => {
             return (
               <div
@@ -44,15 +44,15 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                 )}>
                 {ele?.textOrImge === "image" ? (
                   <>
-                    <div className="relative h-[200px] w-full overflow-hidden lg:h-[300px]  2xl:h-[360px]">
+                    <div className="3xl:-[500px] relative h-[200px] w-full overflow-hidden  lg:h-[300px] 2xl:h-[400px]">
                       <m.div
-                        whileInView={{scale: 1.15}}
+                        whileInView={{scale: 1.05}}
                         transition={{type: "spring", duration: 1.5, delay: 0.3}}
                         className="relative h-full w-full">
                         <Image
                           fill
                           src={ele?.galleryImage?.node?.sourceUrl || ""}
-                          className="object-cover object-bottom"
+                          className="object-cover object-center"
                           alt="gallery image"
                         />
                       </m.div>
@@ -69,7 +69,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                     <h3 className="mb-3 text-xl font-bold text-primary-midBlue-main 2xl:text-2xl">
                       {ele?.text?.title}
                     </h3>
-                    <p>{ele?.text?.content}</p>
+                    <p className="text-base xl:text-lg">{ele?.text?.content}</p>
                   </div>
                 )}
               </div>
