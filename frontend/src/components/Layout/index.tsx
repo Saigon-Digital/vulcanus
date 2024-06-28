@@ -54,14 +54,7 @@ const Layout = ({
     <>
       <Header menu={headerMenu} />
 
-      <m.div
-        initial={{opacity: 0, scale: 1}}
-        animate={{opacity: 1, scale: 1}}
-        transition={{
-          duration: 0.5,
-        }}>
-        {children}
-      </m.div>
+      {children}
 
       <Footer footerText={footerText} menu={footerMenu} />
     </>
