@@ -11,7 +11,7 @@ import Link from "next/link";
 import {getPostThumb} from "@/libs/graphql/utils";
 
 import {languages} from "@/utils/language";
-import {getAcfLinkProps, useConsoleLog} from "@/utils";
+import {getAcfLinkProps} from "@/utils";
 import dynamic from "next/dynamic";
 
 import {useLocaleContext} from "@/context/LocaleContext";
@@ -42,8 +42,6 @@ const BlogsBlock = (props: Props) => {
   const max_page = blockListing
     ? Math.floor(blockListing?.nodes?.length / PAGE_SIZE)
     : 0;
-
-  useConsoleLog("blog listing", blockListing);
 
   useEffect(() => {
     (async () => {

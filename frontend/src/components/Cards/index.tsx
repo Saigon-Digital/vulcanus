@@ -2,11 +2,9 @@ import {CardsBlock_Fields} from "@/__generated__/graphql";
 import Card from "../Card";
 import "swiper/css";
 import "swiper/css/pagination";
-import {useConsoleLog} from "@/utils";
+
 import {twMerge} from "tailwind-merge";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
-  useConsoleLog("card", props.cards);
-
   return (
     <div className="cards container-fluid py-14">
       <h2 className="heading-2 mb-14">{props?.title}</h2>

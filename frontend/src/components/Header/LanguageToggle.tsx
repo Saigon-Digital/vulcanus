@@ -1,5 +1,5 @@
 import {useLocaleContext} from "@/context/LocaleContext";
-import {useConsoleLog} from "@/utils";
+
 import clsx from "clsx";
 import {useRouter} from "next/router";
 import {useCallback} from "react";

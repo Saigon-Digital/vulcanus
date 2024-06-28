@@ -1,13 +1,6 @@
 import {AcfLink, Maybe} from "@/__generated__/graphql";
-import {useSearchParams} from "next/navigation";
-import {useRouter} from "next/router";
 
-export const useConsoleLog = (...args: any[]) => {
-  const search = useSearchParams();
-  if (search.get("debug")) {
-    console.log(...args);
-  }
-};
+import {useRouter} from "next/router";
 
 export function getUrlPathname(url: string | undefined) {
   if (!url) return "";
