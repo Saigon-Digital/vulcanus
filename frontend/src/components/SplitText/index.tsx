@@ -1,6 +1,5 @@
 import React, {PropsWithChildren, useRef} from "react";
 import {m, MotionProps} from "framer-motion";
-import {useConsoleLog} from "@/utils";
 
 export function SplitText({children, ...rest}: PropsWithChildren<MotionProps>) {
   //@ts-ignore

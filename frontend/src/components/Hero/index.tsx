@@ -1,5 +1,5 @@
 import {HeroBlockFragment} from "@/__generated__/graphql";
-import {getAcfLinkProps, useConsoleLog} from "@/utils";
+import {getAcfLinkProps} from "@/utils";
 import Image from "next/image";
 import Button from "../Button";
 

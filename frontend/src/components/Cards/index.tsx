@@ -2,7 +2,7 @@ import {CardsBlock_Fields} from "@/__generated__/graphql";
 import Card from "../Card";
 import "swiper/css";
 import "swiper/css/pagination";
-import {useConsoleLog} from "@/utils";
+
 import {twMerge} from "tailwind-merge";
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
   return (
