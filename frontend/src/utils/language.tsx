@@ -98,7 +98,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         firstName: {label: "Vorname", placeholder: "Ihr Vorname"},
         lastName: {label: "Nachname", placeholder: "Ihr Nachname"},
         phone: {label: "Telefon", placeholder: "Deine Telefonnummer"},
-        email: {label: "Email", placeholder: "deine E-Mail"},
+        email: {label: "Email", placeholder: "Deine E-Mail"},
         message: {label: "Nachricht", placeholder: "Ihre Nachricht"},
         notFound: {
           title: "Seite nicht gefunden",

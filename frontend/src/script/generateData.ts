@@ -99,7 +99,18 @@ const client = new ApolloClient({
 
             footerTextDe
             footerTextEn
+            additionalTextEn
+            additionalTextGe
             locationLink {
+              url
+            }
+            facebook {
+              url
+            }
+            instagram {
+              url
+            }
+            linkedin {
               url
             }
             officeLocation

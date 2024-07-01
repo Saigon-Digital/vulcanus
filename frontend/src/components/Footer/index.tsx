@@ -105,7 +105,7 @@ const Footer = (props: Props) => {
         <m.div
           ref={ref}
           className={clsx(
-            "footer-text cursor-default  select-none font-bold  text-white [&>*]:text-3xl [&>*]:md:text-4xl [&>*]:xl:text-[45px]  [&>*]:3xl:text-[57px] [&>*]:3xl:leading-[87px]  ",
+            "footer-text cursor-default  select-none font-bold  text-white [&>*]:text-3xl [&>*]:md:text-4xl [&>*]:xl:text-[45px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[67px]  ",
             ratio &&
               `scroll-${
                 ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
@@ -238,23 +238,37 @@ const Footer = (props: Props) => {
                     </div>
                   );
                 })}
-              <div className="col-span-full flex items-center gap-4 lg:col-span-1 lg:col-start-3">
-                <Link
-                  target="_blank"
-                  href="https://www.facebook.com/vulcanusstahl.de/">
-                  <FaceBookIcon />
-                </Link>
-                <Link
-                  target="_blank"
-                  href="https://www.linkedin.com/company/vulcanus-stahl-und-maschinenbau-gmbh">
-                  <LinkedInIcon />
-                </Link>
-                <Link
-                  target="_blank"
-                  href="https://www.instagram.com/vulcanusstahl.de/">
-                  <InstagramIcon />
-                </Link>
+              <div className="col-span-full mt-6 flex items-center gap-4 lg:col-span-1">
+                {footerInfo?.footerSetting.facebook && (
+                  <Link
+                    target="_blank"
+                    href={footerInfo.footerSetting.facebook.url}>
+                    <FaceBookIcon />
+                  </Link>
+                )}
+                {footerInfo?.footerSetting.instagram && (
+                  <Link
+                    target="_blank"
+                    href={footerInfo.footerSetting.instagram.url}>
+                    <LinkedInIcon />
+                  </Link>
+                )}
+                {footerInfo?.footerSetting.linkedin && (
+                  <Link
+                    target="_blank"
+                    href={footerInfo.footerSetting.linkedin.url}>
+                    <InstagramIcon />
+                  </Link>
+                )}
               </div>
+              <div
+                className="col-span-full"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    locale === "en"
+                      ? footerInfo?.footerSetting?.additionalTextEn || ""
+                      : footerInfo?.footerSetting?.additionalTextGe || "",
+                }}></div>
             </div>
           </div>
         </div>
