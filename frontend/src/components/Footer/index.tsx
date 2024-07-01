@@ -22,7 +22,6 @@ import {
 } from "@/libs/graphql/utils";
 import clsx from "clsx";
 import {TSiteData} from "../Layout";
-import dynamic from "next/dynamic";
 import {m} from "framer-motion";
 import {useLocaleContext} from "@/context/LocaleContext";
 import {FaceBookIcon, InstagramIcon, LinkedInIcon} from "../Icons";
@@ -170,41 +169,40 @@ const Footer = (props: Props) => {
                 <Image src="/logo.svg" width={458} height={137} alt="logo" />
               </Link>
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
-                <div className="text-primary-blue-100 lg:flex-[122px]">
-                  <Link
-                    href={footerInfo?.footerSetting?.locationLink?.url || "#"}
-                    className="transition hover:text-primary-blue-main">
-                    {footerInfo?.footerSetting?.officeLocation}
-                  </Link>
-                </div>
+                {footerInfo?.footerSetting?.locationLink?.url && (
+                  <div className="text-primary-blue-100 lg:flex-[122px]">
+                    <Link
+                      href={footerInfo?.footerSetting?.locationLink?.url || "#"}
+                      className="transition hover:text-primary-blue-main">
+                      {footerInfo?.footerSetting?.officeLocation}
+                    </Link>
+                  </div>
+                )}
                 <ul className="text-primary-blue-100 lg:flex-[240px]">
-                  <li>
-                    <Link
-                      className="transition hover:text-primary-blue-main"
-                      href={
-                        footerInfo?.footerSetting?.phone?.url ||
-                        "fax:492922974999"
-                      }>
-                      <strong>Tel:</strong>{" "}
-                      {footerInfo?.footerSetting?.phone?.title}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="transition hover:text-primary-blue-main"
-                      href={footerInfo?.footerSetting?.fax?.url || ""}>
-                      <strong>Fax:</strong>{" "}
-                      {footerInfo?.footerSetting?.fax?.title}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="transition hover:text-primary-blue-main"
-                      href={footerInfo?.footerSetting?.email?.url || ""}>
-                      <strong>Email:</strong>{" "}
-                      {footerInfo?.footerSetting?.email?.title}
-                    </Link>
-                  </li>
+                  {footerInfo?.footerSetting?.phone?.url && (
+                    <li>
+                      <Link
+                        className="transition hover:text-primary-blue-main"
+                        href={
+                          footerInfo?.footerSetting?.phone?.url ||
+                          "fax:492922974999"
+                        }>
+                        <strong>Tel:</strong>{" "}
+                        {footerInfo?.footerSetting?.phone?.title}
+                      </Link>
+                    </li>
+                  )}
+
+                  {footerInfo?.footerSetting?.email?.url && (
+                    <li>
+                      <Link
+                        className="transition hover:text-primary-blue-main"
+                        href={footerInfo?.footerSetting?.email?.url || ""}>
+                        <strong>Email:</strong>{" "}
+                        {footerInfo?.footerSetting?.email?.title}
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
