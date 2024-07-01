@@ -62,19 +62,19 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
           return (
             <div
               key={index}
-              className={`relative col-span-1 min-h-[360px] overflow-hidden object-top lg:min-h-[420px] 2xl:min-h-[600px]  ${
-                index === 0 ? "lg:col-span-2" : "lg:col-span-1"
+              className={`relative col-span-full min-h-[300px] overflow-hidden object-top lg:min-h-[420px] ${
+                index === 0 ? "md:col-span-2" : "lg:col-span-1"
               }`}>
               <m.div
                 initial={{scale: 1}}
-                whileInView={{scale: 1.1}}
+                whileInView={{scale: 1.2}}
                 transition={{duration: 0.6, delay: 0.4}}
                 className="relative h-full w-full">
                 <Image
                   fill
                   sizes={`(max-width: 768px) 80vw, (max-width: 800px) ${size}vw`}
-                  quality={100}
-                  loading="eager"
+                  quality={80}
+                  loading="lazy"
                   src={img?.featuredImage?.node.sourceUrl || ""}
                   alt="feature image"
                   className="object-cover"

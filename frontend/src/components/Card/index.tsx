@@ -104,7 +104,7 @@ const Card: React.FC<Props> = ({
         )}
         {link ? (
           <Link
-            {...getAcfLinkProps(link)}
+            href={link?.url || ""}
             className="inline-flex items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white">
             {languages(locale)?.readMore}
             <ArrowRight className="h-[22px] w-[22px] shrink-0 [&_path]:text-primary-blue-main [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:text-secondary-offWhite-white" />
