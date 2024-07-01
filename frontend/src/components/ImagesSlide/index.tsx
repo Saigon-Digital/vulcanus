@@ -32,15 +32,16 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         modules={[Autoplay, Navigation, A11y]}
         autoplay={{
           disableOnInteraction: false,
-          delay: 500,
+          delay: 0,
           stopOnLastSlide: false,
         }}
-        slidesPerView={"auto"}
+        slidesPerView={4}
         loop={true}
-        // freeMode={true}
+        wrapperClass="!ease-linear "
+        freeMode={true}
         speed={6000}>
         {props.slides &&
-          [...props.slides, ...props.slides].map((ele, index) => {
+          props.slides.map((ele, index) => {
             // const src = ele && urlForImage(ele)?.url();
             // if (!ele.dimention.w || !ele.dimention.h) return null;
 

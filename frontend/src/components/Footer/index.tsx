@@ -238,6 +238,9 @@ const Footer = (props: Props) => {
                     </div>
                   );
                 })}
+                {
+                  //#region social
+                }
               <div className="col-span-full mt-6 flex items-center gap-4 lg:col-span-1">
                 {footerInfo?.footerSetting.facebook && (
                   <Link
