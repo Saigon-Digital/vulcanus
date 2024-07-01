@@ -8,7 +8,7 @@ import {m} from "framer-motion";
 import Image from "next/image";
 
 import {useRouter} from "next/router";
-import {RefObject, useEffect, useRef} from "react";
+import {RefObject, useEffect, useLayoutEffect, useRef} from "react";
 const ImageContent = ({
   image,
   contentGroup: content,
@@ -28,7 +28,7 @@ const ImageContent = ({
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (params) {
       const pSplit = params.split("#");
       const id = pSplit.at(pSplit.length - 1)?.toLowerCase();
@@ -38,13 +38,13 @@ const ImageContent = ({
       try {
         // If the string is UTF-8, this will work and not throw an error.
         fixedstring = encodeURIComponent(
-          content?.title?.toLocaleLowerCase() || ""
+          content?.title?.toLocaleLowerCase().replaceAll(" ", "") || ""
         );
       } catch (e) {
         // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
-        fixedstring = content?.title?.toLocaleLowerCase();
+        fixedstring = content?.title?.toLocaleLowerCase().replaceAll(" ", "");
       }
-      console.log("id", id, fixedstring);
+
       fixedstring = allLowercase(fixedstring || "");
 
       if (
