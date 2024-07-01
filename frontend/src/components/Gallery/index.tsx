@@ -4,6 +4,7 @@ import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
 import {m} from "framer-motion";
 import dynamic from "next/dynamic";
+import {twMerge} from "tailwind-merge";
 const Image = dynamic(() => import("next/image"));
 
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
@@ -24,27 +25,27 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
           </h2>
         </div>
         <div
-          className={`col-span-full grid grid-cols-4 gap-5 md:col-span-9 2xl:col-span-9  `}>
+          className={`col-span-full grid grid-cols-5 gap-5 md:col-span-9 2xl:col-span-9 2xl:col-start-4  `}>
           {gallery?.map((ele, id) => {
             return (
               <div
                 key={id}
-                className={clsx(
-                  "col-span-full flex flex-col gap-3 rounded-[5px] border border-primary-blue-main p-3 sm:col-span-2 xl:p-5 ",
+                className={twMerge(
+                  "col-span-full flex flex-col gap-3 rounded-[5px] border border-primary-blue-main p-3 sm:col-span-2 lg:col-span-2 xl:p-5 ",
                   !reverseLayout
                     ? id === 1 || id === 2
                       ? "lg:col-span-3"
-                      : "lg:col-span-1"
+                      : "lg:col-span-2"
                     : id === 0 || id === 3
                       ? "lg:col-span-3"
-                      : "lg:col-span-1",
+                      : "lg:col-span-2",
                   id === 2 && gallery.length < 4 ? "lg:col-span-full" : "",
                   ele?.textOrImge === "text" &&
                     "border-none bg-primary-blue-100 text-primary-midBlue-main"
                 )}>
                 {ele?.textOrImge === "image" ? (
                   <>
-                    <div className="3xl:-[500px] relative h-[200px] w-full overflow-hidden  lg:h-[300px] 2xl:h-[400px]">
+                    <div className="3xl:-[500px] relative h-[200px] w-full overflow-hidden  lg:h-[300px] 2xl:h-[450px]">
                       <m.div
                         whileInView={{scale: 1.05}}
                         transition={{type: "spring", duration: 1.5, delay: 0.3}}
