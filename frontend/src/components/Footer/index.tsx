@@ -15,17 +15,14 @@ import React, {
 import Link from "next/link";
 import {languages} from "@/utils/language";
 
-import {
-  client,
-  FOOTER_SETTING,
-  getFooterButtonLink,
-} from "@/libs/graphql/utils";
+import {client, getFooterButtonLink} from "@/libs/graphql/utils";
 import clsx from "clsx";
 import {TSiteData} from "../Layout";
 import {m} from "framer-motion";
 import {useLocaleContext} from "@/context/LocaleContext";
 import {FaceBookIcon, InstagramIcon, LinkedInIcon} from "../Icons";
-
+import {gql} from "@/__generated__";
+import footerSettingData from "@/data/footer_setting.json";
 type Props = {
   menu: TSiteData["menus"];
   footerText?: string | null | undefined;
@@ -41,11 +38,14 @@ const Footer = (props: Props) => {
   let [buttonLink, setButtonLink] =
     useState<GetFooterButtonQuery["contactPage"]>();
 
+  const [footerInfo, setFooterInfo] =
+    useState<(typeof footerSettingData)["siteSettings"]>();
+
   const {locale} = useLocaleContext();
 
   const [initialHeight, setInitialHeight] = useState<number | null>(null);
-  const [footerInfo, setFooterInfo] =
-    useState<GetFooterSettingQuery["siteSettings"]>();
+  //#region footer setting
+
   const [rectTop, setRectTop] = useState<number | null>();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -58,12 +58,7 @@ const Footer = (props: Props) => {
   }, [initialHeight, rectTop]);
 
   useEffect(() => {
-    (async () => {
-      const {data} = await client.query({
-        query: FOOTER_SETTING,
-      });
-      setFooterInfo(data.siteSettings);
-    })();
+    setFooterInfo(footerSettingData.siteSettings);
 
     if (!buttonLink) {
       (async () => {
@@ -117,7 +112,12 @@ const Footer = (props: Props) => {
               }`
           )}
           dangerouslySetInnerHTML={{
-            __html: props.footerText || languages(locale)?.letStart || "",
+            __html:
+              locale === "en"
+                ? //@ts-ignore
+                  footerInfo?.footerSetting.footerTextEn || ""
+                : //@ts-ignore
+                  footerInfo?.footerSetting.footerTextDe || "",
           }}>
           {/* <style jsx>{`
             @media and (min-width: 1550px) {
@@ -169,7 +169,7 @@ const Footer = (props: Props) => {
                 <Image src="/logo.svg" width={458} height={137} alt="logo" />
               </Link>
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
-                {footerInfo?.footerSetting?.locationLink?.url && (
+                {footerInfo?.footerSetting.locationLink.url && (
                   <div className="text-primary-blue-100 lg:flex-[122px]">
                     <Link
                       href={footerInfo?.footerSetting?.locationLink?.url || "#"}

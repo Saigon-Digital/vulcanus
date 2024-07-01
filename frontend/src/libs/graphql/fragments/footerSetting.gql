@@ -1,0 +1,20 @@
+fragment footerSetting on FooterSetting {
+  footerTextDe
+  footerTextEn
+  locationLink {
+    url
+  }
+  officeLocation
+  phone {
+    url
+    title
+  }
+  email {
+    url
+    title
+  }
+  fax {
+    url
+    title
+  }
+}

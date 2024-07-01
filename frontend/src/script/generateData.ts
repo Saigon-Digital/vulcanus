@@ -91,6 +91,36 @@ const client = new ApolloClient({
     // Generate search index
 
     // Site data
+    const footerSetting = await client.query({
+      query: gql(`
+        query GetFooterSetting {
+        siteSettings {
+          footerSetting {
+
+            footerTextDe
+            footerTextEn
+            locationLink {
+              url
+            }
+            officeLocation
+            phone {
+              url
+              title
+            }
+            email {
+              url
+              title
+            }
+            fax {
+              url
+              title
+            }
+          }
+        }
+        }
+        `),
+    });
+
     const siteData = await client.query({
       query: gql(`
       query GetMenus {
@@ -124,6 +154,10 @@ const client = new ApolloClient({
         `),
     });
     writeFileSync(`${DATA_DIR}/site_data.json`, JSON.stringify(siteData.data));
+    writeFileSync(
+      `${DATA_DIR}/footer_setting.json`,
+      JSON.stringify(footerSetting.data)
+    );
   } catch (error) {
     console.error(error);
   }
