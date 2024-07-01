@@ -1,16 +1,62 @@
 import {ImageContentBlock} from "@/__generated__/graphql";
+import {useLocaleContext} from "@/context/LocaleContext";
 import {useRatio} from "@/hooks/useRatio";
+import {allLowercase} from "@/utils";
 
 import {m} from "framer-motion";
 
 import Image from "next/image";
+
+import {useRouter} from "next/router";
+import {RefObject, useEffect, useRef} from "react";
 const ImageContent = ({
   image,
   contentGroup: content,
   reverse,
 }: ImageContentBlock) => {
+  const params = useRouter().asPath;
+  const ref = useRef<HTMLDivElement>(null);
+
+  const scrollTo = (element: RefObject<HTMLDivElement>) => {
+    if (typeof document === undefined || typeof window === undefined) return;
+
+    if (element.current) {
+      const top =
+        element?.current?.getBoundingClientRect().top + window.pageYOffset - 80;
+
+      window.scrollTo({top: top, behavior: "smooth"});
+    }
+  };
+
+  useEffect(() => {
+    if (params) {
+      const pSplit = params.split("#");
+      const id = pSplit.at(pSplit.length - 1)?.toLowerCase();
+      // console.log(pSplit);
+      var fixedstring;
+
+      try {
+        // If the string is UTF-8, this will work and not throw an error.
+        fixedstring = encodeURIComponent(
+          content?.title?.toLocaleLowerCase() || ""
+        );
+      } catch (e) {
+        // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
+        fixedstring = content?.title?.toLocaleLowerCase();
+      }
+      console.log("id", id, fixedstring);
+      fixedstring = allLowercase(fixedstring || "");
+
+      if (
+        id === fixedstring ||
+        (id && fixedstring && fixedstring?.includes(id))
+      ) {
+        scrollTo(ref);
+      }
+    }
+  }, [params]);
   return (
-    <div className="container py-10 lg:px-20 lg:py-20">
+    <div ref={ref} className="container py-10 lg:px-20 lg:py-20">
       <div
         className={`flex flex-wrap gap-y-10 ${
           reverse ? "flex-row-reverse" : "flex-row"

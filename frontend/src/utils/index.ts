@@ -19,6 +19,12 @@ export function getAcfLinkProps(link?: Maybe<AcfLink>) {
   };
 }
 
+export const allLowercase = (s: string): string => {
+  var result = "";
+  s.split("").forEach((w) => (result += w.toLowerCase()));
+  return result;
+};
+
 export const urlHelper = (url: string) => {
   if (url.charAt(url.length - 1) === "/") {
     return url.substring(0, url.length - 1);
