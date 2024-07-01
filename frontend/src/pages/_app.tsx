@@ -13,8 +13,6 @@ import {Overpass} from "next/font/google";
 import {ApolloProvider} from "@apollo/client";
 import {client} from "@/libs/graphql/utils";
 const Layout = dynamic(() => import("@/components/Layout"));
-const features = () =>
-  import("@/components/motionFeature").then((mod) => mod.default);
 
 //font
 const overpass = Overpass({
@@ -43,24 +41,22 @@ export default function App({Component, pageProps}: AppProps) {
               pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang
                 ?.link || null,
           }}>
-          <LazyMotion features={features}>
-            <AnimatePresence initial={false} mode="wait">
-              <main className={clsx(overpass.variable, "overflow-x-clip")}>
-                <Layout
-                  footerText={
-                    pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
-                      ?.pagesSetting?.footerText
-                  }
-                  key={`${router.asPath}-${router.locale}`}>
-                  {/* > */}
-                  <Component
-                    {...pageProps}
-                    key={`${router.asPath}-${router.locale}`}
-                  />
-                </Layout>
-              </main>
-            </AnimatePresence>
-          </LazyMotion>
+          <AnimatePresence initial={false} mode="wait">
+            <main className={clsx(overpass.variable, "overflow-x-clip")}>
+              <Layout
+                footerText={
+                  pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
+                    ?.pagesSetting?.footerText
+                }
+                key={`${router.asPath}-${router.locale}`}>
+                {/* > */}
+                <Component
+                  {...pageProps}
+                  key={`${router.asPath}-${router.locale}`}
+                />
+              </Layout>
+            </main>
+          </AnimatePresence>
         </LocaleContextProvider>
       </FaustProvider>
     </ApolloProvider>

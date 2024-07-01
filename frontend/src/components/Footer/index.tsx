@@ -18,7 +18,7 @@ import {languages} from "@/utils/language";
 import {client, getFooterButtonLink} from "@/libs/graphql/utils";
 import clsx from "clsx";
 import {TSiteData} from "../Layout";
-import {m} from "framer-motion";
+import {motion} from "framer-motion";
 import {useLocaleContext} from "@/context/LocaleContext";
 import {FaceBookIcon, InstagramIcon, LinkedInIcon} from "../Icons";
 import {gql} from "@/__generated__";
@@ -102,10 +102,11 @@ const Footer = (props: Props) => {
   return (
     <footer ref={containerRef} className="pt-20 sm:container-fluid">
       <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
-        <m.div
+        <motion.div
           ref={ref}
           className={clsx(
-            "footer-text cursor-default  select-none font-bold  text-white [&>*]:text-3xl [&>*]:md:text-4xl [&>*]:xl:text-[45px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[67px]  ",
+            `footer-text cursor-default select-none font-bold  text-white [&>*]:text-3xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
+             [&>*]:xl:text-[45px] [&>*]:xl:leading-[68px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[87px]  `,
             ratio &&
               `scroll-${
                 ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
@@ -126,7 +127,7 @@ const Footer = (props: Props) => {
               }
             }
           `}</style> */}
-        </m.div>
+        </motion.div>
         <Link
           href={
             locale?.toLocaleLowerCase() === "en"
@@ -141,7 +142,7 @@ const Footer = (props: Props) => {
             viewBox="0 0 158 158"
             fill="none">
             <rect width={158} height={158} rx={79} fill="#E5F5FC" />
-            <m.path
+            <motion.path
               style={{x: -10, y: 10}}
               // initial={{x: -12, y: 12}}
               whileInView={{x: 0, y: 0}}
@@ -238,9 +239,9 @@ const Footer = (props: Props) => {
                     </div>
                   );
                 })}
-                {
-                  //#region social
-                }
+              {
+                //#region social
+              }
               <div className="col-span-full mt-6 flex items-center gap-4 lg:col-span-1">
                 {footerInfo?.footerSetting.facebook && (
                   <Link

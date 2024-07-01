@@ -1,7 +1,7 @@
 import React, {ReactNode, useEffect, useRef, useState} from "react";
 import {TitleBlockFragment} from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
-import {m} from "framer-motion";
+import {motion} from "framer-motion";
 import clsx from "clsx";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
@@ -23,7 +23,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
         className={`title-block   grid grid-cols-12 py-16 lg:py-20 ${
           haveBorderBottom && " border-b border-[#E6ECF3]"
         }`}>
-        <m.div
+        <motion.div
           style={{y: 50, opacity: 0}}
           whileInView={{y: 0, opacity: 1}}
           viewport={{margin: "50%"}}
@@ -35,7 +35,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
               ? "2xl:leading-[76px] 3xl:leading-[89px] 3xl:[&>*]:text-[64px] 3xl:[&>*]:leading-[89px]"
               : "2xl:leading-[67px] xl:[&>*]:text-5xl 2xl:[&>*]:leading-[67px]"
           )}
-          dangerouslySetInnerHTML={{__html: title || ""}}></m.div>
+          dangerouslySetInnerHTML={{__html: title || ""}}></motion.div>
         {haveShape && (
           <div>
             <TitleShape

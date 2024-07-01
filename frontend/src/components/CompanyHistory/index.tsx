@@ -69,12 +69,12 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
     <div
       className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14 lg:px-12 lg:py-20 xl:pb-40`}>
       <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-full md:col-span-4 lg:col-span-3">
-          <h2 className="col-span-full text-4xl font-bold lg:text-5xl xl:text-[64px]">
+        <div className="col-span-full md:col-span-4 xl:col-span-3">
+          <h2 className="col-span-full text-3xl font-bold lg:text-5xl xl:text-[64px]">
             {props.title}
           </h2>
 
-          <div className="relative col-span-2 mt-6 w-full gap-4 md:col-span-full md:w-fit md:flex-col md:justify-end lg:ml-auto ">
+          <div className="relative col-span-2 mx-auto mt-6 w-full items-center justify-center gap-4 md:col-span-full md:w-fit md:flex-col xl:ml-auto xl:justify-end ">
             <div className="w-full">
               <Swiper
                 modules={[Mousewheel]}

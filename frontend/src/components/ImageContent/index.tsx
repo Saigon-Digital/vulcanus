@@ -3,7 +3,7 @@ import {useLocaleContext} from "@/context/LocaleContext";
 import {useRatio} from "@/hooks/useRatio";
 import {allLowercase} from "@/utils";
 
-import {m} from "framer-motion";
+import {motion} from "framer-motion";
 
 import Image from "next/image";
 
@@ -74,7 +74,7 @@ const ImageContent = ({
             } top-5 hidden w-[45px] lg:block`}
           />
           <div className="relative my-auto aspect-[742/580] w-full  overflow-hidden  lg:p-6">
-            <m.div
+            <motion.div
               whileInView={{scale: 1}}
               transition={{type: "spring", duration: 1.5, delay: 0.3}}
               className="relative h-full w-full overflow-hidden">
@@ -84,7 +84,7 @@ const ImageContent = ({
                 src={image?.node?.sourceUrl || ""}
                 alt="banner image"
               />
-            </m.div>
+            </motion.div>
           </div>
         </div>
         <div

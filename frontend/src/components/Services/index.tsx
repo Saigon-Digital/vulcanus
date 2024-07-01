@@ -4,7 +4,7 @@ import img2 from "./images/img2.png";
 import type {StaticImport} from "next/dist/shared/lib/get-img-props";
 import {ServiceComponent} from "@/__generated__/graphql";
 import {languages} from "@/utils/language";
-import {m} from "framer-motion";
+import {motion} from "framer-motion";
 
 import dynamic from "next/dynamic";
 import {useLocaleContext} from "@/context/LocaleContext";
@@ -65,7 +65,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
               className={`relative col-span-full min-h-[300px] overflow-hidden object-top lg:min-h-[420px] ${
                 index === 0 ? "md:col-span-2" : "lg:col-span-1"
               }`}>
-              <m.div
+              <motion.div
                 initial={{scale: 1}}
                 whileInView={{scale: 1.2}}
                 transition={{duration: 0.6, delay: 0.4}}
@@ -79,7 +79,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                   alt="feature image"
                   className="object-cover"
                 />
-              </m.div>
+              </motion.div>
             </div>
           );
         })}

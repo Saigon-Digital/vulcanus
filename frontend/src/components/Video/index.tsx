@@ -1,14 +1,14 @@
 import {VideoBlock} from "@/__generated__/graphql";
 
 import dynamic from "next/dynamic";
-import {useState} from "react";
-import {m} from "framer-motion";
+
+import {motion} from "framer-motion";
 const PlayIcon = dynamic(() => import("../Icons").then((mod) => mod.PlayIcon));
 const ReactPlayer = dynamic(() => import("react-player"));
 
 const Video: React.FC<VideoBlock> = (props) => {
   return (
-    <m.div
+    <motion.div
       viewport={{margin: "200px"}}
       className="container-fluid py-20 text-center">
       <h3 className="mb-10 text-center text-3xl font-bold text-white xl:text-5xl">
@@ -45,7 +45,7 @@ const Video: React.FC<VideoBlock> = (props) => {
         }}
         url={props.videoLink?.url || ""}
       />
-    </m.div>
+    </motion.div>
   );
 };
 

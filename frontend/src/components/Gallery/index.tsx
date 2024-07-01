@@ -2,7 +2,7 @@ import React from "react";
 
 import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
-import {m} from "framer-motion";
+import {motion} from "framer-motion";
 import dynamic from "next/dynamic";
 import {twMerge} from "tailwind-merge";
 const Image = dynamic(() => import("next/image"));
@@ -46,7 +46,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                 {ele?.textOrImge === "image" ? (
                   <>
                     <div className="3xl:-[500px] relative h-[200px] w-full overflow-hidden  lg:h-[300px] 2xl:h-[450px]">
-                      <m.div
+                      <motion.div
                         whileInView={{scale: 1.05}}
                         transition={{type: "spring", duration: 1.5, delay: 0.3}}
                         className="relative h-full w-full">
@@ -56,7 +56,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                           className="object-cover object-center"
                           alt="gallery image"
                         />
-                      </m.div>
+                      </motion.div>
                     </div>
                     <span className="text-2xl font-semibold  text-primary-blue-main">
                       0{id + 1}
