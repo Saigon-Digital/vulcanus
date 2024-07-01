@@ -31,7 +31,7 @@ const ImageContent = ({
   useLayoutEffect(() => {
     if (params) {
       const pSplit = params.split("#");
-      const id = pSplit.at(pSplit.length - 1)?.toLowerCase();
+      let id = pSplit.at(pSplit.length - 1)?.toLowerCase();
       // console.log(pSplit);
       var fixedstring;
 
@@ -44,7 +44,7 @@ const ImageContent = ({
         // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
         fixedstring = content?.title?.toLocaleLowerCase().replaceAll(" ", "");
       }
-
+      id = allLowercase(id || "");
       fixedstring = allLowercase(fixedstring || "");
 
       if (
