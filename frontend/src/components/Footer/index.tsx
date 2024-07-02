@@ -102,7 +102,7 @@ const Footer = (props: Props) => {
   return (
     <footer ref={containerRef} className="pt-20 sm:container-fluid">
       <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
-        <motion.div
+        <div
           ref={ref}
           className={clsx(
             `footer-text cursor-default select-none font-bold  text-white [&>*]:text-3xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
@@ -127,7 +127,7 @@ const Footer = (props: Props) => {
               }
             }
           `}</style> */}
-        </motion.div>
+        </div>
         <Link
           href={
             locale?.toLocaleLowerCase() === "en"
