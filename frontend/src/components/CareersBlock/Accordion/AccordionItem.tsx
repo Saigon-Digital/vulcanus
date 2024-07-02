@@ -1,7 +1,7 @@
 import {CareerBlockFragment, AcfLink} from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
-import {useLayoutEffect, useRef, useState} from "react";
+import {useEffect, useLayoutEffect, useRef, useState} from "react";
 import Button from "@/components/Button";
 import {getAcfLinkProps} from "@/utils";
 import {languages} from "@/utils/language";
@@ -45,6 +45,25 @@ const AccordionItem = (props: Props) => {
     onClick: () => onValueChange(!expanded, itemKey),
   } satisfies React.HTMLAttributes<HTMLButtonElement>;
 
+  useEffect(() => {
+    const calcHeight = (h?: number) => {
+      if (contentRef.current) {
+        const height = Math.min(
+          Number(
+            h ||
+              contentRef?.current?.scrollHeight ||
+              contentRef?.current?.clientHeight ||
+              contentRef?.current?.getBoundingClientRect()?.height ||
+              300
+          ),
+          700
+        );
+        setHeight(height);
+      }
+    };
+
+    if (contentRef.current) calcHeight();
+  }, []);
   return (
     <div className="career rounded-[10px] border border-primary-blue-main bg-[#051028]">
       <div className="flex flex-col items-center justify-between lg:flex-row lg:flex-wrap">
@@ -73,7 +92,7 @@ const AccordionItem = (props: Props) => {
           id={`section_${itemKey}`}
           role="region"
           style={{
-            height: expanded ? contentRef?.current?.scrollHeight : 0,
+            height: expanded ? height : 0,
           }}
           className="grid overflow-hidden transition-[height] duration-500 lg:order-3 lg:w-full">
           <hr className="mx-auto w-[calc(100%-88px)] border-t border-primary-blue-main" />
