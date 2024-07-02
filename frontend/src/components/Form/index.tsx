@@ -71,9 +71,9 @@ const Form = ({contacts, form}: TFormFragment) => {
   const EXCLUDE_EMAIL = [".email@domain.com", ".email@.domain.com"];
 
   //#region handle scroll
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLFormElement>(null);
   const router = useRouter();
-  const scrollTo = (element: RefObject<HTMLDivElement>) => {
+  const scrollTo = (element: RefObject<HTMLFormElement>) => {
     if (typeof document === undefined || typeof window === undefined) return;
 
     if (element.current) {
@@ -163,10 +163,7 @@ const Form = ({contacts, form}: TFormFragment) => {
   // console.log("errors ", errors);
 
   return (
-    <div
-      id="form"
-      ref={ref}
-      className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
+    <div id="form" className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
       <div className="grid grid-cols-12 ">
         <div className="col-span-full grid grid-cols-8 gap-y-14 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3">
           <div className=" col-span-full flex flex-col gap-5 md:col-span-3">
@@ -237,7 +234,11 @@ const Form = ({contacts, form}: TFormFragment) => {
                 className="[&>*>a]:text-primary-blue-main [&>*>a]:underline [&>*>a]:hover:text-primary-midBlue-main xl:[&>*]:text-lg xl:[&>*]:leading-[24px]"></div>
             )}
             <hr className="h-[1px] w-full border-[0.5px]  border-b-white" />
+            {
+              //#region form
+            }
             <form
+              ref={ref}
               onSubmit={handleSubmit(handleSumit)}
               className="grid grid-cols-2 gap-3 gap-y-6 md:gap-4 lg:gap-8">
               {gfForm &&
