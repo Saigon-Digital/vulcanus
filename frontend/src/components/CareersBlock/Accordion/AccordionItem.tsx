@@ -4,6 +4,8 @@ import clsx from "clsx";
 import {useRef} from "react";
 import Button from "@/components/Button";
 import {getAcfLinkProps} from "@/utils";
+import {languages} from "@/utils/language";
+import {useLocaleContext} from "@/context/LocaleContext";
 
 const MinusIcon = dynamic(
   () => import("../../Icons").then((mod) => mod.MinusIcon),
@@ -32,47 +34,10 @@ type Props = {
   onValueChange: (expanded: boolean, key: string) => void;
 };
 
-const TriggerLabel = ({expanded, className}: Props) => {
-  return (
-    <div
-      className={`font-supreme-trial flex items-center gap-x-[10px] lg:gap-x-[20px] ${className}`}>
-      {" "}
-      {/*  gap-x-2.5 lg:gap-x-5 */}
-      <div className="min-12-max-14 font-supreme-trial tracking-0.25 text-chocolate-lite relative font-medium uppercase">
-        <span
-          className={clsx(
-            "transition-opacity duration-300",
-            expanded ? "opacity-0" : ""
-          )}></span>
-      </div>
-      <div className="relative flex aspect-square w-[11px] items-center justify-center lg:w-[13px]">
-        <div
-          className={clsx(
-            "bg-chocolate-lite absolute h-[1px] w-full transition-all duration-300",
-            {
-              "hidden ": expanded,
-            }
-          )}>
-          <PlusIcon />
-        </div>
-        <div
-          className={clsx(
-            "bg-chocolate-lite absolute h-[1px]  w-full transition-all duration-300",
-            {
-              hidden: !expanded,
-            }
-          )}>
-          <MinusIcon />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const AccordionItem = (props: Props) => {
   const {itemKey, item, expanded, onValueChange} = props;
   const contentRef = useRef<HTMLDivElement>(null);
-
+  const {locale} = useLocaleContext();
   const triggerButtonProps = {
     "aria-expanded": expanded,
     "aria-controls": `section_${itemKey}`,
@@ -94,7 +59,7 @@ const AccordionItem = (props: Props) => {
           <div className="-tracking-0.04 flex flex-col text-left text-2xl font-bold capitalize  leading-[38px] text-primary-blue-main">
             {item?.title}
             <span className="text-xl font-normal text-white">
-              location: {item?.location}
+              {languages(locale)?.location}: {item?.location}
             </span>
           </div>
           <div className="hidden justify-center  lg:block">
@@ -139,6 +104,43 @@ const AccordionItem = (props: Props) => {
           {...triggerButtonProps}>
           <TriggerLabel {...props} className="mt-3 -translate-x-6" />
         </button>
+      </div>
+    </div>
+  );
+};
+
+const TriggerLabel = ({expanded, className}: Props) => {
+  return (
+    <div
+      className={`font-supreme-trial flex items-center gap-x-[10px] lg:gap-x-[20px] ${className}`}>
+      {" "}
+      {/*  gap-x-2.5 lg:gap-x-5 */}
+      <div className="min-12-max-14 font-supreme-trial tracking-0.25 text-chocolate-lite relative font-medium uppercase">
+        <span
+          className={clsx(
+            "transition-opacity duration-300",
+            expanded ? "opacity-0" : ""
+          )}></span>
+      </div>
+      <div className="relative flex aspect-square w-[11px] items-center justify-center lg:w-[13px]">
+        <div
+          className={clsx(
+            "bg-chocolate-lite absolute h-[1px] w-full transition-all duration-300",
+            {
+              "hidden ": expanded,
+            }
+          )}>
+          <PlusIcon />
+        </div>
+        <div
+          className={clsx(
+            "bg-chocolate-lite absolute h-[1px]  w-full transition-all duration-300",
+            {
+              hidden: !expanded,
+            }
+          )}>
+          <MinusIcon />
+        </div>
       </div>
     </div>
   );

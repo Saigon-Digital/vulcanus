@@ -16,6 +16,7 @@ type Tlang = {
   poweredBy: string;
   contactUs: string;
   loadMore: string;
+  location: string;
   copyRight: string;
   contactInfo: string;
   blogDescription: string;
@@ -31,13 +32,14 @@ type Tlangs = {
   key: string;
   value: Tlang;
 }[];
-export const languages = (locale: string | undefined): Tlang | undefined => {
+export const languages = (locale?: string | undefined): Tlang | undefined => {
   if (!locale) return undefined;
   const langs: Tlangs = [
     {
       key: "en",
       value: {
         readMore: "Read More",
+        location: "Location",
         contactInfo: "Contact Information",
         loading: "...Loading",
         posted: "Posted on",
@@ -77,6 +79,7 @@ export const languages = (locale: string | undefined): Tlang | undefined => {
         readMore: "Mehr lesen",
         contactInfo: "Kontaktinformationen",
         loading: "Wird geladen",
+        location: "Standort",
         posted: "Veröffentlicht am",
         letStart: "<p> Jetzt <strong> Bewerben</strong> </p>",
         require: "Dieses Feld ist erforderlich",
