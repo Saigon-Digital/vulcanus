@@ -67,7 +67,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
 
   return (
     <div
-      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14 lg:px-12 lg:py-20 xl:pb-40`}>
+      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14  pb-40 lg:px-12 lg:py-20 xl:pb-40`}>
       <div className="grid grid-cols-12 gap-5">
         <div className="col-span-full md:col-span-4 xl:col-span-3">
           <h2 className="col-span-full text-3xl font-bold lg:text-5xl xl:text-[64px]">
@@ -166,10 +166,10 @@ const ImageSlide = (props: {
         "absolute top-0 flex w-full flex-col gap-5 transition-opacity duration-500 ",
         isActive ? "z-10" : "opacity-0"
       )}>
-      <div className="relative order-2  max-h-52  w-full overflow-hidden rounded-md xl:max-h-none  xl:w-4/5 ">
+      <div className="relative order-2  max-h-52  w-full overflow-visible rounded-md xl:max-h-none  xl:w-4/5 ">
         {description && (
           <div
-            className="rich-text mt-5 font-light xl:text-xl"
+            className="rich-text mt-5 font-light xl:text-xl [&>*>p]:mt-3 [&>*>span]:mt-3 [&>*>span]:text-2xl [&>*>strong]:text-2xl xl:[&>*>strong]:text-3xl  "
             dangerouslySetInnerHTML={{__html: description}}></div>
         )}
       </div>
