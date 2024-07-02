@@ -154,17 +154,23 @@ const Form = ({contacts, form}: TForm) => {
                       {contactInformation?.email}
                     </Link>
                   </p>
-                  <p className="flex gap-4">
-                    <LocationIcon />
-                    <Link
-                      href={
-                        (contactInformation?.location
-                          ?.locationLink as string) || "#"
-                      }
-                      className="font-base max-w-[250px] hover:text-primary-blue-main">
-                      {contactInformation?.location?.locationInformation}
-                    </Link>
-                  </p>
+                  {contactInformation?.location?.locationInformation && (
+                    <p className="flex gap-4">
+                      <LocationIcon />
+                      <Link
+                        href={
+                          (contactInformation?.location
+                            ?.locationLink as string) || "#"
+                        }
+                        className="font-base max-w-[250px] hover:text-primary-blue-main">
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              contactInformation?.location?.locationInformation,
+                          }}></span>
+                      </Link>
+                    </p>
+                  )}
                 </div>
               );
             })}
