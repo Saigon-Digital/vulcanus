@@ -40,7 +40,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             sizes="80vw"
             alt="hero image"
             src={props.backgroundImage?.node.sourceUrl || ""}
-            className="hero image"
+            className="hero image object-cover"
           />
         )}
 
