@@ -136,11 +136,11 @@ const Form = ({contacts, form}: TForm) => {
               return (
                 <>
                   {contactInformation?.title && (
-                    <p className="mb-3 max-w-[33%] whitespace-nowrap text-2xl font-semibold">
+                    <p className="mb-3 mt-4 max-w-[33%] whitespace-nowrap text-2xl font-semibold">
                       {contactInformation?.title} :
                     </p>
                   )}
-                  <div key={id} className=" mt-6  flex flex-col gap-4 ">
+                  <div key={id} className="  flex flex-col gap-4 ">
                     <p className="flex gap-4">
                       <PhoneIcon />
                       <Link
