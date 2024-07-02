@@ -46,11 +46,13 @@ const AccordionItem = (props: Props) => {
   } satisfies React.HTMLAttributes<HTMLButtonElement>;
 
   useLayoutEffect(() => {
-    const height = Math.min(
-      Number(contentRef?.current?.scrollHeight || 300),
-      700
-    );
-    setHeight(height);
+    if (contentRef.current) {
+      const height = Math.min(
+        Number(contentRef?.current?.scrollHeight || 300),
+        700
+      );
+      setHeight(height);
+    }
   }, []);
   return (
     <div className="career rounded-[10px] border border-primary-blue-main bg-[#051028]">
