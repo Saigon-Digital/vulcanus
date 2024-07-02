@@ -67,7 +67,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
 
   return (
     <div
-      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14  pb-40 lg:px-12 lg:py-20 xl:pb-40`}>
+      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14  pb-80 sm:pb-60 lg:px-12 lg:py-20 xl:pb-40`}>
       <div className="grid grid-cols-12 gap-5">
         <div className="col-span-full md:col-span-4 xl:col-span-3">
           <h2 className="col-span-full text-3xl font-bold lg:text-5xl xl:text-[64px]">
