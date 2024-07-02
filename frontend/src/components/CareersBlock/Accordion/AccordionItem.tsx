@@ -37,7 +37,7 @@ type Props = {
 const AccordionItem = (props: Props) => {
   const {itemKey, item, expanded, onValueChange} = props;
   const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState<number>();
+  const [height, setHeight] = useState<number | "auto">("auto");
   const {locale} = useLocaleContext();
   const triggerButtonProps = {
     "aria-expanded": expanded,
@@ -45,20 +45,6 @@ const AccordionItem = (props: Props) => {
     onClick: () => onValueChange(!expanded, itemKey),
   } satisfies React.HTMLAttributes<HTMLButtonElement>;
 
-  useLayoutEffect(() => {
-    if (contentRef.current) {
-      const height = Math.min(
-        Number(
-          contentRef?.current?.scrollHeight ||
-            contentRef?.current?.clientHeight ||
-            contentRef?.current?.getBoundingClientRect()?.height ||
-            300
-        ),
-        700
-      );
-      setHeight(height);
-    }
-  }, []);
   return (
     <div className="career rounded-[10px] border border-primary-blue-main bg-[#051028]">
       <div className="flex flex-col items-center justify-between lg:flex-row lg:flex-wrap">
@@ -87,7 +73,7 @@ const AccordionItem = (props: Props) => {
           id={`section_${itemKey}`}
           role="region"
           style={{
-            height: expanded ? height + "px" : 0,
+            height: expanded ? contentRef?.current?.scrollHeight : 0,
           }}
           className="grid overflow-hidden transition-[height] duration-500 lg:order-3 lg:w-full">
           <hr className="mx-auto w-[calc(100%-88px)] border-t border-primary-blue-main" />
