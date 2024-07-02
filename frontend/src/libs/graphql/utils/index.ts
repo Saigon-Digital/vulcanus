@@ -194,7 +194,7 @@ export async function getPostThumb(lang: LanguageCodeFilterEnum) {
   return await client.query({
     query: gql(`
     query GetPostsThumb($lang:LanguageCodeFilterEnum!) {
-      posts(first:100,where:{language:$lang}) {
+      posts(where:{language:$lang}) {
         nodes {
           language {
             code
@@ -216,6 +216,7 @@ export async function getPostThumb(lang: LanguageCodeFilterEnum) {
     variables: {
       lang: lang,
     },
+    fetchPolicy: "no-cache",
   });
 }
 

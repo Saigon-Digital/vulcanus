@@ -28,6 +28,7 @@ import Link from "next/link";
 import {useLocaleContext} from "@/context/LocaleContext";
 import {allLowercase} from "@/utils";
 import {useRouter} from "next/router";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 const FORM_ID = 1;
 const DELAY = 5000;
 enum adminLabelEmun {
@@ -72,13 +73,16 @@ const Form = ({contacts, form}: TFormFragment) => {
 
   //#region handle scroll
   const ref = useRef<HTMLFormElement>(null);
+  const isDesktop = useMediaQuery("(min-width: 1080px)");
   const router = useRouter();
   const scrollTo = (element: RefObject<HTMLFormElement>) => {
     if (typeof document === undefined || typeof window === undefined) return;
 
     if (element.current) {
       const top =
-        element?.current?.getBoundingClientRect().top + window.pageYOffset - 80;
+        element?.current?.getBoundingClientRect().top +
+        window.pageYOffset -
+        (isDesktop ? 250 : 100);
 
       window.scrollTo({top: top, behavior: "smooth"});
     }
