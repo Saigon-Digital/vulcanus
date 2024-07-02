@@ -5,13 +5,14 @@ import {
 } from "@/__generated__/graphql";
 import {FieldValues} from "react-hook-form";
 import {SubmitFormMutationVariables} from "@/__generated__/graphql";
+import {TForm} from "@/components/Form";
 export const getMutationVariables = ({
   databaseId,
   fields,
   data,
 }: {
   databaseId: string;
-  fields: GetGravityFormQuery["gfForm"];
+  fields: TForm;
   data: FieldValues;
 }): SubmitFormMutationVariables => {
   // Reference: https://github.com/AxeWP/wp-graphql-gravity-forms/blob/develop/docs/submitting-forms.md#consentNote

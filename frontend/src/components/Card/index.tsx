@@ -75,8 +75,8 @@ const Card: React.FC<Props> = ({
         height={133}
       />
       <h3
-        className={`relative z-10 font-semibold leading-[140%] tracking-tight text-primary-blue-main transition-all
-          duration-300 min-max-[20_24] ${
+        className={`relative z-10 text-lg font-semibold leading-[140%] tracking-tight text-primary-blue-main
+          transition-all duration-300 2xl:text-2xl ${
             !backgroundColor && "group-hover:text-secondary-offWhite-white"
           }`}>
         {title}
@@ -86,7 +86,7 @@ const Card: React.FC<Props> = ({
           src={iconImage?.node.sourceUrl || ""}
           width={150}
           height={150}
-          className="mx-auto my-14 h-1/4 object-contain"
+          className="mx-auto my-14 h-1/3 object-contain xl:h-1/4"
           alt="icon image"
         />
       )}

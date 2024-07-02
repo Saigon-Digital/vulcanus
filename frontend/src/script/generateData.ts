@@ -2,6 +2,7 @@ import {ApolloClient, InMemoryCache} from "@apollo/client";
 import {loadEnvConfig} from "@next/env";
 import {existsSync, mkdirSync, writeFileSync} from "fs";
 import {gql} from "../__generated__";
+import {GET_FORM} from "./gql";
 
 loadEnvConfig(process.cwd());
 const DATA_DIR = "./src/data";
@@ -15,7 +16,6 @@ const client = new ApolloClient({
 
 (async () => {
   try {
-    let result = {};
     let paths: any[] = [];
     const {data} = await client.query({
       query: gql(`
@@ -132,6 +132,13 @@ const client = new ApolloClient({
         `),
     });
 
+    const formData = await client.query({
+      query: GET_FORM,
+      variables: {
+        formId: "1",
+      },
+    });
+
     const siteData = await client.query({
       query: gql(`
       query GetMenus {
@@ -165,6 +172,9 @@ const client = new ApolloClient({
         `),
     });
     writeFileSync(`${DATA_DIR}/site_data.json`, JSON.stringify(siteData.data));
+
+    writeFileSync(`${DATA_DIR}/form_data.json`, JSON.stringify(formData.data));
+
     writeFileSync(
       `${DATA_DIR}/footer_setting.json`,
       JSON.stringify(footerSetting.data)
