@@ -170,6 +170,9 @@ const Form = ({contacts, form}: TFormFragment) => {
       <div className="grid grid-cols-12 ">
         <div className="col-span-full grid grid-cols-8 gap-y-14 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3">
           <div className=" col-span-full flex flex-col gap-5 md:col-span-3">
+            {
+              //#region contact info
+            }
             {contacts?.map((e, id) => {
               const contactInformation = e?.contactInformation;
               return (
@@ -183,6 +186,7 @@ const Form = ({contacts, form}: TFormFragment) => {
                     <p className="flex gap-4">
                       <PhoneIcon />
                       <Link
+                        target="_blank"
                         href={`tel:${contactInformation?.phoneNumber || ""}`}
                         className="font-base hover:text-primary-blue-main">
                         {contactInformation?.phoneNumber}
@@ -191,6 +195,7 @@ const Form = ({contacts, form}: TFormFragment) => {
                     <p className="flex gap-4">
                       <MailIcon />
                       <Link
+                        target="_blank"
                         href={`mailto:${contactInformation?.email}`}
                         className="font-base underline hover:text-primary-blue-main">
                         {contactInformation?.email}
@@ -200,6 +205,7 @@ const Form = ({contacts, form}: TFormFragment) => {
                       <p className="flex gap-4">
                         <LocationIcon />
                         <Link
+                          target="_blank"
                           href={
                             (contactInformation?.location
                               ?.locationLink as string) || "#"
