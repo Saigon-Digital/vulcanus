@@ -1,7 +1,7 @@
 import {CareerBlockFragment, AcfLink} from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
 import clsx from "clsx";
-import {useEffect, useLayoutEffect, useRef, useState} from "react";
+import {useEffect, useLayoutEffect, useMemo, useRef, useState} from "react";
 import Button from "@/components/Button";
 import {getAcfLinkProps} from "@/utils";
 import {languages} from "@/utils/language";
@@ -38,7 +38,7 @@ type Props = {
 const AccordionItem = (props: Props) => {
   const {itemKey, item, expanded, onValueChange} = props;
   const contentRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState<number | "auto">("auto");
+
   const {locale} = useLocaleContext();
   const triggerButtonProps = {
     "aria-expanded": expanded,
@@ -46,9 +46,7 @@ const AccordionItem = (props: Props) => {
     onClick: () => onValueChange(!expanded, itemKey),
   } satisfies React.HTMLAttributes<HTMLButtonElement>;
 
-  useEffect(() => {
-    let increaser = 1;
-    let first = false;
+  const height = useMemo(() => {
     const calcHeight = (h?: number) => {
       const memo = [];
       if (contentRef.current) {
@@ -63,17 +61,12 @@ const AccordionItem = (props: Props) => {
           if (height > e) height = e;
         });
 
-        setHeight(height);
+        return height;
       }
     };
-    console.log(
-      contentRef?.current?.scrollHeight,
-      contentRef?.current?.clientHeight,
-      contentRef?.current?.getBoundingClientRect()?.height
-    );
-
-    if (contentRef.current) calcHeight();
+    return calcHeight();
   }, []);
+
   return (
     <div className="career rounded-[10px] border border-primary-blue-main bg-[#051028]">
       <div className="flex flex-col items-center justify-between lg:flex-row lg:flex-wrap">

@@ -6,6 +6,7 @@ fragment Form on PageBuilderDynamicBlocksFormLayout {
   }
   contacts {
     contactInformation {
+      title
       email
       fieldGroupName
       phoneNumber
