@@ -101,6 +101,12 @@ const client = new ApolloClient({
             footerTextEn
             additionalTextEn
             additionalTextGe
+            footerLinkEn {
+              url
+            }
+            footerLinkGe {
+              url
+            }
             locationLink {
               url
             }

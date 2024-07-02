@@ -129,11 +129,11 @@ const Footer = (props: Props) => {
           `}</style> */}
         </div>
         <Link
-          href={
+          href={`${
             locale?.toLocaleLowerCase() === "en"
-              ? buttonLink?.ENLink?.uri || ""
-              : buttonLink?.DELink?.uri || ""
-          }>
+              ? buttonLink?.ENLink?.uri + "#form" || ""
+              : buttonLink?.DELink?.uri + "#form" || ""
+          }`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={158}
@@ -173,6 +173,7 @@ const Footer = (props: Props) => {
                 {footerInfo?.footerSetting.locationLink.url && (
                   <div className="text-primary-blue-100 lg:flex-[122px]">
                     <Link
+                      target="_blank"
                       href={footerInfo?.footerSetting?.locationLink?.url || "#"}
                       className="transition hover:text-primary-blue-main">
                       {footerInfo?.footerSetting?.officeLocation}
@@ -183,10 +184,11 @@ const Footer = (props: Props) => {
                   {footerInfo?.footerSetting?.phone?.url && (
                     <li>
                       <Link
+                        target="_blank"
                         className="transition hover:text-primary-blue-main"
                         href={
                           footerInfo?.footerSetting?.phone?.url ||
-                          "fax:492922974999"
+                          "tel:492922974999"
                         }>
                         <strong>Tel:</strong>{" "}
                         {footerInfo?.footerSetting?.phone?.title}
@@ -197,6 +199,7 @@ const Footer = (props: Props) => {
                   {footerInfo?.footerSetting?.email?.url && (
                     <li>
                       <Link
+                        target="_blank"
                         className="transition hover:text-primary-blue-main"
                         href={footerInfo?.footerSetting?.email?.url || ""}>
                         <strong>Email:</strong>{" "}
