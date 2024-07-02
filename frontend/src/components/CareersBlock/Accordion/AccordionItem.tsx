@@ -48,7 +48,12 @@ const AccordionItem = (props: Props) => {
   useLayoutEffect(() => {
     if (contentRef.current) {
       const height = Math.min(
-        Number(contentRef?.current?.scrollHeight || 300),
+        Number(
+          contentRef?.current?.scrollHeight ||
+            contentRef?.current?.clientHeight ||
+            contentRef?.current?.getBoundingClientRect()?.height ||
+            300
+        ),
         700
       );
       setHeight(height);
