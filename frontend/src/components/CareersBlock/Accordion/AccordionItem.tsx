@@ -6,6 +6,7 @@ import Button from "@/components/Button";
 import {getAcfLinkProps} from "@/utils";
 import {languages} from "@/utils/language";
 import {useLocaleContext} from "@/context/LocaleContext";
+import {log} from "console";
 
 const MinusIcon = dynamic(
   () => import("../../Icons").then((mod) => mod.MinusIcon),
@@ -46,21 +47,30 @@ const AccordionItem = (props: Props) => {
   } satisfies React.HTMLAttributes<HTMLButtonElement>;
 
   useEffect(() => {
+    let increaser = 1;
+    let first = false;
     const calcHeight = (h?: number) => {
+      const memo = [];
       if (contentRef.current) {
-        const height = Math.min(
-          Number(
-            h ||
-              contentRef?.current?.scrollHeight ||
-              contentRef?.current?.clientHeight ||
-              contentRef?.current?.getBoundingClientRect()?.height ||
-              300
-          ),
-          700
+        let height = Number(
+          h ||
+            contentRef?.current?.scrollHeight ||
+            contentRef?.current?.getBoundingClientRect()?.height ||
+            300
         );
+        memo.push(height);
+        memo.forEach((e) => {
+          if (height > e) height = e;
+        });
+
         setHeight(height);
       }
     };
+    console.log(
+      contentRef?.current?.scrollHeight,
+      contentRef?.current?.clientHeight,
+      contentRef?.current?.getBoundingClientRect()?.height
+    );
 
     if (contentRef.current) calcHeight();
   }, []);
@@ -94,7 +104,7 @@ const AccordionItem = (props: Props) => {
           style={{
             height: expanded ? height : 0,
           }}
-          className="grid overflow-hidden transition-[height] duration-500 lg:order-3 lg:w-full">
+          className="grid  overflow-hidden transition-[height] duration-500 lg:order-3 lg:w-full">
           <hr className="mx-auto w-[calc(100%-88px)] border-t border-primary-blue-main" />
           <div
             className={clsx(
