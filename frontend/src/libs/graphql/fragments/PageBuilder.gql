@@ -19,7 +19,7 @@ fragment PageBuilder on PageBuilder {
     ...CTABannerBlock
     ...ImageContent
     ...CenterTitleText
-    ...FormBlock
+    ...Form
     ...blogsBlock
     ...CertificateBlock
     ...ImagesSLide

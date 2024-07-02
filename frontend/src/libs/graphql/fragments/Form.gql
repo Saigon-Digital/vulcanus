@@ -1,20 +1,22 @@
-fragment FormBlock on PageBuilderDynamicBlocksFormLayout_Fields {
+fragment Form on PageBuilderDynamicBlocksFormLayout {
   fieldGroupName
   form {
     copyrightText
     formTitle
   }
-  contactInformation {
-    email
-    fieldGroupName
-    phoneNumber
-    location {
-      locationInformation
+  contacts {
+    contactInformation {
+      email
       fieldGroupName
-      locationLink {
-        url
-        target
-        title
+      phoneNumber
+      location {
+        locationInformation
+        fieldGroupName
+        locationLink {
+          url
+          target
+          title
+        }
       }
     }
   }

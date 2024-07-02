@@ -10,7 +10,6 @@ const config: CodegenConfig = {
   documents: [
     "src/**/**/*.{tsx,ts,graphql,gql}",
     "src/**/*.{tsx,ts,graphql,gql}",
-    "src/**/**/*.{tsx,ts,graphql,gql}",
   ],
   generates: {
     "./src/__generated__/": {

@@ -3,7 +3,7 @@ import {
   NameField,
   PhoneField,
   TextAreaField,
-  Form as TForm,
+  FormFragment as TForm,
 } from "@/__generated__/graphql";
 import React, {useRef, useState} from "react";
 import {PhoneIcon, MailIcon, LocationIcon} from "../Icons";
@@ -37,7 +37,7 @@ const pattern = {
 };
 
 type inputField = EmailField | NameField | TextAreaField | PhoneField;
-const Form = ({contactInformation, form}: TForm) => {
+const Form = ({contacts, form}: TForm) => {
   let gfForm: any;
   const {data, error} = useQuery(GET_FORM, {
     variables: {formId: String(FORM_ID)},
@@ -129,37 +129,45 @@ const Form = ({contactInformation, form}: TForm) => {
   return (
     <div className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
       <div className="grid grid-cols-12 ">
-        <div className="col-span-full grid grid-cols-8 gap-y-14 lg:col-span-8 lg:col-start-3">
-          <div className="col-span-full flex flex-col gap-5 md:col-span-3">
+        <div className="col-span-full grid grid-cols-8 gap-y-14 lg:col-span-10 lg:col-start-2 xl:col-span-8 xl:col-start-3">
+          <div className=" col-span-full flex flex-col gap-5 md:col-span-3">
             <p className="mb-3 max-w-[33%] whitespace-nowrap text-2xl font-semibold">
               {languages(locale)?.contactInfo} :
             </p>
-            <p className="flex gap-4">
-              <PhoneIcon />
-              <Link
-                href={`tel:${contactInformation?.phoneNumber || ""}`}
-                className="font-base hover:text-primary-blue-main">
-                {contactInformation?.phoneNumber}
-              </Link>
-            </p>
-            <p className="flex gap-4">
-              <MailIcon />
-              <Link
-                href={`mailto:${contactInformation?.email}`}
-                className="font-base underline hover:text-primary-blue-main">
-                {contactInformation?.email}
-              </Link>
-            </p>
-            <p className="flex gap-4">
-              <LocationIcon />
-              <Link
-                href={
-                  (contactInformation?.location?.locationLink as string) || "#"
-                }
-                className="font-base max-w-[250px] hover:text-primary-blue-main">
-                {contactInformation?.location?.locationInformation}
-              </Link>
-            </p>
+            {contacts?.map((e, id) => {
+              const contactInformation = e?.contactInformation;
+              return (
+                <div key={id} className=" mt-6 flex flex-col gap-4 ">
+                  <p className="flex gap-4">
+                    <PhoneIcon />
+                    <Link
+                      href={`tel:${contactInformation?.phoneNumber || ""}`}
+                      className="font-base hover:text-primary-blue-main">
+                      {contactInformation?.phoneNumber}
+                    </Link>
+                  </p>
+                  <p className="flex gap-4">
+                    <MailIcon />
+                    <Link
+                      href={`mailto:${contactInformation?.email}`}
+                      className="font-base underline hover:text-primary-blue-main">
+                      {contactInformation?.email}
+                    </Link>
+                  </p>
+                  <p className="flex gap-4">
+                    <LocationIcon />
+                    <Link
+                      href={
+                        (contactInformation?.location
+                          ?.locationLink as string) || "#"
+                      }
+                      className="font-base max-w-[250px] hover:text-primary-blue-main">
+                      {contactInformation?.location?.locationInformation}
+                    </Link>
+                  </p>
+                </div>
+              );
+            })}
           </div>
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 lg:col-span-5">
             {form?.formTitle && (
