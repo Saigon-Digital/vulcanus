@@ -46,7 +46,7 @@ const Card: React.FC<Props> = ({
         <Link
           {...getAcfLinkProps(link)}
           aria-label={title}
-          className={`absolute inset-0 z-[10] h-full w-full items-center gap-x-4 text-primary-blue-main transition-all duration-300
+          className={`absolute inset-0 z-[20] h-full w-full items-center gap-x-4 text-primary-blue-main transition-all duration-300
           ${!backgroundColor && "group-hover:text-secondary-offWhite-white"}
           `}></Link>
       ) : null}
@@ -105,9 +105,9 @@ const Card: React.FC<Props> = ({
         {link ? (
           <Link
             href={link?.url || ""}
-            className="inline-flex items-center gap-x-4 text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white">
+            className="group z-[100] inline-flex items-center gap-x-3 leading-[1.5] text-primary-blue-main transition-all duration-300 group-hover:text-secondary-offWhite-white">
             {languages(locale)?.readMore}
-            <ArrowRight className="h-[22px] w-[22px] shrink-0 [&_path]:text-primary-blue-main [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:text-secondary-offWhite-white" />
+            <ArrowRight className="h-[22px] w-[22px] shrink-0 leading-[1.5] transition duration-500   [&_path]:text-primary-blue-main [&_path]:transition-all [&_path]:duration-300 group-hover:[&_path]:text-secondary-offWhite-white" />
           </Link>
         ) : null}
       </div>
