@@ -254,14 +254,14 @@ const Footer = (props: Props) => {
                   <Link
                     target="_blank"
                     href={footerInfo.footerSetting.instagram.url}>
-                    <LinkedInIcon />
+                    <InstagramIcon />
                   </Link>
                 )}
                 {footerInfo?.footerSetting.linkedin && (
                   <Link
                     target="_blank"
                     href={footerInfo.footerSetting.linkedin.url}>
-                    <InstagramIcon />
+                    <LinkedInIcon />
                   </Link>
                 )}
               </div>
