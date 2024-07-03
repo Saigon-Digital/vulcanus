@@ -50,9 +50,9 @@ const LanguageToggle = (props: Props) => {
     },
     [localeData, router]
   );
-  for (let [keys, values] of Object.entries(localeData || {})) {
-    if (!values) return <div className="h-1 min-w-[130px] rounded-full"></div>;
-  }
+  // for (let [keys, values] of Object.entries(localeData || {})) {
+  //   if (!values) return <div className="h-1 min-w-[130px] rounded-full"></div>;
+  // }
 
   return (
     <div className="rounded-full border border-primary-blue-main bg-primary-blue-100 px-[3.68px] py-[3px]">
