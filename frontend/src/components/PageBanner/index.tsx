@@ -38,7 +38,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         )}
       </div>
       {videoOrImage?.at(0) === "video" ? (
-        <div className="parallax relative mx-auto aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850] xl:w-full">
+        <div className=" relative mx-auto flex aspect-[375/186] min-h-[200px] w-full max-w-[1200px] items-center justify-center object-cover sm:min-h-[300px] lg:aspect-[2/1]  xl:w-full">
           <ReactPlayer
             width="100%"
             height="auto"
@@ -55,13 +55,13 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               },
             }}
             style={{
-              width: "100%",
+              width: "110%",
               background: "transparent",
-              aspectRatio: "1800/850",
+              aspectRatio: "374/186",
               borderRadius: "10px",
               overflow: "hidden",
             }}
-            className="relative z-20 translate-x-3 overflow-hidden rounded-md "
+            className="relative z-20 max-w-[100%]  -translate-x-3 overflow-hidden rounded-md "
             url={videoLink?.url || ""}
           />
         </div>

@@ -92,7 +92,7 @@ const Form = ({contacts, form}: TFormFragment) => {
 
   useEffect(() => {
     if (router.asPath && gfForm) {
-      console.log("as path ", router.asPath);
+      // console.log("as path ", router.asPath);
 
       const pSplit = router.asPath.split("#");
       let id = pSplit.at(pSplit.length - 1)?.toLowerCase();
@@ -100,7 +100,7 @@ const Form = ({contacts, form}: TFormFragment) => {
       var fixedstring;
 
       id = allLowercase(id || "");
-      console.log("id ", id);
+      // console.log("id ", id);
 
       if (id === "form") {
         if (ref) scrollTo(ref);

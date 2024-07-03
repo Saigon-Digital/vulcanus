@@ -215,7 +215,7 @@ const Footer = (props: Props) => {
               </div>
             </div>
 
-            <div className="mt-16 grid w-full grid-cols-2  gap-5 gap-y-10  text-primary-blue-100 sm:w-4/5 md:grid-cols-3 lg:w-1/2  lg:gap-10 lg:pl-10 xl:mt-16 ">
+            <div className="mt-16 grid w-full grid-cols-2  gap-5 gap-y-6 text-primary-blue-100  sm:w-4/5 md:grid-cols-3 lg:w-1/2 lg:gap-10  lg:pl-10 xl:mt-16 xl:gap-y-10 ">
               {/* should check if empty array: hierarchicalList.length > 0 && ...
            
             */}

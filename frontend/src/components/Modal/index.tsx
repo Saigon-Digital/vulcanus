@@ -6,7 +6,6 @@ import Image from "next/image";
 import {motion} from "framer-motion";
 const Modal = () => {
   const {open, closeModal, image, gallery} = useModalContext();
-  console.log(gallery);
 
   return (
     <Transition appear show={open} as={Fragment}>
