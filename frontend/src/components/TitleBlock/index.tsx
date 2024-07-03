@@ -20,7 +20,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
     //#region
     <section className=" relative">
       <div
-        className={`title-block container-fluid  grid grid-cols-12 py-16 lg:py-20 ${
+        className={`title-block container-fluid  grid grid-cols-12 py-10 md:py-14 lg:py-20 ${
           haveBorderBottom && " border-b border-[#E6ECF3]"
         }`}>
         <div

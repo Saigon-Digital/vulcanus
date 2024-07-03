@@ -106,7 +106,7 @@ const Footer = (props: Props) => {
         <div
           ref={ref}
           className={clsx(
-            `footer-text cursor-default select-none font-bold  text-white [&>*]:text-3xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
+            `footer-text cursor-default select-none font-bold  text-white [&>*]:text-xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
              [&>*]:xl:text-[45px] [&>*]:xl:leading-[68px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[87px]  `,
             ratio &&
               `scroll-${
@@ -138,7 +138,7 @@ const Footer = (props: Props) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={158}
-            className="h-10 w-10 md:h-14 md:w-14 lg:h-28 lg:w-28 2xl:h-[158px] 2xl:w-[158px]"
+            className="h-10 w-10 md:h-14 md:w-14 lg:h-28 lg:w-28 2xl:h-[138px] 2xl:w-[138px]"
             height={158}
             viewBox="0 0 158 158"
             fill="none">

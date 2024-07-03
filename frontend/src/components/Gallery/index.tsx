@@ -51,7 +51,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
     }
   }, [params]);
   return (
-    <div ref={ref} className="relative py-20 lg:pb-28">
+    <div ref={ref} className="relative py-14 md:py-20 lg:pb-28">
       <div className="relative">
         <Image
           src={"/shapes/left-shape.svg"}

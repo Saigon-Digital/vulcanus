@@ -21,19 +21,19 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         <Swiper
           breakpoints={{
             320: {
-              slidesPerView: 2,
+              slidesPerView: 3,
             },
             640: {
               slidesPerView: 4,
-              spaceBetween: 24,
+              spaceBetween: 16,
             },
             1024: {
               slidesPerView: 5,
-              spaceBetween: 24,
+              spaceBetween: 16,
             },
             1920: {
               slidesPerView: 6,
-              spaceBetween: 40,
+              spaceBetween: 24,
             },
           }}
           spaceBetween={35}
@@ -49,7 +49,7 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
           loop={true}
           wrapperClass="!ease-linear "
           freeMode={true}
-          speed={6000}>
+          speed={5000}>
           {props.slides &&
             props.slides.map((ele, index) => {
               // const src = ele && urlForImage(ele)?.url();
