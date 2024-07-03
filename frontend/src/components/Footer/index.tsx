@@ -23,6 +23,7 @@ import {useLocaleContext} from "@/context/LocaleContext";
 import {FaceBookIcon, InstagramIcon, LinkedInIcon, Xing} from "../Icons";
 import {gql} from "@/__generated__";
 import footerSettingData from "@/data/footer_setting.json";
+import Socials from "../Socials";
 type Props = {
   menu: TSiteData["menus"];
   footerText?: string | null | undefined;
@@ -248,43 +249,7 @@ const Footer = (props: Props) => {
               {
                 //#region social
               }
-              <div className="col-span-full mt-6 flex items-center gap-4 lg:col-span-2">
-                {footerInfo?.footerSetting.facebook && (
-                  <Link
-                    target="_blank"
-                    href={footerInfo.footerSetting.facebook.url}>
-                    <FaceBookIcon />
-                  </Link>
-                )}
-                {footerInfo?.footerSetting.instagram && (
-                  <Link
-                    target="_blank"
-                    href={footerInfo.footerSetting.instagram.url}>
-                    <InstagramIcon />
-                  </Link>
-                )}
-                {footerInfo?.footerSetting.linkedin && (
-                  <Link
-                    target="_blank"
-                    href={footerInfo.footerSetting.linkedin.url}>
-                    <LinkedInIcon />
-                  </Link>
-                )}
-                <Link
-                  target="_blank"
-                  className="h-[41px] w-[41px]"
-                  href={
-                    "https://www.xing.com/pages/vulcanus-stahl-maschinenbau-gmbh"
-                  }>
-                  <Image
-                    src="/icons/xing.png"
-                    alt="xing"
-                    className="h-[41px] w-[41px]"
-                    width={60}
-                    height={60}
-                  />
-                </Link>
-              </div>
+              <Socials className="col-span-full mt-6 flex items-center gap-4 lg:col-span-2" />
             </div>
           </div>
         </div>

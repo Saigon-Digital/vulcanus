@@ -12,19 +12,12 @@ import React, {
   useRef,
   useState,
 } from "react";
-import {
-  PhoneIcon,
-  MailIcon,
-  LocationIcon,
-  FaceBookIcon,
-  InstagramIcon,
-  LinkedInIcon,
-} from "../Icons";
+import {PhoneIcon, MailIcon, LocationIcon} from "../Icons";
 import Image from "next/image";
 import Button from "../Button";
 import {useQuery, useMutation} from "@apollo/client";
 import {GET_FORM, SUBMIT_FORM} from "@/libs/graphql/utils";
-import footerData from "@/data/footer_setting.json";
+
 import formData from "@/data/form_data.json";
 import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 
@@ -37,6 +30,7 @@ import {useLocaleContext} from "@/context/LocaleContext";
 import {allLowercase} from "@/utils";
 import {useRouter} from "next/router";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
+import Socials from "../Socials";
 const FORM_ID = 1;
 const DELAY = 5000;
 enum adminLabelEmun {
@@ -177,7 +171,7 @@ const Form = ({contacts, form}: TFormFragment) => {
   return (
     <div id="form" className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
       <div className="grid grid-cols-12 ">
-        <div className="col-span-full col-start-1 grid grid-cols-10 gap-y-4 lg:col-span-12 xl:col-span-12 ">
+        <div className="col-span-full col-start-1 grid grid-cols-10 gap-y-4 lg:col-span-12 xl:col-span-10 xl:col-start-2 ">
           <div className=" col-span-full flex flex-wrap gap-5 gap-x-10 xl:col-span-3 xl:flex-col">
             {
               //#region social
@@ -186,45 +180,7 @@ const Form = ({contacts, form}: TFormFragment) => {
               <h4 className="mb-4 text-xl font-semibold text-white">
                 Folge uns auf Social Media
               </h4>
-              <div className="col-span-full mb-0 flex items-center gap-4 lg:col-span-2">
-                {footerData?.siteSettings?.footerSetting.facebook && (
-                  <Link
-                    target="_blank"
-                    href={footerData?.siteSettings?.footerSetting.facebook.url}>
-                    <FaceBookIcon />
-                  </Link>
-                )}
-                {footerData?.siteSettings?.footerSetting.instagram && (
-                  <Link
-                    target="_blank"
-                    href={
-                      footerData?.siteSettings?.footerSetting.instagram.url
-                    }>
-                    <InstagramIcon />
-                  </Link>
-                )}
-                {footerData?.siteSettings?.footerSetting.linkedin && (
-                  <Link
-                    target="_blank"
-                    href={footerData?.siteSettings?.footerSetting.linkedin.url}>
-                    <LinkedInIcon />
-                  </Link>
-                )}
-                <Link
-                  target="_blank"
-                  className="h-[41px] w-[41px]"
-                  href={
-                    "https://www.xing.com/pages/vulcanus-stahl-maschinenbau-gmbh"
-                  }>
-                  <Image
-                    src="/icons/xing.png"
-                    alt="xing"
-                    className="h-[41px] w-[41px]"
-                    width={60}
-                    height={60}
-                  />
-                </Link>
-              </div>
+              <Socials className="col-span-full mb-0 flex items-center gap-4 lg:col-span-2" />
             </div>
             {
               //#region contact info
@@ -234,7 +190,7 @@ const Form = ({contacts, form}: TFormFragment) => {
               return (
                 <div key={id}>
                   {contactInformation?.title && (
-                    <p className="mb-4 mt-4 max-w-[33%] whitespace-nowrap  text-2xl font-semibold">
+                    <p className="mb-4 mt-4 max-w-[33%] whitespace-nowrap  text-xl font-semibold">
                       {contactInformation?.title} :
                     </p>
                   )}

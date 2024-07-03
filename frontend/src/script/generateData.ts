@@ -119,6 +119,9 @@ const client = new ApolloClient({
             linkedin {
               url
             }
+            xing {
+              url
+            }
             officeLocation
             phone {
               url
