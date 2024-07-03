@@ -12,13 +12,12 @@ export const ModalContext = createContext<any>(null);
 export const ModalContextProvider = ({children}: PropsWithChildren) => {
   const [open, setOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(0);
-  const [gallery, setGallery] = useState<any[]>([]);
-  const [swiper, setSwiper] = useState<TSwiper | null>(null);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [image, setImage] = useState<string | null | undefined>("");
 
-  const openModal = (id: number, gallery: any[]) => {
+  const openModal = (image: string | null | undefined) => {
+    setImage(image);
     setOpen(true);
-    setActiveModal(id);
+    // setActiveModal(id);
   };
   const closeModal = () => {
     setOpen(false);
@@ -42,8 +41,7 @@ export const ModalContextProvider = ({children}: PropsWithChildren) => {
         open,
         openModal,
         closeModal,
-        gallery,
-
+        image,
         activeModal,
         setActiveModal,
         enterFullScreen,

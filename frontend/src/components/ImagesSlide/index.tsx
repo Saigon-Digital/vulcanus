@@ -30,14 +30,14 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         }}
         spaceBetween={35}
         // navigation={}
-        grabCursor
+
         modules={[Autoplay, Navigation, A11y]}
         autoplay={{
-          disableOnInteraction: false,
+          disableOnInteraction: true,
           delay: 0,
           stopOnLastSlide: false,
         }}
-        slidesPerView={4}
+        slidesPerView={"auto"}
         loop={true}
         wrapperClass="!ease-linear "
         freeMode={true}
@@ -50,8 +50,8 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             return (
               <SwiperSlide
                 key={index}
-                onClick={() => openModal()}
-                className="h-[480px]">
+                onClick={() => openModal(ele?.image?.node?.sourceUrl)}
+                className="h-[480px] cursor-pointer">
                 {/* <div className="relative aspect-video w-full"> */}
                 <ImageWithRatio
                   imageSrc={ele?.image?.node.sourceUrl || ""}
