@@ -1,6 +1,10 @@
 fragment CompanyHistory on PageBuilderDynamicBlocksCompanyHistoryBlockLayout_Fields {
   fieldGroupName
   title
+
+  blockSettings {
+    ...BlockSettings
+  }
   histories {
     description
     year

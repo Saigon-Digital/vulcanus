@@ -1,15 +1,57 @@
-import React from "react";
+import React, {RefObject, useLayoutEffect, useRef} from "react";
 
 import {GalleryBlock} from "@/__generated__/graphql";
 import clsx from "clsx";
 import {motion} from "framer-motion";
 import dynamic from "next/dynamic";
 import {twMerge} from "tailwind-merge";
+import {useRouter} from "next/router";
+import {allLowercase} from "@/utils";
 const Image = dynamic(() => import("next/image"));
-
+const zoomOut = [];
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
+  const params = useRouter().asPath;
+  const ref = useRef(null);
+  const scrollTo = (element: RefObject<HTMLDivElement>) => {
+    if (typeof document === undefined || typeof window === undefined) return;
+
+    if (element.current) {
+      const top =
+        element?.current?.getBoundingClientRect().top + window.pageYOffset - 80;
+
+      window.scrollTo({top: top, behavior: "smooth"});
+    }
+  };
+
+  useLayoutEffect(() => {
+    if (params) {
+      const pSplit = params.split("#");
+      let id = pSplit.at(pSplit.length - 1)?.toLowerCase();
+      // console.log(pSplit);
+      var fixedstring;
+
+      try {
+        // If the string is UTF-8, this will work and not throw an error.
+        fixedstring = encodeURIComponent(
+          title?.toLocaleLowerCase().replaceAll(" ", "") || ""
+        );
+      } catch (e) {
+        // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
+        fixedstring = title?.toLocaleLowerCase().replaceAll(" ", "");
+      }
+      id = allLowercase(id || "");
+      fixedstring = allLowercase(fixedstring || "");
+
+      if (
+        id === fixedstring ||
+        (id && fixedstring && fixedstring?.includes(id))
+      ) {
+        scrollTo(ref);
+      }
+    }
+  }, [params]);
   return (
-    <div className="relative py-20 lg:pb-28">
+    <div ref={ref} className="relative py-20 lg:pb-28">
       <div className="relative">
         <Image
           src={"/shapes/left-shape.svg"}
@@ -21,7 +63,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
 
         <div className="container-fluid grid grid-cols-12 gap-5 gap-y-6 lg:gap-6">
           <div className="relative col-span-full flex justify-start text-left md:justify-start lg:col-span-3 2xl:col-span-3">
-            <h2 className="max-w-[579px] whitespace-pre-wrap break-words text-center text-2xl font-bold capitalize tracking-tight md:ml-[50px] xl:text-left xl:text-3xl 2xl:w-[4/5]  3xl:text-4xl 3xl:leading-[67px]">
+            <h2 className="max-w-[579px] whitespace-pre-wrap break-words text-center text-2xl font-bold  tracking-tight md:ml-[50px] xl:text-left xl:text-3xl 2xl:w-[4/5]  3xl:text-4xl 3xl:leading-[67px]">
               {title}
             </h2>
           </div>
@@ -48,7 +90,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                     <>
                       <div className="3xl:-[500px] relative h-[330px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[450px]">
                         <motion.div
-                          whileInView={{scale: 1.05}}
+                          whileInView={{scale: 1}}
                           transition={{
                             type: "spring",
                             duration: 1.5,
