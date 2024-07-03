@@ -232,7 +232,7 @@ const Form = ({contacts, form}: TFormFragment) => {
             {contacts?.map((e, id) => {
               const contactInformation = e?.contactInformation;
               return (
-                <div>
+                <div key={id}>
                   {contactInformation?.title && (
                     <p className="mb-4 mt-4 max-w-[33%] whitespace-nowrap  text-2xl font-semibold">
                       {contactInformation?.title} :
