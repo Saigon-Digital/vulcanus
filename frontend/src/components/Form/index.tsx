@@ -208,8 +208,8 @@ const Form = ({contacts, form}: TFormFragment) => {
                         <Link
                           target="_blank"
                           href={
-                            (contactInformation?.location
-                              ?.locationLink as string) || "#"
+                            (contactInformation?.location?.locationLink
+                              ?.url as string) || "#"
                           }
                           className="font-base max-w-[250px] hover:text-primary-blue-main">
                           <span

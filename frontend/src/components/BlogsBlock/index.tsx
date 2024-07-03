@@ -69,7 +69,7 @@ const BlogsBlock = (props: Props) => {
             <div className="container-fluid min-h-[500px] pt-10 text-lg xl:text-2xl">
               {locale?.toUpperCase() === LanguageCodeFilterEnum.En
                 ? "No Blog Found"
-                : "Kein Blog gefunden"}
+                : "Blogposts in Bearbeitung"}
             </div>
           )}
           {blockListing &&
@@ -165,7 +165,7 @@ const BlogsBlock = (props: Props) => {
                     {ele?.title}
                   </h3>
                   <div
-                    className="[&>*>a]:underline [&>*]:text-[#140F24] xl:[&>*]:text-lg xl:[&>*]:leading-[25px]"
+                    className="[&>*>a]:underline [&>*>a]:hover:text-primary-blue-main [&>*]:text-[#140F24] xl:[&>*]:text-lg xl:[&>*]:leading-[25px]"
                     dangerouslySetInnerHTML={{
                       __html: ele?.contactInfo || "",
                     }}></div>

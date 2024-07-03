@@ -98,11 +98,11 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         errorFormatEmail: "Bitte geben Sie das korrekte E-Mail-Format ein",
         errorFormatPhone: "Bitte geben Sie die richtige Telefonnummer ein",
         loadMore: "Mehr laden",
-        firstName: {label: "Vorname", placeholder: "Vorname"},
-        lastName: {label: "Nachname", placeholder: "Nachname"},
-        phone: {label: "Telefon", placeholder: "Deine Telefonnummer"},
-        email: {label: "Email", placeholder: "Deine E-Mail"},
-        message: {label: "Nachricht", placeholder: "Deine Nachricht"},
+        firstName: {label: "Vorname", placeholder: "Ihr Vorname"},
+        lastName: {label: "Nachname", placeholder: "Ihr Nachname"},
+        phone: {label: "Telefon", placeholder: "Ihre Telefonnummer"},
+        email: {label: "Email", placeholder: "Ihre E-Mail"},
+        message: {label: "Nachricht", placeholder: "Ihre Nachricht"},
         notFound: {
           title: "Seite nicht gefunden",
           description:

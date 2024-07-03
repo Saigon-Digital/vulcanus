@@ -20,7 +20,7 @@ import clsx from "clsx";
 import {TSiteData} from "../Layout";
 import {motion} from "framer-motion";
 import {useLocaleContext} from "@/context/LocaleContext";
-import {FaceBookIcon, InstagramIcon, LinkedInIcon} from "../Icons";
+import {FaceBookIcon, InstagramIcon, LinkedInIcon, Xing} from "../Icons";
 import {gql} from "@/__generated__";
 import footerSettingData from "@/data/footer_setting.json";
 type Props = {
@@ -176,7 +176,10 @@ const Footer = (props: Props) => {
                       target="_blank"
                       href={footerInfo?.footerSetting?.locationLink?.url || "#"}
                       className="transition hover:text-primary-blue-main">
-                      {footerInfo?.footerSetting?.officeLocation}
+                      {footerInfo?.footerSetting?.officeLocation.replace(
+                        "Germany",
+                        "Deutschland"
+                      )}
                     </Link>
                   </div>
                 )}
@@ -245,7 +248,7 @@ const Footer = (props: Props) => {
               {
                 //#region social
               }
-              <div className="col-span-full mt-6 flex items-center gap-4 lg:col-span-1">
+              <div className="col-span-full mt-6 flex items-center gap-4 lg:col-span-2">
                 {footerInfo?.footerSetting.facebook && (
                   <Link
                     target="_blank"
@@ -267,15 +270,21 @@ const Footer = (props: Props) => {
                     <LinkedInIcon />
                   </Link>
                 )}
+                <Link
+                  target="_blank"
+                  className="h-[41px] w-[41px]"
+                  href={
+                    "https://www.xing.com/pages/vulcanus-stahl-maschinenbau-gmbh"
+                  }>
+                  <Image
+                    src="/icons/xing.png"
+                    alt="xing"
+                    className="h-[41px] w-[41px]"
+                    width={60}
+                    height={60}
+                  />
+                </Link>
               </div>
-              <div
-                className="col-span-full"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    locale === "en"
-                      ? footerInfo?.footerSetting?.additionalTextEn || ""
-                      : footerInfo?.footerSetting?.additionalTextGe || "",
-                }}></div>
             </div>
           </div>
         </div>
