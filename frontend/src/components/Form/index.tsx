@@ -177,7 +177,7 @@ const Form = ({contacts, form}: TFormFragment) => {
   return (
     <div id="form" className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
       <div className="grid grid-cols-12 ">
-        <div className="col-span-full col-start-2 grid grid-cols-10 gap-y-4 lg:col-span-12 xl:col-span-12 ">
+        <div className="col-span-full col-start-1 grid grid-cols-10 gap-y-4 lg:col-span-12 xl:col-span-12 ">
           <div className=" col-span-full flex flex-wrap gap-5 gap-x-10 xl:col-span-3 xl:flex-col">
             {
               //#region social
@@ -302,7 +302,7 @@ const Form = ({contacts, form}: TFormFragment) => {
             <form
               ref={ref}
               onSubmit={handleSubmit(handleSumit)}
-              className="grid grid-cols-2 gap-3 gap-y-6 md:gap-4 lg:gap-8">
+              className="grid grid-cols-2 gap-3 gap-y-10 md:gap-4 lg:gap-8">
               {gfForm &&
                 gfForm.formFields?.nodes.map((ele, index: number) => {
                   if (ele.adminLabel === adminLabelEmun.firstName)
