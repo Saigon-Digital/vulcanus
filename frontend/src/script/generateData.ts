@@ -99,8 +99,7 @@ const client = new ApolloClient({
 
             footerTextDe
             footerTextEn
-            additionalTextEn
-            additionalTextGe
+            
             footerLinkEn {
               url
             }
@@ -122,7 +121,11 @@ const client = new ApolloClient({
             xing {
               url
             }
-            officeLocation
+           
+            officeLocationText
+            locationLink {
+            url
+            }
             phone {
               url
               title

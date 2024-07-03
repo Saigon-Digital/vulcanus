@@ -116,10 +116,8 @@ const Footer = (props: Props) => {
           dangerouslySetInnerHTML={{
             __html:
               locale === "en"
-                ? //@ts-ignore
-                  footerInfo?.footerSetting.footerTextEn || ""
-                : //@ts-ignore
-                  footerInfo?.footerSetting.footerTextDe || "",
+                ? footerInfo?.footerSetting.footerTextEn || ""
+                : footerInfo?.footerSetting.footerTextDe || "",
           }}>
           {/* <style jsx>{`
             @media and (min-width: 1550px) {
@@ -177,7 +175,7 @@ const Footer = (props: Props) => {
                       target="_blank"
                       dangerouslySetInnerHTML={{
                         __html:
-                          footerInfo?.footerSetting?.officeLocation.replace(
+                          footerInfo?.footerSetting?.officeLocationText?.replace(
                             "Germany",
                             "Deutschland"
                           ),
