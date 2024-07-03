@@ -5,9 +5,13 @@ import {Autoplay, Navigation, A11y} from "swiper/modules";
 import "swiper/css/autoplay";
 
 import ImageWithRatio from "../ImageWithRatio";
+import {useModalContext} from "@/context/modalContext";
+import Modal from "../Modal";
 const ImagesSlide = (props: ImagesSLideFragment) => {
+  const {openModal} = useModalContext();
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
+      <Modal />
       <Swiper
         breakpoints={{
           320: {
@@ -28,14 +32,14 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         }}
         spaceBetween={35}
         // navigation={}
-        grabCursor
+
         modules={[Autoplay, Navigation, A11y]}
         autoplay={{
-          disableOnInteraction: false,
+          disableOnInteraction: true,
           delay: 0,
           stopOnLastSlide: false,
         }}
-        slidesPerView={4}
+        slidesPerView={"auto"}
         loop={true}
         wrapperClass="!ease-linear "
         freeMode={true}
@@ -46,7 +50,10 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             // if (!ele.dimention.w || !ele.dimention.h) return null;
 
             return (
-              <SwiperSlide key={index} className="h-[480px]">
+              <SwiperSlide
+                key={index}
+                onClick={() => openModal(ele?.image?.node?.sourceUrl)}
+                className="h-[480px] cursor-pointer">
                 {/* <div className="relative aspect-video w-full"> */}
                 <ImageWithRatio
                   imageSrc={ele?.image?.node.sourceUrl || ""}
