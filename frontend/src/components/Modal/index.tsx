@@ -35,6 +35,7 @@ const Modal = () => {
               </div>
 
               {gallery &&
+                gallery.length > 0 &&
                 gallery.map((e: any, id: number) => {
                   return (
                     <motion.div
