@@ -6,10 +6,12 @@ import "swiper/css/autoplay";
 
 import ImageWithRatio from "../ImageWithRatio";
 import {useModalContext} from "@/context/modalContext";
+import Modal from "../Modal";
 const ImagesSlide = (props: ImagesSLideFragment) => {
   const {openModal} = useModalContext();
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
+      <Modal />
       <Swiper
         breakpoints={{
           320: {

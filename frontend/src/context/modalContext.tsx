@@ -20,6 +20,7 @@ export const ModalContextProvider = ({children}: PropsWithChildren) => {
     // setActiveModal(id);
   };
   const closeModal = () => {
+    setImage("");
     setOpen(false);
   };
 

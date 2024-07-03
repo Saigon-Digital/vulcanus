@@ -56,7 +56,7 @@ const Layout = ({
       <Header menu={headerMenu} />
 
       {children}
-      <Modal />
+
       <Footer footerText={footerText} menu={footerMenu} />
     </>
   );
