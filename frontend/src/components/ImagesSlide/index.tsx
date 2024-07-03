@@ -29,11 +29,11 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             },
             1024: {
               slidesPerView: 5,
-              spaceBetween: 16,
+              spaceBetween: 26,
             },
             1920: {
               slidesPerView: 6,
-              spaceBetween: 24,
+              spaceBetween: 34,
             },
           }}
           spaceBetween={35}
@@ -45,9 +45,9 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             delay: 0,
             stopOnLastSlide: false,
           }}
-          slidesPerView={"auto"}
+          slidesPerView={3}
           loop={true}
-          wrapperClass="!ease-linear "
+          wrapperClass="!ease-linear !px-10"
           freeMode={true}
           speed={5000}>
           {props.slides &&
