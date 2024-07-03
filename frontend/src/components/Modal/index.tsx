@@ -36,6 +36,7 @@ const Modal = () => {
                 {image && (
                   <Image
                     fill
+                    fetchPriority="high"
                     sizes="80vw"
                     className="object-contain"
                     src={image || ""}
