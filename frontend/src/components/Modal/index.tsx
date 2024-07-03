@@ -39,7 +39,8 @@ const Modal = () => {
                 gallery.map((e: any, id: number) => {
                   return (
                     <motion.div
-                      animate={{opacity: image === e ? "100" : "0"}}
+                      animate={{display: image === e ? "block" : "none"}}
+                      transition={{duration: 0}}
                       key={id}
                       className=" absolute left-1/2 top-1/2 grid h-[95%] w-[95%] -translate-x-1/2 -translate-y-1/2 place-items-center">
                       <Image
