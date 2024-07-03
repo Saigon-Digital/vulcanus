@@ -6,6 +6,7 @@ import {m} from "framer-motion";
 
 import siteData from "../../data/site_data.json";
 import {useLocaleContext} from "@/context/LocaleContext";
+import Modal from "../Modal";
 const Header = dynamic(() => import("../Header"));
 const Footer = dynamic(() => import("../Footer"), {ssr: false});
 
@@ -55,7 +56,7 @@ const Layout = ({
       <Header menu={headerMenu} />
 
       {children}
-
+      <Modal />
       <Footer footerText={footerText} menu={footerMenu} />
     </>
   );

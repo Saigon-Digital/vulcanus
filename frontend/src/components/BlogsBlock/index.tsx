@@ -9,12 +9,13 @@ import Image from "next/image";
 import Button from "../Button";
 import Link from "next/link";
 import {getPostThumb} from "@/libs/graphql/utils";
-
+import footerData from "@/data/footer_setting.json";
 import {languages} from "@/utils/language";
 import {getAcfLinkProps} from "@/utils";
 import dynamic from "next/dynamic";
 
 import {useLocaleContext} from "@/context/LocaleContext";
+import {FaceBookIcon, InstagramIcon, LinkedInIcon} from "../Icons";
 const ButtonNext = dynamic(
   () => import("../Icons").then((mod) => mod.ButtonNext),
   {loading: () => <></>}
@@ -136,7 +137,47 @@ const BlogsBlock = (props: Props) => {
             )}
           </div>
         </div>
+        {
+          //#region social icon
+        }
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">
+          <div className="col-span-full mb-5 mt-8 flex items-center gap-4 lg:col-span-2">
+            {footerData?.siteSettings?.footerSetting.facebook && (
+              <Link
+                target="_blank"
+                href={footerData?.siteSettings?.footerSetting.facebook.url}>
+                <FaceBookIcon />
+              </Link>
+            )}
+            {footerData?.siteSettings?.footerSetting.instagram && (
+              <Link
+                target="_blank"
+                href={footerData?.siteSettings?.footerSetting.instagram.url}>
+                <InstagramIcon />
+              </Link>
+            )}
+            {footerData?.siteSettings?.footerSetting.linkedin && (
+              <Link
+                target="_blank"
+                href={footerData?.siteSettings?.footerSetting.linkedin.url}>
+                <LinkedInIcon />
+              </Link>
+            )}
+            <Link
+              target="_blank"
+              className="h-[41px] w-[41px]"
+              href={
+                "https://www.xing.com/pages/vulcanus-stahl-maschinenbau-gmbh"
+              }>
+              <Image
+                src="/icons/xing.png"
+                alt="xing"
+                className="h-[41px] w-[41px]"
+                width={60}
+                height={60}
+              />
+            </Link>
+          </div>
           {props.ctaBlocks?.map((ele, id) => {
             if (id === 0)
               return (

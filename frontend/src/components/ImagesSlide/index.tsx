@@ -5,7 +5,9 @@ import {Autoplay, Navigation, A11y} from "swiper/modules";
 import "swiper/css/autoplay";
 
 import ImageWithRatio from "../ImageWithRatio";
+import {useModalContext} from "@/context/modalContext";
 const ImagesSlide = (props: ImagesSLideFragment) => {
+  const {openModal} = useModalContext();
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
       <Swiper
@@ -46,7 +48,10 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             // if (!ele.dimention.w || !ele.dimention.h) return null;
 
             return (
-              <SwiperSlide key={index} className="h-[480px]">
+              <SwiperSlide
+                key={index}
+                onClick={() => openModal()}
+                className="h-[480px]">
                 {/* <div className="relative aspect-video w-full"> */}
                 <ImageWithRatio
                   imageSrc={ele?.image?.node.sourceUrl || ""}

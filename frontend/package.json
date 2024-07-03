@@ -33,6 +33,7 @@
     "@faustwp/cli": "^3.0.1",
     "@faustwp/core": "^3.0.1",
     "@graphql-typed-document-node/core": "^3.2.0",
+    "@headlessui/react": "^2.1.1",
     "@netlify/plugin-nextjs": "5.3.2",
     "@next/bundle-analyzer": "^14.1.4",
     "@next/env": "13.5.6",
