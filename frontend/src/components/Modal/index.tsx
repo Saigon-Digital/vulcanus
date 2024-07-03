@@ -1,11 +1,12 @@
 import {useModalContext} from "@/context/modalContext";
 import {Dialog, Transition} from "@headlessui/react";
-import React, {Fragment} from "react";
+import React, {Fragment, useMemo} from "react";
 import {XIcon} from "@/components/Icons";
 import Image from "next/image";
+import {motion} from "framer-motion";
 const Modal = () => {
-  const {open, closeModal, image} = useModalContext();
-  console.log("image ", image);
+  const {open, closeModal, image, gallery} = useModalContext();
+  console.log(gallery);
 
   return (
     <Transition appear show={open} as={Fragment}>
@@ -32,18 +33,24 @@ const Modal = () => {
                   </div>
                 </button>
               </div>
-              <div className=" absolute left-1/2 top-1/2 grid h-[95%] w-[95%] -translate-x-1/2 -translate-y-1/2 place-items-center">
-                {image && (
-                  <Image
-                    fill
-                    fetchPriority="high"
-                    sizes="80vw"
-                    className="object-contain"
-                    src={image || ""}
-                    alt="modal image"
-                  />
-                )}
-              </div>
+
+              {gallery &&
+                gallery.map((e: any, id: number) => {
+                  return (
+                    <motion.div
+                      animate={{opacity: image === e ? "100" : "0"}}
+                      key={id}
+                      className=" absolute left-1/2 top-1/2 grid h-[95%] w-[95%] -translate-x-1/2 -translate-y-1/2 place-items-center">
+                      <Image
+                        fill
+                        fetchPriority="high"
+                        src={e || ""}
+                        alt="gallery image"
+                        className="object-contain"
+                      />
+                    </motion.div>
+                  );
+                })}
             </Dialog.Panel>
           </Transition.Child>
         </div>

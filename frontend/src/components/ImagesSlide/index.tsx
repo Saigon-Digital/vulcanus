@@ -7,8 +7,12 @@ import "swiper/css/autoplay";
 import ImageWithRatio from "../ImageWithRatio";
 import {useModalContext} from "@/context/modalContext";
 import Modal from "../Modal";
+import {useEffect} from "react";
 const ImagesSlide = (props: ImagesSLideFragment) => {
-  const {openModal} = useModalContext();
+  const {openModal, setGallery} = useModalContext();
+  useEffect(() => {
+    setGallery(props.slides?.map((e) => e?.image?.node.sourceUrl));
+  }, []);
   return (
     <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
       <Modal />

@@ -13,6 +13,7 @@ export const ModalContextProvider = ({children}: PropsWithChildren) => {
   const [open, setOpen] = useState(false);
   const [activeModal, setActiveModal] = useState(0);
   const [image, setImage] = useState<string | null | undefined>("");
+  const [gallery, setGallery] = useState<Array<string | null | undefined>>([]);
 
   const openModal = (image: string | null | undefined) => {
     setImage(image);
@@ -43,6 +44,8 @@ export const ModalContextProvider = ({children}: PropsWithChildren) => {
         openModal,
         closeModal,
         image,
+        gallery,
+        setGallery,
         activeModal,
         setActiveModal,
         enterFullScreen,
