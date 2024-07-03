@@ -92,8 +92,10 @@ const Card: React.FC<Props> = ({
       )}
       <div
         className={clsx(
-          "relative z-10 flex  flex-col  gap-5",
-          !link ? "h-[48%] justify-start xl:h-[40%]" : "h-[48%] justify-end"
+          "relative z-10 flex  flex-col  gap-3",
+          !link
+            ? "mb-6 h-[48%] justify-between xl:h-[50%]"
+            : "h-[58%] justify-end"
         )}>
         {description && (
           <p

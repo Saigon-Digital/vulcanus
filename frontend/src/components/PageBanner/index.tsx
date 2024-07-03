@@ -38,7 +38,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         )}
       </div>
       {videoOrImage?.at(0) === "video" ? (
-        <div className="parallax relative mx-auto aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850] xl:w-4/5">
+        <div className="parallax relative mx-auto aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850] xl:w-full">
           <ReactPlayer
             width="100%"
             height="auto"

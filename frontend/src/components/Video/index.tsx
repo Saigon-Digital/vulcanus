@@ -10,13 +10,13 @@ const Video: React.FC<VideoBlock> = (props) => {
   return (
     <motion.div
       viewport={{margin: "200px"}}
-      className="container-fluid py-20 text-center">
+      className="container-fluid py-8  text-center sm:py-14 lg:py-20">
       <h3 className="mb-10 text-center text-3xl font-bold text-white xl:text-5xl">
         {props.title}
       </h3>
 
       <ReactPlayer
-        width="90%"
+        width="100%"
         height="auto"
         playIcon={<PlayIcon />}
         controls

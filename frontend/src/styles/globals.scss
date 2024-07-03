@@ -99,10 +99,13 @@ p {
 }
 .parallax {
   /* Create the parallax scrolling effect */
-  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 150%;
+  @media screen and (min-width: 1060px) {
+    background-attachment: fixed;
+    background-size: cover;
+  }
 }
 
 .careers {

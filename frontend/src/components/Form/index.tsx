@@ -169,7 +169,9 @@ const Form = ({contacts, form}: TFormFragment) => {
   // console.log("errors ", errors);
 
   return (
-    <div id="form" className="container-fluid py-20 pb-28 xl:py-28 xl:pb-40">
+    <div
+      id="form"
+      className="container-fluid py-10 md:py-20  xl:py-28 xl:pb-28 xl:pb-40">
       <div className="grid grid-cols-12 ">
         <div className="col-span-full col-start-1 grid grid-cols-10 gap-y-4 lg:col-span-12 xl:col-span-10 xl:col-start-2 ">
           <div className=" col-span-full flex flex-wrap gap-5 gap-x-10 xl:col-span-3 xl:flex-col">

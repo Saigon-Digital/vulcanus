@@ -175,16 +175,18 @@ const Footer = (props: Props) => {
                   <div className="text-primary-blue-100 lg:flex-[122px]">
                     <Link
                       target="_blank"
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          footerInfo?.footerSetting?.officeLocation.replace(
+                            "Germany",
+                            "Deutschland"
+                          ),
+                      }}
                       href={footerInfo?.footerSetting?.locationLink?.url || "#"}
-                      className="transition hover:text-primary-blue-main">
-                      {footerInfo?.footerSetting?.officeLocation.replace(
-                        "Germany",
-                        "Deutschland"
-                      )}
-                    </Link>
+                      className="transition hover:text-primary-blue-main"></Link>
                   </div>
                 )}
-                <ul className="text-primary-blue-100 lg:flex-[240px]">
+                <ul className="text-primary-blue-100 lg:flex-[280px]">
                   {footerInfo?.footerSetting?.phone?.url && (
                     <li>
                       <Link

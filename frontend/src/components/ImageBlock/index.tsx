@@ -21,7 +21,7 @@ const ImageBlock: React.FC<
   return (
     <div
       style={{backgroundImage: imageStyle}}
-      className={` parallax container-fluid min-h-[400px] w-full px-0 md:min-h-[450px] md:px-[20px] lg:min-h-[656px] 2xl:min-h-[700px] ${props.className} `}></div>
+      className={` parallax container-fluid aspect-[14/9] w-full px-0 sm:min-h-[400px] md:min-h-[450px] md:px-[20px] lg:min-h-[656px] xl:aspect-[1872/689] 2xl:min-h-[700px] ${props.className} `}></div>
   );
 };
 
