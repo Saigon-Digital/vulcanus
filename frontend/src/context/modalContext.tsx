@@ -25,18 +25,6 @@ export const ModalContextProvider = ({children}: PropsWithChildren) => {
     setOpen(false);
   };
 
-  const enterFullScreen = () => {
-    if (typeof document.documentElement === undefined) return;
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    }
-  };
-  const exitFullScreen = () => {
-    if (typeof document.documentElement === undefined) return;
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    }
-  };
   return (
     <ModalContext.Provider
       value={{
@@ -48,8 +36,6 @@ export const ModalContextProvider = ({children}: PropsWithChildren) => {
         setGallery,
         activeModal,
         setActiveModal,
-        enterFullScreen,
-        exitFullScreen,
       }}>
       {children}
     </ModalContext.Provider>
