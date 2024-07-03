@@ -8,8 +8,7 @@ import ImageWithRatio from "../ImageWithRatio";
 import {useModalContext} from "@/context/modalContext";
 import Modal from "../Modal";
 import {useEffect} from "react";
-import {Head} from "next/document";
-import Link from "next/link";
+
 const ImagesSlide = (props: ImagesSLideFragment) => {
   const {openModal, setGallery} = useModalContext();
   useEffect(() => {
