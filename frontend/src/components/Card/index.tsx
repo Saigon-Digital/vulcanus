@@ -104,7 +104,7 @@ const Card: React.FC<Props> = ({
             style={{color: backgroundColor ? "#140F24" : undefined}}
             className="mb-0 line-clamp-6 h-[70%] text-base font-light leading-[18px] text-secondary-offWhite-white xl:h-[80%] xl:leading-[25px] 2xl:text-lg"
             dangerouslySetInnerHTML={{
-              __html: description.slice(0, 250),
+              __html: description.slice(0, 350),
             }}></p>
         )}
         {link ? (
