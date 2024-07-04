@@ -68,7 +68,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             </h2>
           </div>
           <div
-            className={`col-span-full grid grid-cols-6 gap-5 md:col-span-11 md:ml-[50px] lg:grid-cols-5 xl:col-span-9 xl:ml-0 xl:pl-5 2xl:col-start-4 2xl:pl-10 3xl:pl-14  `}>
+            className={`col-span-full grid grid-cols-6 gap-5 md:col-span-11 md:ml-[50px] lg:grid-cols-5 xl:col-span-9 xl:ml-0 xl:pl-5 2xl:col-start-4 2xl:pl-10 3xl:pl-20  `}>
             {gallery?.map((ele, id) => {
               return (
                 <div
@@ -89,7 +89,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                   <div className="max-w-[420px]"></div>
                   {ele?.textOrImge === "image" ? (
                     <>
-                      <div className="3xl:-[500px] relative h-[330px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[450px] 3xl:h-[550px] ">
+                      <div className="relative h-[330px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[500px] 3xl:h-[550px] ">
                         <motion.div
                           whileInView={{scale: 1.05}}
                           transition={{
