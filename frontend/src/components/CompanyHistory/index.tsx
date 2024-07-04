@@ -53,7 +53,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
 
   const imagePairs = sortedHistory && transformArray(sortedHistory);
 
-  const initialSlide = 2;
+  const initialSlide = 0;
 
   const [currentSlide, setCurentSlide] = useState<number>(initialSlide);
 
