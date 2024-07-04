@@ -21,18 +21,18 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
         <Swiper
           breakpoints={{
             320: {
-              slidesPerView: 3,
+              slidesPerView: 1,
             },
             640: {
-              slidesPerView: 4,
+              slidesPerView: 2,
               spaceBetween: 16,
             },
             1024: {
-              slidesPerView: 5,
+              slidesPerView: 3,
               spaceBetween: 26,
             },
             1920: {
-              slidesPerView: 6,
+              slidesPerView: 5,
               spaceBetween: 34,
             },
           }}
@@ -45,7 +45,7 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
             delay: 0,
             stopOnLastSlide: false,
           }}
-          slidesPerView={3}
+          slidesPerView={1}
           loop={true}
           wrapperClass="!ease-linear !px-10"
           freeMode={true}
