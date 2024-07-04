@@ -36,7 +36,7 @@ const Card: React.FC<Props> = ({
     <div
       style={{background: backgroundColor || undefined}}
       className={clsx(
-        " group relative z-10 flex h-full min-h-[300px] flex-col gap-3  overflow-hidden  rounded-[5px] border border-primary-blue-main p-6 transition-all duration-300 xl:min-h-[450px] ",
+        " group relative z-10 flex h-full min-h-[300px] flex-col gap-3  overflow-hidden  rounded-[5px] border border-primary-blue-main p-4 transition-all duration-300 xl:min-h-[450px] ",
         !hoverImage ? "justify-end hover:bg-primary-midBlue-main" : "",
         iconImage ? "justify-start" : "justify-between",
         link && "cursor-pointer",
@@ -96,7 +96,7 @@ const Card: React.FC<Props> = ({
           "relative z-10 flex  flex-col  gap-3",
           !link
             ? "mb-6 h-[58%] justify-end xl:h-[50%]"
-            : "h-[72%] justify-end md:h-[70%] xl:h-[65%]"
+            : "h-[72%] justify-end md:h-[70%] xl:h-[75%]"
         )}>
         {description && (
           <p
@@ -104,7 +104,7 @@ const Card: React.FC<Props> = ({
             style={{color: backgroundColor ? "#140F24" : undefined}}
             className="mb-0 line-clamp-6 h-[70%] text-base font-light leading-[18px] text-secondary-offWhite-white xl:h-[80%] xl:leading-[25px] 2xl:text-lg"
             dangerouslySetInnerHTML={{
-              __html: description.slice(0, 350),
+              __html: description.slice(0, 250),
             }}></p>
         )}
         {link ? (
