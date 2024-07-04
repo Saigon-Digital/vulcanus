@@ -10,7 +10,7 @@ const RichText: React.FC<RichTextFragment> = (props) => {
           className={twMerge(
             "content col-span-full flex flex-col ",
 
-            "md:col-span-full lg:col-span-10 lg:col-start-2 xl:col-start-3"
+            "md:col-span-full lg:col-span-10 lg:col-start-2 xl:col-start-2"
           )}>
           {props.richText && (
             <div
