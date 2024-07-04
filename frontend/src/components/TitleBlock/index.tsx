@@ -3,6 +3,7 @@ import {TitleBlockFragment} from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
 import {motion} from "framer-motion";
 import clsx from "clsx";
+import {twMerge} from "tailwind-merge";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
@@ -25,10 +26,10 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
         }`}>
         <div
           ref={titleRef}
-          className={clsx(
-            "title col-span-full max-w-[1565px]  font-bold md:col-span-10 xl:text-6xl 3xl:col-span-9 [&>*]:text-4xl [&>*]:tracking-tight ",
+          className={twMerge(
+            "title col-span-full max-w-[1565px]  font-bold md:col-span-10 xl:text-6xl 3xl:col-span-9 [&>*]:text-3xl [&>*]:tracking-tight ",
             size === "large"
-              ? "2xl:leading-[76px] 3xl:leading-[89px] 3xl:[&>*]:text-[64px] 3xl:[&>*]:leading-[89px]"
+              ? "[&>*]:text 2xl:leading-[76px] 3xl:leading-[89px] 3xl:[&>*]:text-[64px] 3xl:[&>*]:leading-[89px]"
               : "2xl:leading-[67px] xl:[&>*]:text-5xl 2xl:[&>*]:leading-[67px]"
           )}
           dangerouslySetInnerHTML={{__html: title || ""}}></div>
