@@ -73,13 +73,13 @@ const AccordionItem = (props: Props) => {
         <button
           {...triggerButtonProps}
           className={clsx(
-            "flex w-full items-start justify-between px-4 pt-[28px] transition-all duration-500 md:px-[43px] lg:justify-between lg:px-[48px]",
+            "flex w-full  items-start justify-start px-5 pt-[28px]  transition-all duration-500 sm:px-4  md:px-[43px] lg:justify-between lg:px-[48px]",
             {
               "lg:pb-[28px]": !expanded,
               "pb-[22px]": expanded,
             }
           )}>
-          <div className="-tracking-0.04 flex flex-col text-left text-2xl font-bold capitalize  leading-[38px] text-primary-blue-main">
+          <div className="-tracking-0.04 flex max-w-[450px] flex-col text-left text-2xl font-bold capitalize leading-[38px]  text-primary-blue-main lg:max-w-none">
             {item?.title}
             <span className="text-xl font-normal text-white">
               {languages(locale)?.location}: {item?.location}
@@ -97,11 +97,11 @@ const AccordionItem = (props: Props) => {
           style={{
             height: expanded ? height : 0,
           }}
-          className="grid  overflow-hidden transition-[height] duration-500 lg:order-3 lg:w-full">
+          className="grid  w-full overflow-hidden transition-[height] duration-500 lg:order-3">
           <hr className="mx-auto w-[calc(100%-88px)] border-t border-primary-blue-main" />
           <div
             className={clsx(
-              "text-chocolate flex w-full flex-col items-center p-[20px]  pt-8  transition-all duration-300 lg:items-start lg:px-[48px] lg:pb-[40px]",
+              "text-chocolate flex w-full flex-col items-start p-[20px]   pt-8  transition-all duration-300 lg:items-start lg:px-[48px] lg:pb-[40px]",
               {
                 "collapse opacity-0": !expanded,
                 "visible opacity-100": expanded,
