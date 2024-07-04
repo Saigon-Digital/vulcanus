@@ -184,14 +184,14 @@ const BlogsBlock = (props: Props) => {
                 </div>
               );
           })}
-          <div className="mt-6 flex aspect-[1.5] flex-col justify-center gap-4 rounded-md border border-primary-blue-main p-6">
-            <h4 className="mb-6 text-2xl font-semibold text-primary-blue-main ">
+          <div className="mt-6 flex aspect-auto flex-col justify-center gap-4 rounded-md border border-primary-blue-main p-6">
+            <h4 className="mb-3 text-2xl font-semibold text-primary-blue-main ">
               Folge uns auf Social Media
             </h4>
             <Socials
               isHover
               mainColor="text-primary-black-main"
-              className="col-span-full  mb-6 flex items-center gap-4 lg:col-span-2"
+              className="col-span-full  mb-3 flex items-center gap-3 lg:col-span-2 lg:gap-4"
             />
           </div>
         </div>
