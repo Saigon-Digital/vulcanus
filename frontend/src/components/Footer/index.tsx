@@ -249,7 +249,10 @@ const Footer = (props: Props) => {
               {
                 //#region social
               }
-              <Socials className="col-span-full mt-6 flex items-center gap-4 lg:col-span-2" />
+              <Socials
+                isHover
+                className="col-span-full mt-6 flex items-center gap-4 lg:col-span-2"
+              />
             </div>
           </div>
         </div>
