@@ -68,7 +68,7 @@ const BlogsBlock = (props: Props) => {
       <div className="grid grid-cols-12">
         <div className="col-span-full flex  flex-col gap-10 md:col-span-8">
           {blockListing?.nodes.length === 0 && (
-            <div className="container-fluid min-h-[500px] pt-10 text-lg xl:text-2xl">
+            <div className="container-fluid min-h-[100px] pt-10 text-lg xl:text-2xl">
               {locale?.toUpperCase() === LanguageCodeFilterEnum.En
                 ? "No Blog Found"
                 : "Blogposts in Bearbeitung"}
