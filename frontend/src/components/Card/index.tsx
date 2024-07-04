@@ -12,6 +12,7 @@ import {languages} from "@/utils/language";
 
 import {useLocaleContext} from "@/context/LocaleContext";
 import {useMediaQuery} from "@/hooks/useMediaQuery";
+import {twMerge} from "tailwind-merge";
 type Props = {
   hoverImage?: string | StaticImport | undefined;
 } & CardsBlockCards_Fields &
@@ -32,11 +33,12 @@ const Card: React.FC<Props> = ({
 
   const textRef = useRef<HTMLParagraphElement | null>(null);
   const isMobile = useMediaQuery("(max-width: 1080px)");
+  const textSize = description?.length;
   return (
     <div
       style={{background: backgroundColor || undefined}}
       className={clsx(
-        " group relative z-10 flex h-full min-h-[300px] flex-col gap-3  overflow-hidden  rounded-[5px] border border-primary-blue-main p-4 transition-all duration-300 xl:min-h-[450px] ",
+        " group relative z-10 flex h-full min-h-[400px] flex-col gap-3  overflow-hidden  rounded-[5px] border border-primary-blue-main p-4 transition-all duration-300 lg:min-h-[400px] xl:min-h-[450px] ",
         !hoverImage ? "justify-end hover:bg-primary-midBlue-main" : "",
         iconImage ? "justify-start" : "justify-between",
         link && "cursor-pointer",
@@ -92,19 +94,27 @@ const Card: React.FC<Props> = ({
         />
       )}
       <div
-        className={clsx(
+        className={twMerge(
           "relative z-10 flex  flex-col  gap-3",
           !link
             ? "mb-6 h-[58%] justify-end xl:h-[50%]"
-            : "h-[72%] justify-end md:h-[70%] xl:h-[75%]"
+            : ` justify-end 
+            ${twMerge(
+              textSize && textSize < 200 && "h-[60%] md:h-[70%] lg:h-[65%]",
+              textSize &&
+                textSize < 450 &&
+                textSize > 200 &&
+                "h-[70%] md:h-[70%] lg:h-[68%]"
+            )} 
+            `
         )}>
         {description && (
           <p
             ref={textRef}
             style={{color: backgroundColor ? "#140F24" : undefined}}
-            className="mb-0 line-clamp-6 h-[70%] text-base font-light leading-[18px] text-secondary-offWhite-white xl:h-[80%] xl:leading-[25px] 2xl:text-lg"
+            className="mb-0 mb-2 line-clamp-6 flex h-[90%] flex-col justify-end  text-base font-light leading-[18px] text-secondary-offWhite-white xl:h-[85%] xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-lg 2xl:[&>*]:leading-[22px]"
             dangerouslySetInnerHTML={{
-              __html: description.slice(0, 250),
+              __html: description.slice(0, 380),
             }}></p>
         )}
         {link ? (
