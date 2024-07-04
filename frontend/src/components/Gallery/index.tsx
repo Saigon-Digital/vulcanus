@@ -62,13 +62,13 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
         />
 
         <div className="container-fluid grid grid-cols-12 gap-5 gap-y-6 lg:gap-6">
-          <div className="relative col-span-full flex justify-start text-left md:justify-start lg:col-span-3 2xl:col-span-3">
-            <h2 className="max-w-[579px] whitespace-pre-wrap break-words text-center text-2xl font-bold  tracking-tight md:ml-[50px] xl:text-left xl:text-3xl 2xl:w-[4/5]  3xl:text-4xl 3xl:leading-[67px]">
+          <div className="relative col-span-full flex justify-start text-left md:justify-start xl:col-span-3 2xl:col-span-3">
+            <h2 className="max-w-[579px] whitespace-pre-wrap break-words text-left  text-2xl font-bold  tracking-tight md:ml-[50px] xl:ml-10 xl:text-left xl:text-2xl 2xl:w-[4/5] 2xl:text-3xl  3xl:text-4xl 3xl:leading-[67px]">
               {title}
             </h2>
           </div>
           <div
-            className={`col-span-full grid grid-cols-6 gap-5 md:col-span-10 md:col-start-3 lg:col-span-9 lg:grid-cols-5 2xl:col-span-9 2xl:col-start-4  `}>
+            className={`col-span-full grid grid-cols-6 gap-5 md:col-span-11 md:ml-[50px] lg:grid-cols-5 xl:col-span-9 xl:ml-0 xl:pl-5 2xl:col-start-4  `}>
             {gallery?.map((ele, id) => {
               return (
                 <div
@@ -90,7 +90,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                     <>
                       <div className="3xl:-[500px] relative h-[330px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[450px]">
                         <motion.div
-                          whileInView={{scale: 1}}
+                          whileInView={{scale: 1.1}}
                           transition={{
                             type: "spring",
                             duration: 1.5,

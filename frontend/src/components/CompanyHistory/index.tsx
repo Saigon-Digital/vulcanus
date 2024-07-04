@@ -67,7 +67,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
 
   return (
     <div
-      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14  pb-80 sm:pb-60 lg:px-12 lg:py-20 xl:pb-60`}>
+      className={`history container-fluid rounded-xl bg-primary-midBlue-main px-5 py-14  pb-80 sm:pb-60 lg:px-12 lg:py-20 xl:pb-[200px] 3xl:pb-60`}>
       <div className="grid grid-cols-12 gap-5">
         <div className="col-span-full md:col-span-4 xl:col-span-3">
           <h2 className="col-span-full text-3xl font-bold lg:text-5xl xl:text-[64px]">
@@ -121,7 +121,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
             </div>
           </div>
         </div>
-        <div className="relative col-span-full gap-4 transition-all duration-150 md:col-span-8 lg:col-start-5 xl:mt-16">
+        <div className="relative col-span-full gap-4 transition-all duration-150 md:col-span-10 lg:col-start-5 xl:mt-10">
           {/* To make the placeholder */}
           <div className="pointer-events-none invisible flex overflow-hidden">
             {imagePairs?.map((pair, index) => {
@@ -163,22 +163,23 @@ const ImageSlide = (props: {
   return (
     <div
       className={clsx(
-        "absolute top-0 flex w-full flex-col gap-5 transition-opacity duration-500 ",
+        "absolute top-0 flex w-full flex-col gap-3 transition-opacity duration-500 ",
         isActive ? "z-10" : "opacity-0"
       )}>
-      <div className="relative order-2  max-h-52  w-full overflow-visible rounded-md xl:max-h-none  xl:w-4/5 ">
+      <div className="relative order-2  max-h-52  w-full overflow-visible rounded-md xl:max-h-none  xl:w-[88%] ">
         {description && (
           <div
-            className="rich-text mt-5 font-light xl:text-xl [&>*>p]:mt-3 [&>*>p]:text-xl [&>*>span]:mt-2 [&>*>span]:text-xl [&>*>strong]:text-2xl xl:[&>*>strong]:text-3xl  "
+            className="rich-text mt-5  font-light xl:text-xl [&>*>p]:mt-3 [&>*>p]:text-xl [&>*>span]:mt-2 [&>*>span]:text-xl [&>*>strong]:text-2xl xl:[&>*>strong]:text-3xl  "
             dangerouslySetInnerHTML={{__html: description}}></div>
         )}
       </div>
       <div className="aspect-video xl:w-3/5">
-        <div className="relative aspect-video  w-full overflow-hidden rounded-md ">
+        <div className="relative aspect-[16/10]  w-full overflow-hidden rounded-md ">
           <Image
             className="object-cover object-top"
             alt="history"
             fill
+            loading="eager"
             src={currUrl || "/images/hero-banner.png"}
           />
         </div>
