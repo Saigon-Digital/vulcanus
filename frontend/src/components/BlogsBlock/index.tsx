@@ -142,11 +142,6 @@ const BlogsBlock = (props: Props) => {
           //#region social icon
         }
         <div className="col-span-full mt-10 md:col-span-6 lg:col-span-3 lg:col-start-10 lg:mt-0">
-          <h4 className="mb-6 text-2xl font-semibold text-white">
-            Folge uns auf Social Media
-          </h4>
-          <Socials className="col-span-full mb-6 flex items-center gap-4 lg:col-span-2" />
-
           {props.ctaBlocks?.map((ele, id) => {
             if (id === 0)
               return (
@@ -189,6 +184,16 @@ const BlogsBlock = (props: Props) => {
                 </div>
               );
           })}
+          <div className="mt-6 flex aspect-[1.5] flex-col justify-center gap-4 rounded-md border border-primary-blue-main p-6">
+            <h4 className="mb-6 text-2xl font-semibold text-primary-blue-main ">
+              Folge uns auf Social Media
+            </h4>
+            <Socials
+              isHover
+              mainColor="text-primary-black-main"
+              className="col-span-full  mb-6 flex items-center gap-4 lg:col-span-2"
+            />
+          </div>
         </div>
       </div>
     </section>

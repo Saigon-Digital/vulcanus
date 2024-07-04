@@ -182,7 +182,11 @@ const Form = ({contacts, form}: TFormFragment) => {
               <h4 className="mb-4 text-xl font-semibold text-white">
                 Folge uns auf Social Media
               </h4>
-              <Socials className="col-span-full mb-0 flex items-center gap-4 lg:col-span-2" />
+              <Socials
+                mainColor="text-primary-black-main"
+                isHover
+                className="in col-span-full mb-0 flex items-center gap-4 lg:col-span-2"
+              />
             </div>
             {
               //#region contact info
