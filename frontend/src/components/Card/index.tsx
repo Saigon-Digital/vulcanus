@@ -97,22 +97,16 @@ const Card: React.FC<Props> = ({
         className={twMerge(
           "relative z-10 flex  flex-col  gap-3",
           !link
-            ? "mb-6 h-[58%] justify-end xl:h-[50%]"
+            ? "mb-6  h-auto justify-end"
             : ` justify-end 
-            ${twMerge(
-              textSize && textSize < 200 && "h-[60%] md:h-[70%] lg:h-[65%]",
-              textSize &&
-                textSize < 450 &&
-                textSize > 200 &&
-                "h-[70%] md:h-[70%] lg:h-[68%]"
-            )} 
+            
             `
         )}>
         {description && (
           <p
             ref={textRef}
             style={{color: backgroundColor ? "#140F24" : undefined}}
-            className="mb-0 mb-2 line-clamp-6 flex h-[90%] flex-col justify-end  text-base font-light leading-[18px] text-secondary-offWhite-white xl:h-[85%] xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-lg 2xl:[&>*]:leading-[22px]"
+            className=" mb-0 line-clamp-6 flex  flex-col justify-end  text-base font-light leading-[18px] text-secondary-offWhite-white xl:h-[85%] xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-lg 2xl:[&>*]:leading-[22px]"
             dangerouslySetInnerHTML={{
               __html: description.slice(0, 380),
             }}></p>
