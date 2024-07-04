@@ -48,7 +48,8 @@ const Socials = ({
           }>
           <Xing
             className={twMerge(
-              "h-10 w-10 text-primary-midBlue-main hover:bg-primary-blue-main",
+              "h-10 w-10 text-primary-midBlue-main ",
+              isHover && "hover:bg-primary-blue-main",
               mainColor
             )}
           />
