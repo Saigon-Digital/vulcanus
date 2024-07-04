@@ -11,6 +11,7 @@ import clsx from "clsx";
 import {languages} from "@/utils/language";
 
 import {useLocaleContext} from "@/context/LocaleContext";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 type Props = {
   hoverImage?: string | StaticImport | undefined;
 } & CardsBlockCards_Fields &
@@ -30,7 +31,7 @@ const Card: React.FC<Props> = ({
   const {locale} = useLocaleContext();
 
   const textRef = useRef<HTMLParagraphElement | null>(null);
-
+  const isMobile = useMediaQuery("(max-width: 1080px)");
   return (
     <div
       style={{background: backgroundColor || undefined}}
@@ -94,15 +95,17 @@ const Card: React.FC<Props> = ({
         className={clsx(
           "relative z-10 flex  flex-col  gap-3",
           !link
-            ? "mb-6 h-[48%] justify-between xl:h-[50%]"
-            : "h-[58%] justify-end"
+            ? "mb-6 h-[58%] justify-end xl:h-[50%]"
+            : "h-[72%] justify-end md:h-[70%] xl:h-[65%]"
         )}>
         {description && (
           <p
             ref={textRef}
             style={{color: backgroundColor ? "#140F24" : undefined}}
-            className="mb-0 line-clamp-6 text-base font-light leading-[25px] text-secondary-offWhite-white 2xl:text-lg"
-            dangerouslySetInnerHTML={{__html: description}}></p>
+            className="mb-0 line-clamp-6 h-[70%] text-base font-light leading-[18px] text-secondary-offWhite-white xl:h-[80%] xl:leading-[25px] 2xl:text-lg"
+            dangerouslySetInnerHTML={{
+              __html: description.slice(0, 250),
+            }}></p>
         )}
         {link ? (
           <Link
