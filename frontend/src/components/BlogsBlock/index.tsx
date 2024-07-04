@@ -176,7 +176,7 @@ const BlogsBlock = (props: Props) => {
                     }}></div>
                   {ele?.ctaButton && (
                     <Button
-                      className="mt-4"
+                      className="mt-4 whitespace-normal"
                       {...getAcfLinkProps(ele.ctaButton.link)}>
                       {ele?.ctaButton?.link?.title}
                     </Button>
