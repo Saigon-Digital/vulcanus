@@ -63,7 +63,7 @@ const ImageContent = ({
         }`}>
         <div
           style={{height: "fit-content"}}
-          className="relative flex min-h-[350px] w-full flex-col justify-center rounded-[5px] border border-primary-blue-main p-0 lg:w-1/2 xl:min-h-[450px] 3xl:min-h-[550px]">
+          className="relative flex aspect-[742/580] w-full flex-col justify-center rounded-[5px] border border-primary-blue-main p-0 lg:min-h-[350px] lg:w-1/2 xl:min-h-[450px] 3xl:min-h-[550px]">
           <Image
             src="/shapes/imageShape.png"
             height={155}
@@ -73,7 +73,7 @@ const ImageContent = ({
               reverse ? "-left-[45px] rotate-180" : "-right-[45px]"
             } top-5 hidden w-[45px] lg:block`}
           />
-          <div className="relative my-auto aspect-[742/580] w-full  overflow-hidden  lg:p-6">
+          <div className="relative mx-auto my-auto aspect-[742/580] w-[calc(100%-20px)] overflow-hidden  lg:p-6  xl:w-[calc(100%-16px)]">
             <motion.div
               whileInView={{scale: 1}}
               transition={{type: "spring", duration: 1.5, delay: 0.3}}
