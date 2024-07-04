@@ -8,6 +8,9 @@ import {motion} from "framer-motion";
 
 import dynamic from "next/dynamic";
 import {useLocaleContext} from "@/context/LocaleContext";
+import {twMerge} from "tailwind-merge";
+import ImageWithRatio from "../ImageWithRatio";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 const Image = dynamic(() => import("next/image"));
 
 type TService = {
@@ -24,7 +27,7 @@ const images = [
 ];
 const Service: React.FC<TService> = ({services, featureImage = images}) => {
   const {locale} = useLocaleContext();
-
+  const isMobile = useMediaQuery("(max-width: 760px)");
   return (
     <div className="container-fluid py-20">
       <h2 className="mb-14 text-3xl font-bold leading-[89px] lg:text-6xl lg:leading-[84px] xl:text-[64px]">
@@ -62,21 +65,23 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
           return (
             <div
               key={index}
-              className={`relative col-span-full min-h-[300px] overflow-hidden object-top lg:min-h-[420px] ${
-                index === 0 ? "md:col-span-2" : "lg:col-span-1"
-              }`}>
+              className={twMerge(
+                `relative col-span-full aspect-square min-h-[300px] overflow-hidden object-top sm:aspect-auto md:min-h-[400px] lg:min-h-[420px]`,
+                index === 0
+                  ? "col-span-1 lg:col-span-2"
+                  : "col-span-1 lg:col-span-1"
+              )}>
               <motion.div
                 initial={{scale: 1}}
-                whileInView={{scale: 1.2}}
+                whileInView={{scale: 1.1}}
                 transition={{duration: 0.6, delay: 0.4}}
-                className="relative h-full w-full">
+                className="relative grid h-full w-full place-items-center">
                 <Image
                   fill
-                  sizes={`(max-width: 768px) 80vw, (max-width: 800px) ${size}vw`}
-                  quality={80}
-                  loading="lazy"
-                  src={img?.featuredImage?.node.sourceUrl || ""}
                   alt="feature image"
+                  quality={90}
+                  src={img?.featuredImage?.node.sourceUrl || ""}
+                  sizes="80vw"
                   className="object-cover"
                 />
               </motion.div>
