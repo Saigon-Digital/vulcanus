@@ -1,13 +1,12 @@
 import React, {ReactNode, useEffect, useMemo, useRef, useState} from "react";
 import {TitleBlockFragment} from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
-import {motion} from "framer-motion";
-import clsx from "clsx";
+
 import {twMerge} from "tailwind-merge";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
-const ScrollMargin = 400;
+const ScrollMargin = 250;
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
   haveShape,
@@ -58,7 +57,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
     };
     const observer = new IntersectionObserver(callback, {
       threshold: 0.9,
-      rootMargin: "200px",
+      rootMargin: "100px",
     });
     if (ref.current && typeof document !== undefined) {
       observer.observe(ref.current);
