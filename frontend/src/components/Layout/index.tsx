@@ -1,8 +1,7 @@
 import {PropsWithChildren} from "react";
 import dynamic from "next/dynamic";
 import {MenuLocationEnum} from "@/__generated__/graphql";
-import {useRouter} from "next/router";
-import {m} from "framer-motion";
+import {ReactLenis} from "lenis/react";
 
 import siteData from "../../data/site_data.json";
 import {useLocaleContext} from "@/context/LocaleContext";
@@ -54,9 +53,7 @@ const Layout = ({
   return (
     <>
       <Header menu={headerMenu} />
-
-      {children}
-
+      <ReactLenis root>{children}</ReactLenis>
       <Footer footerText={footerText} menu={footerMenu} />
     </>
   );

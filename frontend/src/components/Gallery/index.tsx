@@ -90,21 +90,14 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                   {ele?.textOrImge === "image" ? (
                     <>
                       <div className="relative h-[330px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[500px] 3xl:h-[550px] ">
-                        <motion.div
-                          whileInView={{scale: 1.05}}
-                          transition={{
-                            type: "spring",
-                            duration: 1.5,
-                            delay: 0.3,
-                          }}
-                          className="relative h-full w-full">
+                        <div className="relative h-full w-full">
                           <Image
                             fill
                             src={ele?.galleryImage?.node?.sourceUrl || ""}
                             className="object-cover object-center"
                             alt="gallery image"
                           />
-                        </motion.div>
+                        </div>
                       </div>
                       <span className="text-2xl font-semibold  text-primary-blue-main">
                         0{id + 1}

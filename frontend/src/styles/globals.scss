@@ -136,22 +136,21 @@ p {
     @apply mb-4 inline-block text-[34px] font-bold leading-[1.175];
   }
 }
-
-footer {
-  .footer-text {
-    @for $i from 0 through 100 {
-      &.scroll-#{$i} {
-        strong {
-          background: linear-gradient(
-            to right,
-            #009ee0 #{$i * 1%},
-            #fff #{($i + 1) * 1%}
-          );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
+.scroll-title {
+  @for $i from 0 through 100 {
+    &.scroll-#{$i} {
+      strong {
+        background: linear-gradient(
+          to right,
+          #009ee0 #{$i * 1%},
+          #fff #{($i + 1) * 1%}
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
     }
+  }
+  footer {
     strong {
       position: relative;
       display: inline-block;

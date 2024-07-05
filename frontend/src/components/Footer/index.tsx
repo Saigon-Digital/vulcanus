@@ -106,7 +106,7 @@ const Footer = (props: Props) => {
         <div
           ref={ref}
           className={clsx(
-            `footer-text cursor-default select-none font-bold  text-white [&>*]:text-xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
+            `footer-text scroll-title cursor-default select-none font-bold  text-white [&>*]:text-xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
              [&>*]:xl:text-[45px] [&>*]:xl:leading-[68px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[87px]  `,
             ratio &&
               `scroll-${
