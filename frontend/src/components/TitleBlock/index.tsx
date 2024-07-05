@@ -3,6 +3,7 @@ import {TitleBlockFragment} from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
 import {motion} from "framer-motion";
 import clsx from "clsx";
+
 import {twMerge} from "tailwind-merge";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
@@ -18,67 +19,55 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
 
   const id = `title-block-${encodeURIComponent(title || "")}`;
 
-  const titleRef = useRef<HTMLDivElement>(null);
+  // const titleRef = useRef<HTMLDivElement>(null);
+  const [scrollEnd, setScrollEnd] = useState<boolean>(false);
   const [initialHeight, setInitialHeight] = useState<number | null>(null);
   const [isInit, setIsInit] = useState<boolean>(false);
+  const [inview, setInView] = useState<boolean>(false);
   //#region footer setting
 
   const [rectTop, setRectTop] = useState<number | null>();
   const ref = useRef<HTMLDivElement>(null);
 
-  const ratio = useMemo(() => {
-    if (initialHeight && rectTop)
-      return ((Math.abs(initialHeight) - rectTop) * 100) / ScrollMargin;
-  }, [initialHeight, rectTop]);
+  const calcTop = () => {
+    const rect = ref.current?.getBoundingClientRect();
+    const top = rect ? rect.top : 0;
+    setRectTop(top);
+  };
+  console.log("init", initialHeight, "top ", rectTop);
 
-  // console.log("ratio ", Math.abs(ratio || 0));
-  // console.log("init ", initialHeight, "top ", rectTop);
+  const ratio = useMemo(() => {
+    if (scrollEnd && !isInit) return null;
+    if (initialHeight && rectTop)
+      return Math.abs((initialHeight - rectTop) * 100) / ScrollMargin;
+  }, [initialHeight, rectTop, scrollEnd]);
 
   useEffect(() => {
-    const callback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((ele) => {
-        if (!ele && !ref.current) return;
-        const calcTop = () => {
-          const rect = ref.current?.getBoundingClientRect();
-          const top = rect ? rect.top : 0;
-          setRectTop(top);
-        };
-
-        if (ele.isIntersecting) {
-          let height = ele.boundingClientRect.top;
-          if (!isInit) {
-            setIsInit(true);
-            setInitialHeight(height);
-          }
-          document.addEventListener("scroll", calcTop);
-        } else {
-          document.removeEventListener("scroll", calcTop);
-        }
-      });
-    };
-    const observer = new IntersectionObserver(callback, {
-      threshold: 0.9,
-      rootMargin: "200px",
-    });
-    if (ref.current && typeof document !== undefined) {
-      observer.observe(ref.current);
-    }
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-        observer.disconnect();
+    if (isInit && ref.current) {
+      if (!initialHeight && initialHeight !== 0) {
+        let height = ref.current.getBoundingClientRect().top;
+        setInitialHeight(height);
       }
-    };
-  }, []);
+      document.addEventListener("scroll", calcTop);
+      if (ratio && ratio > 99) {
+        setScrollEnd(true);
+        document.removeEventListener("scroll", calcTop);
+      }
+    }
+  }, [isInit, ratio]);
   return (
     //#region
-    <div key={id} id={id} ref={ref} className=" relative">
+    <motion.div
+      onViewportEnter={() => setIsInit(true)}
+      key={id}
+      id={id}
+      ref={ref}
+      className=" relative">
       <div
         className={`title-block container-fluid  grid grid-cols-12 py-10 md:py-14 lg:py-20 ${
           haveBorderBottom && " border-b border-[#E6ECF3]"
         }`}>
         <div
-          ref={titleRef}
           className={twMerge(
             "scroll-title col-span-full max-w-[1565px]  font-bold md:col-span-10 xl:text-6xl 3xl:col-span-9 [&>*]:text-3xl [&>*]:tracking-tight ",
             size === "large"
@@ -100,7 +89,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
