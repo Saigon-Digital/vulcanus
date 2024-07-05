@@ -70,7 +70,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             </h2>
           </div>
           <div
-            className={`col-span-full grid grid-cols-6 gap-5 md:ml-[50px] lg:col-span-11  lg:grid-cols-8  xl:col-span-9 xl:col-start-4 xl:ml-0 xl:pl-8 2xl:pl-10   `}>
+            className={`col-span-full grid grid-cols-6 gap-5 md:ml-[50px] lg:col-span-11  lg:grid-cols-8  xl:col-span-8 xl:col-start-5 xl:ml-0    `}>
             {gallery?.map((ele, id) => {
               return (
                 <div
@@ -90,7 +90,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                   )}>
                   {ele?.textOrImge === "image" ? (
                     <>
-                      <div className="relative h-[390px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[500px] 3xl:h-[550px] ">
+                      <div className="relative h-[390px]  w-full overflow-hidden  lg:h-[420px] 2xl:h-[500px] 3xl:h-[550px] ">
                         <div className="relative h-full w-full">
                           <Image
                             fill
