@@ -23,12 +23,12 @@ const Modal = () => {
               <div className="absolute right-4 top-5 z-[9999] mix-blend-lighten lg:right-10  lg:top-6 ">
                 <button
                   type="button"
-                  className=" group z-[100] h-16  w-16 justify-center  rounded-full
-                    border-2   border-white text-4xl  font-thin after:absolute after:z-[100] 
-                    after:h-full  after:w-full  focus:ring-0  "
+                  className=" group z-[100] h-12 w-12 justify-center rounded-full border-2  border-white
+                    text-4xl   font-thin after:absolute  after:z-[100] after:h-full after:w-full 
+                    focus:ring-0  md:h-16  md:w-16  "
                   onClick={closeModal}>
-                  <div className="grid h-full w-full place-items-center rounded-full border-2 border-white transition-all md:group-hover:scale-110">
-                    <XIcon className="scale-90 text-white transition-all lg:scale-100" />
+                  <div className="grid h-full  w-full place-items-center rounded-full border-2 border-white transition-all md:group-hover:scale-110">
+                    <XIcon className=" text-white transition-all md:scale-90 lg:scale-100" />
                   </div>
                 </button>
               </div>
