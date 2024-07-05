@@ -1,12 +1,9 @@
-import React, {ReactNode, useEffect, useMemo, useRef, useState} from "react";
-import {TitleBlockFragment} from "@/__generated__/graphql";
-import dynamic from "next/dynamic";
+import React, {ReactNode, useEffect, useMemo, useRef, useState} from "react"
+import {TitleBlockFragment} from "@/__generated__/graphql"
 
-import {twMerge} from "tailwind-merge";
-const TitleShape = dynamic(() =>
-  import("../Icons").then((mod) => mod.TitleShape)
-);
-const ScrollMargin = 450;
+import {twMerge} from "tailwind-merge"
+import {TitleShape} from "@/components/Icons"
+const ScrollMargin = 450
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
@@ -14,65 +11,72 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
   haveBorderBottom,
   textSize = ["large"],
 }) => {
-  const size = textSize?.find((_, id) => id === 0) || textSize || "large";
+  const size = textSize?.find((_, id) => id === 0) || textSize || "large"
 
-  const id = `title-block-${encodeURIComponent(title || "")}`;
+  const id = `title-block-${encodeURIComponent(title || "")}`
 
-  const titleRef = useRef<HTMLDivElement>(null);
-  const [scrollEnd, setScrollEnd] = useState<boolean>(false);
-  const [initialHeight, setInitialHeight] = useState<number | null>(null);
-  const [isInit, setIsInit] = useState<boolean>(false);
+  const titleRef = useRef<HTMLDivElement>(null)
+  const [scrollEnd, setScrollEnd] = useState<boolean>(false)
+  const [initialHeight, setInitialHeight] = useState<number | null>(null)
+  const [isDomReady, setDomReady] = useState(false)
+  const [isInit, setIsInit] = useState<boolean>(false)
   //#region footer setting
 
-  const [rectTop, setRectTop] = useState<number | null>();
-  const ref = useRef<HTMLDivElement>(null);
+  const [rectTop, setRectTop] = useState<number | null>()
+  const ref = useRef<HTMLDivElement>(null)
 
   const ratio = useMemo(() => {
-    if (scrollEnd && !isInit) return null;
+    if (scrollEnd && !isInit) return null
     if (initialHeight && rectTop)
-      return Math.abs((initialHeight - rectTop) * 100) / ScrollMargin;
-  }, [initialHeight, rectTop, scrollEnd]);
+      return Math.abs((initialHeight - rectTop) * 100) / ScrollMargin
+  }, [initialHeight, rectTop, scrollEnd])
 
   useEffect(() => {
-    if (ratio && ratio > 99) {
-      setScrollEnd(true);
+    if (!isDomReady) {
+      setTimeout(() => {
+        setDomReady(true)
+      }, 500)
+      return
     }
 
+    if (ratio && ratio > 99) {
+      setScrollEnd(true)
+    }
     const callback: IntersectionObserverCallback = (entries) => {
       entries.forEach((ele) => {
-        if (!ele && !ref.current) return;
+        if (!ele && !ref.current) return
         const calcTop = () => {
-          const rect = ref.current?.getBoundingClientRect();
-          const top = rect ? rect.top : 0;
-          setRectTop(top);
-        };
+          const rect = ref.current?.getBoundingClientRect()
+          const top = rect ? rect.top : 0
+          setRectTop(top)
+        }
 
         if (ele.isIntersecting) {
-          let height = ele.boundingClientRect.top;
+          let height = ele.boundingClientRect.top
           if (!isInit) {
-            setIsInit(true);
-            setInitialHeight(height);
+            setIsInit(true)
+            setInitialHeight(height)
           }
-          document.addEventListener("scroll", calcTop);
+          document.addEventListener("scroll", calcTop)
         } else {
-          document.removeEventListener("scroll", calcTop);
+          document.removeEventListener("scroll", calcTop)
         }
-      });
-    };
+      })
+    }
     const observer = new IntersectionObserver(callback, {
       threshold: 0.9,
-      rootMargin: "100px",
-    });
+      rootMargin: "150px",
+    })
     if (ref.current && !isInit) {
-      observer.observe(ref.current);
+      observer.observe(ref.current)
     }
     return () => {
       if (ref.current) {
-        observer.unobserve(ref.current);
-        observer.disconnect();
+        observer.unobserve(ref.current)
+        observer.disconnect()
       }
-    };
-  }, [ratio]);
+    }
+  }, [ratio, isDomReady])
   return (
     //#region
     <div key={id} id={id} ref={ref} className=" relative">
@@ -104,7 +108,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TitleBlock;
+export default TitleBlock
