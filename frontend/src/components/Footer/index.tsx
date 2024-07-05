@@ -29,7 +29,7 @@ type Props = {
   footerText?: string | null | undefined;
 };
 
-const ScrollMargin = 500;
+const ScrollMargin = 350;
 
 const Footer = (props: Props) => {
   const hierarchicalList = props.menu?.menuItems?.nodes.filter((ele: any) => {
