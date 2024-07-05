@@ -7,6 +7,7 @@ const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
 const ScrollMargin = 350;
+
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
   haveShape,
