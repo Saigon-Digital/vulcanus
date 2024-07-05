@@ -28,13 +28,10 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   const ratio = useMemo(() => {
-    if (scrollEnd) return;
+    if (scrollEnd && !isInit) return null;
     if (initialHeight && rectTop)
       return Math.abs((initialHeight - rectTop) * 100) / ScrollMargin;
   }, [initialHeight, rectTop, scrollEnd]);
-
-  // console.log("ratio ", Math.abs(ratio || 0));
-  // console.log("init ", initialHeight, "top ", rectTop);
 
   useEffect(() => {
     if (ratio && ratio > 99) {
@@ -66,7 +63,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
       threshold: 0.9,
       rootMargin: "100px",
     });
-    if (ref.current && typeof document !== undefined && !isInit) {
+    if (ref.current && !isInit) {
       observer.observe(ref.current);
     }
     return () => {
