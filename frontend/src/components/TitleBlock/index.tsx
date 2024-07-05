@@ -6,7 +6,7 @@ import {twMerge} from "tailwind-merge";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
-const ScrollMargin = 400;
+const ScrollMargin = 450;
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
@@ -35,13 +35,12 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
 
   // console.log("ratio ", Math.abs(ratio || 0));
   // console.log("init ", initialHeight, "top ", rectTop);
+
   useEffect(() => {
     if (ratio && ratio > 99) {
       setScrollEnd(true);
     }
-  }, [ratio]);
 
-  useEffect(() => {
     const callback: IntersectionObserverCallback = (entries) => {
       entries.forEach((ele) => {
         if (!ele && !ref.current) return;
@@ -67,7 +66,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
       threshold: 0.9,
       rootMargin: "100px",
     });
-    if (ref.current && typeof document !== undefined) {
+    if (ref.current && typeof document !== undefined && !isInit) {
       observer.observe(ref.current);
     }
     return () => {
@@ -76,7 +75,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
         observer.disconnect();
       }
     };
-  }, []);
+  }, [ratio]);
   return (
     //#region
     <div key={id} id={id} ref={ref} className=" relative">

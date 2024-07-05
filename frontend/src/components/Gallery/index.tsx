@@ -70,7 +70,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             </h2>
           </div>
           <div
-            className={`col-span-full grid grid-cols-6 gap-5 md:col-span-11 md:ml-[50px] lg:grid-cols-5 xl:col-span-9 xl:ml-0 xl:pl-5 2xl:col-start-4 2xl:pl-10 3xl:pl-20  `}>
+            className={`col-span-full grid grid-cols-6 gap-5 md:col-span-11 md:ml-[50px] lg:grid-cols-5 xl:col-span-9 xl:ml-0 xl:pl-5 2xl:col-start-4 2xl:pl-16 3xl:pl-20  `}>
             {gallery?.map((ele, id) => {
               return (
                 <div

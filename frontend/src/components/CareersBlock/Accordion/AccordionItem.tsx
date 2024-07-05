@@ -115,7 +115,9 @@ const AccordionItem = (props: Props) => {
                 className="description font-supreme-trial w-full text-left   font-light lg:text-left  [&>ul]:ml-4 [&>ul]:list-disc"></div>
             </div>
             {item?.cta && (
-              <Button className="mt-6" href={item?.cta?.url || ""}>
+              <Button
+                className="mx-auto mt-10 sm:mr-auto md:mt-8"
+                href={item?.cta?.url || ""}>
                 {item.cta?.title}
               </Button>
             )}
