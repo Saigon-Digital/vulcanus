@@ -7,7 +7,7 @@ import {twMerge} from "tailwind-merge";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
-const ScrollMargin = 500;
+const ScrollMargin = 400;
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
   haveShape,
@@ -58,7 +58,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
     };
     const observer = new IntersectionObserver(callback, {
       threshold: 0.9,
-      rootMargin: "250px",
+      rootMargin: "200px",
     });
     if (ref.current && typeof document !== undefined) {
       observer.observe(ref.current);
