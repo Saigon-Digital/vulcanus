@@ -44,6 +44,7 @@
     "framer-motion": "^11.2.12",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
+    "lenis": "^1.1.5",
     "momment": "^0.0.1",
     "next": "14.2.0",
     "next-gravity-forms": "^2.0.0",
