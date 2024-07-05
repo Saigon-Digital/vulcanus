@@ -28,9 +28,10 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   const ratio = useMemo(() => {
+    if (scrollEnd) return;
     if (initialHeight && rectTop)
       return ((Math.abs(initialHeight) - rectTop) * 100) / ScrollMargin;
-  }, [initialHeight, rectTop]);
+  }, [initialHeight, rectTop, scrollEnd]);
 
   // console.log("ratio ", Math.abs(ratio || 0));
   // console.log("init ", initialHeight, "top ", rectTop);
