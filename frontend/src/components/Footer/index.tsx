@@ -29,7 +29,7 @@ type Props = {
   footerText?: string | null | undefined;
 };
 
-const ScrollMargin = 500;
+const ScrollMargin = 350;
 
 const Footer = (props: Props) => {
   const hierarchicalList = props.menu?.menuItems?.nodes.filter((ele: any) => {
@@ -88,26 +88,28 @@ const Footer = (props: Props) => {
     };
     const observer = new IntersectionObserver(callback, {
       threshold: 1,
-      rootMargin: "250px",
+      rootMargin: "100px",
     });
-    if (ref.current && typeof document !== undefined) {
-      observer.observe(ref.current);
+    if (containerRef.current && typeof document !== undefined) {
+      observer.observe(containerRef.current);
     }
     return () => {
-      if (ref.current) observer.unobserve(ref.current);
+      if (containerRef.current) observer.unobserve(containerRef.current);
     };
   }, []);
 
   if (!hierarchicalList) return null;
 
   return (
-    <footer ref={containerRef} className="pt-20 sm:container-fluid">
-      <div className="group mb-12 flex items-center justify-between px-5 sm:px-0">
+    <footer className="pt-20 sm:container-fluid">
+      <div
+        ref={containerRef}
+        className="group mb-12 flex items-center justify-between px-5 sm:px-0">
         <div
           ref={ref}
           className={clsx(
             `footer-text scroll-title cursor-default select-none font-bold  text-white [&>*]:text-xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
-             [&>*]:xl:text-[45px] [&>*]:xl:leading-[68px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[87px]  `,
+             [&>*]:xl:text-[36px] [&>*]:xl:leading-[68px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[87px]  `,
             ratio &&
               `scroll-${
                 ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0

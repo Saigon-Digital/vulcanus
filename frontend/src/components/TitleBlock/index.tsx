@@ -1,14 +1,17 @@
 import React, {ReactNode, useEffect, useMemo, useRef, useState} from "react";
 import {TitleBlockFragment} from "@/__generated__/graphql";
 import dynamic from "next/dynamic";
+
 import {motion} from "framer-motion";
 import clsx from "clsx";
+
 
 import {twMerge} from "tailwind-merge";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
-const ScrollMargin = 400;
+const ScrollMargin = 450;
+
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
   haveShape,
@@ -19,7 +22,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
 
   const id = `title-block-${encodeURIComponent(title || "")}`;
 
-  // const titleRef = useRef<HTMLDivElement>(null);
+
   const [scrollEnd, setScrollEnd] = useState<boolean>(false);
   const [initialHeight, setInitialHeight] = useState<number | null>(null);
   const [isInit, setIsInit] = useState<boolean>(false);
@@ -43,6 +46,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
   }, [initialHeight, rectTop, scrollEnd]);
 
   useEffect(() => {
+
     if (isInit && ref.current) {
       if (!initialHeight && initialHeight !== 0) {
         let height = ref.current.getBoundingClientRect().top;
@@ -55,6 +59,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
       }
     }
   }, [isInit, ratio]);
+
   return (
     //#region
     <motion.div
@@ -71,12 +76,12 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
           className={twMerge(
             "scroll-title col-span-full max-w-[1565px]  font-bold md:col-span-10 xl:text-6xl 3xl:col-span-9 [&>*]:text-3xl [&>*]:tracking-tight ",
             size === "large"
-              ? "[&>*]:text 2xl:leading-[76px] 3xl:leading-[89px] 3xl:[&>*]:text-[64px] 3xl:[&>*]:leading-[89px]"
+              ? "3xl:leading-[89px] [&>*]:text-3xl 2xl:[&>*]:text-4xl 2xl:[&>*]:leading-[76px] 3xl:[&>*]:text-[64px] 3xl:[&>*]:leading-[89px]"
               : "2xl:leading-[67px] xl:[&>*]:text-5xl 2xl:[&>*]:leading-[67px]",
-            ratio &&
-              `scroll-${
-                ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
-              }`
+            !scrollEnd
+              ? ratio &&
+                  `scroll-${ratio > 0 ? ratio < 100 && Math.floor(ratio) : 0}`
+              : `scroll-100`
           )}
           dangerouslySetInnerHTML={{__html: title || ""}}></div>
         {haveShape && (

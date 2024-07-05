@@ -1,7 +1,7 @@
 import {ImagesSLideFragment} from "@/__generated__/graphql";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {Autoplay, Navigation, A11y} from "swiper/modules";
-
+import Head from "next/head";
 import "swiper/css/autoplay";
 
 import ImageWithRatio from "../ImageWithRatio";
@@ -17,6 +17,19 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
   return (
     <>
       <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
+        <Head>
+          {props.slides &&
+            props.slides?.length > 0 &&
+            props.slides?.map((e, id) => {
+              return (
+                <link
+                  key={id}
+                  rel="preload"
+                  href={e?.image?.node.sourceUrl || ""}
+                />
+              );
+            })}
+        </Head>
         <Modal />
         <Swiper
           breakpoints={{

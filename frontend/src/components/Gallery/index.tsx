@@ -7,11 +7,13 @@ import dynamic from "next/dynamic";
 import {twMerge} from "tailwind-merge";
 import {useRouter} from "next/router";
 import {allLowercase} from "@/utils";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 const Image = dynamic(() => import("next/image"));
 const zoomOut = [];
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   const params = useRouter().asPath;
   const ref = useRef(null);
+  // const isMobile = useMediaQuery("()")
   const scrollTo = (element: RefObject<HTMLDivElement>) => {
     if (typeof document === undefined || typeof window === undefined) return;
 
@@ -68,33 +70,32 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             </h2>
           </div>
           <div
-            className={`col-span-full grid grid-cols-6 gap-5 md:col-span-11 md:ml-[50px] lg:grid-cols-5 xl:col-span-9 xl:ml-0 xl:pl-5 2xl:col-start-4 2xl:pl-10 3xl:pl-20  `}>
+            className={`col-span-full grid grid-cols-6 gap-5 md:ml-[50px] lg:col-span-11  lg:grid-cols-8  xl:col-span-8 xl:col-start-5 xl:ml-0    `}>
             {gallery?.map((ele, id) => {
               return (
                 <div
                   key={id}
                   className={twMerge(
-                    "col-span-full flex flex-col gap-3 rounded-[5px] border  border-primary-blue-main p-3 sm:col-span-3 lg:col-span-2 xl:p-5 3xl:p-6 ",
+                    "col-span-full flex flex-col justify-start gap-3 rounded-[5px] border  border-primary-blue-main p-3 sm:col-span-3 sm:p-3 lg:col-span-2 xl:p-5 3xl:p-6 ",
                     !reverseLayout
                       ? id === 1 || id === 2
-                        ? "lg:col-span-3"
-                        : "lg:col-span-2 "
+                        ? "lg:col-span-5"
+                        : "lg:col-span-3 "
                       : id === 0 || id === 3
-                        ? "lg:col-span-3"
-                        : "lg:col-span-2",
+                        ? "lg:col-span-5"
+                        : "lg:col-span-3",
                     id === 2 && gallery.length < 4 ? "lg:col-span-full" : "",
                     ele?.textOrImge === "text" &&
                       "border-none bg-primary-blue-100 text-primary-midBlue-main"
                   )}>
-                  <div className="max-w-[420px]"></div>
                   {ele?.textOrImge === "image" ? (
                     <>
-                      <div className="relative h-[330px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[500px] 3xl:h-[550px] ">
+                      <div className="relative h-[390px]  w-full overflow-hidden  lg:h-[420px] 2xl:h-[500px] 3xl:h-[550px] ">
                         <div className="relative h-full w-full">
                           <Image
                             fill
                             src={ele?.galleryImage?.node?.sourceUrl || ""}
-                            className="object-cover object-center"
+                            className="object-cover  object-center"
                             alt="gallery image"
                           />
                         </div>

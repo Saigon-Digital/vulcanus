@@ -37,16 +37,16 @@ const HalfPageContent: React.FC<TProps> = ({
       {haveShape && (
         <Image
           src={Shape}
-          className="absolute left-0 top-1/2 -translate-y-1/2 "
+          className="absolute left-0 top-1/2 hidden -translate-y-1/2 sm:block "
           width={47}
           alt="shape"
           height={155}
         />
       )}
-      <div className="container-fluid relative my-14">
+      <div className="container-fluid relative my-14 ">
         <div className="relative flex flex-wrap gap-y-10">
           {extraGraphic && extraGraphic}
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-[30%] lg:w-1/2">
             {title && title?.length > 0 && (
               <h4 className="flex items-center gap-4 text-2xl font-bold leading-[33px]">
                 <ArrowRight w={26} h={24} className="ml-2 inline-block" />
@@ -55,7 +55,7 @@ const HalfPageContent: React.FC<TProps> = ({
               </h4>
             )}
           </div>
-          <div className="w-full pl-10 md:w-1/2 md:pl-0">
+          <div className="w-full sm:pl-10 md:w-[60%] md:pl-0 lg:w-1/2">
             {content?.contents && (
               <>
                 {content.contentTitle && (
@@ -76,7 +76,7 @@ const HalfPageContent: React.FC<TProps> = ({
                     );
                   })}
                   {cta && (
-                    <Button className="mt-6" {...getAcfLinkProps(cta)}>
+                    <Button className="mt-8" {...getAcfLinkProps(cta)}>
                       {cta.title}
                     </Button>
                   )}

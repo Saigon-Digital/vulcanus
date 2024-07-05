@@ -89,7 +89,7 @@ const ImageContent = ({
         </div>
         <div
           className={`flex w-full flex-col items-start justify-center gap-5 lg:w-1/2 ${
-            reverse ? " md:pr-20 xl:pr-28" : "md:pl-20 xl:pl-28"
+            reverse ? " md:pr-20 xl:pr-28" : "lg:pl-20 xl:pl-28"
           }`}>
           <h3 className="text-4xl font-bold xl:text-5xl xl:leading-[67px]">
             {content?.title}
