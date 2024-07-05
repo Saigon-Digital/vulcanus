@@ -1,19 +1,19 @@
-import {ImagesSLideFragment} from "@/__generated__/graphql";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Autoplay, Navigation, A11y} from "swiper/modules";
-import Head from "next/head";
-import "swiper/css/autoplay";
+import {ImagesSLideFragment} from "@/__generated__/graphql"
+import {Swiper, SwiperSlide} from "swiper/react"
+import {Autoplay, Navigation, A11y} from "swiper/modules"
+import Head from "next/head"
+import "swiper/css/autoplay"
 
-import ImageWithRatio from "../ImageWithRatio";
-import {useModalContext} from "@/context/modalContext";
-import Modal from "../Modal";
-import {useEffect} from "react";
+import ImageWithRatio from "../ImageWithRatio"
+import {useModalContext} from "@/context/modalContext"
+import Modal from "../Modal"
+import {useEffect} from "react"
 
 const ImagesSlide = (props: ImagesSLideFragment) => {
-  const {openModal, setGallery} = useModalContext();
+  const {openModal, setGallery} = useModalContext()
   useEffect(() => {
-    setGallery(props.slides?.map((e) => e?.image?.node.sourceUrl));
-  }, []);
+    setGallery(props.slides?.map((e) => e?.image?.node.sourceUrl))
+  }, [])
   return (
     <>
       <div className={`image-slide mx-auto w-full max-w-sm sm:max-w-none`}>
@@ -27,7 +27,7 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
                   rel="preload"
                   href={e?.image?.node.sourceUrl || ""}
                 />
-              );
+              )
             })}
         </Head>
         <Modal />
@@ -80,14 +80,14 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
                   />
                   {/* </div> */}
                 </SwiperSlide>
-              );
+              )
             })}
         </Swiper>
 
         <div className="logo-swiper-pagination mt-16 text-center lg:mt-24"></div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ImagesSlide;
+export default ImagesSlide

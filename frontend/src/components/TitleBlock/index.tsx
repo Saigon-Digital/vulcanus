@@ -3,6 +3,7 @@ import {TitleBlockFragment} from "@/__generated__/graphql"
 
 import {twMerge} from "tailwind-merge"
 import {TitleShape} from "@/components/Icons"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
 const ScrollMargin = 450
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({
@@ -24,9 +25,10 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
 
   const [rectTop, setRectTop] = useState<number | null>()
   const ref = useRef<HTMLDivElement>(null)
+  const isMobile = useMediaQuery("(max-width: 880px)")
 
   const ratio = useMemo(() => {
-    if (scrollEnd && !isInit) return null
+    if (isMobile) if (scrollEnd && !isInit) return null
     if (initialHeight && rectTop)
       return Math.abs((initialHeight - rectTop) * 100) / ScrollMargin
   }, [initialHeight, rectTop, scrollEnd])
@@ -38,7 +40,10 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
       }, 500)
       return
     }
-
+    if (isMobile) {
+      setScrollEnd(true)
+      return
+    }
     if (ratio && ratio > 99) {
       setScrollEnd(true)
     }
