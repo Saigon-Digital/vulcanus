@@ -7,11 +7,13 @@ import dynamic from "next/dynamic";
 import {twMerge} from "tailwind-merge";
 import {useRouter} from "next/router";
 import {allLowercase} from "@/utils";
+import {useMediaQuery} from "@/hooks/useMediaQuery";
 const Image = dynamic(() => import("next/image"));
 const zoomOut = [];
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
   const params = useRouter().asPath;
   const ref = useRef(null);
+  // const isMobile = useMediaQuery("()")
   const scrollTo = (element: RefObject<HTMLDivElement>) => {
     if (typeof document === undefined || typeof window === undefined) return;
 
@@ -74,7 +76,7 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                 <div
                   key={id}
                   className={twMerge(
-                    "col-span-full flex flex-col gap-3 rounded-[5px] border  border-primary-blue-main p-3 sm:col-span-3 lg:col-span-2 xl:p-5 3xl:p-6 ",
+                    "col-span-full flex flex-col justify-start gap-3 rounded-[5px] border  border-primary-blue-main p-3 sm:col-span-3 sm:p-3 lg:col-span-2 xl:p-5 3xl:p-6 ",
                     !reverseLayout
                       ? id === 1 || id === 2
                         ? "lg:col-span-3"
@@ -86,15 +88,14 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                     ele?.textOrImge === "text" &&
                       "border-none bg-primary-blue-100 text-primary-midBlue-main"
                   )}>
-                  <div className="max-w-[420px]"></div>
                   {ele?.textOrImge === "image" ? (
                     <>
-                      <div className="relative h-[330px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[500px] 3xl:h-[550px] ">
+                      <div className="relative h-[390px]  w-full overflow-hidden  lg:h-[350px] 2xl:h-[500px] 3xl:h-[550px] ">
                         <div className="relative h-full w-full">
                           <Image
                             fill
                             src={ele?.galleryImage?.node?.sourceUrl || ""}
-                            className="object-cover object-center"
+                            className="object-cover  object-center"
                             alt="gallery image"
                           />
                         </div>
