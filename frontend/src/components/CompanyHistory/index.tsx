@@ -5,66 +5,66 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from "react";
-import {CompanyHistoryBlock} from "@/__generated__/graphql";
-import Image from "next/image";
+} from "react"
+import {CompanyHistoryBlock} from "@/__generated__/graphql"
+import Image from "next/image"
 import {
   Swiper,
   SwiperSlide,
   SwiperClass,
   useSwiper,
   SwiperRef,
-} from "swiper/react";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-import {Mousewheel} from "swiper/modules";
-import clsx from "clsx";
-import {Maybe} from "graphql/jsutils/Maybe";
+} from "swiper/react"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
+import {Mousewheel} from "swiper/modules"
+import clsx from "clsx"
+import {Maybe} from "graphql/jsutils/Maybe"
 // import {useLenis} from "lenis/react";
-type Histories = NonNullable<CompanyHistoryBlock["histories"]>;
+type Histories = NonNullable<CompanyHistoryBlock["histories"]>
 
 interface HistoryObject {
-  [key: string]: Histories[number];
+  [key: string]: Histories[number]
 }
 
 const CompanyHistory = (props: CompanyHistoryBlock) => {
   // Slider not work as expected, check logic again
-  let sizes = props.histories ? props.histories.length : 0;
+  let sizes = props.histories ? props.histories.length : 0
   // const lenis = useLenis();
 
   let sortedHistory = useMemo(() => {
-    let temp = props.histories ? [...props.histories] : [];
-    temp = temp.sort((a, b) => (Number(a?.year) - Number(b?.year)) * -1);
-    return temp;
-  }, [props.histories]);
+    let temp = props.histories ? [...props.histories] : []
+    temp = temp.sort((a, b) => (Number(a?.year) - Number(b?.year)) * -1)
+    return temp
+  }, [props.histories])
 
   function transformArray(arr: Histories): HistoryObject[] | null {
-    if (!arr) return null;
-    if (arr?.length === 0) return [];
+    if (!arr) return null
+    if (arr?.length === 0) return []
 
-    const result: Array<HistoryObject> = [];
+    const result: Array<HistoryObject> = []
     arr.forEach((el, i) => {
-      const pre = i === 0 ? arr[0] : arr?.[i - 1];
-      const current = arr[i];
+      const pre = i === 0 ? arr[0] : arr?.[i - 1]
+      const current = arr[i]
       if (pre && current) {
-        result.push({pre: pre, current: current});
+        result.push({pre: pre, current: current})
       }
-    });
-    return result;
+    })
+    return result
   }
 
-  const imagePairs = sortedHistory && transformArray(sortedHistory);
+  const imagePairs = sortedHistory && transformArray(sortedHistory)
 
-  const initialSlide = 0;
+  const initialSlide = 0
 
-  const [currentSlide, setCurentSlide] = useState<number>(initialSlide);
+  const [currentSlide, setCurentSlide] = useState<number>(initialSlide)
 
-  const swiperRef = useRef<SwiperRef | null>(null);
+  const swiperRef = useRef<SwiperRef | null>(null)
 
   const onSwiperChange = (swiper: SwiperClass) => {
-    const slide = swiper.activeIndex;
+    const slide = swiper.activeIndex
 
-    setCurentSlide(slide);
-  };
+    setCurentSlide(slide)
+  }
 
   return (
     <div
@@ -99,19 +99,19 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 initialSlide={initialSlide}
                 centeredSlides={true}
                 onSlideChange={(swiper: any) => {
-                  onSwiperChange(swiper);
+                  onSwiperChange(swiper)
                 }}
                 // onTransitionEnd={() => lenis?.start()}
                 // onSlideNextTransitionEnd={() => }
 
                 slidesPerView={"auto"}>
                 {sortedHistory.map((ele, id) => {
-                  const distanceWithActive = currentSlide - id;
-                  const isActive = id === currentSlide;
+                  const distanceWithActive = currentSlide - id
+                  const isActive = id === currentSlide
                   return (
                     <SwiperSlide
                       onClick={(e) => {
-                        setCurentSlide(id);
+                        setCurentSlide(id)
                       }}
                       key={id}>
                       <SlideButton
@@ -121,7 +121,7 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                         {ele?.year}
                       </SlideButton>
                     </SwiperSlide>
-                  );
+                  )
                 })}
               </Swiper>
             </div>
@@ -136,12 +136,12 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                   key={index}
                   description={pair?.current?.description}
                 />
-              );
+              )
             })}
           </div>
 
           {imagePairs?.map((pair, index) => {
-            const isActive = currentSlide === index;
+            const isActive = currentSlide === index
             return (
               <ImageSlide
                 key={index}
@@ -150,21 +150,21 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 currUrl={pair?.current?.mainImage?.node.sourceUrl}
                 description={pair?.current?.description}
               />
-            );
+            )
           })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const ImageSlide = (props: {
-  isActive: boolean;
-  preUrl?: Maybe<string>;
-  currUrl?: Maybe<string>;
-  description?: Maybe<string>;
+  isActive: boolean
+  preUrl?: Maybe<string>
+  currUrl?: Maybe<string>
+  description?: Maybe<string>
 }) => {
-  const {isActive, currUrl, description, preUrl} = props || {};
+  const {isActive, currUrl, description, preUrl} = props || {}
 
   return (
     <div
@@ -179,7 +179,7 @@ const ImageSlide = (props: {
             dangerouslySetInnerHTML={{__html: description}}></div>
         )}
       </div>
-      <div className="aspect-video xl:w-3/5">
+      <div className="aspect-[16/10] overflow-hidden xl:w-3/5">
         <div className="relative aspect-[16/10]  w-full overflow-hidden rounded-md ">
           <Image
             className="object-cover object-top"
@@ -193,13 +193,13 @@ const ImageSlide = (props: {
         {/* <div className="mt-5 font-light xl:text-xl">{description}</div> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const SlidePlaceHolder = ({
   description,
 }: {
-  description?: Maybe<TrustedHTML>;
+  description?: Maybe<TrustedHTML>
 }) => {
   return (
     <div
@@ -217,24 +217,24 @@ const SlidePlaceHolder = ({
         )} */}
       </div>
     </div>
-  );
-};
+  )
+}
 
 const SlideButton = (
   props: PropsWithChildren & {
-    id: number;
-    isActive: boolean;
-    distanceWithActive: number;
+    id: number
+    isActive: boolean
+    distanceWithActive: number
   }
 ) => {
-  const {id, isActive, distanceWithActive} = props || {};
-  const swiper = useSwiper();
+  const {id, isActive, distanceWithActive} = props || {}
+  const swiper = useSwiper()
 
-  const distance = Math.abs(distanceWithActive);
+  const distance = Math.abs(distanceWithActive)
 
   const onClick = (e: any) => {
-    swiper.slideTo(id);
-  };
+    swiper.slideTo(id)
+  }
 
   return (
     <div
@@ -255,7 +255,7 @@ const SlideButton = (
         <span className="inline-block translate-y-1">{props.children}</span>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default CompanyHistory;
+export default CompanyHistory
