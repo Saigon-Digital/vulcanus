@@ -6,7 +6,7 @@ import {twMerge} from "tailwind-merge";
 const TitleShape = dynamic(() =>
   import("../Icons").then((mod) => mod.TitleShape)
 );
-const ScrollMargin = 250;
+const ScrollMargin = 350;
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
   haveShape,
