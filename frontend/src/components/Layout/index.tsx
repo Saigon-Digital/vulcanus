@@ -1,8 +1,6 @@
 import {PropsWithChildren} from "react";
 import dynamic from "next/dynamic";
 import {MenuLocationEnum} from "@/__generated__/graphql";
-import {ReactLenis} from "lenis/react";
-
 import siteData from "../../data/site_data.json";
 import {useLocaleContext} from "@/context/LocaleContext";
 import Modal from "../Modal";
@@ -53,7 +51,9 @@ const Layout = ({
   return (
     <>
       <Header menu={headerMenu} />
-      <ReactLenis root>{children}</ReactLenis>
+
+      {children}
+
       <Footer footerText={footerText} menu={footerMenu} />
     </>
   );

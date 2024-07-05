@@ -19,7 +19,7 @@ import {useMediaQuery} from "@/hooks/useMediaQuery";
 import {Mousewheel} from "swiper/modules";
 import clsx from "clsx";
 import {Maybe} from "graphql/jsutils/Maybe";
-import {useLenis} from "lenis/react";
+// import {useLenis} from "lenis/react";
 type Histories = NonNullable<CompanyHistoryBlock["histories"]>;
 
 interface HistoryObject {
@@ -29,7 +29,7 @@ interface HistoryObject {
 const CompanyHistory = (props: CompanyHistoryBlock) => {
   // Slider not work as expected, check logic again
   let sizes = props.histories ? props.histories.length : 0;
-  const lenis = useLenis();
+  // const lenis = useLenis();
 
   let sortedHistory = useMemo(() => {
     let temp = props.histories ? [...props.histories] : [];
@@ -100,9 +100,8 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
                 centeredSlides={true}
                 onSlideChange={(swiper: any) => {
                   onSwiperChange(swiper);
-                  lenis?.stop();
                 }}
-                onTransitionEnd={() => lenis?.start()}
+                // onTransitionEnd={() => lenis?.start()}
                 // onSlideNextTransitionEnd={() => }
 
                 slidesPerView={"auto"}>
