@@ -31,8 +31,8 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
       return ((Math.abs(initialHeight) - rectTop) * 100) / ScrollMargin;
   }, [initialHeight, rectTop]);
 
-  console.log("ratio ", Math.abs(ratio || 0));
-  console.log("init ", initialHeight, "top ", rectTop);
+  // console.log("ratio ", Math.abs(ratio || 0));
+  // console.log("init ", initialHeight, "top ", rectTop);
 
   useEffect(() => {
     const callback: IntersectionObserverCallback = (entries) => {
@@ -58,7 +58,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
     };
     const observer = new IntersectionObserver(callback, {
       threshold: 0.9,
-      rootMargin: "150px 350px 350px 150px",
+      rootMargin: "250px",
     });
     if (ref.current && typeof document !== undefined) {
       observer.observe(ref.current);
