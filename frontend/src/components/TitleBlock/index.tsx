@@ -93,9 +93,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
               : "2xl:leading-[67px] xl:[&>*]:text-5xl 2xl:[&>*]:leading-[67px]",
             !scrollEnd
               ? ratio &&
-                  `scroll-${
-                    ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
-                  }`
+                  `scroll-${ratio > 0 ? ratio < 100 && Math.floor(ratio) : 0}`
               : `scroll-100`
           )}
           dangerouslySetInnerHTML={{__html: title || ""}}></div>
