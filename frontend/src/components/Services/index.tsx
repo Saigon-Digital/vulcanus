@@ -30,7 +30,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
   const isMobile = useMediaQuery("(max-width: 760px)");
   return (
     <div className="container-fluid py-14  md:py-20">
-      <h2 className="mb-8 text-lg font-bold sm:text-xl md:mb-14 md:text-3xl lg:text-6xl lg:leading-[84px] xl:text-[64px] xl:leading-[89px]">
+      <h2 className="mb-8 text-2xl font-bold  md:mb-14 md:text-3xl lg:text-6xl lg:leading-[84px] xl:text-[64px] xl:leading-[89px]">
         {languages(locale)?.service}
       </h2>
       <div className="relative grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:min-h-[400px] xl:grid-cols-4 xl:gap-6 ">
