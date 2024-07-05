@@ -43,7 +43,7 @@ const HalfPageContent: React.FC<TProps> = ({
           height={155}
         />
       )}
-      <div className="container-fluid relative my-14">
+      <div className="container-fluid relative my-14 ">
         <div className="relative flex flex-wrap gap-y-10">
           {extraGraphic && extraGraphic}
           <div className="w-full md:w-[30%] lg:w-1/2">
