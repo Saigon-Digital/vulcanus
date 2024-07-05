@@ -3,7 +3,7 @@ import Link from "next/link";
 import ArrowRight from "public/icons/arrow-right.svg";
 import React, {useEffect, useRef} from "react";
 
-import CardShape from "./images/card-shape.svg";
+import {CardShape} from "../Icons";
 import {CardsBlockCards_Fields} from "@/__generated__/graphql";
 import Image from "next/image";
 import {StaticImport} from "next/dist/shared/lib/get-img-props";
@@ -68,14 +68,11 @@ const Card: React.FC<Props> = ({
         </>
       )}
       <CardShape
-        alt="shape"
-        className={clsx(
-          `absolute right-0 top-0 translate-x-10  opacity-0 transition-all duration-500`,
+        className={twMerge(
+          `absolute -top-2 right-0 w-8 translate-x-10 opacity-0 transition-all   duration-500 md:top-0 md:w-12`,
           !backgroundColor &&
-            "group-hover:translate-x-0  group-hover:opacity-100"
+            "group-hover:translate-x-[5px] group-hover:opacity-100  md:group-hover:translate-x-2"
         )}
-        width={48}
-        height={133}
       />
       <h3
         className={`relative z-10 text-lg font-semibold leading-[140%] tracking-tight text-primary-blue-main
