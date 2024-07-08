@@ -1,22 +1,22 @@
-import {getAcfLinkProps, getUrlPathname} from "@/utils";
-import Link from "next/link";
-import ArrowRight from "public/icons/arrow-right.svg";
-import React, {useEffect, useRef} from "react";
+import {getAcfLinkProps, getUrlPathname} from "@/utils"
+import Link from "next/link"
+import ArrowRight from "public/icons/arrow-right.svg"
+import React, {useEffect, useRef} from "react"
 
-import {CardShape} from "../Icons";
-import {CardsBlockCards_Fields} from "@/__generated__/graphql";
-import Image from "next/image";
-import {StaticImport} from "next/dist/shared/lib/get-img-props";
-import clsx from "clsx";
-import {languages} from "@/utils/language";
+import {CardShape} from "../Icons"
+import {CardsBlockCards_Fields} from "@/__generated__/graphql"
+import Image from "next/image"
+import {StaticImport} from "next/dist/shared/lib/get-img-props"
 
-import {useLocaleContext} from "@/context/LocaleContext";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-import {twMerge} from "tailwind-merge";
+import {languages} from "@/utils/language"
+
+import {useLocaleContext} from "@/context/LocaleContext"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
+import {twMerge} from "tailwind-merge"
 type Props = {
-  hoverImage?: string | StaticImport | undefined;
+  hoverImage?: string | StaticImport | undefined
 } & CardsBlockCards_Fields &
-  React.HTMLAttributes<HTMLDivElement>;
+  React.HTMLAttributes<HTMLDivElement>
 
 const Card: React.FC<Props> = ({
   title,
@@ -29,15 +29,15 @@ const Card: React.FC<Props> = ({
   link,
   ...props
 }) => {
-  const {locale} = useLocaleContext();
+  const {locale} = useLocaleContext()
 
-  const textRef = useRef<HTMLParagraphElement | null>(null);
-  const isMobile = useMediaQuery("(max-width: 1080px)");
-  const textSize = description?.length;
+  const textRef = useRef<HTMLParagraphElement | null>(null)
+  const isMobile = useMediaQuery("(max-width: 1080px)")
+  const textSize = description?.length
   return (
     <div
       style={{background: backgroundColor || undefined}}
-      className={clsx(
+      className={twMerge(
         " group relative z-10 flex h-full min-h-[400px] flex-col gap-3  overflow-hidden  rounded-[5px] border border-primary-blue-main p-4 transition-all duration-300 lg:min-h-[400px] xl:min-h-[450px] ",
         !hoverImage ? "justify-end hover:bg-primary-midBlue-main" : "",
         iconImage ? "justify-start" : "justify-between",
@@ -118,7 +118,7 @@ const Card: React.FC<Props> = ({
         ) : null}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

@@ -1,57 +1,56 @@
-import React, {RefObject, useLayoutEffect, useRef} from "react";
+import React, {RefObject, useLayoutEffect, useRef} from "react"
 
-import {GalleryBlock} from "@/__generated__/graphql";
-import clsx from "clsx";
-import {motion} from "framer-motion";
-import dynamic from "next/dynamic";
-import {twMerge} from "tailwind-merge";
-import {useRouter} from "next/router";
-import {allLowercase} from "@/utils";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-const Image = dynamic(() => import("next/image"));
-const zoomOut = [];
+import {GalleryBlock} from "@/__generated__/graphql"
+
+import dynamic from "next/dynamic"
+import {twMerge} from "tailwind-merge"
+import {useRouter} from "next/router"
+import {allLowercase} from "@/utils"
+
+const Image = dynamic(() => import("next/image"))
+const zoomOut = []
 const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
-  const params = useRouter().asPath;
-  const ref = useRef(null);
+  const params = useRouter().asPath
+  const ref = useRef(null)
   // const isMobile = useMediaQuery("()")
   const scrollTo = (element: RefObject<HTMLDivElement>) => {
-    if (typeof document === undefined || typeof window === undefined) return;
+    if (typeof document === undefined || typeof window === undefined) return
 
     if (element.current) {
       const top =
-        element?.current?.getBoundingClientRect().top + window.pageYOffset - 80;
+        element?.current?.getBoundingClientRect().top + window.pageYOffset - 80
 
-      window.scrollTo({top: top, behavior: "smooth"});
+      window.scrollTo({top: top, behavior: "smooth"})
     }
-  };
+  }
 
   useLayoutEffect(() => {
     if (params) {
-      const pSplit = params.split("#");
-      let id = pSplit.at(pSplit.length - 1)?.toLowerCase();
+      const pSplit = params.split("#")
+      let id = pSplit.at(pSplit.length - 1)?.toLowerCase()
       // console.log(pSplit);
-      var fixedstring;
+      var fixedstring
 
       try {
         // If the string is UTF-8, this will work and not throw an error.
         fixedstring = encodeURIComponent(
           title?.toLocaleLowerCase().replaceAll(" ", "") || ""
-        );
+        )
       } catch (e) {
         // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
-        fixedstring = title?.toLocaleLowerCase().replaceAll(" ", "");
+        fixedstring = title?.toLocaleLowerCase().replaceAll(" ", "")
       }
-      id = allLowercase(id || "");
-      fixedstring = allLowercase(fixedstring || "");
+      id = allLowercase(id || "")
+      fixedstring = allLowercase(fixedstring || "")
 
       if (
         id === fixedstring ||
         (id && fixedstring && fixedstring?.includes(id))
       ) {
-        scrollTo(ref);
+        scrollTo(ref)
       }
     }
-  }, [params]);
+  }, [params])
   return (
     <div ref={ref} className="relative py-14 md:py-20 lg:pb-28">
       <div className="relative">
@@ -118,13 +117,13 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
                     </div>
                   )}
                 </div>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Gallery;
+export default Gallery

@@ -1,52 +1,48 @@
-import React, {useRef, useEffect, useState, useMemo} from "react";
-import clsx from "clsx";
-import {inView, motion} from "framer-motion";
-import {twMerge} from "tailwind-merge";
+import React, {useRef, useEffect, useState, useMemo} from "react"
+
+import {inView, motion} from "framer-motion"
+import {twMerge} from "tailwind-merge"
 // import {useObserverContext} from "";
-import {useScroll} from "framer-motion";
+import {useScroll} from "framer-motion"
 const ScrollText = ({
   text,
   ScrollMargin = 500,
   className,
   id,
 }: {
-  text?: string;
-  ScrollMargin?: number;
-  className?: string;
-  id?: string;
+  text?: string
+  ScrollMargin?: number
+  className?: string
+  id?: string
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null)
 
-  const [initialHeight, setInitialHeight] = useState<number | null>(null);
+  const [initialHeight, setInitialHeight] = useState<number | null>(null)
   //#region footer setting
   // const {setObserver} = useObserverContext();
-  const [inView, setInview] = useState<boolean>(false);
-  const [rectTop, setRectTop] = useState<number | null>();
+  const [inView, setInview] = useState<boolean>(false)
+  const [rectTop, setRectTop] = useState<number | null>()
   // const [ratio, setRatio] = useState<number>(0);
-  const {scrollY, scrollYProgress} = useScroll({target: ref});
-  const topY = scrollY.get();
+  const {scrollY, scrollYProgress} = useScroll({target: ref})
+  const topY = scrollY.get()
 
-  const ratio = useMemo(() => {
-    if (initialHeight && topY) {
-      return ((topY - 200 - initialHeight) * 100) / ScrollMargin;
-    }
-  }, [topY]);
+  const ratio =
+    initialHeight && topY
+      ? ((topY - 200 - initialHeight) * 100) / ScrollMargin
+      : null
 
-  console.log("==== scroll y ", id, "topY", topY, "init", initialHeight);
-
-  console.log("ratio ", ratio);
+  console.log("ratio ", ratio)
   useEffect(() => {
     if (ref.current) {
       const callback = ref.current.addEventListener("scroll", () => {
         if (inView && ref.current) {
-          const rect = ref.current.getBoundingClientRect().top;
-          const scrollTop =
-            window.scrollY || document.documentElement.scrollTop;
-          setInitialHeight(rect + scrollTop);
+          const rect = ref.current.getBoundingClientRect().top
+          const scrollTop = window.scrollY || document.documentElement.scrollTop
+          setInitialHeight(rect + scrollTop)
         }
-      });
+      })
     }
-  }, [initialHeight, topY]);
+  }, [initialHeight, topY])
   // useEffect(() => {
   //   const callback: IntersectionObserverCallback = (entries) => {
   //     entries.forEach((ele) => {
@@ -97,9 +93,9 @@ const ScrollText = ({
       id={id}
       onViewportEnter={(entry) => {
         if (!inView) {
-          setInview(true);
+          setInview(true)
           if (entry?.boundingClientRect)
-            setInitialHeight(entry?.boundingClientRect.top);
+            setInitialHeight(entry?.boundingClientRect.top)
         }
       }}
       // onViewportLeave={() => setInview(false)}
@@ -114,7 +110,7 @@ const ScrollText = ({
       dangerouslySetInnerHTML={{
         __html: text ? text : "",
       }}></motion.div>
-  );
-};
+  )
+}
 
-export default ScrollText;
+export default ScrollText
