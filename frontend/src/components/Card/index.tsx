@@ -1,13 +1,7 @@
-import {getAcfLinkProps, getUrlPathname} from "@/utils"
+"use client"
 import Link from "next/link"
 import ArrowRight from "public/icons/arrow-right.svg"
-import React, {
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react"
+import React, {useRef, useState} from "react"
 
 import {CardShape} from "../Icons"
 import {CardsBlockCards_Fields} from "@/__generated__/graphql"
@@ -42,7 +36,6 @@ const Card: React.FC<Props> = ({
   const {locale} = useLocaleContext()
   const [height, setHeight] = useState<number | "auto">("auto")
   const textRef = useRef<HTMLParagraphElement | null>(null)
-  const textSize = description ? description.length : 200
 
   // console.log(maxHeight)
 
@@ -110,7 +103,7 @@ const Card: React.FC<Props> = ({
           !link ? "mb-6  h-auto justify-between" : ` h-[68%] justify-between`
         )}>
         {description && (
-          <p
+          <div
             ref={textRef}
             style={{color: backgroundColor ? "#140F24" : undefined}}
             className=" mb-0 line-clamp-6 flex flex-col  justify-end pb-2  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
@@ -119,7 +112,7 @@ const Card: React.FC<Props> = ({
                 description.length > 350
                   ? description.slice(0, 350) + "..."
                   : description,
-            }}></p>
+            }}></div>
         )}
         {link ? (
           <Link

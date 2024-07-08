@@ -1,3 +1,4 @@
+"use client"
 import {CardsBlock_Fields} from "@/__generated__/graphql"
 import Card from "../Card"
 import "swiper/css"

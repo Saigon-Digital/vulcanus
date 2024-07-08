@@ -1,11 +1,9 @@
-import {ChecklistBlock as TCheckListBlock} from "@/__generated__/graphql";
-import Button from "../Button";
-import {getAcfLinkProps} from "@/utils";
-import dynamic from "next/dynamic";
+import {ChecklistBlock as TCheckListBlock} from "@/__generated__/graphql"
+import Button from "../Button"
+import {getAcfLinkProps} from "@/utils"
+import dynamic from "next/dynamic"
 
-const CheckIcon = dynamic(() =>
-  import("../Icons").then((mod) => mod.CheckIcon)
-);
+const CheckIcon = dynamic(() => import("../Icons").then((mod) => mod.CheckIcon))
 
 const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
   return (
@@ -33,7 +31,7 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
         <div className="flex w-full flex-col lg:w-1/2">
           {props.checklist &&
             props.checklist?.map((ele, id) => {
-              const last = props.checklist ? props.checklist?.length - 1 : null;
+              const last = props.checklist ? props.checklist?.length - 1 : null
               return (
                 <div
                   key={id}
@@ -46,17 +44,17 @@ const ChecklistBlock: React.FC<TCheckListBlock> = (props) => {
                     <CheckIcon className="aspect-square h-6 w-6 flex-[1_60px]" />
                   </div>
                   {ele?.item && (
-                    <p
+                    <div
                       className="lg:text-lg [&>*>strong]:font-bold"
-                      dangerouslySetInnerHTML={{__html: ele.item}}></p>
+                      dangerouslySetInnerHTML={{__html: ele.item}}></div>
                   )}
                 </div>
-              );
+              )
             })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ChecklistBlock;
+export default ChecklistBlock

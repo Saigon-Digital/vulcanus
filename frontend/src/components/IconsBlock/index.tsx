@@ -1,7 +1,8 @@
-import {IconsBlock} from "@/__generated__/graphql";
-import Image from "next/image";
-import Button from "../Button";
-import {getAcfLinkProps} from "@/utils";
+"use client"
+import {IconsBlock} from "@/__generated__/graphql"
+import Image from "next/image"
+import Button from "../Button"
+import {getAcfLinkProps} from "@/utils"
 const index: React.FC<IconsBlock> = (props) => {
   return (
     <div className="container-fluid py-16 lg:py-20 xl:py-28 ">
@@ -48,19 +49,19 @@ const index: React.FC<IconsBlock> = (props) => {
                     {ele?.iconTitle}
                   </h3>
                   {ele?.iconDescription && (
-                    <p
+                    <div
                       className="max-w-[450px] text-lg font-[300] [&>*>p]:font-bold "
                       dangerouslySetInnerHTML={{
                         __html: ele.iconDescription,
-                      }}></p>
+                      }}></div>
                   )}
                 </div>
-              );
+              )
             })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default index;
+export default index
