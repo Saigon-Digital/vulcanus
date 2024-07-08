@@ -59,12 +59,11 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
                   <Link
                     href={item?.uri ?? "#"}
                     locale={locale}
-                    className={clsx(
+                    className={twMerge(
                       "text-[20px] font-semibold uppercase leading-[200%] transition-all duration-300",
-                      {
-                        "text-primary-blue-300": isActive,
-                        "text-secondary-offWhite-white": !isActive,
-                      }
+
+                      isActive && "text-primary-blue-300",
+                      !isActive && "text-secondary-offWhite-white"
                     )}>
                     {item?.label}
                   </Link>
