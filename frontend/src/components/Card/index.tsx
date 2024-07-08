@@ -1,7 +1,13 @@
 import {getAcfLinkProps, getUrlPathname} from "@/utils"
 import Link from "next/link"
 import ArrowRight from "public/icons/arrow-right.svg"
-import React, {useEffect, useRef} from "react"
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 
 import {CardShape} from "../Icons"
 import {CardsBlockCards_Fields} from "@/__generated__/graphql"
@@ -14,12 +20,16 @@ import {useLocaleContext} from "@/context/LocaleContext"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 import {twMerge} from "tailwind-merge"
 type Props = {
+  setCardHeight?: (h: number) => void
+  maxHeight?: number
   hoverImage?: string | StaticImport | undefined
 } & CardsBlockCards_Fields &
   React.HTMLAttributes<HTMLDivElement>
 
 const Card: React.FC<Props> = ({
+  setCardHeight,
   title,
+  maxHeight,
   description = "",
   className,
   hasImage,
@@ -30,10 +40,12 @@ const Card: React.FC<Props> = ({
   ...props
 }) => {
   const {locale} = useLocaleContext()
-
+  const [height, setHeight] = useState<number | "auto">("auto")
   const textRef = useRef<HTMLParagraphElement | null>(null)
-  const isMobile = useMediaQuery("(max-width: 1080px)")
-  const textSize = description?.length
+  const textSize = description ? description.length : 200
+
+  console.log(maxHeight)
+
   return (
     <div
       style={{background: backgroundColor || undefined}}
@@ -90,14 +102,12 @@ const Card: React.FC<Props> = ({
           alt="icon image"
         />
       )}
+
       <div
+        ref={textRef}
         className={twMerge(
           "relative z-10 flex  flex-col  gap-3",
-          !link
-            ? "mb-6  h-auto justify-end"
-            : ` justify-end 
-            
-            `
+          !link ? "mb-6  h-auto justify-between" : ` h-[68%] justify-between`
         )}>
         {description && (
           <p
@@ -105,7 +115,7 @@ const Card: React.FC<Props> = ({
             style={{color: backgroundColor ? "#140F24" : undefined}}
             className=" mb-0 line-clamp-6 flex  flex-col justify-end  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
             dangerouslySetInnerHTML={{
-              __html: description.slice(0, 450),
+              __html: description.slice(0, 350),
             }}></p>
         )}
         {link ? (
