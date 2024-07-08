@@ -3,56 +3,56 @@ import {
   GetPostsThumbQuery,
   LanguageCodeFilterEnum,
   PostThumbFragment,
-} from "@/__generated__/graphql";
-import React, {useEffect, useState} from "react";
-import Image from "next/image";
-import Button from "../Button";
-import Link from "next/link";
-import {getPostThumb} from "@/libs/graphql/utils";
+} from "@/__generated__/graphql"
+import React, {useEffect, useState} from "react"
+import Image from "next/image"
+import Button from "../Button"
+import Link from "next/link"
+import {getPostThumb} from "@/libs/graphql/utils"
 
-import {languages} from "@/utils/language";
-import {getAcfLinkProps} from "@/utils";
-import dynamic from "next/dynamic";
+import {languages} from "@/utils/language"
+import {getAcfLinkProps} from "@/utils"
+import dynamic from "next/dynamic"
 
-import {useLocaleContext} from "@/context/LocaleContext";
+import {useLocaleContext} from "@/context/LocaleContext"
 
-import Socials from "../Socials";
+import Socials from "../Socials"
 const ButtonNext = dynamic(
   () => import("../Icons").then((mod) => mod.ButtonNext),
   {loading: () => <></>}
-);
+)
 type TBlog = {
-  category?: string;
-  featureImage?: string;
-  title?: string;
-  description?: string;
-  link?: string;
-};
+  category?: string
+  featureImage?: string
+  title?: string
+  description?: string
+  link?: string
+}
 
-const defaultDesc = "";
+const defaultDesc = ""
 
 interface Props extends BlogsBlockFragment {}
-const PAGE_SIZE = 3;
+const PAGE_SIZE = 3
 
 const BlogsBlock = (props: Props) => {
   const [blockListing, setBlockListing] =
-    useState<GetPostsThumbQuery["posts"]>();
-  const {locale} = useLocaleContext();
-  const [page, setPage] = useState(0);
+    useState<GetPostsThumbQuery["posts"]>()
+  const {locale} = useLocaleContext()
+  const [page, setPage] = useState(0)
 
-  const sizes = blockListing ? blockListing.nodes.length : 0;
+  const sizes = blockListing ? blockListing.nodes.length : 0
   const max_page = blockListing
     ? Math.floor(blockListing?.nodes?.length / PAGE_SIZE)
-    : 0;
+    : 0
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const {data} = await getPostThumb(
         locale === "en" ? LanguageCodeFilterEnum.En : LanguageCodeFilterEnum.De
-      );
-      setBlockListing(data.posts);
-    })();
-  }, []);
+      )
+      setBlockListing(data.posts)
+    })()
+  }, [])
 
   if (!blockListing && sizes < 1)
     return (
@@ -61,7 +61,7 @@ const BlogsBlock = (props: Props) => {
           ? "...Loading"
           : "...Wird geladen"}
       </div>
-    );
+    )
 
   return (
     <section className="container-fluid py-20 lg:py-28 lg:pb-20">
@@ -122,14 +122,14 @@ const BlogsBlock = (props: Props) => {
                       </Link>
                     </div>
                   </div>
-                );
+                )
               })}
           <div className="mt-10 flex w-full justify-center">
             {sizes > PAGE_SIZE && (page + 1) * PAGE_SIZE < sizes && (
               <Button
                 onClick={() =>
                   setPage((prev) => {
-                    return prev + 1 >= max_page ? max_page : prev + 1;
+                    return prev + 1 >= max_page ? max_page : prev + 1
                   })
                 }
                 as="button">
@@ -145,7 +145,9 @@ const BlogsBlock = (props: Props) => {
           {props.ctaBlocks?.map((ele, id) => {
             if (id === 0)
               return (
-                <div className="flex w-full flex-col gap-4 rounded-md border border-primary-blue-main p-6">
+                <div
+                  key={id}
+                  className="flex w-full flex-col gap-4 rounded-md border border-primary-blue-main p-6">
                   <h3 className="text-2xl font-semibold text-primary-blue-main ">
                     {ele?.title}
                   </h3>
@@ -162,10 +164,12 @@ const BlogsBlock = (props: Props) => {
                     </Button>
                   )}
                 </div>
-              );
+              )
             if (id === 1)
               return (
-                <div className="mt-6 flex w-full flex-col gap-4 rounded-md border bg-[#E6ECF3] p-6">
+                <div
+                  key={id}
+                  className="mt-6 flex w-full flex-col gap-4 rounded-md border bg-[#E6ECF3] p-6">
                   <h3 className="text-2xl font-semibold text-primary-blue-main ">
                     {ele?.title}
                   </h3>
@@ -182,7 +186,7 @@ const BlogsBlock = (props: Props) => {
                     </Button>
                   )}
                 </div>
-              );
+              )
           })}
           <div className="mt-6 flex aspect-auto flex-col justify-center gap-4 rounded-md border border-primary-blue-main p-6">
             <h4 className="mb-3 text-2xl font-semibold text-primary-blue-main ">
@@ -197,7 +201,7 @@ const BlogsBlock = (props: Props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default BlogsBlock;
+export default BlogsBlock

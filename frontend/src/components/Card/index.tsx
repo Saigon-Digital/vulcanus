@@ -44,7 +44,7 @@ const Card: React.FC<Props> = ({
   const textRef = useRef<HTMLParagraphElement | null>(null)
   const textSize = description ? description.length : 200
 
-  console.log(maxHeight)
+  // console.log(maxHeight)
 
   return (
     <div
