@@ -4,35 +4,35 @@ import {
   PhoneField,
   TextAreaField,
   FormFragment as TFormFragment,
-} from "@/__generated__/graphql";
+} from "@/__generated__/graphql"
 import React, {
   RefObject,
   useEffect,
   useLayoutEffect,
   useRef,
   useState,
-} from "react";
-import {PhoneIcon, MailIcon, LocationIcon} from "../Icons";
-import Image from "next/image";
-import Button from "../Button";
-import {useQuery, useMutation} from "@apollo/client";
-import {GET_FORM, SUBMIT_FORM} from "@/libs/graphql/utils";
+} from "react"
+import {PhoneIcon, MailIcon, LocationIcon} from "../Icons"
+import Image from "next/image"
+import Button from "../Button"
+import {useQuery, useMutation} from "@apollo/client"
+import {GET_FORM, SUBMIT_FORM} from "@/libs/graphql/utils"
 
-import formData from "@/data/form_data.json";
-import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
+import formData from "@/data/form_data.json"
+import {FieldValues, SubmitHandler, useForm} from "react-hook-form"
 
-import {getMutationVariables} from "@/utils/gravity-form";
+import {getMutationVariables} from "@/utils/gravity-form"
 
-import Loader from "../Loader";
-import {languages} from "@/utils/language";
-import Link from "next/link";
-import {useLocaleContext} from "@/context/LocaleContext";
-import {allLowercase} from "@/utils";
-import {useRouter} from "next/router";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-import Socials from "../Socials";
-const FORM_ID = 1;
-const DELAY = 5000;
+import Loader from "../Loader"
+import {languages} from "@/utils/language"
+import Link from "next/link"
+import {useLocaleContext} from "@/context/LocaleContext"
+import {allLowercase} from "@/utils"
+import {useRouter} from "next/router"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
+import Socials from "../Socials"
+const FORM_ID = 1
+const DELAY = 5000
 enum adminLabelEmun {
   firstName = "First Name",
   lastName = "Last Name",
@@ -45,17 +45,17 @@ const pattern = {
   email:
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
   phone: /^(\+[1-9]{1}[0-9]{3,14})?([0-9]{9,14})$/,
-};
+}
 
-export type TForm = (typeof formData)["gfForm"];
+export type TForm = (typeof formData)["gfForm"]
 const Form = ({contacts, form}: TFormFragment) => {
-  let [gfForm, setGfFrom] = useState<(typeof formData)["gfForm"] | null>(null);
+  let [gfForm, setGfFrom] = useState<(typeof formData)["gfForm"] | null>(null)
 
-  const {locale, asPath} = useLocaleContext();
+  const {locale, asPath} = useLocaleContext()
 
   // useState
-  const [formSuccess, setFormSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false)
+  const [loading, setLoading] = useState(false)
   //------------
 
   // useRef
@@ -69,44 +69,44 @@ const Form = ({contacts, form}: TFormFragment) => {
     setError,
     setValue,
     formState: {errors},
-  } = useForm();
+  } = useForm()
   //-----------------
-  const EXCLUDE_EMAIL = [".email@domain.com", ".email@.domain.com"];
+  const EXCLUDE_EMAIL = [".email@domain.com", ".email@.domain.com"]
 
   //#region handle scroll
-  const ref = useRef<HTMLFormElement>(null);
-  const isDesktop = useMediaQuery("(min-width: 1080px)");
-  const router = useRouter();
+  const ref = useRef<HTMLFormElement>(null)
+  const isDesktop = useMediaQuery("(min-width: 1080px)")
+  const router = useRouter()
   const scrollTo = (element: RefObject<HTMLFormElement>) => {
-    if (typeof document === undefined || typeof window === undefined) return;
+    if (typeof document === undefined || typeof window === undefined) return
 
     if (element.current) {
       const top =
         element?.current?.getBoundingClientRect().top +
         window.pageYOffset -
-        (isDesktop ? 250 : 100);
+        (isDesktop ? 250 : 100)
 
-      window.scrollTo({top: top, behavior: "smooth"});
+      window.scrollTo({top: top, behavior: "smooth"})
     }
-  };
+  }
 
   useEffect(() => {
     if (router.asPath && gfForm) {
       // console.log("as path ", router.asPath);
 
-      const pSplit = router.asPath.split("#");
-      let id = pSplit.at(pSplit.length - 1)?.toLowerCase();
+      const pSplit = router.asPath.split("#")
+      let id = pSplit.at(pSplit.length - 1)?.toLowerCase()
       // console.log(pSplit);
-      var fixedstring;
+      var fixedstring
 
-      id = allLowercase(id || "");
+      id = allLowercase(id || "")
       // console.log("id ", id);
 
       if (id === "form") {
-        if (ref) scrollTo(ref);
+        if (ref) scrollTo(ref)
       }
     }
-  }, [gfForm]);
+  }, [gfForm])
 
   //#region submit
   const [submitFormMutation, {loading: submitFormLoading}] = useMutation(
@@ -118,27 +118,27 @@ const Form = ({contacts, form}: TFormFragment) => {
             setError(String(error?.id), {
               type: "manual",
               message: error?.message,
-            });
-          });
+            })
+          })
         }
         if (!data?.submitGfForm?.entry?.dateCreated) {
-          return;
+          return
         }
-        setFormSuccess(true);
+        setFormSuccess(true)
         const timeOutId = setTimeout(() => {
-          reset();
-          setFormSuccess(false);
-          clearTimeout(timeOutId);
-        }, DELAY);
+          reset()
+          setFormSuccess(false)
+          clearTimeout(timeOutId)
+        }, DELAY)
       },
     }
-  );
+  )
 
   /////
 
   useEffect(() => {
-    if (!gfForm) setGfFrom(formData.gfForm);
-  }, []);
+    if (!gfForm) setGfFrom(formData.gfForm)
+  }, [])
   // console.log("form error ", error);
 
   // console.log("number", watch());
@@ -147,24 +147,24 @@ const Form = ({contacts, form}: TFormFragment) => {
 
   // handle submit
   const handleSumit: SubmitHandler<FieldValues> = async (data) => {
-    if (!gfForm) return;
+    if (!gfForm) return
     const variables = getMutationVariables({
       databaseId: FORM_ID.toString(),
       fields: gfForm,
       data: data,
-    });
-    if (Object.entries(errors).length > 0) return;
+    })
+    if (Object.entries(errors).length > 0) return
     try {
-      setLoading(true);
+      setLoading(true)
       await submitFormMutation({
         variables,
-      });
+      })
     } catch (error) {
-      setLoading(false);
-      console.error(error);
+      setLoading(false)
+      console.error(error)
     }
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   // console.log("errors ", errors);
 
@@ -192,7 +192,7 @@ const Form = ({contacts, form}: TFormFragment) => {
               //#region contact info
             }
             {contacts?.map((e, id) => {
-              const contactInformation = e?.contactInformation;
+              const contactInformation = e?.contactInformation
               return (
                 <div key={id}>
                   {contactInformation?.title && (
@@ -240,7 +240,7 @@ const Form = ({contacts, form}: TFormFragment) => {
                     )}
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
           {
@@ -269,7 +269,9 @@ const Form = ({contacts, form}: TFormFragment) => {
                 gfForm.formFields?.nodes.map((ele, index: number) => {
                   if (ele.adminLabel === adminLabelEmun.firstName)
                     return (
-                      <div className="relative col-span-full flex flex-col gap-4 sm:col-span-1">
+                      <div
+                        key={ele.label}
+                        className="relative col-span-full flex flex-col gap-4 sm:col-span-1">
                         <label
                           className="text-lg font-medium leading-[22px]"
                           htmlFor="firstName">
@@ -295,10 +297,12 @@ const Form = ({contacts, form}: TFormFragment) => {
                           </p>
                         )}
                       </div>
-                    );
+                    )
                   if (ele.adminLabel === adminLabelEmun.lastName)
                     return (
-                      <div className="relative col-span-full flex flex-col gap-4 sm:col-span-1">
+                      <div
+                        key={ele.label}
+                        className="relative col-span-full flex flex-col gap-4 sm:col-span-1">
                         <label
                           className="text-lg font-medium leading-[22px]"
                           htmlFor="lastName">
@@ -324,11 +328,13 @@ const Form = ({contacts, form}: TFormFragment) => {
                           </p>
                         )}
                       </div>
-                    );
+                    )
 
                   if (ele.adminLabel === adminLabelEmun.email)
                     return (
-                      <div className="relative col-span-full flex flex-col gap-3 sm:col-span-1">
+                      <div
+                        key={ele.label}
+                        className="relative col-span-full flex flex-col gap-3 sm:col-span-1">
                         <label
                           className="text-lg font-medium leading-[22px]"
                           htmlFor="email">
@@ -360,10 +366,12 @@ const Form = ({contacts, form}: TFormFragment) => {
                           </p>
                         )}
                       </div>
-                    );
+                    )
                   if (ele.adminLabel === adminLabelEmun.phone)
                     return (
-                      <div className="relative col-span-full flex flex-col gap-3 sm:col-span-1">
+                      <div
+                        key={ele.label}
+                        className="relative col-span-full flex flex-col gap-3 sm:col-span-1">
                         <label
                           className="text-lg font-medium leading-[22px]"
                           htmlFor="phone">
@@ -394,10 +402,12 @@ const Form = ({contacts, form}: TFormFragment) => {
                           </p>
                         )}
                       </div>
-                    );
+                    )
                   if (ele.adminLabel === adminLabelEmun.message)
                     return (
-                      <div className="relative col-span-2 flex flex-col gap-3">
+                      <div
+                        key={ele.label}
+                        className="relative col-span-2 flex flex-col gap-3">
                         <label
                           className="text-lg font-medium leading-[22px]"
                           htmlFor="message">
@@ -424,7 +434,7 @@ const Form = ({contacts, form}: TFormFragment) => {
                           </p>
                         )}
                       </div>
-                    );
+                    )
                 })}{" "}
               <div className="col-span-1  gap-4">
                 {!formSuccess ? (
@@ -454,7 +464,7 @@ const Form = ({contacts, form}: TFormFragment) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form

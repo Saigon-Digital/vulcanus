@@ -31,7 +31,7 @@ const ScrollText = ({
       ? ((topY - 200 - initialHeight) * 100) / ScrollMargin
       : null
 
-  console.log("ratio ", ratio)
+  // console.log("ratio ", ratio)
   useEffect(() => {
     if (ref.current) {
       const callback = ref.current.addEventListener("scroll", () => {
