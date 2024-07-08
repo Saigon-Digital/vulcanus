@@ -113,9 +113,12 @@ const Card: React.FC<Props> = ({
           <p
             ref={textRef}
             style={{color: backgroundColor ? "#140F24" : undefined}}
-            className=" mb-0 line-clamp-6 flex  flex-col justify-end  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
+            className=" mb-0 line-clamp-6 flex flex-col  justify-end pb-2  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
             dangerouslySetInnerHTML={{
-              __html: description.slice(0, 350),
+              __html:
+                description.length > 350
+                  ? description.slice(0, 350) + "..."
+                  : description,
             }}></p>
         )}
         {link ? (
