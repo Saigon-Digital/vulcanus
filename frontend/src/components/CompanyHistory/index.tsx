@@ -17,7 +17,7 @@ import {
 } from "swiper/react"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 import {Mousewheel} from "swiper/modules"
-import clsx from "clsx"
+import {twMerge} from "tailwind-merge"
 import {Maybe} from "graphql/jsutils/Maybe"
 // import {useLenis} from "lenis/react";
 type Histories = NonNullable<CompanyHistoryBlock["histories"]>
@@ -168,7 +168,7 @@ const ImageSlide = (props: {
 
   return (
     <div
-      className={clsx(
+      className={twMerge(
         "absolute top-0 flex w-full flex-col gap-3 transition-opacity duration-500 ",
         isActive ? "z-10" : "opacity-0"
       )}>
@@ -203,7 +203,7 @@ const SlidePlaceHolder = ({
 }) => {
   return (
     <div
-      className={clsx(
+      className={twMerge(
         "flex w-full shrink-0 flex-col gap-5 xl:flex-row xl:items-start"
       )}>
       <div className="relative ml-auto aspect-[316/267] max-h-52 w-1/2 overflow-hidden rounded-md xl:max-h-none xl:w-full xl:flex-1"></div>
@@ -238,7 +238,7 @@ const SlideButton = (
 
   return (
     <div
-      className={clsx(
+      className={twMerge(
         `grid h-full place-items-center transition-all duration-300`,
         distance && "scale-75",
         distance === 1 && "opacity-50",
@@ -247,7 +247,7 @@ const SlideButton = (
         distance > 3 && "opacity-0"
       )}>
       <button
-        className={clsx(
+        className={twMerge(
           "block rounded-[5px] px-4 text-2xl text-[32px] leading-10 -tracking-wide transition-all duration-300 md:px-8 xl:text-3xl",
           isActive ? "bg-primary-blue-main py-2 font-bold" : "font-light"
         )}

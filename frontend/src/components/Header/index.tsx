@@ -1,48 +1,47 @@
-import {MenuItemsQuery} from "@/__generated__/graphql";
-import clsx from "clsx";
-import Image from "next/image";
+import {twMerge} from "tailwind-merge"
+import Image from "next/image"
 
-import {useEffect, useState} from "react";
-import dynamic from "next/dynamic";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-import {TSiteData} from "../Layout";
-import {useLocaleContext} from "@/context/LocaleContext";
+import {useEffect, useState} from "react"
+import dynamic from "next/dynamic"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
+import {TSiteData} from "../Layout"
+import {useLocaleContext} from "@/context/LocaleContext"
 
-const Link = dynamic(() => import("next/link"));
-const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"));
-const LanguageToggle = dynamic(() => import("./LanguageToggle"));
-const HeaderDialog = dynamic(() => import("./HeaderDialog"));
+const Link = dynamic(() => import("next/link"))
+const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"))
+const LanguageToggle = dynamic(() => import("./LanguageToggle"))
+const HeaderDialog = dynamic(() => import("./HeaderDialog"))
 
 type Props = {
-  menu: TSiteData["menus"];
-};
+  menu: TSiteData["menus"]
+}
 
 const Header = (props: Props) => {
-  const [navIsOpen, setNavIsOpen] = useState(false);
-  const {locale, asPath, pathname} = useLocaleContext();
+  const [navIsOpen, setNavIsOpen] = useState(false)
+  const {locale, asPath, pathname} = useLocaleContext()
 
   // console.log(asPath);
 
-  const isMobile = useMediaQuery("(max-width:1024px)");
+  const isMobile = useMediaQuery("(max-width:1024px)")
   useEffect(() => {
     if (navIsOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.body.classList.add("overflow-hidden")
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden")
     }
-  }, [navIsOpen]);
+  }, [navIsOpen])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setNavIsOpen(false);
+        setNavIsOpen(false)
       }
-    };
-    document.addEventListener("keydown", handleKeyDown);
+    }
+    document.addEventListener("keydown", handleKeyDown)
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+      document.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [])
 
   return (
     <>
@@ -65,23 +64,22 @@ const Header = (props: Props) => {
                 {props.menu &&
                   props?.menu.menuItems?.nodes?.map((item) => {
                     const isActive =
-                      asPath !== "/" && item?.uri?.includes(asPath || "");
+                      asPath !== "/" && item?.uri?.includes(asPath || "")
                     return (
                       <Link
                         key={item?.uri}
                         locale={locale}
                         href={item?.uri ?? "#"}
                         // locale={locale}
-                        className={clsx(
+                        className={twMerge(
                           "text-sm font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main xl:text-[16px]",
-                          {
-                            "text-primary-blue-main": isActive,
-                            "text-secondary-offWhite-white": !isActive,
-                          }
+
+                          isActive && "text-primary-blue-main",
+                          !isActive && "text-secondary-offWhite-white"
                         )}>
                         {item?.label}
                       </Link>
-                    );
+                    )
                   })}
               </nav>
             )}
@@ -112,7 +110,7 @@ const Header = (props: Props) => {
         )}
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

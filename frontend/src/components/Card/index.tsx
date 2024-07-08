@@ -1,25 +1,35 @@
-import {getAcfLinkProps, getUrlPathname} from "@/utils";
-import Link from "next/link";
-import ArrowRight from "public/icons/arrow-right.svg";
-import React, {useEffect, useRef} from "react";
+import {getAcfLinkProps, getUrlPathname} from "@/utils"
+import Link from "next/link"
+import ArrowRight from "public/icons/arrow-right.svg"
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react"
 
-import {CardShape} from "../Icons";
-import {CardsBlockCards_Fields} from "@/__generated__/graphql";
-import Image from "next/image";
-import {StaticImport} from "next/dist/shared/lib/get-img-props";
-import clsx from "clsx";
-import {languages} from "@/utils/language";
+import {CardShape} from "../Icons"
+import {CardsBlockCards_Fields} from "@/__generated__/graphql"
+import Image from "next/image"
+import {StaticImport} from "next/dist/shared/lib/get-img-props"
 
-import {useLocaleContext} from "@/context/LocaleContext";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-import {twMerge} from "tailwind-merge";
+import {languages} from "@/utils/language"
+
+import {useLocaleContext} from "@/context/LocaleContext"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
+import {twMerge} from "tailwind-merge"
 type Props = {
-  hoverImage?: string | StaticImport | undefined;
+  setCardHeight?: (h: number) => void
+  maxHeight?: number
+  hoverImage?: string | StaticImport | undefined
 } & CardsBlockCards_Fields &
-  React.HTMLAttributes<HTMLDivElement>;
+  React.HTMLAttributes<HTMLDivElement>
 
 const Card: React.FC<Props> = ({
+  setCardHeight,
   title,
+  maxHeight,
   description = "",
   className,
   hasImage,
@@ -29,15 +39,17 @@ const Card: React.FC<Props> = ({
   link,
   ...props
 }) => {
-  const {locale} = useLocaleContext();
+  const {locale} = useLocaleContext()
+  const [height, setHeight] = useState<number | "auto">("auto")
+  const textRef = useRef<HTMLParagraphElement | null>(null)
+  const textSize = description ? description.length : 200
 
-  const textRef = useRef<HTMLParagraphElement | null>(null);
-  const isMobile = useMediaQuery("(max-width: 1080px)");
-  const textSize = description?.length;
+  console.log(maxHeight)
+
   return (
     <div
       style={{background: backgroundColor || undefined}}
-      className={clsx(
+      className={twMerge(
         " group relative z-10 flex h-full min-h-[400px] flex-col gap-3  overflow-hidden  rounded-[5px] border border-primary-blue-main p-4 transition-all duration-300 lg:min-h-[400px] xl:min-h-[450px] ",
         !hoverImage ? "justify-end hover:bg-primary-midBlue-main" : "",
         iconImage ? "justify-start" : "justify-between",
@@ -90,22 +102,23 @@ const Card: React.FC<Props> = ({
           alt="icon image"
         />
       )}
+
       <div
+        ref={textRef}
         className={twMerge(
           "relative z-10 flex  flex-col  gap-3",
-          !link
-            ? "mb-6  h-auto justify-end"
-            : ` justify-end 
-            
-            `
+          !link ? "mb-6  h-auto justify-between" : ` h-[68%] justify-between`
         )}>
         {description && (
           <p
             ref={textRef}
             style={{color: backgroundColor ? "#140F24" : undefined}}
-            className=" mb-0 line-clamp-6 flex  flex-col justify-end  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
+            className=" mb-0 line-clamp-6 flex flex-col  justify-end pb-2  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
             dangerouslySetInnerHTML={{
-              __html: description.slice(0, 450),
+              __html:
+                description.length > 350
+                  ? description.slice(0, 350) + "..."
+                  : description,
             }}></p>
         )}
         {link ? (
@@ -118,7 +131,7 @@ const Card: React.FC<Props> = ({
         ) : null}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

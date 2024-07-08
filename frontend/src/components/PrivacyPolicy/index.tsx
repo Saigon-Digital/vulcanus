@@ -1,32 +1,31 @@
-import {PrivacyPolicyFragment} from "@/__generated__/graphql";
-import * as React from "react";
+import {PrivacyPolicyFragment} from "@/__generated__/graphql"
+import * as React from "react"
 
-import clsx from "clsx";
-import {useState} from "react";
-import {languages} from "@/utils/language";
-import {useLocaleContext} from "@/context/LocaleContext";
-import {twMerge} from "tailwind-merge";
-import {motion} from "framer-motion";
+import {useState} from "react"
+import {languages} from "@/utils/language"
+import {useLocaleContext} from "@/context/LocaleContext"
+import {twMerge} from "tailwind-merge"
+import {motion} from "framer-motion"
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
-  const [active, setActive] = useState(0);
-  const {locale} = useLocaleContext();
-  const sizes = props.terms?.length || 0;
-  React.useEffect(() => {}, [active]);
+  const [active, setActive] = useState(0)
+  const {locale} = useLocaleContext()
+  const sizes = props.terms?.length || 0
+  React.useEffect(() => {}, [active])
 
   const scrollTo = (active: number) => {
-    if (typeof document === undefined || typeof window === undefined) return;
-    setActive(active);
+    if (typeof document === undefined || typeof window === undefined) return
+    setActive(active)
     const id =
       //@ts-ignore
       props.terms?.find((ele, id) => id === active)?.title?.replace(" ", "") ||
-      "";
-    const element = document.getElementById(id);
+      ""
+    const element = document.getElementById(id)
     if (element) {
-      const top = element.getBoundingClientRect().top + window.pageYOffset - 80;
+      const top = element.getBoundingClientRect().top + window.pageYOffset - 80
 
-      window.scrollTo({top: top, behavior: "smooth"});
+      window.scrollTo({top: top, behavior: "smooth"})
     }
-  };
+  }
 
   return (
     <section className="container-block introduce-block py-28 ">
@@ -41,12 +40,12 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                   sizes > 1 ? "list-decimal" : "list-disc"
                 )}>
                 {props.terms?.map((ele: any, id: number) => {
-                  let size = props.terms ? props.terms.length - 1 : 0;
+                  let size = props.terms ? props.terms.length - 1 : 0
                   return (
                     <motion.li
                       // onViewportEnter={() => setActive(id)}
                       key={id}
-                      className={clsx(
+                      className={twMerge(
                         `relative cursor-pointer font-normal`,
                         active === id &&
                           "font-semibold text-primary-blue-main after:absolute after:-left-[46px] after:top-0 after:h-5 after:w-[2px] after:border-l-2 after:border-primary-blue-main",
@@ -56,7 +55,7 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                         {ele?.title}
                       </button>
                     </motion.li>
-                  );
+                  )
                 })}
               </ul>
             </div>
@@ -81,11 +80,11 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
           </div>
           {props.terms &&
             props.terms.map((ele: any, id: number) => {
-              const last = props.terms ? id === props.terms?.length - 1 : false;
+              const last = props.terms ? id === props.terms?.length - 1 : false
               return (
                 <div
                   id={ele?.title?.replace(" ", "")}
-                  className={clsx(
+                  className={twMerge(
                     `content border-b border-b-white py-4`,
                     last && "border-none"
                   )}
@@ -97,12 +96,12 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                     <div dangerouslySetInnerHTML={{__html: ele.content}}></div>
                   )}
                 </div>
-              );
+              )
             })}
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default PrivacyPolicy;
+export default PrivacyPolicy

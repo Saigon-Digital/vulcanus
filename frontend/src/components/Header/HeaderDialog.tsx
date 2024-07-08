@@ -1,31 +1,31 @@
-import {MenuItemsQuery} from "@/__generated__/graphql";
-import clsx from "clsx";
-import Image from "next/image";
-import Link from "next/link";
+import {MenuItemsQuery} from "@/__generated__/graphql"
 
-import CloseIcon from "public/icons/x-close.svg";
-import LanguageToggle from "./LanguageToggle";
-import {TSiteData} from "../Layout";
-import {useLocaleContext} from "@/context/LocaleContext";
+import Image from "next/image"
+import Link from "next/link"
+
+import CloseIcon from "public/icons/x-close.svg"
+import LanguageToggle from "./LanguageToggle"
+import {TSiteData} from "../Layout"
+import {useLocaleContext} from "@/context/LocaleContext"
+import {twMerge} from "tailwind-merge"
 
 type Props = {
-  menu: TSiteData["menus"];
-  navIsOpen: boolean;
-  setNavIsOpen: (navIsOpen: boolean) => void;
-};
+  menu: TSiteData["menus"]
+  navIsOpen: boolean
+  setNavIsOpen: (navIsOpen: boolean) => void
+}
 
 const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
-  const {asPath, locale} = useLocaleContext();
+  const {asPath, locale} = useLocaleContext()
   return (
     <div
       role="dialog"
       aria-labelledby="dialogTitle"
-      className={clsx(
+      className={twMerge(
         "container-fluid fixed inset-0 z-50 flex flex-col bg-primary-midBlue-main py-[var(--header-py)] transition-all duration-500 lg:opacity-0",
-        {
-          "translate-x-full": !navIsOpen,
-          "translate-x-0": navIsOpen,
-        }
+
+        !navIsOpen && "translate-x-full",
+        navIsOpen && "translate-x-0"
       )}>
       <div className="flex h-[var(--header-height)] items-center justify-between px-6">
         <Link href={"/"} locale={locale}>
@@ -53,23 +53,22 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
           {menu &&
             menu?.menuItems.nodes.map((item) => {
               const isActive =
-                asPath !== "/" && item?.uri?.includes(asPath || "");
+                asPath !== "/" && item?.uri?.includes(asPath || "")
               return (
                 <li key={item?.uri}>
                   <Link
                     href={item?.uri ?? "#"}
                     locale={locale}
-                    className={clsx(
+                    className={twMerge(
                       "text-[20px] font-semibold uppercase leading-[200%] transition-all duration-300",
-                      {
-                        "text-primary-blue-300": isActive,
-                        "text-secondary-offWhite-white": !isActive,
-                      }
+
+                      isActive && "text-primary-blue-300",
+                      !isActive && "text-secondary-offWhite-white"
                     )}>
                     {item?.label}
                   </Link>
                 </li>
-              );
+              )
             })}
         </ul>
         <div className="flex justify-center">
@@ -77,7 +76,7 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
         </div>
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default HeaderDialog;
+export default HeaderDialog

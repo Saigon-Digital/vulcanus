@@ -1,10 +1,25 @@
-import {CardsBlock_Fields} from "@/__generated__/graphql";
-import Card from "../Card";
-import "swiper/css";
-import "swiper/css/pagination";
+import {CardsBlock_Fields} from "@/__generated__/graphql"
+import Card from "../Card"
+import "swiper/css"
+import "swiper/css/pagination"
 
-import {twMerge} from "tailwind-merge";
+import {twMerge} from "tailwind-merge"
+import {useState} from "react"
 const Cards: React.FC<CardsBlock_Fields> = (props) => {
+  let [heights, setHeights] = useState<number[]>([])
+  const setCardHeight = (h: number) => {
+    setHeights((prev) => {
+      const temp = [...prev]
+      temp.push(h)
+      return [...temp]
+    })
+  }
+  const maxHeight = props.cards
+    ?.map((e) => e?.description?.length || 100)
+    .sort((a, b) => b - a)
+    .at(0)
+
+  if (!maxHeight) return null
   return (
     <div className="cards container-fluid py-14">
       <h2 className="heading-2 mb-14">{props?.title}</h2>
@@ -19,6 +34,8 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
         {props?.cards?.map((card, id) => {
           return (
             <Card
+              maxHeight={maxHeight}
+              setCardHeight={setCardHeight}
               key={id}
               hasImage={card?.hasImage}
               iconImage={card?.iconImage}
@@ -27,11 +44,11 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
               description={card?.description}
               link={card?.link}
             />
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cards;
+export default Cards

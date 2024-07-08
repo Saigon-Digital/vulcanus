@@ -1,9 +1,9 @@
-import {useLocaleContext} from "@/context/LocaleContext";
+import {useLocaleContext} from "@/context/LocaleContext"
 
-import clsx from "clsx";
-import Link from "next/link";
-import {useRouter} from "next/router";
-import {useCallback} from "react";
+import Link from "next/link"
+import {useRouter} from "next/router"
+import {useCallback} from "react"
+import {twMerge} from "tailwind-merge"
 
 const LanguageButton = ({
   label,
@@ -13,43 +13,42 @@ const LanguageButton = ({
 
   ...rest
 }: {
-  label: string;
-  isActive: boolean;
-  disabled?: boolean;
-  href: string;
+  label: string
+  isActive: boolean
+  disabled?: boolean
+  href: string
 } & React.HTMLAttributes<HTMLButtonElement>) => {
   return (
     <Link
       href={href}
       aria-disabled={disabled}
-      className={clsx(
+      className={twMerge(
         "inline-block rounded-full px-2 pb-[7.65px] pt-[9px] text-center text-base font-semibold uppercase leading-[140%] xl:px-[14.7px] xl:text-[18px]",
-        {
-          "bg-primary-blue-main text-secondary-offWhite-white": isActive,
-          "text-primary-blue-main": !isActive,
-        }
+
+        isActive && "bg-primary-blue-main text-secondary-offWhite-white",
+        !isActive && "text-primary-blue-main"
       )}>
       <span className="align-middle">{label}</span>
     </Link>
-  );
-};
-type Props = {};
+  )
+}
+type Props = {}
 
 const LanguageToggle = (props: Props) => {
-  const {localeData} = useLocaleContext();
-  const router = useRouter();
+  const {localeData} = useLocaleContext()
+  const router = useRouter()
 
   const handleLanguageChange = useCallback(
     (locale: string) => {
       for (let [key, value] of Object.entries(localeData || {})) {
-        if (!value) return;
+        if (!value) return
       }
       //@ts-ignore
-      let href = locale ? localeData[locale] : "";
-      router.push(href, href, {locale: locale.toLocaleLowerCase()});
+      let href = locale ? localeData[locale] : ""
+      router.push(href, href, {locale: locale.toLocaleLowerCase()})
     },
     [localeData, router]
-  );
+  )
   // for (let [keys, values] of Object.entries(localeData || {})) {
   //   if (!values) return <div className="h-1 min-w-[130px] rounded-full"></div>;
   // }
@@ -71,7 +70,7 @@ const LanguageToggle = (props: Props) => {
         // onClick={() => handleLanguageChange("DE")}
       />
     </div>
-  );
-};
+  )
+}
 
-export default LanguageToggle;
+export default LanguageToggle

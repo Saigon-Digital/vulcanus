@@ -3,102 +3,101 @@ import {
   GetFooterButtonQuery,
   GetFooterSettingQuery,
   MenuItemsQuery,
-} from "@/__generated__/graphql";
-import Image from "next/image";
+} from "@/__generated__/graphql"
+import Image from "next/image"
 import React, {
   useEffect,
   useLayoutEffect,
   useMemo,
   useRef,
   useState,
-} from "react";
-import Link from "next/link";
-import {languages} from "@/utils/language";
+} from "react"
+import Link from "next/link"
+import {languages} from "@/utils/language"
+import {client, getFooterButtonLink} from "@/libs/graphql/utils"
 
-import {client, getFooterButtonLink} from "@/libs/graphql/utils";
-import clsx from "clsx";
-import {TSiteData} from "../Layout";
-import {motion} from "framer-motion";
-import {useLocaleContext} from "@/context/LocaleContext";
-import {FaceBookIcon, InstagramIcon, LinkedInIcon, Xing} from "../Icons";
-import {gql} from "@/__generated__";
-import footerSettingData from "@/data/footer_setting.json";
-import Socials from "../Socials";
+import {TSiteData} from "../Layout"
+import {motion} from "framer-motion"
+import {useLocaleContext} from "@/context/LocaleContext"
+
+import footerSettingData from "@/data/footer_setting.json"
+import Socials from "../Socials"
+import {twMerge} from "tailwind-merge"
 type Props = {
-  menu: TSiteData["menus"];
-  footerText?: string | null | undefined;
-};
+  menu: TSiteData["menus"]
+  footerText?: string | null | undefined
+}
 
-const ScrollMargin = 350;
+const ScrollMargin = 350
 
 const Footer = (props: Props) => {
   const hierarchicalList = props.menu?.menuItems?.nodes.filter((ele: any) => {
-    const {childItems} = ele;
-    return childItems.nodes?.length > 0;
-  });
+    const {childItems} = ele
+    return childItems.nodes?.length > 0
+  })
   let [buttonLink, setButtonLink] =
-    useState<GetFooterButtonQuery["contactPage"]>();
+    useState<GetFooterButtonQuery["contactPage"]>()
 
   const [footerInfo, setFooterInfo] =
-    useState<(typeof footerSettingData)["siteSettings"]>();
+    useState<(typeof footerSettingData)["siteSettings"]>()
 
-  const {locale} = useLocaleContext();
+  const {locale} = useLocaleContext()
 
-  const [initialHeight, setInitialHeight] = useState<number | null>(null);
+  const [initialHeight, setInitialHeight] = useState<number | null>(null)
   //#region footer setting
 
-  const [rectTop, setRectTop] = useState<number | null>();
-  const ref = useRef<HTMLDivElement>(null);
+  const [rectTop, setRectTop] = useState<number | null>()
+  const ref = useRef<HTMLDivElement>(null)
 
   // console.log("scroll", scrollY, scrollYProgress);
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   const ratio = useMemo(() => {
     if (initialHeight && rectTop)
-      return ((initialHeight - rectTop) * 100) / ScrollMargin;
-  }, [initialHeight, rectTop]);
+      return ((initialHeight - rectTop) * 100) / ScrollMargin
+  }, [initialHeight, rectTop])
 
   useEffect(() => {
-    setFooterInfo(footerSettingData.siteSettings);
+    setFooterInfo(footerSettingData.siteSettings)
 
     if (!buttonLink) {
-      (async () => {
-        const {data} = await getFooterButtonLink();
-        setButtonLink(data.contactPage);
-      })();
+      ;(async () => {
+        const {data} = await getFooterButtonLink()
+        setButtonLink(data.contactPage)
+      })()
     }
     const callback: IntersectionObserverCallback = (entries) => {
       entries.forEach((ele) => {
-        if (!ele && !ref.current) return;
+        if (!ele && !ref.current) return
         const calcTop = () => {
-          const rect = ref.current?.getBoundingClientRect();
-          const top = rect ? rect.top : 0;
-          setRectTop(top);
-        };
+          const rect = ref.current?.getBoundingClientRect()
+          const top = rect ? rect.top : 0
+          setRectTop(top)
+        }
 
         if (ele.isIntersecting) {
-          let height = ele.boundingClientRect.top;
+          let height = ele.boundingClientRect.top
 
-          setInitialHeight(height);
-          document.addEventListener("scroll", calcTop);
+          setInitialHeight(height)
+          document.addEventListener("scroll", calcTop)
         } else {
-          document.removeEventListener("scroll", calcTop);
+          document.removeEventListener("scroll", calcTop)
         }
-      });
-    };
+      })
+    }
     const observer = new IntersectionObserver(callback, {
       threshold: 1,
       rootMargin: "100px",
-    });
+    })
     if (containerRef.current && typeof document !== undefined) {
-      observer.observe(containerRef.current);
+      observer.observe(containerRef.current)
     }
     return () => {
-      if (containerRef.current) observer.unobserve(containerRef.current);
-    };
-  }, []);
+      if (containerRef.current) observer.unobserve(containerRef.current)
+    }
+  }, [])
 
-  if (!hierarchicalList) return null;
+  if (!hierarchicalList) return null
 
   return (
     <footer className="pt-20 sm:container-fluid">
@@ -107,7 +106,7 @@ const Footer = (props: Props) => {
         className="group mb-12 flex items-center justify-between px-5 sm:px-0">
         <div
           ref={ref}
-          className={clsx(
+          className={twMerge(
             `footer-text scroll-title cursor-default select-none font-bold  text-white [&>*]:text-xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
              [&>*]:xl:text-[36px] [&>*]:xl:leading-[68px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[87px]  `,
             ratio &&
@@ -241,12 +240,12 @@ const Footer = (props: Props) => {
                                   {ele.label}
                                 </Link>
                               </li>
-                            );
+                            )
                           }
                         )}
                       </ul>
                     </div>
-                  );
+                  )
                 })}
               {
                 //#region social
@@ -268,7 +267,7 @@ const Footer = (props: Props) => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
