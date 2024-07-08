@@ -4,7 +4,7 @@ import {TitleBlockFragment} from "@/__generated__/graphql"
 import {twMerge} from "tailwind-merge"
 import {TitleShape} from "@/components/Icons"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
-const ScrollMargin = 650
+const ScrollMargin = 550
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
