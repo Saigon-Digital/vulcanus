@@ -4,7 +4,7 @@ import {TitleBlockFragment} from "@/__generated__/graphql"
 import {twMerge} from "tailwind-merge"
 import {TitleShape} from "@/components/Icons"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
-const ScrollMargin = 450
+const ScrollMargin = 650
 
 const TitleBlock: React.FC<TitleBlockFragment> = ({
   title,
@@ -14,7 +14,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
 }) => {
   const size = textSize?.find((_, id) => id === 0) || textSize || "large"
 
-  const id = `title-block-${encodeURIComponent(title || "")}`
+  const id = `title-block-${encodeURIComponent(title?.slice(0, 20) || "")}`
 
   const titleRef = useRef<HTMLDivElement>(null)
   const [scrollEnd, setScrollEnd] = useState<boolean>(false)
@@ -27,24 +27,26 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
   const ref = useRef<HTMLDivElement>(null)
   const isMobile = useMediaQuery("(max-width: 880px)")
 
-  const ratio = useMemo(() => {
+  const calcRatio = () => {
     if (isMobile) if (scrollEnd && !isInit) return null
     if (initialHeight && rectTop)
       return Math.abs((initialHeight - rectTop) * 100) / ScrollMargin
-  }, [initialHeight, rectTop, scrollEnd])
+  }
+
+  const ratio = calcRatio()
 
   useEffect(() => {
     if (!isDomReady) {
       setTimeout(() => {
         setDomReady(true)
-      }, 500)
+      }, 1000)
       return
     }
     if (isMobile) {
       setScrollEnd(true)
       return
     }
-    if (ratio && ratio > 99) {
+    if (ratio && ratio > 95) {
       setScrollEnd(true)
     }
     const callback: IntersectionObserverCallback = (entries) => {
@@ -98,8 +100,9 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
               : "2xl:leading-[67px] xl:[&>*]:text-5xl 2xl:[&>*]:leading-[67px]",
             !scrollEnd
               ? ratio &&
-                  `scroll-${ratio > 0 ? ratio < 100 && Math.floor(ratio) : 0}`
-              : `scroll-100`
+                  `scroll-${ratio > 0 ? ratio < 95 && Math.floor(ratio) : 0}`
+              : `scroll-100`,
+            !isInit && `scroll-0`
           )}
           dangerouslySetInnerHTML={{__html: title || ""}}></div>
         {haveShape && (
