@@ -229,12 +229,12 @@ const Form = ({contacts, form}: TFormFragment) => {
                               ?.url as string) || "#"
                           }
                           className="font-base max-w-[250px] hover:text-primary-blue-main">
-                          <span
+                          <div
                             dangerouslySetInnerHTML={{
                               __html:
                                 contactInformation?.location
                                   ?.locationInformation,
-                            }}></span>
+                            }}></div>
                         </Link>
                       </p>
                     )}
@@ -248,9 +248,9 @@ const Form = ({contacts, form}: TFormFragment) => {
           }
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 xl:col-span-6 xl:col-start-4">
             {form?.formTitle && (
-              <h2
+              <div
                 dangerouslySetInnerHTML={{__html: form.formTitle}}
-                className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]"></h2>
+                className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]"></div>
             )}
             {form?.copyrightText && (
               <div

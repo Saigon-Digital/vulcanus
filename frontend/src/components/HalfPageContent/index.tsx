@@ -1,21 +1,21 @@
-import type {ReactNode} from "react";
-import Button from "../Button";
-import dynamic from "next/dynamic";
+import type {ReactNode} from "react"
+import Button from "../Button"
+import dynamic from "next/dynamic"
 // import {ArrowRight, ShapeLeftLarge} from "../Icons";
-import Shape from "./images/shape.png";
-import Image from "next/image";
+import Shape from "./images/shape.png"
+import Image from "next/image"
 
-import {getAcfLinkProps} from "@/utils";
-import {TitleTextBlock_Fields} from "@/__generated__/graphql";
+import {getAcfLinkProps} from "@/utils"
+import {TitleTextBlock_Fields} from "@/__generated__/graphql"
 
 const ArrowRight = dynamic(() =>
   import("../Icons").then((mod) => mod.ArrowRight)
-);
+)
 
 // import Button from "../Button";
 type TProps = {
-  extraGraphic?: ReactNode;
-} & TitleTextBlock_Fields;
+  extraGraphic?: ReactNode
+} & TitleTextBlock_Fields
 
 let contentData = {
   contentTitle:
@@ -24,7 +24,7 @@ let contentData = {
     "We invest in groundbreaking technologies & innovative solutions to maintain our position as a leader, in CNC manufacturing. ",
     "Our dedicated R&D team works tirelessly to create state of the art processes guaranteeing that Vulcanus continues to excel in precision engineering.",
   ],
-};
+}
 const HalfPageContent: React.FC<TProps> = ({
   title = "Research & Developement",
   content,
@@ -59,9 +59,9 @@ const HalfPageContent: React.FC<TProps> = ({
             {content?.contents && (
               <>
                 {content.contentTitle && (
-                  <h4
+                  <div
                     dangerouslySetInnerHTML={{__html: content.contentTitle}}
-                    className="[&>*>strong]:text-primary-blue-main [&>*]:text-2xl xl:[&>*]:text-3xl 2xl:[&>*]:text-[32px] 2xl:[&>*]:leading-[44px]"></h4>
+                    className="[&>*>strong]:text-primary-blue-main [&>*]:text-2xl xl:[&>*]:text-3xl 2xl:[&>*]:text-[32px] 2xl:[&>*]:leading-[44px]"></div>
                 )}
                 <div className="mt-6 flex flex-wrap justify-between xl:mt-8">
                   {content?.contents?.map((ele, id) => {
@@ -73,7 +73,7 @@ const HalfPageContent: React.FC<TProps> = ({
                           dangerouslySetInnerHTML={{__html: ele?.text}}
                           className="w-full text-lg font-light md:w-[calc(50%-10px)] "></div>
                       )
-                    );
+                    )
                   })}
                   {cta && (
                     <Button className="mt-8" {...getAcfLinkProps(cta)}>
@@ -88,7 +88,7 @@ const HalfPageContent: React.FC<TProps> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HalfPageContent;
+export default HalfPageContent

@@ -1,10 +1,10 @@
-import {PageBannerFragment} from "@/__generated__/graphql";
-import useImageStyle from "@/hooks/useImageCss";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-import Image from "next/image";
-import {useMemo} from "react";
-import ReactPlayer from "react-player";
-import {PlayIcon} from "../Icons";
+import {PageBannerFragment} from "@/__generated__/graphql"
+import useImageStyle from "@/hooks/useImageCss"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
+import Image from "next/image"
+import {useMemo} from "react"
+import ReactPlayer from "react-player"
+import {PlayIcon} from "../Icons"
 
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
@@ -13,15 +13,15 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   videoLink,
   videoOrImage,
 }) => {
-  const isMobile = useMediaQuery("(max-width:768px)");
+  const isMobile = useMediaQuery("(max-width:768px)")
   const imageStyle = useImageStyle({
     src: image?.node.sourceUrl || "",
     w: 1800,
-
+    fill: false,
     h: 900,
     priority: true,
     alt: "page banner",
-  });
+  })
 
   return (
     <div className="container-fluid pb-10 lg:pb-16">
@@ -86,7 +86,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         ))
       )}
     </div>
-  );
-};
+  )
+}
 
-export default PageBanner;
+export default PageBanner
