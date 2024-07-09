@@ -7,8 +7,10 @@
     "dev:faust": "faust dev",
     "get-data": "ts-node ./src/script/generateData.ts",
     "analyze": "cross-env ANALYZE=true yarn build",
-    "deploy": "rm -rf .netlify && netlify deploy --build --prod",
-    "prepare": "yarn codegen & yarn generate & yarn get-data & yarn sitemap  ",
+
+    "deploy": "yarn build && netlify deploy --build --prod",
+    "prepare": "yarn codegen && yarn generate && yarn get-data && yarn sitemap",
+
     "build": "yarn prepare && faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",

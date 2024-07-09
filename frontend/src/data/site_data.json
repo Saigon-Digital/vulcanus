@@ -1,1 +1,561 @@
-{"menus":{"__typename":"RootQueryToMenuConnection","nodes":[{"__typename":"Menu","locations":["FOOTER"],"menuItems":{"__typename":"MenuToMenuItemConnection","nodes":[{"__typename":"MenuItem","uri":"/page_type/unsere-produkte/","label":"Unsere Angebot","title":null,"parentId":null,"id":"cG9zdDo2NjQ=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[{"__typename":"MenuItem","title":null,"uri":"/dienstleistungen/","label":"Dienstleistungen"},{"__typename":"MenuItem","title":null,"uri":"/maschinenbau/","label":"Maschinenbau"}]}},{"__typename":"MenuItem","uri":"/dienstleistungen/","label":"Dienstleistungen","title":null,"parentId":"cG9zdDo2NjQ=","id":"cG9zdDo2Njg=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/maschinenbau/","label":"Maschinenbau","title":null,"parentId":"cG9zdDo2NjQ=","id":"cG9zdDo2Njk=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/page_type/informationen/","label":"Informationen","title":null,"parentId":null,"id":"cG9zdDo2NjM=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[{"__typename":"MenuItem","title":null,"uri":"/unternehmen/","label":"Unternehmen"},{"__typename":"MenuItem","title":null,"uri":"/karriere/","label":"Karriere"},{"__typename":"MenuItem","title":null,"uri":"/blog-de/","label":"Blog"}]}},{"__typename":"MenuItem","uri":"/unternehmen/","label":"Unternehmen","title":null,"parentId":"cG9zdDo2NjM=","id":"cG9zdDo3MjE=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/karriere/","label":"Karriere","title":null,"parentId":"cG9zdDo2NjM=","id":"cG9zdDo2NjY=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/blog-de/","label":"Blog","title":null,"parentId":"cG9zdDo2NjM=","id":"cG9zdDo3NDk=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/","label":"Contact","title":null,"parentId":null,"id":"cG9zdDoxMDU4","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[{"__typename":"MenuItem","title":null,"uri":"/kontakt/","label":"Kontakt"},{"__typename":"MenuItem","title":null,"uri":"/datenschutz-2/","label":"Datenschutz"},{"__typename":"MenuItem","title":null,"uri":"/impressum/","label":"Impressum"}]}},{"__typename":"MenuItem","uri":"/kontakt/","label":"Kontakt","title":null,"parentId":"cG9zdDoxMDU4","id":"cG9zdDo2NjU=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/datenschutz-2/","label":"Datenschutz","title":null,"parentId":"cG9zdDoxMDU4","id":"cG9zdDo3MDY=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}}]}},{"__typename":"Menu","locations":["FOOTER___EN"],"menuItems":{"__typename":"MenuToMenuItemConnection","nodes":[{"__typename":"MenuItem","uri":"/page_type/our_products/","label":"Our Offer","title":null,"parentId":null,"id":"cG9zdDo1NTQ=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[{"__typename":"MenuItem","title":null,"uri":"/en/manufacturing/","label":"Manufacturing"},{"__typename":"MenuItem","title":null,"uri":"/en/services/","label":"Services"}]}},{"__typename":"MenuItem","uri":"/en/manufacturing/","label":"Manufacturing","title":null,"parentId":"cG9zdDo1NTQ=","id":"cG9zdDo1NTc=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/services/","label":"Services","title":null,"parentId":"cG9zdDo1NTQ=","id":"cG9zdDo1NTU=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/page_type/informations/","label":"Informations","title":null,"parentId":null,"id":"cG9zdDo1NTM=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[{"__typename":"MenuItem","title":null,"uri":"/en/about-us/","label":"About us"},{"__typename":"MenuItem","title":null,"uri":"/en/careers/","label":"Careers"},{"__typename":"MenuItem","title":null,"uri":"/post/","label":"Blog"}]}},{"__typename":"MenuItem","uri":"/en/about-us/","label":"About us","title":null,"parentId":"cG9zdDo1NTM=","id":"cG9zdDo1NTg=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/careers/","label":"Careers","title":null,"parentId":"cG9zdDo1NTM=","id":"cG9zdDo1NjA=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/post/","label":"Blog","title":null,"parentId":"cG9zdDo1NTM=","id":"cG9zdDo1NTk=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/","label":"Contact","title":null,"parentId":null,"id":"cG9zdDoxMDU3","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[{"__typename":"MenuItem","title":null,"uri":"/en/privacy-policy/","label":"Privacy & Policy"},{"__typename":"MenuItem","title":null,"uri":"/en/contact/","label":"Contact"},{"__typename":"MenuItem","title":null,"uri":"/en/imprint/","label":"Imprint"}]}},{"__typename":"MenuItem","uri":"/en/privacy-policy/","label":"Privacy & Policy","title":null,"parentId":"cG9zdDoxMDU3","id":"cG9zdDo1OTY=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/contact/","label":"Contact","title":null,"parentId":"cG9zdDoxMDU3","id":"cG9zdDo1OTc=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}}]}},{"__typename":"Menu","locations":["HEADER"],"menuItems":{"__typename":"MenuToMenuItemConnection","nodes":[{"__typename":"MenuItem","uri":"/unternehmen/","label":"Unternehmen","title":null,"parentId":null,"id":"cG9zdDoyMTQ=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/maschinenbau/","label":"Maschinenbau","title":null,"parentId":null,"id":"cG9zdDoyMjU=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/dienstleistungen/","label":"Dienstleistungen","title":null,"parentId":null,"id":"cG9zdDoyMTk=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/karriere/","label":"Karriere","title":null,"parentId":null,"id":"cG9zdDoyMjE=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/blog-de/","label":"Blog","title":null,"parentId":null,"id":"cG9zdDo3NTA=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/kontakt/","label":"Kontakt","title":null,"parentId":null,"id":"cG9zdDoyMjI=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}}]}},{"__typename":"Menu","locations":["HEADER___EN"],"menuItems":{"__typename":"MenuToMenuItemConnection","nodes":[{"__typename":"MenuItem","uri":"/en/about-us/","label":"About us","title":null,"parentId":null,"id":"cG9zdDoxODU=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/services/","label":"Services","title":null,"parentId":null,"id":"cG9zdDoyMjY=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/manufacturing/","label":"Manufacturing","title":null,"parentId":null,"id":"cG9zdDoyMTA=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/careers/","label":"Careers","title":null,"parentId":null,"id":"cG9zdDoyMTE=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/blog/","label":"blog","title":null,"parentId":null,"id":"cG9zdDo3MDk=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}},{"__typename":"MenuItem","uri":"/en/contact/","label":"Contact","title":null,"parentId":null,"id":"cG9zdDoyMTI=","target":null,"childItems":{"__typename":"MenuItemToMenuItemConnection","nodes":[]}}]}}]}}
+{
+  "menus": {
+    "__typename": "RootQueryToMenuConnection",
+    "nodes": [
+      {
+        "__typename": "Menu",
+        "locations": ["FOOTER"],
+        "menuItems": {
+          "__typename": "MenuToMenuItemConnection",
+          "nodes": [
+            {
+              "__typename": "MenuItem",
+              "uri": "/page_type/unsere-produkte/",
+              "label": "Unsere Angebot",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDo2NjQ=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": [
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/dienstleistungen/",
+                    "label": "Dienstleistungen"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/maschinenbau/",
+                    "label": "Maschinenbau"
+                  }
+                ]
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/dienstleistungen/",
+              "label": "Dienstleistungen",
+              "title": null,
+              "parentId": "cG9zdDo2NjQ=",
+              "id": "cG9zdDo2Njg=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/maschinenbau/",
+              "label": "Maschinenbau",
+              "title": null,
+              "parentId": "cG9zdDo2NjQ=",
+              "id": "cG9zdDo2Njk=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/page_type/informationen/",
+              "label": "Informationen",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDo2NjM=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": [
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/unternehmen/",
+                    "label": "Unternehmen"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/karriere/",
+                    "label": "Karriere"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/blog-de/",
+                    "label": "Blog"
+                  }
+                ]
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/unternehmen/",
+              "label": "Unternehmen",
+              "title": null,
+              "parentId": "cG9zdDo2NjM=",
+              "id": "cG9zdDo3MjE=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/karriere/",
+              "label": "Karriere",
+              "title": null,
+              "parentId": "cG9zdDo2NjM=",
+              "id": "cG9zdDo2NjY=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/blog-de/",
+              "label": "Blog",
+              "title": null,
+              "parentId": "cG9zdDo2NjM=",
+              "id": "cG9zdDo3NDk=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/",
+              "label": "Contact",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoxMDU4",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": [
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/kontakt/",
+                    "label": "Kontakt"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/datenschutz/",
+                    "label": "Datenschutz"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/impressum/",
+                    "label": "Impressum"
+                  }
+                ]
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/kontakt/",
+              "label": "Kontakt",
+              "title": null,
+              "parentId": "cG9zdDoxMDU4",
+              "id": "cG9zdDo2NjU=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/datenschutz/",
+              "label": "Datenschutz",
+              "title": null,
+              "parentId": "cG9zdDoxMDU4",
+              "id": "cG9zdDoxMjU0",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Menu",
+        "locations": ["FOOTER___EN"],
+        "menuItems": {
+          "__typename": "MenuToMenuItemConnection",
+          "nodes": [
+            {
+              "__typename": "MenuItem",
+              "uri": "/page_type/our_products/",
+              "label": "Our Offer",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDo1NTQ=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": [
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/en/manufacturing/",
+                    "label": "Manufacturing"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/en/services/",
+                    "label": "Services"
+                  }
+                ]
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/manufacturing/",
+              "label": "Manufacturing",
+              "title": null,
+              "parentId": "cG9zdDo1NTQ=",
+              "id": "cG9zdDo1NTc=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/services/",
+              "label": "Services",
+              "title": null,
+              "parentId": "cG9zdDo1NTQ=",
+              "id": "cG9zdDo1NTU=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/page_type/informations/",
+              "label": "Informations",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDo1NTM=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": [
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/en/about-us/",
+                    "label": "About us"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/en/careers/",
+                    "label": "Careers"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/post/",
+                    "label": "Blog"
+                  }
+                ]
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/about-us/",
+              "label": "About us",
+              "title": null,
+              "parentId": "cG9zdDo1NTM=",
+              "id": "cG9zdDo1NTg=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/careers/",
+              "label": "Careers",
+              "title": null,
+              "parentId": "cG9zdDo1NTM=",
+              "id": "cG9zdDo1NjA=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/post/",
+              "label": "Blog",
+              "title": null,
+              "parentId": "cG9zdDo1NTM=",
+              "id": "cG9zdDo1NTk=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/",
+              "label": "Contact",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoxMDU3",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": [
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/en/privacy-policy/",
+                    "label": "Privacy & Policy"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/en/contact/",
+                    "label": "Contact"
+                  },
+                  {
+                    "__typename": "MenuItem",
+                    "title": null,
+                    "uri": "/en/imprint/",
+                    "label": "Imprint"
+                  }
+                ]
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/privacy-policy/",
+              "label": "Privacy & Policy",
+              "title": null,
+              "parentId": "cG9zdDoxMDU3",
+              "id": "cG9zdDo1OTY=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/contact/",
+              "label": "Contact",
+              "title": null,
+              "parentId": "cG9zdDoxMDU3",
+              "id": "cG9zdDo1OTc=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Menu",
+        "locations": ["HEADER"],
+        "menuItems": {
+          "__typename": "MenuToMenuItemConnection",
+          "nodes": [
+            {
+              "__typename": "MenuItem",
+              "uri": "/unternehmen/",
+              "label": "Unternehmen",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMTQ=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/maschinenbau/",
+              "label": "Maschinenbau",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMjU=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/dienstleistungen/",
+              "label": "Dienstleistungen",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMTk=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/karriere/",
+              "label": "Karriere",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMjE=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/blog-de/",
+              "label": "Blog",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDo3NTA=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/kontakt/",
+              "label": "Kontakt",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMjI=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            }
+          ]
+        }
+      },
+      {
+        "__typename": "Menu",
+        "locations": ["HEADER___EN"],
+        "menuItems": {
+          "__typename": "MenuToMenuItemConnection",
+          "nodes": [
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/about-us/",
+              "label": "About us",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoxODU=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/services/",
+              "label": "Services",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMjY=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/manufacturing/",
+              "label": "Manufacturing",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMTA=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/careers/",
+              "label": "Careers",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMTE=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/blog/",
+              "label": "blog",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDo3MDk=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            },
+            {
+              "__typename": "MenuItem",
+              "uri": "/en/contact/",
+              "label": "Contact",
+              "title": null,
+              "parentId": null,
+              "id": "cG9zdDoyMTI=",
+              "target": null,
+              "childItems": {
+                "__typename": "MenuItemToMenuItemConnection",
+                "nodes": []
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
