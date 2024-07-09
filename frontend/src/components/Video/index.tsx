@@ -1,4 +1,3 @@
-"use client"
 import {VideoBlock} from "@/__generated__/graphql"
 
 import dynamic from "next/dynamic"

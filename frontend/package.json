@@ -7,8 +7,10 @@
     "dev:faust": "faust dev",
     "get-data": "ts-node ./src/script/generateData.ts",
     "analyze": "cross-env ANALYZE=true yarn build",
+
     "deploy": "yarn build && netlify deploy --build --prod",
     "prepare": "yarn codegen && yarn generate && yarn get-data && yarn sitemap",
+
     "build": "yarn prepare && faust build",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",
@@ -17,17 +19,6 @@
     "codegen": "graphql-codegen",
     "sitemap": "next-sitemap",
     "watch-codegen": "graphql-codegen -w"
-  },
-  "next-unused": {
-    "alias": {},
-    "include": [
-      "components"
-    ],
-    "exclude": [],
-    "entrypoints": [
-      "src/pages",
-      "src/components"
-    ]
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",

@@ -30,13 +30,13 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
   return (
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
-        <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-2 lg:col-start-3">
+        <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-3 lg:col-start-3">
           {sizes > 1 && (
             <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
               <p>{languages(locale)?.introduce}</p>
               <ul
                 className={twMerge(
-                  "pl-5",
+                  "list-decimal pl-5",
                   sizes > 1 ? "list-decimal" : "list-disc"
                 )}>
                 {props.terms?.map((ele: any, id: number) => {
@@ -44,6 +44,7 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                   return (
                     <motion.li
                       // onViewportEnter={() => setActive(id)}
+                      style={{textAlign: "left"}}
                       key={id}
                       className={twMerge(
                         `relative cursor-pointer font-normal`,
@@ -51,7 +52,9 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                           "font-semibold text-primary-blue-main after:absolute after:-left-[46px] after:top-0 after:h-5 after:w-[2px] after:border-l-2 after:border-primary-blue-main",
                         id === size ? "-mb-2" : "mb-3"
                       )}>
-                      <button onClick={(e) => scrollTo(id)}>
+                      <button
+                        className="-mt-[1px] max-w-[250px] text-left align-text-top"
+                        onClick={(e) => scrollTo(id)}>
                         {ele?.title}
                       </button>
                     </motion.li>

@@ -1,4 +1,3 @@
-"use client"
 import {IconsBlock} from "@/__generated__/graphql"
 import Image from "next/image"
 import Button from "../Button"
