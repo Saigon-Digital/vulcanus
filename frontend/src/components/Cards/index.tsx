@@ -1,8 +1,5 @@
-"use client"
 import {CardsBlock_Fields} from "@/__generated__/graphql"
 import Card from "../Card"
-import "swiper/css"
-import "swiper/css/pagination"
 
 import {twMerge} from "tailwind-merge"
 import {useState} from "react"

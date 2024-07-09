@@ -1,4 +1,3 @@
-"use client"
 import Link from "next/link"
 import ArrowRight from "public/icons/arrow-right.svg"
 import React, {useRef, useState} from "react"

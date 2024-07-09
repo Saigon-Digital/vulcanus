@@ -4,7 +4,6 @@ import {useMediaQuery} from "@/hooks/useMediaQuery"
 import Image from "next/image"
 import {useMemo} from "react"
 import ReactPlayer from "react-player"
-import {PlayIcon} from "../Icons"
 
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
@@ -17,9 +16,9 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   const imageStyle = useImageStyle({
     src: image?.node.sourceUrl || "",
     w: 1800,
-    fill: false,
+
     h: 900,
-    priority: true,
+
     alt: "page banner",
   })
 
