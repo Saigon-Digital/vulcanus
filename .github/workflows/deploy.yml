@@ -16,7 +16,7 @@ jobs:
           cache: "npm"
 
       - name: Install Netlify
-         run: npm install netlify-cli -g
+        run: npm install netlify-cli -g
 
       - name: Install Dependencies
         run: npm ci
