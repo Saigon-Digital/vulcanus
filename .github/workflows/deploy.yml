@@ -4,9 +4,7 @@ on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu
-  defaults:
-    run:
-      working-directory: frontend
+
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
