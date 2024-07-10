@@ -19,14 +19,14 @@ jobs:
       - name: Install Netlify
         run: yarn add netlify-cli -g
 
-      - name: Install Dependencies
-        working-directory: frontend
-        run: yarn install
-
       - name: Import env
         working-directory: frontend
         run: |
           echo "${{secrets.PRODUCTION_ENV}}" > .env
+
+      - name: Install Dependencies
+        working-directory: frontend
+        run: yarn install --frozen-lockfile
 
       - name: Build project
         working-directory: frontend
