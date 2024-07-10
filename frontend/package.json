@@ -9,7 +9,7 @@
     "analyze": "cross-env ANALYZE=true yarn build",
     "deploy": "netlify deploy --build --prod",
     "prepare": "yarn codegen && yarn generate && yarn get-data",
-    "build": "yarn prepare && faust build && yarn sitemap && yarn deploy",
+    "build": "yarn deploy && yarn prepare && faust build && yarn sitemap ",
     "deploy-build": "yarn prepare && faust build  && yarn sitemap",
     "generate": "faust generatePossibleTypes",
     "start": "faust start",
