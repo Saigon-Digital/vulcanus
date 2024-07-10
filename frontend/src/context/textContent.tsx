@@ -12,8 +12,10 @@ export const TextContentProvider = ({children}: PropsWithChildren) => {
   const [heights, setHeights] = useState<number[]>([])
 
   const setH = (h: number) => {
-    setHeights((prev) => [...prev, h + 15])
+    setHeights((prev) => [...prev, h + 10])
   }
+  console.log(heights)
+
   const maxH = heights.sort((a, b) => b - a).at(0)
   return (
     <TextContent.Provider

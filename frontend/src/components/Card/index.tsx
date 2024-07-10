@@ -112,7 +112,6 @@ const Card: React.FC<Props> = ({
         )}>
         {description && (
           <div
-            ref={textRef}
             style={{
               color: backgroundColor ? "#140F24" : undefined,
             }}
