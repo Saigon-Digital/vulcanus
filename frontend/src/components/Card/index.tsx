@@ -1,6 +1,6 @@
 import Link from "next/link"
 import ArrowRight from "public/icons/arrow-right.svg"
-import React, {useRef, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 
 import {CardShape} from "../Icons"
 import {CardsBlockCards_Fields} from "@/__generated__/graphql"
@@ -12,6 +12,7 @@ import {languages} from "@/utils/language"
 import {useLocaleContext} from "@/context/LocaleContext"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 import {twMerge} from "tailwind-merge"
+import {useTextContent} from "@/context/textContent"
 type Props = {
   setCardHeight?: (h: number) => void
   maxHeight?: number
@@ -33,11 +34,16 @@ const Card: React.FC<Props> = ({
   ...props
 }) => {
   const {locale} = useLocaleContext()
-  const [height, setHeight] = useState<number | "auto">("auto")
   const textRef = useRef<HTMLParagraphElement | null>(null)
   let desc = description ? description?.replace("Weiterlesen", "") : ""
-  // console.log(maxHeight)
-
+  const {setH, maxH} = useTextContent()
+  console.log(maxH)
+  useEffect(() => {
+    if (textRef.current) {
+      const h = textRef.current.clientHeight || textRef.current.offsetHeight
+      setH(h)
+    }
+  }, [])
   return (
     <div
       style={{background: backgroundColor || undefined}}
@@ -97,23 +103,22 @@ const Card: React.FC<Props> = ({
 
       <div
         ref={textRef}
+        style={{
+          height: maxH,
+        }}
         className={twMerge(
           "relative z-10 flex  flex-col  gap-3",
-          !link ? "mb-6  h-auto justify-between" : ` h-[68%] justify-between`
+          !link ? "mb-6  h-auto justify-between" : `  justify-between`
         )}>
         {description && (
           <div
             ref={textRef}
             style={{
               color: backgroundColor ? "#140F24" : undefined,
-              wordBreak: "normal",
             }}
-            className=" mb-0 line-clamp-none   flex flex-col  justify-end pb-2  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
+            className=" mb-0 line-clamp-none   flex flex-col  justify-end overflow-y-visible pb-0  text-base font-light leading-[18px] text-secondary-offWhite-white  xl:leading-[25px] 2xl:text-lg [&>*]:text-base [&>*]:leading-[20px] 2xl:[&>*]:text-[17px] 2xl:[&>*]:leading-[22px]"
             dangerouslySetInnerHTML={{
-              __html:
-                desc.length > 350
-                  ? desc.slice(0, 350) + "&nbsp <br/> Weiterlesen"
-                  : desc + ` Weiterlesen`,
+              __html: desc,
             }}></div>
         )}
         {link ? (

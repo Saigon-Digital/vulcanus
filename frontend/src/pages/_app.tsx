@@ -14,6 +14,7 @@ import {Overpass} from "next/font/google"
 import {ApolloProvider} from "@apollo/client"
 import {client} from "@/libs/graphql/utils"
 import {ModalContext, ModalContextProvider} from "@/context/modalContext"
+import {TextContent, TextContentProvider} from "@/context/textContent"
 
 const Layout = dynamic(() => import("@/components/Layout"))
 
@@ -51,20 +52,22 @@ export default function App({Component, pageProps}: AppProps) {
                   ?.link || null,
             }}>
             <ModalContextProvider>
-              <AnimatePresence initial={false} mode="wait">
-                <Layout
-                  footerText={
-                    pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
-                      ?.pagesSetting?.footerText
-                  }
-                  key={`${router.asPath}-${router.locale}`}>
-                  {/* > */}
-                  <Component
-                    {...pageProps}
-                    key={`${router.asPath}-${router.locale}`}
-                  />
-                </Layout>
-              </AnimatePresence>
+              <TextContentProvider>
+                <AnimatePresence initial={false} mode="wait">
+                  <Layout
+                    footerText={
+                      pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
+                        ?.pagesSetting?.footerText
+                    }
+                    key={`${router.asPath}-${router.locale}`}>
+                    {/* > */}
+                    <Component
+                      {...pageProps}
+                      key={`${router.asPath}-${router.locale}`}
+                    />
+                  </Layout>
+                </AnimatePresence>
+              </TextContentProvider>
             </ModalContextProvider>
           </LocaleContextProvider>
         </FaustProvider>

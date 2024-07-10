@@ -12,12 +12,9 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
       return [...temp]
     })
   }
-  const maxHeight = props.cards
-    ?.map((e) => e?.description?.length || 100)
-    .sort((a, b) => b - a)
-    .at(0)
 
-  if (!maxHeight) return null
+  const idString = `cards-${encodeURIComponent(props.title || "")}`
+
   return (
     <div className="cards container-fluid py-14">
       <h2 className="heading-2 mb-14">{props?.title}</h2>
@@ -32,8 +29,6 @@ const Cards: React.FC<CardsBlock_Fields> = (props) => {
         {props?.cards?.map((card, id) => {
           return (
             <Card
-              maxHeight={maxHeight}
-              setCardHeight={setCardHeight}
               key={id}
               hasImage={card?.hasImage}
               iconImage={card?.iconImage}
