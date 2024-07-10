@@ -31,7 +31,6 @@ jobs:
       - name: Deploy to Netlify
         id: netlify_deploy
         run: |
-          netlify deploy --build --prod \
-            --dir frontend \
+          cd frontend && yarn deploy \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }}
