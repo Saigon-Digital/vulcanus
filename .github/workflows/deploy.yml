@@ -28,15 +28,10 @@ jobs:
         working-directory: frontend
         run: yarn install --frozen-lockfile
 
-      - name: Build project
-        working-directory: frontend
-        run: yarn build
-
       - name: Deploy to Netlify
         working-directory: frontend
         id: netlify_deploy
         run: |
           netlify deploy --build --prod \
-            --dir frontend \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }}
