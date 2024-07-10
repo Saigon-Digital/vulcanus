@@ -16,9 +16,6 @@ jobs:
           cache: "yarn"
           cache-dependency-path: "frontend/yarn.lock"
 
-      - name: Install Npx
-        run: npm install -g npx
-
       - name: Import env
         working-directory: frontend
         run: |
