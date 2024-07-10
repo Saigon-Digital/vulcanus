@@ -30,7 +30,8 @@ jobs:
 
       - name: Deploy to Netlify
         id: netlify_deploy
+        working-directory: frontend
         run: |
-          cd frontend && yarn deploy \
+          yarn deploy \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }}
