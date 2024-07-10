@@ -16,6 +16,9 @@ jobs:
           cache: "yarn"
           cache-dependency-path: "frontend/yarn.lock"
 
+      - name: Change dir
+        run: cd frontend
+
       - name: Install Netlify
         run: yarn add netlify-cli -g
 
