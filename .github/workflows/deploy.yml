@@ -3,7 +3,7 @@ name: Deploy website
 on: [push]
 jobs:
   build-and-deploy:
-    runs-on: ubuntu
+    runs-on: windows-latest
 
     steps:
       - name: Repository Checkout
