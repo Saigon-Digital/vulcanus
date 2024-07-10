@@ -12,7 +12,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
           cache: "yarn"
           cache-dependency-path: "frontend/yarn.lock"
 
@@ -26,12 +26,12 @@ jobs:
 
       - name: Install Dependencies
         working-directory: frontend
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Deploy to Netlify
         id: netlify_deploy
         working-directory: frontend
         run: |
-          pwd && cat package.json && cd frontend && yarn deploy \
+          pwd && netlify deploy --build --prod \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }}
