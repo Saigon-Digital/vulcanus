@@ -5,6 +5,7 @@ import Image from "next/image"
 import {useEffect, useMemo, useRef, useState} from "react"
 import ReactPlayer from "react-player"
 import ImageWithRatio from "../ImageWithRatio"
+import useOrientation from "@/hooks/useOrientation"
 
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
@@ -15,9 +16,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
 }) => {
   const isMobile = useMediaQuery("(max-width:1080px)")
   const ref = useRef<HTMLDivElement>(null)
-  const [orientation, setOrientation] = useState<"portrait" | "landscape">(
-    "portrait"
-  )
+
   const imageStyle = useImageStyle({
     src: image?.node.sourceUrl || "",
     w: 1800,
@@ -27,26 +26,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
     alt: "page banner",
   })
 
-  useEffect(() => {
-    if (!isMobile) return
-
-    function handleOrientationChange() {
-      if (window.orientation === 0 || window.orientation === 180) {
-        console.log("Portrait mode")
-        setOrientation("portrait")
-      } else if (window.orientation === 90 || window.orientation === -90) {
-        console.log("Landscape mode")
-        setOrientation("landscape")
-      }
-    }
-
-    window.addEventListener("orientationchange", handleOrientationChange)
-
-    return window.removeEventListener(
-      "orientationchange",
-      handleOrientationChange
-    )
-  }, [])
+  const orientation = useOrientation({isMobile: isMobile})
 
   return (
     <div ref={ref} className="container-fluid pb-10 lg:pb-16">
@@ -104,9 +84,10 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         //   className=""
         // />
         orientation === "landscape" ? (
-          <div className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover md:h-[300px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
+          <div className=" relative aspect-[4/3] max-h-none w-full object-cover  md:h-[300px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
             <Image
               fill
+              style={{backgroundSize: "100%"}}
               sizes="100vw"
               priority
               alt="banner image"
@@ -115,7 +96,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
             />
           </div>
         ) : (
-          <div className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover md:h-[450px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
+          <div className=" relative aspect-[4/3] max-h-[600px] w-full object-cover md:h-[450px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
             <Image
               fill
               sizes="100vw"
