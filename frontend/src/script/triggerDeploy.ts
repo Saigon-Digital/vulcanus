@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, {AxiosResponse} from "axios"
 import {loadEnvConfig} from "@next/env"
 
 loadEnvConfig(process.cwd())
@@ -18,8 +18,8 @@ axios
       "Content-Type": "application/json",
     },
   })
-  .then((response: any) => {
-    console.log("Response:", response.data)
+  .then((response: AxiosResponse) => {
+    console.log("Response:", response.status, response.data)
   })
   .catch((error: any) => {
     console.error(
