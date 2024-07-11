@@ -19,7 +19,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
 
   return (
     <div className="sm:container-fluid">
-      <div className="parallax relative flex min-h-[calc(100svh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
+      <div className="parallax relative flex min-h-[calc(100vh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
         <div className="absolute inset-0 z-[5] h-full w-full bg-black/40"></div>
         <div className="absolute -top-[26px] left-0  z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:-top-[28px] 3xl:w-[100px] ">
           <Image
@@ -33,7 +33,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         {!isMobile ? (
           <div
             style={{backgroundImage: imgStyle}}
-            className="parallax absolute  h-full w-full"></div>
+            className="parallax absolute inset-0 h-full w-full"></div>
         ) : (
           <Image
             fill
