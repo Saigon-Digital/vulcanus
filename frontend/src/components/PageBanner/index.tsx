@@ -15,7 +15,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   videoLink,
   videoOrImage,
 }) => {
-  const isMobile = useMediaQuery("(max-width:1080px)")
+  const isMobile = useMediaQuery("(max-width:880px)")
   const ref = useRef<HTMLDivElement>(null)
 
   const imageStyle = useImageStyle({
@@ -92,15 +92,12 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         orientation === "landscape" ? (
           containerWidth && (
             <div
-              style={{width: containerWidth, height: containerWidth / 1.8}}
-              className=" relative aspect-video  max-h-none w-full object-cover   lg:aspect-[1.8/1] lg:h-auto xl:aspect-[1800/850]">
-              <Image
-                height={containerWidth / 1.8}
-                style={{width: containerWidth, height: containerWidth / 1.8}}
+              // style={{width: containerWidth, height: containerWidth / 1.8}}
+              className=" relative   max-h-none w-full object-cover   lg:aspect-[1.8/1] lg:h-auto xl:aspect-[1800/850]">
+              <ImageWithRatio
                 width={containerWidth}
-                alt="hero image"
-                src={image?.node.sourceUrl || ""}
-                className="hero image absolute inset-0   object-cover"
+                imageSrc={image?.node.sourceUrl || ""}
+                className="hero image   object-cover"
               />
             </div>
           )

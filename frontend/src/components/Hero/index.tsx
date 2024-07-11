@@ -8,6 +8,7 @@ import {useMediaQuery} from "@/hooks/useMediaQuery"
 import useOrientation from "@/hooks/useOrientation"
 import useWidth from "@/hooks/useWidth"
 import {useRef} from "react"
+import {useRatio} from "@/hooks/useRatio"
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   const isMobile = useMediaQuery("(max-width:1088px)")
@@ -20,26 +21,33 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
       h: 900,
       priority: true,
     }) || ""
+
+  const ratio = useRatio(props.backgroundImage?.node.sourceUrl || "")
   const orientation = useOrientation({isMobile: isMobile})
 
   const containerWidth = useWidth(ref)
-
+  const isLandscape = isMobile && orientation === "landscape"
   return (
     <div ref={ref} className="sm:container-fluid">
-      <div className=" relative flex min-h-[calc(100vh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
+      <div
+        style={{
+          width: isLandscape ? containerWidth : undefined,
+          aspectRatio: isLandscape ? ratio : undefined,
+        }}
+        className=" relative flex min-h-[calc(100vh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
         {isMobile &&
           (orientation === "landscape" ? (
             containerWidth && (
               <Image
-                width={containerWidth}
-                height={(containerWidth * 9) / 12}
                 style={{
                   width: containerWidth,
-                  height: (containerWidth * 9) / 12,
+                  height: containerWidth * ratio,
                 }}
+                width={containerWidth}
+                height={containerWidth * ratio}
                 alt="hero image"
                 src={props.backgroundImage?.node.sourceUrl || ""}
-                className="hero image absolute inset-0  object-cover"
+                className="hero image absolute inset-0 object-contain  object-top"
               />
             )
           ) : (
