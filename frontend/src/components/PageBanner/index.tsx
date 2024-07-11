@@ -6,6 +6,7 @@ import {useEffect, useMemo, useRef, useState} from "react"
 import ReactPlayer from "react-player"
 import ImageWithRatio from "../ImageWithRatio"
 import useOrientation from "@/hooks/useOrientation"
+import useWidth from "@/hooks/useWidth"
 
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
@@ -27,6 +28,8 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   })
 
   const orientation = useOrientation({isMobile: isMobile})
+
+  const containerWidth = useWidth(ref)
 
   return (
     <div ref={ref} className="container-fluid pb-10 lg:pb-16">
@@ -83,16 +86,23 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         //   width={width}
         //   className=""
         // />
+
+        // landscape
+
         orientation === "landscape" ? (
-          <div className=" relative aspect-video max-h-none w-full object-cover  md:h-[300px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
-            <Image
-              width={890}
-              height={690}
-              alt="hero image"
-              src={image?.node.sourceUrl || ""}
-              className="hero image absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
+          containerWidth && (
+            <div
+              style={{width: containerWidth, height: containerWidth / 2}}
+              className=" relative aspect-video  max-h-none w-full object-cover   lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
+              <Image
+                height={680}
+                width={containerWidth}
+                alt="hero image"
+                src={image?.node.sourceUrl || ""}
+                className="hero image absolute inset-0 h-full w-full  object-cover"
+              />
+            </div>
+          )
         ) : (
           <div className=" relative aspect-[4/3] max-h-[600px] w-full object-cover md:h-[450px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
             <Image

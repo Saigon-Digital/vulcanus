@@ -6,9 +6,12 @@ import Button from "../Button"
 import useImageStyle from "@/hooks/useImageCss"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 import useOrientation from "@/hooks/useOrientation"
+import useWidth from "@/hooks/useWidth"
+import {useRef} from "react"
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   const isMobile = useMediaQuery("(max-width:1088px)")
+  const ref = useRef<HTMLDivElement>(null)
   const imgStyle =
     useImageStyle({
       src: props.backgroundImage?.node.sourceUrl || "",
@@ -18,18 +21,27 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
       priority: true,
     }) || ""
   const orientation = useOrientation({isMobile: isMobile})
+
+  const containerWidth = useWidth(ref)
+
   return (
-    <div className="sm:container-fluid">
+    <div ref={ref} className="sm:container-fluid">
       <div className=" relative flex min-h-[calc(100vh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
         {isMobile &&
           (orientation === "landscape" ? (
-            <Image
-              width={890}
-              height={690}
-              alt="hero image"
-              src={props.backgroundImage?.node.sourceUrl || ""}
-              className="hero image absolute inset-0 h-full w-full object-cover"
-            />
+            containerWidth && (
+              <Image
+                width={containerWidth}
+                height={(containerWidth * 9) / 12}
+                style={{
+                  width: containerWidth,
+                  height: (containerWidth * 9) / 12,
+                }}
+                alt="hero image"
+                src={props.backgroundImage?.node.sourceUrl || ""}
+                className="hero image absolute inset-0  object-cover"
+              />
+            )
           ) : (
             <Image
               fill
