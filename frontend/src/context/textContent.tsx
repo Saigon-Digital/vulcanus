@@ -14,7 +14,7 @@ export const TextContentProvider = ({children}: PropsWithChildren) => {
   const setH = (h: number) => {
     setHeights((prev) => [...prev, h + 10])
   }
-  console.log(heights)
+  // console.log(heights)
 
   const maxH = heights.sort((a, b) => b - a).at(0)
   return (

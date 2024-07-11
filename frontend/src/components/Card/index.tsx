@@ -37,7 +37,7 @@ const Card: React.FC<Props> = ({
   const textRef = useRef<HTMLParagraphElement | null>(null)
   let desc = description ? description?.replace("Weiterlesen", "") : ""
   const {setH, maxH} = useTextContent()
-  console.log(maxH)
+  // console.log(maxH)
   useEffect(() => {
     if (textRef.current) {
       const h = textRef.current.clientHeight || textRef.current.offsetHeight

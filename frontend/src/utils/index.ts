@@ -72,5 +72,5 @@ export const compareString = (
     }
   }
 
-  console.log(match)
+  // console.log(match)
 }
