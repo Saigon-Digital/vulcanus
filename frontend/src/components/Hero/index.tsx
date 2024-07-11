@@ -11,7 +11,7 @@ import {useRef} from "react"
 import {useRatio} from "@/hooks/useRatio"
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
-  const isMobile = useMediaQuery("(max-width:1088px)")
+  const isMobile = useMediaQuery("(max-width:1280px)")
   const ref = useRef<HTMLDivElement>(null)
   const imgStyle =
     useImageStyle({
