@@ -92,11 +92,11 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         orientation === "landscape" ? (
           containerWidth && (
             <div
-              style={{width: containerWidth, height: containerWidth / 2}}
-              className=" relative aspect-video  max-h-none w-full object-cover   lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
+              style={{width: containerWidth, height: containerWidth / 1.8}}
+              className=" relative aspect-video  max-h-none w-full object-cover   lg:aspect-[1.8/1] lg:h-auto xl:aspect-[1800/850]">
               <Image
-                height={680}
-                style={{width: containerWidth, height: containerWidth / 2}}
+                height={containerWidth / 1.8}
+                style={{width: containerWidth, height: containerWidth / 1.8}}
                 width={containerWidth}
                 alt="hero image"
                 src={image?.node.sourceUrl || ""}
