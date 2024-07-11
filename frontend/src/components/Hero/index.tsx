@@ -1,13 +1,13 @@
-import {HeroBlockFragment} from "@/__generated__/graphql";
-import {getAcfLinkProps} from "@/utils";
-import Image from "next/image";
-import Button from "../Button";
+import {HeroBlockFragment} from "@/__generated__/graphql"
+import {getAcfLinkProps} from "@/utils"
+import Image from "next/image"
+import Button from "../Button"
 
-import useImageStyle from "@/hooks/useImageCss";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
+import useImageStyle from "@/hooks/useImageCss"
+import {useMediaQuery} from "@/hooks/useMediaQuery"
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
-  const isMobile = useMediaQuery("(max-width:768px)");
+  const isMobile = useMediaQuery("(max-width:768px)")
   const imgStyle =
     useImageStyle({
       src: props.backgroundImage?.node.sourceUrl || "",
@@ -15,7 +15,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
       w: 1800,
       h: 900,
       priority: true,
-    }) || "";
+    }) || ""
 
   return (
     <div className="sm:container-fluid">
@@ -47,7 +47,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
           <div className="relative z-10 mx-auto max-w-[85%] text-secondary-offWhite-white lg:col-span-full lg:col-start-2 lg:mx-0 lg:max-w-[868px]">
             {props.title && (
-              <h1 className="2x:text-[64px] relative z-10 break-words text-4xl font-extrabold uppercase leading-[140%] tracking-tight lg:text-5xl">
+              <h1 className="2x:text-[64px] relative z-10 mb-3 break-words text-4xl font-extrabold uppercase leading-[140%] tracking-tight lg:text-5xl">
                 {props?.title}
               </h1>
             )}
@@ -65,7 +65,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Hero;
+export default Hero

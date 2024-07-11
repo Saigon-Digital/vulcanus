@@ -73,7 +73,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
             }}
             className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]"></div>
         ) : (
-          <div className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]">
+          <div className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover md:h-[450px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
             <Image
               fill
               sizes="100vw"
