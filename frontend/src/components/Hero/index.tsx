@@ -7,7 +7,7 @@ import useImageStyle from "@/hooks/useImageCss"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
-  const isMobile = useMediaQuery("(max-width:768px)")
+  const isMobile = useMediaQuery("(max-width:1088px)")
   const imgStyle =
     useImageStyle({
       src: props.backgroundImage?.node.sourceUrl || "",
@@ -19,7 +19,16 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
 
   return (
     <div className="sm:container-fluid">
-      <div className="parallax relative flex min-h-[calc(100vh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
+      <div className=" relative flex min-h-[calc(100vh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
+        {isMobile && (
+          <Image
+            fill
+            sizes="100vw"
+            alt="hero image"
+            src={props.backgroundImage?.node.sourceUrl || ""}
+            className="hero image object-cover-photo"
+          />
+        )}
         <div className="absolute inset-0 z-[5] h-full w-full bg-black/40"></div>
         <div className="absolute -top-[26px] left-0  z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:-top-[28px] 3xl:w-[100px] ">
           <Image
@@ -30,18 +39,10 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             className="object-contain object-center"
           />
         </div>
-        {!isMobile ? (
+        {!isMobile && (
           <div
             style={{backgroundImage: imgStyle}}
             className="parallax absolute inset-0 h-full w-full"></div>
-        ) : (
-          <Image
-            fill
-            sizes="80vw"
-            alt="hero image"
-            src={props.backgroundImage?.node.sourceUrl || ""}
-            className="hero image object-cover"
-          />
         )}
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">

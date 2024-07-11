@@ -79,7 +79,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               sizes="100vw"
               priority
               alt="banner image"
-              className="object-cover"
+              className="object-cover-photo"
               src={image.node.sourceUrl || ""}
             />
           </div>
