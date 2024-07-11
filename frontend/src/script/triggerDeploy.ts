@@ -11,19 +11,25 @@ const data = {
   ref: "develop",
 }
 
-axios
-  .post(url, data, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  })
-  .then((response: AxiosResponse) => {
-    console.log("Response:", response.status, response.data)
-  })
-  .catch((error: any) => {
-    console.error(
-      "Error:",
-      error.response ? error.response.data : error.message
-    )
-  })
+const triggerDeploy = () => {
+  axios
+    .post(url, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+    .then((response: AxiosResponse) => {
+      console.log("Response:", response.status, response.data)
+    })
+    .catch((error: any) => {
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      )
+    })
+}
+
+if (process.env.DEPLOY) {
+  triggerDeploy()
+}

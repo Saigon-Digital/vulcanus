@@ -42,10 +42,7 @@ const TitleBlock: React.FC<TitleBlockFragment> = ({
       }, 1000)
       return
     }
-    if (isMobile) {
-      setScrollEnd(true)
-      return
-    }
+
     if (ratio && ratio > 95) {
       setScrollEnd(true)
     }

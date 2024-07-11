@@ -12,7 +12,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   videoLink,
   videoOrImage,
 }) => {
-  const isMobile = useMediaQuery("(max-width:768px)")
+  const isMobile = useMediaQuery("(max-width:1080px)")
   const imageStyle = useImageStyle({
     src: image?.node.sourceUrl || "",
     w: 1800,
@@ -76,7 +76,8 @@ const PageBanner: React.FC<PageBannerFragment> = ({
           <div className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]">
             <Image
               fill
-              sizes="80vw"
+              sizes="100vw"
+              priority
               alt="banner image"
               className="object-cover"
               src={image.node.sourceUrl || ""}
