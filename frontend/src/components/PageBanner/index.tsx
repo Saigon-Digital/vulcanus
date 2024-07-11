@@ -2,8 +2,9 @@ import {PageBannerFragment} from "@/__generated__/graphql"
 import useImageStyle from "@/hooks/useImageCss"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 import Image from "next/image"
-import {useMemo} from "react"
+import {useEffect, useMemo, useRef, useState} from "react"
 import ReactPlayer from "react-player"
+import ImageWithRatio from "../ImageWithRatio"
 
 const PageBanner: React.FC<PageBannerFragment> = ({
   title,
@@ -13,6 +14,10 @@ const PageBanner: React.FC<PageBannerFragment> = ({
   videoOrImage,
 }) => {
   const isMobile = useMediaQuery("(max-width:1080px)")
+  const ref = useRef<HTMLDivElement>(null)
+  const [orientation, setOrientation] = useState<"portrait" | "landscape">(
+    "portrait"
+  )
   const imageStyle = useImageStyle({
     src: image?.node.sourceUrl || "",
     w: 1800,
@@ -22,8 +27,29 @@ const PageBanner: React.FC<PageBannerFragment> = ({
     alt: "page banner",
   })
 
+  useEffect(() => {
+    if (!isMobile) return
+
+    function handleOrientationChange() {
+      if (window.orientation === 0 || window.orientation === 180) {
+        console.log("Portrait mode")
+        setOrientation("portrait")
+      } else if (window.orientation === 90 || window.orientation === -90) {
+        console.log("Landscape mode")
+        setOrientation("landscape")
+      }
+    }
+
+    window.addEventListener("orientationchange", handleOrientationChange)
+
+    return window.removeEventListener(
+      "orientationchange",
+      handleOrientationChange
+    )
+  }, [])
+
   return (
-    <div className="container-fluid pb-10 lg:pb-16">
+    <div ref={ref} className="container-fluid pb-10 lg:pb-16">
       <div className="flex flex-wrap items-center justify-between gap-y-5 py-10 ">
         {title && (
           <h1 className="text-4xl font-bold text-white lg:text-5xl 2xl:text-[64px] 2xl:leading-[89px]">
@@ -72,6 +98,22 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               backgroundImage: imageStyle,
             }}
             className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]"></div>
+        ) : // <ImageWithRatio
+        //   imageSrc={image.node.sourceUrl}
+        //   width={width}
+        //   className=""
+        // />
+        orientation === "landscape" ? (
+          <div className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover md:h-[300px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
+            <Image
+              fill
+              sizes="100vw"
+              priority
+              alt="banner image"
+              className="object-cover-photo"
+              src={image.node.sourceUrl || ""}
+            />
+          </div>
         ) : (
           <div className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover md:h-[450px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
             <Image
