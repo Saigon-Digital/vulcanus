@@ -84,15 +84,13 @@ const PageBanner: React.FC<PageBannerFragment> = ({
         //   className=""
         // />
         orientation === "landscape" ? (
-          <div className=" relative aspect-[4/3] max-h-none w-full object-cover  md:h-[300px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
+          <div className=" relative aspect-video max-h-none w-full object-cover  md:h-[300px] lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
             <Image
-              fill
-              style={{backgroundSize: "100%"}}
-              sizes="100vw"
-              priority
-              alt="banner image"
-              className="object-cover-photo"
-              src={image.node.sourceUrl || ""}
+              width={890}
+              height={690}
+              alt="hero image"
+              src={image?.node.sourceUrl || ""}
+              className="hero image absolute inset-0 h-full w-full object-cover"
             />
           </div>
         ) : (

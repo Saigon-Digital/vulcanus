@@ -24,11 +24,11 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         {isMobile &&
           (orientation === "landscape" ? (
             <Image
-              fill
-              sizes="100vw"
+              width={890}
+              height={690}
               alt="hero image"
               src={props.backgroundImage?.node.sourceUrl || ""}
-              className="hero image object-cover object-center"
+              className="hero image absolute inset-0 h-full w-full object-cover"
             />
           ) : (
             <Image
