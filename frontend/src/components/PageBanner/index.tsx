@@ -96,10 +96,11 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               className=" relative aspect-video  max-h-none w-full object-cover   lg:aspect-[2/1] lg:h-auto xl:aspect-[1800/850]">
               <Image
                 height={680}
+                style={{width: containerWidth, height: containerWidth / 2}}
                 width={containerWidth}
                 alt="hero image"
                 src={image?.node.sourceUrl || ""}
-                className="hero image absolute inset-0 h-full w-full  object-cover"
+                className="hero image absolute inset-0   object-cover"
               />
             </div>
           )
