@@ -9,6 +9,8 @@ import useOrientation from "@/hooks/useOrientation"
 import useWidth from "@/hooks/useWidth"
 import {useRef} from "react"
 import {useRatio} from "@/hooks/useRatio"
+import {twMerge} from "tailwind-merge"
+import ImageWithRatio from "../ImageWithRatio"
 
 const Hero: React.FC<HeroBlockFragment> = (props) => {
   const isMobile = useMediaQuery("(max-width:1280px)")
@@ -25,30 +27,30 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
   const ratio = useRatio(props.backgroundImage?.node.sourceUrl || "")
   const orientation = useOrientation({isMobile: isMobile})
 
-  const containerWidth = useWidth(ref)
+  const containerD = useWidth(ref)
   const isLandscape = isMobile && orientation === "landscape"
+
   return (
-    <div ref={ref} className="sm:container-fluid">
+    <div className="sm:container-fluid">
       <div
-        style={{
-          width: isLandscape ? containerWidth : undefined,
-          aspectRatio: isLandscape ? ratio : undefined,
-        }}
+        ref={ref}
         className=" relative flex min-h-[calc(100vh-var(--header-height)-2*var(--header-py))] items-center justify-center overflow-hidden rounded-[5px] py-10">
         {isMobile &&
           (orientation === "landscape" ? (
-            containerWidth && (
-              <Image
+            containerD && (
+              <div
                 style={{
-                  width: containerWidth,
-                  height: containerWidth * ratio,
+                  width: containerD.w * 1.6,
+                  height: (containerD.w / ratio) * 1.6,
                 }}
-                width={containerWidth}
-                height={containerWidth * ratio}
-                alt="hero image"
-                src={props.backgroundImage?.node.sourceUrl || ""}
-                className="hero image absolute inset-0 object-contain  object-top"
-              />
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <ImageWithRatio
+                  imageSrc={props.backgroundImage?.node.sourceUrl}
+                  width={containerD.w * 1.6}
+                  delay={1500}
+                  className="hero image  object-contain  object-center"
+                />
+              </div>
             )
           ) : (
             <Image
@@ -60,7 +62,11 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             />
           ))}
         <div className="absolute inset-0 z-[5] h-full w-full bg-black/40"></div>
-        <div className="absolute -top-[26px] left-0  z-10 hidden aspect-[100.528/278.4] md:block md:w-[80px] 3xl:-top-[28px] 3xl:w-[100px] ">
+        <div
+          className={twMerge(
+            " absolute -top-[26px] left-0  z-10 hidden aspect-[100.528/278.4] md:w-[80px] lg:block 3xl:-top-[28px] 3xl:w-[100px] ",
+            orientation === "landscape" && "hidden lg:hidden"
+          )}>
           <Image
             fill
             sizes="33vw"
@@ -83,7 +89,11 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
               </h1>
             )}
             {props.description && (
-              <p className="font-normal leading-[140%] tracking-tight min-max-[18_32]">
+              <p
+                className={twMerge(
+                  " text-base font-normal leading-[140%] tracking-tight lg:text-2xl xl:text-3xl",
+                  orientation === "landscape" && "max-w-[80%] min-max-[16_20]"
+                )}>
                 {props?.description}
               </p>
             )}

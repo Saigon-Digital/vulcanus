@@ -95,7 +95,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
               // style={{width: containerWidth, height: containerWidth / 1.8}}
               className=" relative   max-h-none w-full object-cover   lg:aspect-[1.8/1] lg:h-auto xl:aspect-[1800/850]">
               <ImageWithRatio
-                width={containerWidth}
+                width={containerWidth.w}
                 imageSrc={image?.node.sourceUrl || ""}
                 className="hero image   object-cover"
               />
