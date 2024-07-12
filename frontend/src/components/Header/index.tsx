@@ -6,6 +6,7 @@ import dynamic from "next/dynamic"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 import {TSiteData} from "../Layout"
 import {useLocaleContext} from "@/context/LocaleContext"
+import useOrientation from "@/hooks/useOrientation"
 
 const Link = dynamic(() => import("next/link"))
 const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"))
@@ -22,7 +23,8 @@ const Header = (props: Props) => {
 
   // console.log(asPath);
 
-  const isMobile = useMediaQuery("(max-width:1024px)")
+  const isMobile = useMediaQuery("(max-width:1280px)")
+
   useEffect(() => {
     if (navIsOpen) {
       document.body.classList.add("overflow-hidden")
@@ -43,6 +45,8 @@ const Header = (props: Props) => {
     }
   }, [])
 
+  const orientation = useOrientation({isMobile: isMobile})
+
   return (
     <>
       <header className=" sticky top-0 z-[100] py-[var(--header-py)]">
@@ -59,46 +63,42 @@ const Header = (props: Props) => {
               />
             </Link>
 
-            {!isMobile && (
-              <nav className=" hidden items-center  space-x-2 lg:flex xl:space-x-4">
-                {props.menu &&
-                  props?.menu.menuItems?.nodes?.map((item) => {
-                    const isActive =
-                      asPath !== "/" && item?.uri?.includes(asPath || "")
-                    return (
-                      <Link
-                        key={item?.uri}
-                        locale={locale}
-                        href={item?.uri ?? "#"}
-                        // locale={locale}
-                        className={twMerge(
-                          "text-sm font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main xl:text-[16px]",
+            <nav className=" hidden items-center  space-x-2 xl:flex xl:space-x-4">
+              {props.menu &&
+                props?.menu.menuItems?.nodes?.map((item) => {
+                  const isActive =
+                    asPath !== "/" && item?.uri?.includes(asPath || "")
+                  return (
+                    <Link
+                      key={item?.uri}
+                      locale={locale}
+                      href={item?.uri ?? "#"}
+                      // locale={locale}
+                      className={twMerge(
+                        "text-sm font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main xl:text-[16px]",
 
-                          isActive && "text-primary-blue-main",
-                          !isActive && "text-secondary-offWhite-white"
-                        )}>
-                        {item?.label}
-                      </Link>
-                    )
-                  })}
-              </nav>
-            )}
-            {!isMobile && (
-              <div className="hidden shrink-0 lg:block">
-                <LanguageToggle />
-              </div>
-            )}
-            {isMobile && (
-              <div className="block lg:hidden">
-                <button
-                  onClick={() => setNavIsOpen(true)}
-                  className="flex items-center justify-center"
-                  type="button">
-                  <span className="sr-only">Open menu</span>
-                  <HamburgerMenu />
-                </button>
-              </div>
-            )}
+                        isActive && "text-primary-blue-main",
+                        !isActive && "text-secondary-offWhite-white"
+                      )}>
+                      {item?.label}
+                    </Link>
+                  )
+                })}
+            </nav>
+
+            <div className="hidden shrink-0 xl:block">
+              <LanguageToggle />
+            </div>
+
+            <div className="block xl:hidden">
+              <button
+                onClick={() => setNavIsOpen(true)}
+                className="flex items-center justify-center"
+                type="button">
+                <span className="sr-only">Open menu</span>
+                <HamburgerMenu />
+              </button>
+            </div>
           </div>
         </div>
         {isMobile && (
