@@ -40,13 +40,13 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             containerD && (
               <div
                 style={{
-                  width: containerD.w * 1.6,
-                  height: (containerD.w / ratio) * 1.6,
+                  width: containerD.w * 1.2,
+                  height: (containerD.w / ratio) * 1.2,
                 }}
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <ImageWithRatio
                   imageSrc={props.backgroundImage?.node.sourceUrl}
-                  width={containerD.w * 1.6}
+                  width={containerD.w * 1.2}
                   delay={1500}
                   className="hero image  object-contain  object-center"
                 />
@@ -91,7 +91,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
             {props.description && (
               <p
                 className={twMerge(
-                  " text-base font-normal leading-[140%] tracking-tight lg:text-2xl xl:text-3xl",
+                  " text-base font-normal leading-[140%] tracking-tight md:max-w-[80%] lg:text-2xl xl:text-3xl",
                   orientation === "landscape" && "max-w-[80%] min-max-[16_20]"
                 )}>
                 {props?.description}
