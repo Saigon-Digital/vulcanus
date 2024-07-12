@@ -205,9 +205,9 @@ const Form = ({contacts, form}: TFormFragment) => {
                       <PhoneIcon />
                       <Link
                         target="_blank"
-                        href={`tel:${contactInformation?.phoneNumber || ""}`}
+                        href={contactInformation?.phoneNumber?.url || ""}
                         className="font-base hover:text-primary-blue-main">
-                        {contactInformation?.phoneNumber}
+                        {contactInformation?.phoneNumber?.title}
                       </Link>
                     </p>
                     <p className="flex gap-4">

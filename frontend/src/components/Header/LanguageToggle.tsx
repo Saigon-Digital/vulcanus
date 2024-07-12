@@ -18,7 +18,6 @@ const LanguageButton = ({
   disabled?: boolean
   href: string
 } & React.HTMLAttributes<HTMLButtonElement>) => {
-  const {locale} = useLocaleContext()
   return (
     <Link
       href={href}

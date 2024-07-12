@@ -9,7 +9,10 @@ fragment Form on PageBuilderDynamicBlocksFormLayout {
       title
       email
       fieldGroupName
-      phoneNumber
+      phoneNumber {
+        url
+        title
+      }
       location {
         locationInformation
         fieldGroupName

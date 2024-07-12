@@ -35,6 +35,7 @@ const Footer = (props: Props) => {
     const {childItems} = ele
     return childItems.nodes?.length > 0
   })
+
   let [buttonLink, setButtonLink] =
     useState<GetFooterButtonQuery["contactPage"]>()
 
