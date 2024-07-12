@@ -18,10 +18,12 @@ const LanguageButton = ({
   disabled?: boolean
   href: string
 } & React.HTMLAttributes<HTMLButtonElement>) => {
+  const {locale} = useLocaleContext()
   return (
     <Link
       href={href}
       aria-disabled={disabled}
+      // locale={locale}
       className={twMerge(
         "inline-block rounded-full px-2 pb-[7.65px] pt-[9px] text-center text-base font-semibold uppercase leading-[140%] xl:px-[14.7px] xl:text-[18px]",
 
@@ -57,7 +59,7 @@ const LanguageToggle = (props: Props) => {
     <div className="rounded-full border border-primary-blue-main bg-primary-blue-100 px-[3.68px] py-[3px]">
       <LanguageButton
         label="ENG"
-        href={"/coming-soon"}
+        href={"/en/coming-soon"}
         // disabled={localeData ? !localeData["EN"] !== null : true}
         isActive={router.locale === "en"}
         // onClick={() => handleLanguageChange("EN")}
