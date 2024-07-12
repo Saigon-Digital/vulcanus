@@ -30,7 +30,7 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
   return (
     <section className="container-block introduce-block py-28 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
-        <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-3 lg:col-start-3">
+        <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-3 lg:col-start-2">
           {sizes > 1 && (
             <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
               <p>{languages(locale)?.introduce}</p>
@@ -66,7 +66,7 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
         </div>
         <div
           className={twMerge(
-            "content col-span-full flex flex-col md:col-span-7 lg:col-span-5",
+            "content col-span-full flex flex-col md:col-span-7 xl:col-span-6",
             sizes < 2 &&
               "md:col-span-full md:col-start-3 lg:col-span-10 lg:col-start-2"
           )}>
