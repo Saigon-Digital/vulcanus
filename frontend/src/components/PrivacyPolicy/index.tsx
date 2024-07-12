@@ -70,16 +70,13 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
             sizes < 2 &&
               "md:col-span-full md:col-start-3 lg:col-span-10 lg:col-start-2"
           )}>
-          <div className="border-b border-white pb-4">
-            <h1 className="mb-5 text-[32px] leading-[40px]">
-              {languages(locale)?.policy}
-            </h1>
-            <h2 className="mb-5 !text-2xl font-semibold !leading-[30px] text-secondary-yellow ">
+          <div className=" pb-4">
+            <h1 className="mb-5 !text-2xl font-semibold !leading-[30px] text-secondary-yellow ">
               {languages(locale)?.introduce}
-            </h2>
-            {props.introduction && (
+            </h1>
+            {/* {props.introduction && (
               <div dangerouslySetInnerHTML={{__html: props.introduction}}></div>
-            )}
+            )} */}
           </div>
           {props.terms &&
             props.terms.map((ele: any, id: number) => {
@@ -96,7 +93,9 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
                     {sizes > 1 && id + 1}. {ele?.title}
                   </h3>
                   {ele.content && (
-                    <div dangerouslySetInnerHTML={{__html: ele.content}}></div>
+                    <div
+                      className="rich-text"
+                      dangerouslySetInnerHTML={{__html: ele.content}}></div>
                   )}
                 </div>
               )

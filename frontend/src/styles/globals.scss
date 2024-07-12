@@ -140,6 +140,14 @@ p {
   h4 {
     @apply mb-4 inline-block text-[34px] font-bold leading-[1.175];
   }
+  h3,
+  h4,
+  h5 {
+    @apply text-primary-blue-main;
+  }
+  strong {
+    @apply min-max-[20_26];
+  }
 }
 .scroll-title {
   @for $i from 0 through 100 {
