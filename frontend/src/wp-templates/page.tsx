@@ -1,28 +1,32 @@
-import BlockViewer from "@/wp-blocks/BlockViewer";
-import {FaustTemplate} from "@faustwp/core";
-import {useRouter} from "next/router";
-import {gql} from "../__generated__";
-import {GetPageQuery, LanguageCodeEnum} from "../__generated__/graphql";
-import Head from "next/head";
+import BlockViewer from "@/wp-blocks/BlockViewer"
+import {FaustTemplate} from "@faustwp/core"
+import {useRouter} from "next/router"
+import {gql} from "../__generated__"
+import {GetPageQuery, LanguageCodeEnum} from "../__generated__/graphql"
+import Head from "next/head"
 
-import IntroduceBlock from "@/components/IntroduceBlock";
-import SEO from "@/components/SEO";
+import IntroduceBlock from "@/components/IntroduceBlock"
+import SEO from "@/components/SEO"
 
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
   if (props.loading) {
-    return <>Loading...</>;
+    return <>Loading...</>
   }
 
   const dynamicBlocks = props.data?.page?.isPreview
     ? props.data?.page?.pageBuilder?.dynamicBlocks
-    : props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || [];
+    : props?.data?.page?.translation?.pageBuilder?.dynamicBlocks || []
 
   // const language = props.__TEMPLATE_VARIABLES__?.language;
 
   // const pathname = props.data?.page?.translation?.uri;
-  const siteSetting = props.data?.siteSettings;
-  let siteTitle = props.data?.page?.title + " | Vulcanus Stahl";
+  const siteSetting = props.data?.siteSettings
+  let siteTitle = props.data?.page?.title + " | Vulcanus Stahl"
+  let socialLink =
+    process.env.NEXT_PUBLIC_SITE_URL +
+    (props?.data?.page?.translation?.uri ?? "")
+  // console.log(socialLink)
 
   return (
     <>
@@ -31,21 +35,21 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
         ENUri={props.data?.page?.translation?.ENLang?.link}
         seo={props?.data?.page?.translation?.pagesSetting}
         defaultSEO={{...siteSetting?.siteSetting, siteTitle: siteTitle}}
-        link={props?.data?.page?.translation?.link}
+        link={socialLink}
       />
 
       <BlockViewer dynamicBlocks={dynamicBlocks} />
     </>
-  );
-};
+  )
+}
 
 Page.variables = ({databaseId}, ctx) => {
   return {
     databaseId,
     asPreview: ctx?.asPreview,
     language: ctx?.locale === "en" ? LanguageCodeEnum.En : LanguageCodeEnum.De,
-  };
-};
+  }
+}
 
 Page.query = gql(`
   query GetPage($databaseId: ID!, $asPreview: Boolean = false, $language: LanguageCodeEnum!) {
@@ -84,9 +88,11 @@ Page.query = gql(`
           code
         }
         ENLang:translation (language:EN) {
+          uri
           link
         }
         DELang:translation(language: DE) {
+          uri
           link
         }
         pagesSetting {
@@ -106,6 +112,6 @@ Page.query = gql(`
       }
     }
   }
-`);
+`)
 
-export default Page;
+export default Page

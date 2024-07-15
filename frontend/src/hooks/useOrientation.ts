@@ -14,20 +14,16 @@ const useOrientation = ({
 
     function handleResize() {
       if (window.innerWidth > window.innerHeight) {
-        console.log("Landscape mode")
         setOrientation("landscape")
       } else {
-        console.log("Portrait mode")
         setOrientation("portrait")
       }
     }
 
     function handleOrientationChange() {
       if (window.orientation === 0 || window.orientation === 180) {
-        console.log("Portrait mode")
         setOrientation("portrait")
       } else if (window.orientation === 90 || window.orientation === -90) {
-        console.log("Landscape mode")
         setOrientation("landscape")
       }
     }

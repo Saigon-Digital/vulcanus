@@ -1,19 +1,19 @@
 import {
   PagesSettingFragment,
   SiteSettingFragment,
-} from "@/__generated__/graphql";
-import Head from "next/head";
+} from "@/__generated__/graphql"
+import Head from "next/head"
 export type TSEO = {
-  seo?: PagesSettingFragment | null | undefined;
-  ENUri?: string | null | undefined;
-  DEUri?: string | null | undefined;
-  defaultSEO?: SiteSettingFragment | null | undefined;
-  link?: string | null | undefined;
-  pageTitle?: string;
-};
+  seo?: PagesSettingFragment | null | undefined
+  ENUri?: string | null | undefined
+  DEUri?: string | null | undefined
+  defaultSEO?: SiteSettingFragment | null | undefined
+  link?: string | null | undefined
+  pageTitle?: string
+}
 const SEO = (props: TSEO) => {
-  const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props;
-  const favicon = defaultSEO?.favicon?.node?.sourceUrl;
+  const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props
+  const favicon = defaultSEO?.favicon?.node?.sourceUrl
 
   const seo = {
     title: onPageSeo?.title || defaultSEO?.siteTitle,
@@ -23,7 +23,7 @@ const SEO = (props: TSEO) => {
       defaultSEO?.openGraphImage?.node.sourceUrl,
     seoCanonical: onPageSeo?.canonicalUrl || link?.replace("homepage/", ""),
     url: link?.replace("homepage/", ""),
-  };
+  }
 
   return (
     <Head>
@@ -92,7 +92,7 @@ const SEO = (props: TSEO) => {
         />
       )}
     </Head>
-  );
-};
+  )
+}
 
-export default SEO;
+export default SEO
