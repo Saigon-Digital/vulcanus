@@ -20,7 +20,11 @@ const triggerDeploy = () => {
       },
     })
     .then((response: AxiosResponse) => {
-      console.log("Response:", response.status, response.data)
+      console.log(
+        "Response: Deploy Trigger Hook",
+        response.status,
+        response.data
+      )
     })
     .catch((error: any) => {
       console.error(
