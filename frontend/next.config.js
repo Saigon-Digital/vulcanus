@@ -46,3 +46,4 @@ const nextConfig = withFaust({
 });
 
 module.exports = withBundleAnalyzer(nextConfig);
+//triger build
