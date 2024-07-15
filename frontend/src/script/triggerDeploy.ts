@@ -30,6 +30,6 @@ const triggerDeploy = () => {
     })
 }
 
-if (process.env.DEPLOY) {
+if (process.env.DEPLOY === "true") {
   triggerDeploy()
 }
