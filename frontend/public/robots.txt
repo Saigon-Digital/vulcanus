@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://vulcanus-stahl.netlify.app
+Host: https://www.vulcanus-stahl.de
 
 # Sitemaps
-Sitemap: https://vulcanus-stahl.netlify.app/sitemap.xml
+Sitemap: https://www.vulcanus-stahl.de/sitemap.xml
