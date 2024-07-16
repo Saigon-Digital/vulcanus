@@ -7,7 +7,7 @@ import {useLocaleContext} from "@/context/LocaleContext"
 import {twMerge} from "tailwind-merge"
 import {motion} from "framer-motion"
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(-1)
   const {locale} = useLocaleContext()
   const sizes = props.terms?.length || 0
   React.useEffect(() => {}, [active])
@@ -15,10 +15,14 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
   const scrollTo = (active: number) => {
     if (typeof document === undefined || typeof window === undefined) return
     setActive(active)
-    const id =
-      //@ts-ignore
-      props.terms?.find((ele, id) => id === active)?.title?.replace(" ", "") ||
-      ""
+    let id = ""
+    if (active === -1) id = "introduce"
+    else
+      id =
+        //@ts-ignore
+        props.terms
+          ?.find((ele, id) => id === active)
+          ?.title?.replace(" ", "") || ""
     const element = document.getElementById(id)
     if (element) {
       const top = element.getBoundingClientRect().top + window.pageYOffset - 80
@@ -33,7 +37,14 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
         <div className="col-span-full flex flex-wrap gap-4 md:col-span-4 md:flex-col lg:col-span-3 lg:col-start-2">
           {sizes > 1 && (
             <div className="top-[140px] flex flex-col gap-3 border-l-2 border-dashed border-primary-blue-main/40 pl-6 md:sticky">
-              <p>{languages(locale)?.introduce}</p>
+              <p
+                className={twMerge(
+                  "cursor-pointer font-semibold",
+                  active === -1 && "text-primary-blue-main "
+                )}
+                onClick={() => scrollTo(-1)}>
+                {languages(locale)?.introduce}
+              </p>
               <ul
                 className={twMerge(
                   "list-decimal pl-5",
@@ -71,9 +82,10 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
               "md:col-span-full md:col-start-3 lg:col-span-10 lg:col-start-2"
           )}>
           <div className=" pb-4">
-            <h1 className="mb-5 !text-2xl font-semibold !leading-[30px] text-secondary-yellow ">
-              {languages(locale)?.introduce}
-            </h1>
+            <div
+              id="introduce"
+              dangerouslySetInnerHTML={{__html: props.introduction || ""}}
+              className="rich-text mb-5 !text-2xl font-semibold !leading-[30px]  "></div>
             {/* {props.introduction && (
               <div dangerouslySetInnerHTML={{__html: props.introduction}}></div>
             )} */}
