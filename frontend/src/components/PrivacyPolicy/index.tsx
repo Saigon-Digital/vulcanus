@@ -7,7 +7,7 @@ import {useLocaleContext} from "@/context/LocaleContext"
 import {twMerge} from "tailwind-merge"
 import {motion} from "framer-motion"
 function PrivacyPolicy(props: PrivacyPolicyFragment) {
-  const [active, setActive] = useState(-1)
+  const [active, setActive] = useState(0)
   const {locale} = useLocaleContext()
   const sizes = props.terms?.length || 0
   React.useEffect(() => {}, [active])
@@ -82,11 +82,11 @@ function PrivacyPolicy(props: PrivacyPolicyFragment) {
             sizes < 2 &&
               "md:col-span-full md:col-start-3 lg:col-span-10 lg:col-start-2"
           )}>
-          <div className=" pb-4">
+          <div className=" -pb-4">
             <div
               id="introduce"
               dangerouslySetInnerHTML={{__html: props.introduction || ""}}
-              className="rich-text mb-5 !text-2xl font-semibold !leading-[30px]  "></div>
+              className=" mb-5 !text-2xl font-semibold !leading-[30px] text-secondary-yellow  "></div>
             {/* {props.introduction && (
               <div dangerouslySetInnerHTML={{__html: props.introduction}}></div>
             )} */}
