@@ -18,7 +18,8 @@ import {TextContent, TextContentProvider} from "@/context/textContent"
 import Head from "next/head"
 
 const Layout = dynamic(() => import("@/components/Layout"))
-
+import CookieConsent, {Cookies} from "react-cookie-consent"
+import {languages} from "@/utils/language"
 //font
 const overpass = Overpass({
   subsets: ["latin"],
@@ -67,6 +68,20 @@ export default function App({Component, pageProps}: AppProps) {
                   }
                   key={`${router.asPath}-${router.locale}`}>
                   {/* > */}
+                  <CookieConsent
+                    // ButtonComponent={}
+                    buttonWrapperClasses="!my-auto "
+                    style={{background: "#050014", padding: "20px 15px"}}
+                    buttonText={languages(router.locale)?.allowAll}
+                    contentClasses="!max-w-[88%]"
+                    buttonClasses="!bg-primary-blue-main !my-auto hover:!bg-primary-blue-main/30 hover:!text-primary-blue-main 
+                    !transition-all hover:!border-primary-blue-main hover:!border  ">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: languages(router.locale)?.cookieContent || "",
+                      }}
+                      className="cookie-content"></div>
+                  </CookieConsent>
                   <Component
                     {...pageProps}
                     key={`${router.asPath}-${router.locale}`}

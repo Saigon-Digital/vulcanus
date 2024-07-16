@@ -15,8 +15,10 @@ type Tlang = {
   relatedPost: string
   poweredBy: string
   contactUs: string
+  allowAll: string
   loadMore: string
   location: string
+  cookieContent: string
   copyRight: string
   contactInfo: string
   blogDescription: string
@@ -47,10 +49,21 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         relatedPost: "Related Post",
         require: "This field is required",
         error: "Something went wrong",
+        cookieContent: `
+        <h4 >
+                      This website uses cookies
+                    </h4>
+                    <p>
+                     We use cookies to personalize content and ads, to provide social media features, 
+                     and to analyze our traffic. We also share information about your use of our site with our social media, 
+                     advertising and analytics partners. Our partners may combine this information with other information that you've
+                      provided to them or that they've collected from your use of their services.
+                    </p>
+        `,
         service: "Our Services",
         contactUs: "Contact Us",
         policy: "Privacy Policy",
-
+        allowAll: "Allow All",
         blogDescription:
           "Discover the technological prowess behind Vulcanus Company's CNC manufacturing. Learn about their state-of-the-art equipment, their capacity for large-scale productions, and the diverse materials they expertly handle.",
         poweredBy: "Powered by",
@@ -84,12 +97,30 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         letStart: "<p> Jetzt <strong> Bewerben</strong> </p>",
         require: "Dieses Feld ist erforderlich",
         contactUs: "kontaktiere uns",
+        cookieContent: `
+         <h4 className="!text-xl font-bold">
+                      Diese Webseite verwendet Cookies
+                    </h4>
+                    <p className="text-base ">
+                      Wir verwenden Cookies, um Inhalte und Anzeigen zu
+                      personalisieren, Funktionen für soziale Medien anbieten zu
+                      können und die Zugriffe auf unsere Website zu analysieren.
+                      Außerdem geben wir Informationen zu Ihrer Verwendung
+                      unserer Website an unsere Partner für soziale Medien,
+                      Werbung und Analysen weiter. Unsere Partner führen diese
+                      Informationen möglicherweise mit weiteren Daten zusammen,
+                      die Sie ihnen bereitgestellt haben oder die sie im Rahmen
+                      Ihrer Nutzung der Dienste gesammelt haben.
+                    </p>
+        
+        `,
         manufacturing: "Herstellung",
         service: "Unsere Dienstleistungen",
         policy: "Datenschutzrichtlinie",
         relatedPost: "Verwandter Beitrag",
         introduce: "Datenschutzerklärung",
         poweredBy: "Angetrieben von",
+        allowAll: "Alle Zulassen",
         blogDescription:
           "Entdecken Sie die technologische Leistungsfähigkeit hinter der CNC-Fertigung der Vulcanus Company. Erfahren Sie mehr über ihre hochmoderne Ausrüstung, ihre Kapazität für Großproduktionen und die vielfältigen Materialien, mit denen sie fachmännisch umgehen.",
         copyRight: "Copyrights $year. All rights reserved.",

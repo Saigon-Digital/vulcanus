@@ -1,0 +1,11 @@
+.cookie-content {
+  h2,
+  h4,
+  h3,
+  h5 {
+    @apply text-xl font-bold font-bold;
+  }
+  p {
+    @apply text-base;
+  }
+}
