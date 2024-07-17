@@ -12,7 +12,7 @@ fragment PostFragment on Post {
   dateGmt
   featuredImage {
     node {
-      sourceUrl
+      ...MediaItem
     }
   }
   language {

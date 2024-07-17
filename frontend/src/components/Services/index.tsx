@@ -78,7 +78,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 className="relative grid h-full w-full place-items-center">
                 <Image
                   fill
-                  alt="feature image"
+                  alt={img?.featuredImage?.node.altText || "feature image"}
                   quality={90}
                   src={img?.featuredImage?.node.sourceUrl || ""}
                   sizes="80vw"
