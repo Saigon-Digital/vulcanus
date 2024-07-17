@@ -68,7 +68,8 @@ export default function App({Component, pageProps}: AppProps) {
                   }
                   key={`${router.asPath}-${router.locale}`}>
                   {/* > */}
-                  <CookieConsent
+
+                  {/* <CookieConsent
                     // ButtonComponent={}
                     buttonWrapperClasses="!my-auto "
                     style={{
@@ -84,7 +85,8 @@ export default function App({Component, pageProps}: AppProps) {
                         __html: languages(router.locale)?.cookieContent || "",
                       }}
                       className="cookie-content"></div>
-                  </CookieConsent>
+                  </CookieConsent> */}
+
                   <Component
                     {...pageProps}
                     key={`${router.asPath}-${router.locale}`}
