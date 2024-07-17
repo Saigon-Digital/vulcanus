@@ -9,11 +9,13 @@ type Props = {
   height?: number
   width?: number
   delay?: number
+  alt?: string | null
 }
 const ImageWithRatio = ({
   imageSrc,
   height = 400,
   className,
+  alt,
   width,
   delay = 200,
 }: Props) => {
@@ -58,7 +60,7 @@ const ImageWithRatio = ({
         aspectRatio: ratio || "auto",
       }}
       className={twMerge("object-contain", className)}
-      alt="image auto ratio"
+      alt={alt || "image auto ratio"}
       src={imageSrc || ""}
     />
   )

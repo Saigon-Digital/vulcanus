@@ -5,7 +5,7 @@ fragment Service_block on PageBuilderDynamicBlocksServiceBlockLayout_Fields {
     description
     featuredImage {
       node {
-        sourceUrl
+        ...MediaItem
       }
     }
     link {

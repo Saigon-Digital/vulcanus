@@ -71,7 +71,10 @@ export default function App({Component, pageProps}: AppProps) {
                   <CookieConsent
                     // ButtonComponent={}
                     buttonWrapperClasses="!my-auto "
-                    style={{background: "#050014", padding: "20px 15px"}}
+                    style={{
+                      background: "#050014",
+                      padding: "20px 15px 5px 15px",
+                    }}
                     buttonText={languages(router.locale)?.allowAll}
                     contentClasses="!max-w-[88%]"
                     buttonClasses="!bg-primary-blue-main !my-auto hover:!bg-primary-blue-main/30 hover:!text-primary-blue-main 

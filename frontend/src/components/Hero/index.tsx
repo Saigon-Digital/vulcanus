@@ -22,6 +22,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
       w: 1800,
       h: 900,
       priority: true,
+      alt: props.backgroundImage?.node.altText || "Hero Image",
     }) || ""
 
   const ratio = useRatio(props.backgroundImage?.node.sourceUrl || "")
@@ -45,6 +46,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
                 }}
                 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                 <ImageWithRatio
+                  alt={props.backgroundImage?.node.altText}
                   imageSrc={props.backgroundImage?.node.sourceUrl}
                   width={containerD.w * 1.2}
                   delay={1500}

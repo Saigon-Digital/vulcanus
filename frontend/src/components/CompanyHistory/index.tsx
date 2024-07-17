@@ -145,8 +145,8 @@ const CompanyHistory = (props: CompanyHistoryBlock) => {
             return (
               <ImageSlide
                 key={index}
+                alt={pair?.current?.mainImage?.node.altText}
                 isActive={isActive}
-                preUrl={pair?.pre?.mainImage?.node?.sourceUrl}
                 currUrl={pair?.current?.mainImage?.node.sourceUrl}
                 description={pair?.current?.description}
               />
@@ -163,8 +163,9 @@ const ImageSlide = (props: {
   preUrl?: Maybe<string>
   currUrl?: Maybe<string>
   description?: Maybe<string>
+  alt?: Maybe<string | null>
 }) => {
-  const {isActive, currUrl, description, preUrl} = props || {}
+  const {isActive, currUrl, description, preUrl, alt} = props || {}
 
   return (
     <div
@@ -183,7 +184,7 @@ const ImageSlide = (props: {
         <div className="relative aspect-[16/10]  w-full overflow-hidden rounded-md ">
           <Image
             className="object-cover object-top"
-            alt="history"
+            alt={alt || "history"}
             fill
             loading="eager"
             src={currUrl || "/images/hero-banner.png"}

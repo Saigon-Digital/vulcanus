@@ -94,7 +94,7 @@ const BlogsBlock = (props: Props) => {
                             ele.featuredImage?.node?.sourceUrl ||
                             "/blogs/blog-1.png"
                           }
-                          alt="blog image"
+                          alt={"blog image"}
                         />
                       </Link>
                     </div>

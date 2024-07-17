@@ -11,7 +11,7 @@ fragment CompanyHistory on PageBuilderDynamicBlocksCompanyHistoryBlockLayout_Fie
 
     mainImage {
       node {
-        sourceUrl
+        ...MediaItem
       }
     }
   }

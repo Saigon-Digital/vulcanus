@@ -3,7 +3,7 @@ fragment ImagesSLide on PageBuilderDynamicBlocksImagesSlideLayout_Fields {
   slides {
     image {
       node {
-        sourceUrl
+        ...MediaItem
       }
     }
   }

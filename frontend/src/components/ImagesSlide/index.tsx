@@ -75,6 +75,7 @@ const ImagesSlide = (props: ImagesSLideFragment) => {
                   className="h-[480px] cursor-pointer">
                   {/* <div className="relative aspect-video w-full"> */}
                   <ImageWithRatio
+                    alt={ele?.image?.node.altText}
                     imageSrc={ele?.image?.node.sourceUrl || ""}
                     height={480}
                   />

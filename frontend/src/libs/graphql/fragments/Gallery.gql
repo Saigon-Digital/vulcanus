@@ -7,7 +7,7 @@ fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlockLayout_Fields {
 
     galleryImage {
       node {
-        sourceUrl
+        ...MediaItem
       }
     }
     textOrImge

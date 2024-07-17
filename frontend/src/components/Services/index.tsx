@@ -1,21 +1,21 @@
-import Card from "../Card/index";
-import img1 from "./images/img1.png";
-import img2 from "./images/img2.png";
-import type {StaticImport} from "next/dist/shared/lib/get-img-props";
-import {ServiceComponent} from "@/__generated__/graphql";
-import {languages} from "@/utils/language";
-import {motion} from "framer-motion";
+import Card from "../Card/index"
+import img1 from "./images/img1.png"
+import img2 from "./images/img2.png"
+import type {StaticImport} from "next/dist/shared/lib/get-img-props"
+import {ServiceComponent} from "@/__generated__/graphql"
+import {languages} from "@/utils/language"
+import {motion} from "framer-motion"
 
-import dynamic from "next/dynamic";
-import {useLocaleContext} from "@/context/LocaleContext";
-import {twMerge} from "tailwind-merge";
-import ImageWithRatio from "../ImageWithRatio";
-import {useMediaQuery} from "@/hooks/useMediaQuery";
-const Image = dynamic(() => import("next/image"));
+import dynamic from "next/dynamic"
+import {useLocaleContext} from "@/context/LocaleContext"
+import {twMerge} from "tailwind-merge"
+
+import {useMediaQuery} from "@/hooks/useMediaQuery"
+const Image = dynamic(() => import("next/image"))
 
 type TService = {
-  featureImage?: {image: string | StaticImport}[];
-} & ServiceComponent;
+  featureImage?: {image: string | StaticImport}[]
+} & ServiceComponent
 
 const images = [
   {
@@ -24,10 +24,10 @@ const images = [
   {
     image: img2,
   },
-];
+]
 const Service: React.FC<TService> = ({services, featureImage = images}) => {
-  const {locale} = useLocaleContext();
-  const isMobile = useMediaQuery("(max-width: 760px)");
+  const {locale} = useLocaleContext()
+  const isMobile = useMediaQuery("(max-width: 760px)")
   return (
     <div className="container-fluid py-14  md:py-20">
       <h2 className="mb-8 text-2xl font-bold  md:mb-14 md:text-3xl lg:text-6xl lg:leading-[84px] xl:text-[64px] xl:leading-[89px]">
@@ -44,7 +44,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 link={ele?.link}
                 className={`col-span-1 ${index == 1 ? "xl:col-start-3" : ""}`}
               />
-            );
+            )
           })}
         <div className="col-span-1 col-start-2 row-start-1 hidden place-items-center items-end justify-center xl:flex">
           <div className="mt-auto aspect-[394/217] w-full">
@@ -61,7 +61,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
       </div>
       <div className="mt-6 grid h-full  grid-cols-1 gap-6 sm:grid-cols-2  lg:grid-cols-4 xl:min-h-[400px] ">
         {services?.slice(0, 2).map((img, index) => {
-          const size = index === 0 ? 40 : 25;
+          const size = index === 0 ? 40 : 25
           return (
             <div
               key={index}
@@ -86,11 +86,11 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
                 />
               </motion.div>
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Service;
+export default Service
