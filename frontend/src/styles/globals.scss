@@ -198,10 +198,12 @@ p {
 //cookie 
 
 .freeprivacypolicy-com---nb-interstitial-overlay {
-  // z-index: 1 !important;
   width: 0 !important;
   height: 0 !important;
   background: none !important;
+}
+.freeprivacypolicy-com---palette-dark.freeprivacypolicy-com---nb {
+  background-color: #0f1424 !important;
 }
 .freeprivacypolicy-com---nb-interstitial-overlay:last-of-type #freeprivacypolicy-com---nb{
   display: none;
