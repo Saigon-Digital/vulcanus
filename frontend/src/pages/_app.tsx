@@ -62,13 +62,10 @@ export default function App({ Component, pageProps }: AppProps) {
               gtag('config', 'G-6BCK1XNJXY');`,
         }}
       />
-      <Script
-        id="Cookiebot"
-        dangerouslySetInnerHTML={{
-          __html: `
-        <script  src="https://consent.cookiebot.com/uc.js" data-cbid="fadd6d29-5f6a-42b1-b8d4-3dcedd844b32" data-blockingmode="auto" type="text/javascript"></script>
-        `}}
-      />
+      <Head>
+        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="fadd6d29-5f6a-42b1-b8d4-3dcedd844b32"
+          data-blockingmode="auto" type="text/javascript"></script>
+      </Head>
       <FaustProvider pageProps={pageProps}>
         <LocaleContextProvider
           localeData={{
