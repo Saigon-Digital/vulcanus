@@ -9,6 +9,7 @@ export default function Document() {
         <Main />
         <NextScript />
 
+
         <noscript
           dangerouslySetInnerHTML={{
             __html: `
@@ -16,6 +17,7 @@ export default function Document() {
 height="0" width="0" style="display:none;visibility:hidden"></iframe>
               `,
           }}></noscript>
+
       </body>
     </Html>
   )

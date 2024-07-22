@@ -29,6 +29,6 @@
     "**/*.tsx",
     "src/pages/reference/index.js",
     "next-sitemap.config.js"
-  ],
+, "src/components/CookieConsent.jsx"  ],
   "exclude": ["node_modules"]
 }
