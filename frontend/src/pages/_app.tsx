@@ -1,25 +1,25 @@
 import dynamic from "next/dynamic"
-import {FaustProvider} from "@faustwp/core"
-import type {AppProps} from "next/app"
-import {useRouter} from "next/router"
+import { FaustProvider } from "@faustwp/core"
+import type { AppProps } from "next/app"
+import { useRouter } from "next/router"
 import "../../faust.config"
 import "swiper/css"
 import "swiper/css"
 import "swiper/css/pagination"
 import "@/styles/globals.scss"
 
-import {LocaleContextProvider} from "@/context/LocaleContext"
-import {AnimatePresence, LazyMotion} from "framer-motion"
-import {Overpass} from "next/font/google"
-import {ApolloProvider} from "@apollo/client"
-import {client} from "@/libs/graphql/utils"
-import {ModalContext, ModalContextProvider} from "@/context/modalContext"
-import {TextContent, TextContentProvider} from "@/context/textContent"
+import { LocaleContextProvider } from "@/context/LocaleContext"
+import { AnimatePresence, LazyMotion } from "framer-motion"
+import { Overpass } from "next/font/google"
+import { ApolloProvider } from "@apollo/client"
+import { client } from "@/libs/graphql/utils"
+import { ModalContext, ModalContextProvider } from "@/context/modalContext"
+import { TextContent, TextContentProvider } from "@/context/textContent"
 import Head from "next/head"
 import Script from "next/script"
 const Layout = dynamic(() => import("@/components/Layout"))
-import CookieConsent, {Cookies} from "react-cookie-consent"
-import {languages} from "@/utils/language"
+import CookieConsent, { Cookies } from "react-cookie-consent"
+import { languages } from "@/utils/language"
 //font
 const overpass = Overpass({
   subsets: ["latin"],
@@ -28,7 +28,7 @@ const overpass = Overpass({
   preload: true,
 })
 
-export default function App({Component, pageProps}: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   // console.log("page data ", page);
@@ -61,6 +61,13 @@ export default function App({Component, pageProps}: AppProps) {
 
               gtag('config', 'G-6BCK1XNJXY');`,
         }}
+      />
+      <Script
+
+        dangerouslySetInnerHTML={{
+          __html: `
+        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="fadd6d29-5f6a-42b1-b8d4-3dcedd844b32" data-blockingmode="auto" type="text/javascript"></script>
+        `}}
       />
       <FaustProvider pageProps={pageProps}>
         <LocaleContextProvider
