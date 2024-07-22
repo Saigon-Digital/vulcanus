@@ -16,9 +16,8 @@ import { client } from "@/libs/graphql/utils"
 import { ModalContext, ModalContextProvider } from "@/context/modalContext"
 import { TextContent, TextContentProvider } from "@/context/textContent"
 import Head from "next/head"
-import Script from "next/script"
+import CookieConsent from "@/components/CookieConsent"
 const Layout = dynamic(() => import("@/components/Layout"))
-import CookieConsent, { Cookies } from "react-cookie-consent"
 import { languages } from "@/utils/language"
 //font
 const overpass = Overpass({
@@ -48,24 +47,6 @@ export default function App({ Component, pageProps }: AppProps) {
           content="initial-scale = 1.0,maximum-scale = 1.0"
         />
       </Head>
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-6BCK1XNJXY"
-      />
-      <Script
-        id="google-tag"
-        dangerouslySetInnerHTML={{
-          __html: `window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-
-              gtag('config', 'G-6BCK1XNJXY');`,
-        }}
-      />
-      <Head>
-        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" async data-cbid="fadd6d29-5f6a-42b1-b8d4-3dcedd844b32"
-          data-blockingmode="auto" type="text/javascript"></script>
-      </Head>
       <FaustProvider pageProps={pageProps}>
         <LocaleContextProvider
           localeData={{
@@ -91,6 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     {...pageProps}
                     key={`${router.asPath}-${router.locale}`}
                   />
+                  <CookieConsent/>
                 </Layout>
               </AnimatePresence>
             </TextContentProvider>

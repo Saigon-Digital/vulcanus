@@ -195,3 +195,26 @@ p {
     }
   }
 }
+//cookie 
+
+.freeprivacypolicy-com---nb-interstitial-overlay {
+  // z-index: 1 !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+}
+.freeprivacypolicy-com---nb-interstitial-overlay:last-of-type #freeprivacypolicy-com---nb{
+  display: none;
+}
+#freeprivacypolicy-com---nb{
+  top: auto;
+  bottom: 3vh;
+}
+.freeprivacypolicy-com---palette-dark .cc-nb-okagree {
+  color: #FFF !important;
+  background-color: #009ee0 !important;
+}
+.freeprivacypolicy-com---palette-dark .cc-nb-reject {
+  color: #FFF !important;
+  background-color: #009ee0 !important;
+}
