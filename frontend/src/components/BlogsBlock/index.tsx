@@ -4,22 +4,22 @@ import {
   LanguageCodeFilterEnum,
   PostThumbFragment,
 } from "@/__generated__/graphql"
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Button from "../Button"
 import Link from "next/link"
-import {getPostThumb} from "@/libs/graphql/utils"
+import { getPostThumb } from "@/libs/graphql/utils"
 
-import {languages} from "@/utils/language"
-import {getAcfLinkProps} from "@/utils"
+import { languages } from "@/utils/language"
+import { getAcfLinkProps } from "@/utils"
 import dynamic from "next/dynamic"
 
-import {useLocaleContext} from "@/context/LocaleContext"
+import { useLocaleContext } from "@/context/LocaleContext"
 
 import Socials from "../Socials"
 const ButtonNext = dynamic(
   () => import("../Icons").then((mod) => mod.ButtonNext),
-  {loading: () => <></>}
+  { loading: () => <></> }
 )
 type TBlog = {
   category?: string
@@ -31,13 +31,13 @@ type TBlog = {
 
 const defaultDesc = ""
 
-interface Props extends BlogsBlockFragment {}
+interface Props extends BlogsBlockFragment { }
 const PAGE_SIZE = 3
 
 const BlogsBlock = (props: Props) => {
   const [blockListing, setBlockListing] =
     useState<GetPostsThumbQuery["posts"]>()
-  const {locale} = useLocaleContext()
+  const { locale } = useLocaleContext()
   const [page, setPage] = useState(0)
 
   const sizes = blockListing ? blockListing.nodes.length : 0
@@ -46,8 +46,8 @@ const BlogsBlock = (props: Props) => {
     : 0
 
   useEffect(() => {
-    ;(async () => {
-      const {data} = await getPostThumb(
+    ; (async () => {
+      const { data } = await getPostThumb(
         locale === "en" ? LanguageCodeFilterEnum.En : LanguageCodeFilterEnum.De
       )
       setBlockListing(data.posts)
@@ -190,7 +190,7 @@ const BlogsBlock = (props: Props) => {
           })}
           <div className="mt-6 flex aspect-auto flex-col justify-center gap-4 rounded-md border border-primary-blue-main p-6">
             <h4 className="mb-3 text-2xl font-semibold text-primary-blue-main ">
-              Folge uns auf Social Media
+              {languages(locale)?.followUs}
             </h4>
             <Socials
               isHover

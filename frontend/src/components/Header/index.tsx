@@ -1,11 +1,11 @@
-import {twMerge} from "tailwind-merge"
+import { twMerge } from "tailwind-merge"
 import Image from "next/image"
 
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
-import {useMediaQuery} from "@/hooks/useMediaQuery"
-import {TSiteData} from "../Layout"
-import {useLocaleContext} from "@/context/LocaleContext"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+import { TSiteData } from "../Layout"
+import { useLocaleContext } from "@/context/LocaleContext"
 
 const Link = dynamic(() => import("next/link"))
 const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"))
@@ -18,7 +18,7 @@ type Props = {
 
 const Header = (props: Props) => {
   const [navIsOpen, setNavIsOpen] = useState(false)
-  const {locale, asPath, pathname} = useLocaleContext()
+  const { locale, asPath, pathname } = useLocaleContext()
 
   // console.log(asPath);
 
@@ -48,7 +48,7 @@ const Header = (props: Props) => {
       <header className=" sticky top-0 z-[100] py-[var(--header-py)]">
         <div className="sm:container-fluid ">
           <div className="flex h-[var(--header-height)] items-center justify-between rounded-[5px] bg-eerie-black px-2 transition-all duration-300 xl:px-6">
-            <Link href="/" locale={"de"}>
+            <Link href="/" locale={locale}>
               <Image
                 src="/logo/combination-logo-shape.svg"
                 alt="logo"

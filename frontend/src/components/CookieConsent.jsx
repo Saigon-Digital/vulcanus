@@ -1,13 +1,16 @@
+import { useLocaleContext } from '@/context/LocaleContext';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
 const CookieConsent = () => {
+  const {locale} = useLocaleContext()
+  const en = locale === "en"
   useEffect(() => {
     cookieconsent.run({
       "notice_banner_type": "interstitial",
       "consent_type": "express",
       "palette": "dark",
-      "language": "de",
+      "language": en ? "en" :"de",
       "page_load_consent_levels": ["strictly-necessary"],
       "notice_banner_reject_button_hide": false,
       "preferences_center_close_button_hide": false,

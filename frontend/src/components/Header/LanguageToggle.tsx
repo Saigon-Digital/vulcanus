@@ -1,9 +1,9 @@
-import {useLocaleContext} from "@/context/LocaleContext"
+import { useLocaleContext } from "@/context/LocaleContext"
 
 import Link from "next/link"
-import {useRouter} from "next/router"
-import {useCallback} from "react"
-import {twMerge} from "tailwind-merge"
+import { useRouter } from "next/router"
+import { useCallback } from "react"
+import { twMerge } from "tailwind-merge"
 
 const LanguageButton = ({
   label,
@@ -39,40 +39,25 @@ type Props = {}
 const commingSoonLink = "/coming-soon"
 
 const LanguageToggle = (props: Props) => {
-  const {localeData, asPath} = useLocaleContext()
+  const { localeData, asPath } = useLocaleContext()
   const router = useRouter()
-  // console.log(asPath)
 
-  const handleLanguageChange = useCallback(
-    (locale: string) => {
-      for (let [key, value] of Object.entries(localeData || {})) {
-        if (!value) return
-      }
-      //@ts-ignore
-      let href = locale ? localeData[locale] : ""
-      router.push(href, href, {locale: locale.toLocaleLowerCase()})
-    },
-    [localeData, router]
-  )
-  // for (let [keys, values] of Object.entries(localeData || {})) {
-  //   if (!values) return <div className="h-1 min-w-[130px] rounded-full"></div>;
-  // }
 
   return (
     <div className="rounded-full border border-primary-blue-main bg-primary-blue-100 px-[3.68px] py-[3px]">
       <LanguageButton
         label="ENG"
-        href={`/${commingSoonLink}`}
+        href={localeData?.EN ?? ""}
         // disabled={localeData ? !localeData["EN"] !== null : true}
         isActive={router.locale === "en"}
-        // onClick={() => handleLanguageChange("EN")}
+      // onClick={() => handleLanguageChange("EN")}
       />
       <LanguageButton
         label="GER"
-        href={asPath === commingSoonLink ? "/" : localeData?.DE || ""}
+        href={localeData?.DE ?? ""}
         // disabled={localeData ? !localeData["DE"] !== null : true}
         isActive={router.locale === "de"}
-        // onClick={() => handleLanguageChange("DE")}
+      // onClick={() => handleLanguageChange("DE")}
       />
     </div>
   )

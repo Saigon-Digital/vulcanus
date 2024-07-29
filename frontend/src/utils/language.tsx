@@ -17,17 +17,18 @@ type Tlang = {
   contactUs: string
   allowAll: string
   loadMore: string
+  followUs: string
   location: string
   cookieContent: string
   copyRight: string
   contactInfo: string
   blogDescription: string
-  firstName: {label: string; placeholder: string}
-  lastName: {label: string; placeholder: string}
-  email: {label: string; placeholder: string}
-  phone: {label: string; placeholder: string}
-  message: {label: string; placeholder: string}
-  notFound: {title: string; description: string; btnText: string}
+  firstName: { label: string; placeholder: string }
+  lastName: { label: string; placeholder: string }
+  email: { label: string; placeholder: string }
+  phone: { label: string; placeholder: string }
+  message: { label: string; placeholder: string }
+  notFound: { title: string; description: string; btnText: string }
 }
 
 type Tlangs = {
@@ -42,9 +43,11 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
       value: {
         readMore: "Read More",
         location: "Location",
+
         contactInfo: "Contact Information",
         loading: "...Loading",
         posted: "Posted on",
+        followUs: "Follow us on Social Media",
         manufacturing: "Manufacturing",
         relatedPost: "Related Post",
         require: "This field is required",
@@ -74,11 +77,11 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         errorFormatEmail: "Please enter correct email format",
         errorFormatPhone: "Please enter correct phone number",
         loadMore: "Load More",
-        firstName: {label: "First Name", placeholder: "First Name"},
-        lastName: {label: "Last Name", placeholder: "Last Name"},
-        email: {label: "Email", placeholder: "Your Email"},
-        phone: {label: "Phone", placeholder: "Your Telephone Number"},
-        message: {label: "Message", placeholder: "Your Message"},
+        firstName: { label: "First Name", placeholder: "First Name" },
+        lastName: { label: "Last Name", placeholder: "Last Name" },
+        email: { label: "Email", placeholder: "Your Email" },
+        phone: { label: "Phone", placeholder: "Your Telephone Number" },
+        message: { label: "Message", placeholder: "Your Message" },
         notFound: {
           title: "Page not found",
           description: "Sorry, we couldn’t find the page you’re looking for.",
@@ -94,6 +97,7 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         loading: "Wird geladen",
         location: "Standort",
         posted: "Veröffentlicht am",
+        followUs: "Folge uns auf Social Media",
         letStart: "<p> Jetzt <strong> Bewerben</strong> </p>",
         require: "Dieses Feld ist erforderlich",
         contactUs: "kontaktiere uns",
@@ -129,11 +133,11 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         errorFormatEmail: "Bitte geben Sie das korrekte E-Mail-Format ein",
         errorFormatPhone: "Bitte geben Sie die richtige Telefonnummer ein",
         loadMore: "Mehr laden",
-        firstName: {label: "Vorname", placeholder: "Ihr Vorname"},
-        lastName: {label: "Nachname", placeholder: "Ihr Nachname"},
-        phone: {label: "Telefon", placeholder: "Ihre Telefonnummer"},
-        email: {label: "Email", placeholder: "Ihre E-Mail"},
-        message: {label: "Nachricht", placeholder: "Ihre Nachricht"},
+        firstName: { label: "Vorname", placeholder: "Ihr Vorname" },
+        lastName: { label: "Nachname", placeholder: "Ihr Nachname" },
+        phone: { label: "Telefon", placeholder: "Ihre Telefonnummer" },
+        email: { label: "Email", placeholder: "Ihre E-Mail" },
+        message: { label: "Nachricht", placeholder: "Ihre Nachricht" },
         notFound: {
           title: "Seite nicht gefunden",
           description:
