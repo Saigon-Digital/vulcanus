@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import {FaceBookIcon, InstagramIcon, LinkedInIcon, Xing} from "../Icons";
+import { FaceBookIcon, InstagramIcon, LinkedInIcon, Xing } from "../Icons";
 import footerData from "@/data/footer_setting.json";
 import Image from "next/image";
-import {twMerge} from "tailwind-merge";
+import { twMerge } from "tailwind-merge";
 
 const Socials = ({
   className,

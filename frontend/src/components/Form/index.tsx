@@ -12,24 +12,24 @@ import React, {
   useRef,
   useState,
 } from "react"
-import {PhoneIcon, MailIcon, LocationIcon} from "../Icons"
+import { PhoneIcon, MailIcon, LocationIcon } from "../Icons"
 import Image from "next/image"
 import Button from "../Button"
-import {useQuery, useMutation} from "@apollo/client"
-import {GET_FORM, SUBMIT_FORM} from "@/libs/graphql/utils"
+import { useQuery, useMutation } from "@apollo/client"
+import { GET_FORM, SUBMIT_FORM } from "@/libs/graphql/utils"
 
 import formData from "@/data/form_data.json"
-import {FieldValues, SubmitHandler, useForm} from "react-hook-form"
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 
-import {getMutationVariables} from "@/utils/gravity-form"
+import { getMutationVariables } from "@/utils/gravity-form"
 
 import Loader from "../Loader"
-import {languages} from "@/utils/language"
+import { languages } from "@/utils/language"
 import Link from "next/link"
-import {useLocaleContext} from "@/context/LocaleContext"
-import {allLowercase} from "@/utils"
-import {useRouter} from "next/router"
-import {useMediaQuery} from "@/hooks/useMediaQuery"
+import { useLocaleContext } from "@/context/LocaleContext"
+import { allLowercase } from "@/utils"
+import { useRouter } from "next/router"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import Socials from "../Socials"
 const FORM_ID = 1
 const DELAY = 5000
@@ -48,10 +48,10 @@ const pattern = {
 }
 
 export type TForm = (typeof formData)["gfForm"]
-const Form = ({contacts, form}: TFormFragment) => {
+const Form = ({ contacts, form }: TFormFragment) => {
   let [gfForm, setGfFrom] = useState<(typeof formData)["gfForm"] | null>(null)
 
-  const {locale, asPath} = useLocaleContext()
+  const { locale, asPath } = useLocaleContext()
 
   // useState
   const [formSuccess, setFormSuccess] = useState(false)
@@ -68,7 +68,7 @@ const Form = ({contacts, form}: TFormFragment) => {
     handleSubmit,
     setError,
     setValue,
-    formState: {errors},
+    formState: { errors },
   } = useForm()
   //-----------------
   const EXCLUDE_EMAIL = [".email@domain.com", ".email@.domain.com"]
@@ -86,7 +86,7 @@ const Form = ({contacts, form}: TFormFragment) => {
         window.pageYOffset -
         (isDesktop ? 250 : 100)
 
-      window.scrollTo({top: top, behavior: "smooth"})
+      window.scrollTo({ top: top, behavior: "smooth" })
     }
   }
 
@@ -109,7 +109,7 @@ const Form = ({contacts, form}: TFormFragment) => {
   }, [gfForm])
 
   //#region submit
-  const [submitFormMutation, {loading: submitFormLoading}] = useMutation(
+  const [submitFormMutation, { loading: submitFormLoading }] = useMutation(
     SUBMIT_FORM,
     {
       onCompleted(data) {
@@ -180,7 +180,7 @@ const Form = ({contacts, form}: TFormFragment) => {
             }
             <div className="mt-10 w-full lg:mt-0  xl:w-auto   ">
               <h4 className="mb-4 text-xl font-semibold text-white">
-                Folge uns auf Social Media
+                {languages(locale)?.followUs}
               </h4>
               <Socials
                 mainColor="text-primary-black-main"
@@ -249,12 +249,12 @@ const Form = ({contacts, form}: TFormFragment) => {
           <div className="col-span-full mt-10 flex flex-col gap-6 md:mt-0 xl:col-span-6 xl:col-start-4">
             {form?.formTitle && (
               <div
-                dangerouslySetInnerHTML={{__html: form.formTitle}}
+                dangerouslySetInnerHTML={{ __html: form.formTitle }}
                 className="max-w-[750px] text-3xl text-primary-blue-main [&>*]:text-3xl  [&>*]:font-semibold xl:[&>*]:text-[32px] xl:[&>*]:leading-[40px]"></div>
             )}
             {form?.copyrightText && (
               <div
-                dangerouslySetInnerHTML={{__html: form.copyrightText}}
+                dangerouslySetInnerHTML={{ __html: form.copyrightText }}
                 className="[&>*>a]:text-primary-blue-main [&>*>a]:underline [&>*>a]:hover:text-primary-midBlue-main xl:[&>*]:text-lg xl:[&>*]:leading-[24px]"></div>
             )}
             <hr className="h-[1px] w-full border-[0.5px]  border-b-white" />
