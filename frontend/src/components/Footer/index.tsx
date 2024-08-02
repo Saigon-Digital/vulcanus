@@ -13,16 +13,16 @@ import React, {
   useState,
 } from "react"
 import Link from "next/link"
-import {languages} from "@/utils/language"
-import {client, getFooterButtonLink} from "@/libs/graphql/utils"
+import { languages } from "@/utils/language"
+import { client, getFooterButtonLink } from "@/libs/graphql/utils"
 
-import {TSiteData} from "../Layout"
-import {motion} from "framer-motion"
-import {useLocaleContext} from "@/context/LocaleContext"
+import { TSiteData } from "../Layout"
+import { motion } from "framer-motion"
+import { useLocaleContext } from "@/context/LocaleContext"
 
 import footerSettingData from "@/data/footer_setting.json"
 import Socials from "../Socials"
-import {twMerge} from "tailwind-merge"
+import { twMerge } from "tailwind-merge"
 type Props = {
   menu: TSiteData["menus"]
   footerText?: string | null | undefined
@@ -32,7 +32,7 @@ const ScrollMargin = 350
 
 const Footer = (props: Props) => {
   const hierarchicalList = props.menu?.menuItems?.nodes.filter((ele: any) => {
-    const {childItems} = ele
+    const { childItems } = ele
     return childItems.nodes?.length > 0
   })
 
@@ -42,7 +42,7 @@ const Footer = (props: Props) => {
   const [footerInfo, setFooterInfo] =
     useState<(typeof footerSettingData)["siteSettings"]>()
 
-  const {locale} = useLocaleContext()
+  const { locale } = useLocaleContext()
 
   const [initialHeight, setInitialHeight] = useState<number | null>(null)
   //#region footer setting
@@ -62,8 +62,8 @@ const Footer = (props: Props) => {
     setFooterInfo(footerSettingData.siteSettings)
 
     if (!buttonLink) {
-      ;(async () => {
-        const {data} = await getFooterButtonLink()
+      ; (async () => {
+        const { data } = await getFooterButtonLink()
         setButtonLink(data.contactPage)
       })()
     }
@@ -111,9 +111,8 @@ const Footer = (props: Props) => {
             `footer-text scroll-title cursor-default select-none font-bold  text-white [&>*]:text-xl  [&>*]:leading-[1.5] [&>*]:md:text-4xl
              [&>*]:xl:text-[36px] [&>*]:xl:leading-[68px]  [&>*]:3xl:text-[46px] [&>*]:3xl:leading-[87px]  `,
             ratio &&
-              `scroll-${
-                ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
-              }`
+            `scroll-${ratio > 0 ? (ratio < 100 ? Math.floor(ratio) : 100) : 0
+            }`
           )}
           dangerouslySetInnerHTML={{
             __html:
@@ -121,20 +120,13 @@ const Footer = (props: Props) => {
                 ? footerInfo?.footerSetting.footerTextEn || ""
                 : footerInfo?.footerSetting.footerTextDe || "",
           }}>
-          {/* <style jsx>{`
-            @media and (min-width: 1550px) {
-              & > * {
-                font-size: 100px !important;
-              }
-            }
-          `}</style> */}
+
         </div>
         <Link
-          href={`${
-            locale?.toLocaleLowerCase() === "en"
+          href={`${locale?.toLocaleLowerCase() === "en"
               ? buttonLink?.ENLink?.uri + "#form" || ""
               : buttonLink?.DELink?.uri + "#form" || ""
-          }`}>
+            }`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width={158}
@@ -144,10 +136,10 @@ const Footer = (props: Props) => {
             fill="none">
             <rect width={158} height={158} rx={79} fill="#E5F5FC" />
             <motion.path
-              style={{x: -10, y: 10}}
+              style={{ x: -10, y: 10 }}
               // initial={{x: -12, y: 12}}
-              whileInView={{x: 0, y: 0}}
-              transition={{duration: 0.4, delay: 0.3, type: "just"}}
+              whileInView={{ x: 0, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.3, type: "just" }}
               className="transition-all duration-300 "
               d="M67.29 51.7309C67.29 54.1562 69.2389 56.0619 71.621 56.0619H95.8312L48.6667 103.226C46.9776 104.915 46.9776 107.644 48.6667 109.333C50.3558 111.022 53.0843 111.022 54.7734 109.333L101.938 62.1686V86.3788C101.938 88.7609 103.887 90.7098 106.269 90.7098C108.651 90.7098 110.6 88.7609 110.6 86.3788V51.7309C110.6 49.3488 108.651 47.3999 106.269 47.3999H71.621C69.2389 47.3999 67.29 49.3488 67.29 51.7309Z"
               fill="#009EE0"
@@ -226,7 +218,7 @@ const Footer = (props: Props) => {
                   return (
                     <div key={index} className="flex flex-col  ">
                       <h4
-                        style={{opacity: ele.label === "Contact" ? 0 : 100}}
+                        style={{ opacity: ele.label === "Contact" ? 0 : 100 }}
                         className="whitespace-nowrap text-base font-semibold uppercase xl:text-lg">
                         {ele.label}
                       </h4>

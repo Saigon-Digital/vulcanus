@@ -4,7 +4,7 @@ fragment pagesSetting on PagesSetting {
   description
   noIndexNoFollow
   canonicalUrl
-  footerText
+ 
   socialGraphImage {
     node {
       sourceUrl
