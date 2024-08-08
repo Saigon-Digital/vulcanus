@@ -4,6 +4,26 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 /** @type {import('next').NextConfig} */
 const nextConfig = withFaust({
+  async redirects() {
+    return [
+      {
+        source: '/en/home-page',
+        destination: '/en',
+        locale:false,
+        permanent: true,
+      },{
+        source: '/preview',
+        destination: '/',
+        permanent: true,
+    
+      },{
+        source: '/en/preview',
+        locale:false,
+        destination: '/en',
+        permanent: true,
+      }
+    ]
+  },
   reactStrictMode: true,
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) =>

@@ -1,11 +1,11 @@
-import {gql} from "@/__generated__";
+import { gql } from "@/__generated__";
 // import {gql} from "@apollo/client";
 import siteData from "../../../data/site_data.json";
 import {
   LanguageCodeFilterEnum,
   MenuLocationEnum,
 } from "@/__generated__/graphql";
-import {createApolloClient} from "@faustwp/core/dist/cjs/client";
+import { createApolloClient } from "@faustwp/core/dist/cjs/client";
 // import { LanguageCodeEnum } from "@/__generated__/graphql";
 
 export const client = createApolloClient();
