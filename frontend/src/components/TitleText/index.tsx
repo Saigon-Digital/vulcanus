@@ -20,7 +20,7 @@ const index = ({
           )}
         </div>
       </div>
-      <Image
+      <img
         height={233}
         width={210}
         alt="shape"
