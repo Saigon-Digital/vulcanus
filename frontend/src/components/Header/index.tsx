@@ -50,7 +50,7 @@ const Header = (props: Props) => {
           <div className="flex h-[var(--header-height)] items-center justify-between rounded-[5px] bg-eerie-black px-2 transition-all duration-300 xl:px-6">
             <Link href="/" locale={locale}>
               <Image
-                src="/logo/combination-logo-shape.svg"
+                src="https://holgerk1.sg-host.com/wp-content/uploads/2024/09/combination-logo-shape.svg"
                 alt="logo"
                 priority
                 width={226}
