@@ -48,7 +48,7 @@ const Service: React.FC<TService> = ({services, featureImage = images}) => {
           })}
         <div className="col-span-1 col-start-2 row-start-1 hidden place-items-center items-end justify-center xl:flex">
           <div className="mt-auto aspect-[394/217] w-full">
-            <Image
+            <img
               src={"/shapes/gearIcon.svg"}
               alt="gear icon"
               className="absolute left-[calc(25%-20px)] top-[180px] aspect-[394/217] w-4/5 scale-90 overflow-visible object-contain xl:static xl:w-auto"

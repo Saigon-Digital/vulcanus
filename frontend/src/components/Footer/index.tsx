@@ -160,7 +160,7 @@ const Footer = (props: Props) => {
           <div className="col-span-full flex flex-col justify-between p-8 !pr-0 md:col-span-11 md:p-16 lg:flex-row">
             <div className="flex w-4/5 max-w-[458px] flex-col gap-6 lg:w-1/2 lg:gap-16  xl:flex-[440px] xl:gap-10">
               <Link href={"/"} locale={"de"}>
-                <Image src="/logo.svg" width={458} height={137} alt="logo" />
+                <img src="/logo.svg" width={458} height={137} alt="logo" />
               </Link>
               <div className="flex flex-col gap-5 lg:flex-row lg:gap-10">
                 {footerInfo?.footerSetting.locationLink.url && (
