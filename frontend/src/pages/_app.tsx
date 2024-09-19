@@ -61,6 +61,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <TextContentProvider>
               <AnimatePresence initial={false} mode="wait">
                 <Layout
+                  hideLanguageToggle={pageProps.hideLanguageToggle}
                   footerText={
                     pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
                       ?.pagesSetting?.footerText

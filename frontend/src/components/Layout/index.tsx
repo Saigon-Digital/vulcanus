@@ -43,14 +43,15 @@ function getGlobalSiteData(locale: string | undefined) {
 const Layout = ({
   children,
   footerText,
-}: PropsWithChildren & {footerText?: string | null | undefined}) => {
+  hideLanguageToggle
+}: PropsWithChildren & {footerText?: string | null | undefined} & {hideLanguageToggle:boolean | undefined}) => {
   const {locale} = useLocaleContext()
 
   const {headerMenu, footerMenu} = getGlobalSiteData(locale)
 
   return (
     <>
-      <Header menu={headerMenu} />
+      <Header menu={headerMenu} hideLanguageToggle={hideLanguageToggle}/>
       <main className="overflow-x-clip">{children}</main>
       <Footer footerText={footerText} menu={footerMenu} />
     </>

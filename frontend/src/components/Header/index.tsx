@@ -14,6 +14,7 @@ const HeaderDialog = dynamic(() => import("./HeaderDialog"))
 
 type Props = {
   menu: TSiteData["menus"]
+  hideLanguageToggle?: boolean | undefined
 }
 
 const Header = (props: Props) => {
@@ -85,7 +86,7 @@ const Header = (props: Props) => {
             )}
             {!isMobile && (
               <div className="hidden shrink-0 lg:block">
-                <LanguageToggle />
+               {!props?.hideLanguageToggle && <LanguageToggle />}
               </div>
             )}
             {isMobile && (

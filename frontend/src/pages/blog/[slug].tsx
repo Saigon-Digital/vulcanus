@@ -97,6 +97,7 @@ export const getServerSideProps = (async (context) => {
       locale: locale,
       host,
       siteSettings: siteSettings,
+      hideLanguageToggle:true,
     },
   };
 }) satisfies GetServerSideProps<{
