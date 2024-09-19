@@ -1,14 +1,11 @@
-import { gql } from "@/__generated__";
+import {gql} from "@/__generated__"
 // import {gql} from "@apollo/client";
-import siteData from "../../../data/site_data.json";
-import {
-  LanguageCodeFilterEnum,
-  MenuLocationEnum,
-} from "@/__generated__/graphql";
-import { createApolloClient } from "@faustwp/core/dist/cjs/client";
+import siteData from "../../../data/site_data.json"
+import {LanguageCodeFilterEnum, MenuLocationEnum} from "@/__generated__/graphql"
+import {createApolloClient} from "@faustwp/core/dist/cjs/client"
 // import { LanguageCodeEnum } from "@/__generated__/graphql";
 
-export const client = createApolloClient();
+export const client = createApolloClient()
 
 export const getFooterButtonLink = async () => {
   return await client.query({
@@ -27,8 +24,8 @@ export const getFooterButtonLink = async () => {
   }
 }
     `),
-  });
-};
+  })
+}
 
 export const GET_MENUS = gql(`
   query MenuItems($location: MenuLocationEnum!) {
@@ -50,7 +47,7 @@ export const GET_MENUS = gql(`
       }
     }
   }
-`);
+`)
 
 export async function getPageType(language: LanguageCodeFilterEnum) {
   return await client.query({
@@ -74,7 +71,7 @@ export async function getPageType(language: LanguageCodeFilterEnum) {
     variables: {
       language,
     },
-  });
+  })
 }
 
 export const GET_FORM = gql(`
@@ -163,7 +160,7 @@ export const GET_FORM = gql(`
     maxLength
   }
   
-`);
+`)
 
 export const SUBMIT_FORM = gql(`
   mutation submitForm($databaseId: ID!, $fieldValues: [FormFieldValuesInput]!) {
@@ -177,7 +174,7 @@ export const SUBMIT_FORM = gql(`
       }
     }
   }
-`);
+`)
 
 // export const FOOTER_SETTING = gql(`
 //     query GetFooterSetting {
@@ -217,7 +214,7 @@ export async function getPostThumb(lang: LanguageCodeFilterEnum) {
       lang: lang,
     },
     fetchPolicy: "no-cache",
-  });
+  })
 }
 
 export async function getAllPost() {
@@ -285,5 +282,74 @@ export async function getAllPost() {
         }
       }
     `,
-  });
+  })
+}
+
+export async function getPost(slug: string) {
+  return await client.query({
+    //@ts-ignore
+    query: gql(`
+      query GetPost($databaseId: ID!) {
+  post(id: $databaseId, idType: SLUG) {
+    databaseId
+    dateGmt
+    slug
+    link
+    language {
+      code
+    }
+    author {
+      node {
+        avatar {
+          url
+        }
+        name
+        registeredDate
+      }
+    }
+    featuredImage {
+      node {
+        sourceUrl
+      }
+    }
+    content
+    title
+    pagesSetting {
+      title
+      description
+      canonicalUrl
+      socialGraphImage {
+        node {
+          sourceUrl
+        }
+      }
+    }
+    uri
+    DELang: translation(language: DE) {
+      uri
+      link
+    }
+    ENLang: translation(language: EN) {
+      uri
+      link
+    }
+  }
+  siteSettings {
+    siteSetting {
+      siteTitle
+      siteUrl
+      description
+      openGraphImage {
+        node {
+          sourceUrl
+        }
+      }
+    }
+  }
+}
+    `),
+    variables: {
+      databaseId: slug,
+    },
+  })
 }
