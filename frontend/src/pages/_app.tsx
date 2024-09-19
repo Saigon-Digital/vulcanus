@@ -51,10 +51,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <LocaleContextProvider
           localeData={{
             DE:
-              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.DELang
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation?.DELang
                 ?.link || null,
             EN:
-              pageProps?.__TEMPLATE_QUERY_DATA__?.page.translation?.ENLang
+              pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation?.ENLang
                 ?.link || null,
           }}>
           <ModalContextProvider>
