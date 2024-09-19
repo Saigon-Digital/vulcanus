@@ -7,7 +7,7 @@ import {
   SiteSettingFragment,
   SiteSettings,
 } from "@/__generated__/graphql";
-import {getAllPost} from "@/libs/graphql/utils";
+import {getAllPost, getPost} from "@/libs/graphql/utils";
 
 import ImageBlock from "@/components/ImageBlock";
 
@@ -72,7 +72,7 @@ const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
         [&>h5]:text-4xl [&>p]:mt-4 [&>p]:text-base [&>ul]:mt-2 [&>ul]:list-disc [&>ul]:pl-5 [&>a]:underline [&>a]:text-[#004594] 
         "></div>
         )}
-        <RelatedPosts posts={relatedBlog} />
+        {/* <RelatedPosts posts={relatedBlog} /> */}
       </main>
     </>
   );
@@ -80,21 +80,19 @@ const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
 
 export const getServerSideProps = (async (context) => {
   let host = context.req.headers.host;
-  const slug = context.params?.slug;
-  const {data} = (await getAllPost()) as any;
+  const slug:string = context.params?.slug as string;
+  const {data} = (await getPost(slug)) as any;
   const locale = context.locale;
   const siteSettings = data.siteSettings;
-  const relatedBLog = data.posts?.nodes?.filter(
-    (ele: PostFragmentFragment) =>
-      ele.slug !== slug && ele.language?.code === locale?.toLocaleUpperCase()
-  );
-  const blog = data.posts?.nodes?.find(
-    (ele: PostFragmentFragment) => ele.slug === slug
-  );
+  // const relatedBLog = data.posts?.nodes?.filter(
+  //   (ele: PostFragmentFragment) =>
+  //     ele.slug !== slug && ele.language?.code === locale?.toLocaleUpperCase()
+  // );
+  const blog = data?.post;
   if (!blog) return {notFound: true};
   return {
     props: {
-      relatedBlog: relatedBLog,
+      // relatedBlog: relatedBLog,
       blog: blog,
       locale: locale,
       host,
