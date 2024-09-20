@@ -99,7 +99,7 @@ p {
 }
 .parallax {
   /* Create the parallax scrolling effect */
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
 
   background-attachment: fixed;
@@ -238,5 +238,5 @@ p {
 
 .post-content a{
   @apply underline;
-  @apply text-[#004594]
+  @apply text-[#009ee0]
 }
