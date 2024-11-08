@@ -83,7 +83,7 @@ const PageBanner: React.FC<PageBannerFragment> = ({
           (!isMobile ? (
             <div
               style={{
-                backgroundImage: imageStyle,
+                background: imageStyle,
               }}
               className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]"></div>
           ) : // <ImageWithRatio
