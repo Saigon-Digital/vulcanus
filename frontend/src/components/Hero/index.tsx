@@ -79,7 +79,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         </div>
         {!isMobile && (
           <div
-            style={{backgroundImage: imgStyle}}
+            style={{background: imgStyle}}
             className="parallax absolute inset-0 h-full w-full"></div>
         )}
 

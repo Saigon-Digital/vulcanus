@@ -1,7 +1,5 @@
 const {withFaust, getWpHostname} = require("@faustwp/core");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = withFaust({
   async redirects() {
@@ -54,9 +52,7 @@ const nextConfig = withFaust({
     return config;
   },
   images: {
-    remotePatterns: [{protocol: "https", hostname: getWpHostname()}],
-    dangerouslyAllowSVG: true,
-    formats: ["image/avif", "image/webp"],
+    domains: [getWpHostname()],
   },
   i18n: {
     locales: ["de", "en"],
@@ -65,5 +61,5 @@ const nextConfig = withFaust({
   },
 });
 
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = nextConfig;
 //triger build
