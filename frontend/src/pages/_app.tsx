@@ -83,4 +83,4 @@ export default function App({ Component, pageProps }: AppProps) {
     </ApolloProvider>
   )
 }
-//trigger build
+//trigger build from git
