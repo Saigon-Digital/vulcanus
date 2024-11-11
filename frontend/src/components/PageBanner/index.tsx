@@ -83,9 +83,10 @@ const PageBanner: React.FC<PageBannerFragment> = ({
           (!isMobile ? (
             <div
               style={{
-                backgroundImage: `url("${image?.node?.sourceUrl || ""}");`,
+                background: imageStyle,
+                backgroundSize: "cover",
               }}
-              className="parallax relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]"></div>
+              className="relative aspect-[4/3] max-h-[600px] w-full object-cover lg:aspect-[2/1] xl:aspect-[1800/850]"></div>
           ) : // <ImageWithRatio
           //   imageSrc={image.node.sourceUrl}
           //   width={width}

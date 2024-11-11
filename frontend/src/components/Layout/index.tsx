@@ -4,8 +4,8 @@ import {MenuLocationEnum} from "@/__generated__/graphql"
 import siteData from "../../data/site_data.json"
 import {useLocaleContext} from "@/context/LocaleContext"
 import Modal from "../Modal"
-const Header = dynamic(() => import("../Header"))
-const Footer = dynamic(() => import("../Footer"), {ssr: false})
+import Header from "../Header"
+import Footer from "../Footer"
 
 export type TSiteData = {
   menus?: (typeof siteData)["menus"]["nodes"][number]

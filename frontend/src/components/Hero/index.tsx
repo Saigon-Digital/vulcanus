@@ -78,8 +78,8 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         </div>
         {!isMobile && (
           <div
-            style={{backgroundImage: `url("${props?.backgroundImage?.node?.sourceUrl || ''}");`}}
-            className="parallax absolute inset-0 h-full w-full"></div>
+            style={{background: imgStyle, backgroundSize: "cover", }}
+            className="absolute inset-0 h-full w-full"></div>
         )}
 
         <div className="w-full grow grid-cols-12 gap-x-6 lg:grid">
