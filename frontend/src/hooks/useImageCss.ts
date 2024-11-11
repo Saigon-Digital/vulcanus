@@ -29,7 +29,7 @@ function useImageStyle({
   loading?: "eager" | "lazy"
 }) {
   
-  return `url("${src}") no-repeat center/${w}px ${h}px`
+  return `url("${src}");`
 }
 
 export default useImageStyle

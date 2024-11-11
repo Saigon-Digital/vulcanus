@@ -1,36 +1,36 @@
-name: Deploy website
+# name: Deploy website
 
-on:
-  workflow_dispatch:
+# on:
+#   workflow_dispatch:
 
-jobs:
-  build-and-deploy:
-    runs-on: macos-latest
+# jobs:
+#   build-and-deploy:
+#     runs-on: macos-latest
 
-    steps:
-      - name: Repository Checkout
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Repository Checkout
+#         uses: actions/checkout@v4
 
-      - name: Setup NodeJS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: "npm"
-          cache-dependency-path: "frontend/package-lock.json"
+#       - name: Setup NodeJS
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 18
+#           cache: "npm"
+#           cache-dependency-path: "frontend/package-lock.json"
 
-      - name: Import env
-        working-directory: frontend
-        run: |
-          echo "${{secrets.PRODUCTION_ENV}}" > .env
+#       - name: Import env
+#         working-directory: frontend
+#         run: |
+#           echo "${{secrets.PRODUCTION_ENV}}" > .env
 
-      - name: Install Dependencies
-        working-directory: frontend
-        run: npm install
+#       - name: Install Dependencies
+#         working-directory: frontend
+#         run: npm install
 
-      - name: Deploy to Netlify
-        id: netlify_deploy
-        working-directory: frontend
-        run: |
-          pwd && npx netlify deploy --build --prod \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
-            --auth ${{ secrets.NETLIFY_API_TOKEN }}
+#       - name: Deploy to Netlify
+#         id: netlify_deploy
+#         working-directory: frontend
+#         run: |
+#           pwd && npx netlify deploy --build --prod \
+#             --site ${{ secrets.NETLIFY_SITE_ID }} \
+#             --auth ${{ secrets.NETLIFY_API_TOKEN }}
