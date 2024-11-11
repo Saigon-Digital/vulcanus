@@ -2,7 +2,6 @@ import {HeroBlockFragment} from "@/__generated__/graphql"
 import {getAcfLinkProps} from "@/utils"
 import Image from "next/image"
 import Button from "../Button"
-
 import useImageStyle from "@/hooks/useImageCss"
 import {useMediaQuery} from "@/hooks/useMediaQuery"
 import useOrientation from "@/hooks/useOrientation"
@@ -79,7 +78,7 @@ const Hero: React.FC<HeroBlockFragment> = (props) => {
         </div>
         {!isMobile && (
           <div
-            style={{background: imgStyle}}
+            style={{backgroundImage: imgStyle}}
             className="parallax absolute inset-0 h-full w-full"></div>
         )}
 
