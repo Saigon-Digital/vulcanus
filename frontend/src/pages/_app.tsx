@@ -48,6 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <FaustProvider pageProps={pageProps}>
+        
         <LocaleContextProvider
           localeData={{
             DE:
@@ -66,13 +67,14 @@ export default function App({ Component, pageProps }: AppProps) {
                     pageProps?.__TEMPLATE_QUERY_DATA__?.page?.translation
                       ?.pagesSetting?.footerText
                   }
-                  key={`${router.asPath}-${router.locale}`}>
+                  >
                   {/* > */}
-
+                  <main key={`${router.asPath}-${router.locale}`}>
                   <Component
                     {...pageProps}
                     key={`${router.asPath}-${router.locale}`}
                   />
+                  </main>
                   <CookieConsent/>
                 </Layout>
               </AnimatePresence>
