@@ -17,7 +17,7 @@ import { ModalContext, ModalContextProvider } from "@/context/modalContext"
 import { TextContent, TextContentProvider } from "@/context/textContent"
 import Head from "next/head"
 import CookieConsent from "@/components/CookieConsent"
-const Layout = dynamic(() => import("@/components/Layout"))
+import Layout from "@/components/Layout"
 import { languages } from "@/utils/language"
 //font
 const overpass = Overpass({
