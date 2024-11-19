@@ -53,7 +53,7 @@ const nextConfig = withFaust({
   },
   images: {
     domains: [getWpHostname()],
-    unoptimized: true,
+    // unoptimized: true,
   },
   i18n: {
     locales: ["de", "en"],
