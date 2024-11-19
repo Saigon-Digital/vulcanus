@@ -63,4 +63,4 @@ const nextConfig = withFaust({
 });
 
 module.exports = nextConfig;
-//triger build
+//triger build Netlify
