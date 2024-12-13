@@ -42,7 +42,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
     </>
   )
 }
-
+//triger preview
 Page.variables = ({databaseId}, ctx) => {
   return {
     databaseId,
