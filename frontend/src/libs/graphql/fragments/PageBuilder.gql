@@ -25,6 +25,5 @@ fragment PageBuilder on PageBuilder {
     ...ImagesSLide
     ...privacyPolicy
     ...richText
-    ...Certifications
   }
 }
