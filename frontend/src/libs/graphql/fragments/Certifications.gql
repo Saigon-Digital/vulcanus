@@ -1,0 +1,17 @@
+fragment Certifications on PageBuilderDynamicBlocksCertificationsLayout {
+  __typename
+  certification {
+      preview {
+        node {
+          sourceUrl
+        }
+      }
+      document {
+        node {
+          mediaItemUrl
+        }
+      }
+      certificationName
+      description
+  }
+}

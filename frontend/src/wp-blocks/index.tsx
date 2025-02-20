@@ -37,7 +37,7 @@ const CertificateBlock = dynamic(
 )
 const ImagesSlide = dynamic(() => import("@/components/ImagesSlide"), {})
 const PrivacyPolicy = dynamic(() => import("@/components/PrivacyPolicy"), {})
-
+const Certifications = dynamic(() => import("@/components/Certifications"), {})
 export type Blocks = Exclude<
   PageBuilderFragment["dynamicBlocks"],
   null | undefined
@@ -74,5 +74,6 @@ const blocks = new Map<Block["__typename"], React.FC<any> | any>([
   ["PageBuilderDynamicBlocksImagesSlideLayout", ImagesSlide],
   ["PageBuilderDynamicBlocksPrivacyPolicyLayout", PrivacyPolicy],
   ["PageBuilderDynamicBlocksRichTextLayout", RichText],
+  ["PageBuilderDynamicBlocksCertificationsLayout", Certifications],
 ])
 export default blocks
