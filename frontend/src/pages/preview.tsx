@@ -4,3 +4,4 @@ import {WordPressTemplateProps} from "../types";
 export default function Preview(props: WordPressTemplateProps) {
   return <WordPressTemplate {...props} />;
 }
+//trigger build
