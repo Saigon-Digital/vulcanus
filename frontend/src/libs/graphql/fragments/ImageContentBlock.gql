@@ -1,12 +1,12 @@
 fragment ImageContent on PageBuilderDynamicBlocksImageContentLayout_Fields {
   fieldGroupName
   reverse
+  fullWidthLayout
   image {
     node {
       sourceUrl
     }
   }
-
   contentGroup {
     description
     icons {

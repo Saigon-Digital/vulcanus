@@ -7,10 +7,15 @@ import {twMerge} from "tailwind-merge"
 import {useRouter} from "next/router"
 import {allLowercase} from "@/utils"
 import Link from "next/link"
+import GalleryFullWidth from "./GalleryFullWidth"
 
 const Image = dynamic(() => import("next/image"))
-const zoomOut = []
-const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
+const Gallery = ({
+  title,
+  gallery,
+  fullWidthLayout,
+  reverseLayout,
+}: GalleryBlock) => {
   const params = useRouter().asPath
   const ref = useRef(null)
   // const isMobile = useMediaQuery("()")
@@ -52,6 +57,18 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
       }
     }
   }, [params])
+
+  const linkToUri = (link: string) => {
+    return link.replace("https://www.vulcanus-stahl.de", "")
+  }
+  if (fullWidthLayout)
+    return (
+      <GalleryFullWidth
+        title={title}
+        reverseLayout={reverseLayout}
+        gallery={gallery}
+      />
+    )
   return (
     <div ref={ref} className="relative py-14 md:py-20 lg:pb-28">
       <div className="relative">
@@ -68,25 +85,29 @@ const Gallery = ({title, gallery, reverseLayout}: GalleryBlock) => {
             <h2 className="max-w-[579px] text-left text-3xl font-bold md:ml-[50px] xl:ml-10 xl:text-left xl:text-5xl xl:leading-[67px] 2xl:w-[4/5]">
               {title}
             </h2>
-            <div className="md:ml-[50px] xl:ml-10 mb-10 xl:mb-0">
+            <div className="mb-10 md:ml-[50px] xl:mb-0 xl:ml-10">
               {gallery?.map((ele, id) => {
                 if (ele?.textOrImge === "text")
-                return (
-                  <div className="" key={id}>
-                    <h2 className="mb-8 text-xl font-bold text-primary-blue-200">
-                      {ele?.text?.title}
-                    </h2>
-                    <p className="text-primary-blue-200">
-                      {ele?.text?.content}
-                    </p>
-                  </div>
-                )
+                  return (
+                    <>
+                      <div className="" key={id}>
+                        <h2 className="mb-8 text-xl font-bold text-primary-blue-200">
+                          {ele?.text?.title}
+                        </h2>
+                        <p className="text-primary-blue-200">
+                          {ele?.text?.content}
+                        </p>
+                      </div>
+                      {ele?.text?.button && (
+                        <Link
+                          href={linkToUri(ele?.text?.button?.url || "/")}
+                          className="fit-content mt-8 inline-flex w-[fit-content] items-center justify-center whitespace-nowrap bg-primary-blue-main px-10 py-[17px] text-center font-bold uppercase leading-[125%] text-secondary-offWhite-white transition-all duration-300 hover:bg-primary-blue-400 lg:px-[60px] xl:mt-16">
+                          {ele?.text?.button?.title}
+                        </Link>
+                      )}
+                    </>
+                  )
               })}
-              <Link
-                href="#"
-                className="mt-8 xl:mt-16 fit-content inline-flex w-[fit-content] items-center justify-center whitespace-nowrap bg-primary-blue-main px-10 py-[17px] text-center font-bold uppercase leading-[125%] text-secondary-offWhite-white transition-all duration-300 hover:bg-primary-blue-400 lg:px-[60px]">
-                Mehr Über Uns
-              </Link>
             </div>
           </div>
           <div

@@ -9,14 +9,16 @@ import Image from "next/image";
 
 import {useRouter} from "next/router";
 import {RefObject, useEffect, useLayoutEffect, useRef} from "react";
+import ImageContentFullWidth from "./ImageContentFullWidth";
 const ImageContent = ({
   image,
   contentGroup: content,
   reverse,
+  fullWidthLayout
 }: ImageContentBlock) => {
+  console.log('fullWidthLayout', fullWidthLayout)
   const params = useRouter().asPath;
   const ref = useRef<HTMLDivElement>(null);
-
   const scrollTo = (element: RefObject<HTMLDivElement>) => {
     if (typeof document === undefined || typeof window === undefined) return;
 
@@ -55,6 +57,7 @@ const ImageContent = ({
       }
     }
   }, [params]);
+  if(fullWidthLayout) return <ImageContentFullWidth image={image} contentGroup={content} reverse={reverse}/>
   return (
     <div ref={ref} className="container py-10 lg:px-20 lg:py-20">
       <div
