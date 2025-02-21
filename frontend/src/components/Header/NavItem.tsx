@@ -4,8 +4,7 @@ import React, {useState} from "react"
 import {twMerge} from "tailwind-merge"
 import {motion} from "framer-motion"
 
-
-const DownIcon = (className: any) => {
+export const DownIcon = (className: any) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,8 +22,7 @@ const DownIcon = (className: any) => {
   )
 }
 function NavItem({item, index}: any) {
-    
-const subMenu:any = {
+  const subMenu: any = {
     1: [
       {
         title: "recyclingtechnik",
@@ -65,14 +63,19 @@ const subMenu:any = {
           "text-secondary-offWhite-white"
         )}>
         {item?.label}
-        {(index === 1 || index === 2) && (
-          <DownIcon
-            className={
-              `-translate-y-[0px] cursor-pointer transition-all ${
-                open ? "rotate-180" : ""
-              }` as string
-            }
-          />
+        {item?.children && (
+          <span
+            className={` transition-all duration-100 origin-center ${
+              open ? "rotate-180" : ""
+            }`}>
+            <DownIcon
+              className={
+                `-translate-y-[0px] cursor-pointer transition-all ${
+                  open ? "rotate-180" : ""
+                }` as string
+              }
+            />
+          </span>
         )}
       </Link>
       {open && (
@@ -109,18 +112,19 @@ const subMenu:any = {
           }}
           className="rounded-[10px] border-[0.5px] border-none bg-eerie-black">
           <ul className="flex list-none flex-col">
-            {subMenu?.[index]?.map((ele: any, id: any) => {
-              return (
-                <Link
-                  className={twMerge(
-                    "p-4 pr-[34px] text-base uppercase leading-none hover:text-primary-blue-main"
-                  )}
-                  key={id}
-                  href={ele.link}>
-                  {ele.title}
-                </Link>
-              )
-            })}
+            {item?.children &&
+              item?.children?.map((ele: any, id: any) => {
+                return (
+                  <Link
+                    className={twMerge(
+                      "p-4 pr-[34px] text-base uppercase leading-none hover:text-primary-blue-main"
+                    )}
+                    key={id}
+                    href={ele?.uri || ""}>
+                    {ele?.label || "Empty label"}
+                  </Link>
+                )
+              })}
           </ul>
         </motion.div>
       )}

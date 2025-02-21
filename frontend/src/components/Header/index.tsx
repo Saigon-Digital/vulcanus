@@ -4,6 +4,7 @@ import dynamic from "next/dynamic"
 import { useEffect, useState } from "react"
 import { TSiteData } from "../Layout"
 import NavItem from "./NavItem"
+import buildMenuTree from "@/utils/buildMenuTree"
 
 const Link = dynamic(() => import("next/link"))
 const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"))
@@ -17,7 +18,7 @@ type Props = {
 }
 
 const Header = (props: Props) => {
-  
+  const menuItems = props?.menu ? buildMenuTree(props.menu) : []
   const [navIsOpen, setNavIsOpen] = useState(false)
   const {locale, asPath} = useLocaleContext()
 
@@ -61,14 +62,13 @@ const Header = (props: Props) => {
 
             {!isMobile && (
               <nav className=" hidden items-center  space-x-2 lg:flex xl:space-x-4">
-                {props.menu &&
-                  props?.menu.menuItems?.nodes?.map((item, index) => {
-                    const isActive =
-                      asPath !== "/" && item?.uri?.includes(asPath || "")
-                    return (
-                      <NavItem key={item?.uri} item={item} index={index}/>
-                    )
-                  })}
+                {menuItems?.map((item, index) => {
+                  const isActive =
+                    asPath !== "/" && item?.uri?.includes(asPath || "")
+                  return (
+                    <NavItem key={item?.uri} item={item} index={index}/>
+                  )
+                })}
               </nav>
             )}
             {!isMobile && (
@@ -91,7 +91,7 @@ const Header = (props: Props) => {
         </div>
         {isMobile && (
           <HeaderDialog
-            menu={props.menu}
+            menu={menuItems}
             navIsOpen={navIsOpen}
             setNavIsOpen={setNavIsOpen}
           />
