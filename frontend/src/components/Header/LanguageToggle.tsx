@@ -47,14 +47,14 @@ const LanguageToggle = (props: Props) => {
     <div className="rounded-full border border-primary-blue-main bg-primary-blue-100 px-[3.68px] py-[3px]">
       <LanguageButton
         label="ENG"
-        href={localeData?.EN ?? ""}
+        href={localeData?.EN?.replace("https://www.vulcanus-stahl.de","") ?? ""}
         // disabled={localeData ? !localeData["EN"] !== null : true}
         isActive={router.locale === "en"}
       // onClick={() => handleLanguageChange("EN")}
       />
       <LanguageButton
         label="GER"
-        href={localeData?.DE ?? ""}
+        href={localeData?.DE?.replace("https://www.vulcanus-stahl.de","") ?? ""}
         // disabled={localeData ? !localeData["DE"] !== null : true}
         isActive={router.locale === "de"}
       // onClick={() => handleLanguageChange("DE")}

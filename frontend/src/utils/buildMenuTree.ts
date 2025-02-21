@@ -30,12 +30,19 @@ interface MenuData {
   };
 }
 
-function buildMenuTree(menu: MenuData | undefined) {
-  if (!menu?.menuItems?.nodes) {
-    return [];
+function buildMenuTree(menu: any, parentId=null) {
+  const result = [];
+  for (const item of menu) {
+    if (item.parentId === parentId) {
+      const children = buildMenuTree(menu, item.id);
+      const menuItem = { ...item }; // Create a new object
+      if (children.length > 0) {
+        menuItem.children = children;
+      }
+      result.push(menuItem);
+    }
   }
-
-  return menu.menuItems.nodes;
+  return result;
 }
 
 export default buildMenuTree;

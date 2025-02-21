@@ -18,7 +18,7 @@ type Props = {
 }
 
 const Header = (props: Props) => {
-  const menuItems = props?.menu ? buildMenuTree(props.menu) : []
+  const menuItems = props?.menu?.menuItems?.nodes ? buildMenuTree(props?.menu?.menuItems?.nodes) : []
   const [navIsOpen, setNavIsOpen] = useState(false)
   const {locale, asPath} = useLocaleContext()
 
