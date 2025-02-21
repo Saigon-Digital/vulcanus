@@ -80,7 +80,7 @@ const NavItem = ({item}: { item: MenuItem }) => {
           item?.childItems?.nodes && "ml-5"
         )}>
         {item?.label}
-        {item?.childItems?.nodes && (
+        {item?.childItems?.nodes.length > 0 && (
           <span
             onClick={() => {
               setOpen(!open)
