@@ -29,7 +29,6 @@ type TBlog = {
   link?: string
 }
 
-const defaultDesc = ""
 
 interface Props extends BlogsBlockFragment { }
 const PAGE_SIZE = 3
@@ -38,13 +37,6 @@ const BlogsBlock = (props: Props) => {
   const [blockListing, setBlockListing] =
     useState<GetPostsThumbQuery["posts"]>()
   const { locale } = useLocaleContext()
-  const [page, setPage] = useState(0)
-
-  const sizes = blockListing ? blockListing.nodes.length : 0
-  const max_page = blockListing
-    ? Math.floor(blockListing?.nodes?.length / PAGE_SIZE)
-    : 0
-
   useEffect(() => {
     ; (async () => {
       const { data } = await getPostThumb(
@@ -53,6 +45,16 @@ const BlogsBlock = (props: Props) => {
       setBlockListing(data.posts)
     })()
   }, [])
+
+  const [page, setPage] = useState(0)
+  const sizes = blockListing ? blockListing.nodes.length : 0
+  const max_page = blockListing
+    ? Math.floor(blockListing?.nodes?.length / PAGE_SIZE)
+    : 0
+  
+  const totalPosts = blockListing?.nodes?.length || 0
+  const currentlyShowing = Math.min((page + 1) * PAGE_SIZE, totalPosts)
+  const hasMorePosts = currentlyShowing < totalPosts
 
   if (!blockListing && sizes < 1)
     return (
@@ -125,7 +127,7 @@ const BlogsBlock = (props: Props) => {
                 )
               })}
           <div className="mt-10 flex w-full justify-center">
-            {sizes > PAGE_SIZE && (page + 1) * PAGE_SIZE < sizes && (
+            {hasMorePosts  && (
               <Button
                 onClick={() =>
                   setPage((prev) => {

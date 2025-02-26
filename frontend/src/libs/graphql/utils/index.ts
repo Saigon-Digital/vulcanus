@@ -207,6 +207,11 @@ export async function getPostThumb(lang: LanguageCodeFilterEnum) {
             blogDescription
           }
         }
+        pageInfo {
+          endCursor
+          startCursor
+          hasNextPage
+        }
       }
     }
     `),
@@ -290,7 +295,7 @@ export async function getPost(slug: string) {
     //@ts-ignore
     query: gql(`
       query GetPost($databaseId: ID!) {
-  post(id: $databaseId, idType: SLUG) {
+  post(id: $databaseId, idType: URI) {
     databaseId
     dateGmt
     slug
