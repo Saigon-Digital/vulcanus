@@ -54,7 +54,7 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
           {menu?.map((item: MenuItem) => {
             const isActive =
               asPath !== "/" && item?.uri?.includes(asPath || "")
-            return <NavItem key={item?.uri} item={item} />
+            return <NavItem key={item?.uri} item={item} setNavIsOpen={setNavIsOpen}/>
           })}
         </ul>
         <div className="flex justify-center">
@@ -65,12 +65,13 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
   )
 }
 
-const NavItem = ({item}: { item: MenuItem }) => {
+const NavItem = ({item, setNavIsOpen}: { item: MenuItem,setNavIsOpen:any }) => {
   const {locale} = useLocaleContext()
   const [open, setOpen] = useState<boolean>(false)
   
   return (
-    <li key={item?.uri}>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+    <li key={item?.uri} onClick={()=>{setNavIsOpen(false)}}>
       <Link
         href={item?.uri ?? "#"}
         locale={locale}
@@ -132,14 +133,16 @@ const NavItem = ({item}: { item: MenuItem }) => {
             {item?.childItems?.nodes &&
               item?.childItems?.nodes?.map((ele: MenuChildItem, id: number) => {
                 return (
-                  <Link
-                    className={twMerge(
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                  <li key={id} onClick={()=>{setNavIsOpen(false)}}>
+                    <Link
+                      className={twMerge(
                       "p-4 pb-2 pr-[34px] text-base uppercase leading-none text-primary-midBlue-main"
-                    )}
-                    key={id}
-                    href={ele?.uri || ""}>
-                    {ele?.label || "Empty label"}
-                  </Link>
+                      )}
+                      href={ele?.uri || ""}>
+                      {ele?.label || "Empty label"}
+                    </Link>
+                  </li>
                 )
               })}
           </ul>
