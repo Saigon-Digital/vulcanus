@@ -70,8 +70,7 @@ const NavItem = ({item, setNavIsOpen}: { item: MenuItem,setNavIsOpen:any }) => {
   const [open, setOpen] = useState<boolean>(false)
   
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-    <li key={item?.uri} onClick={()=>{setNavIsOpen(false)}}>
+    <li key={item?.uri}>
       <Link
         href={item?.uri ?? "#"}
         locale={locale}
@@ -80,7 +79,7 @@ const NavItem = ({item, setNavIsOpen}: { item: MenuItem,setNavIsOpen:any }) => {
           "text-secondary-offWhite-white",
           item?.childItems?.nodes && "ml-5"
         )}>
-        {item?.label}
+        <span  onClick={()=>{setNavIsOpen(false)}}>{item?.label}</span>
         {item?.childItems?.nodes.length > 0 && (
           <span
             onClick={() => {
@@ -134,10 +133,10 @@ const NavItem = ({item, setNavIsOpen}: { item: MenuItem,setNavIsOpen:any }) => {
               item?.childItems?.nodes?.map((ele: MenuChildItem, id: number) => {
                 return (
                   // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-                  <li key={id} onClick={()=>{setNavIsOpen(false)}}>
+                  <li key={id} onClick={()=>{setNavIsOpen(false)}} className="p-4 pb-0 pr-[34px] inline">
                     <Link
                       className={twMerge(
-                      "p-4 pb-2 pr-[34px] text-base uppercase leading-none text-primary-midBlue-main"
+                      "text-base uppercase leading-none text-primary-midBlue-main"
                       )}
                       href={ele?.uri || ""}>
                       {ele?.label || "Empty label"}
