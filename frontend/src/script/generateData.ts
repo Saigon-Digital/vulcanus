@@ -159,7 +159,7 @@ const client = new ApolloClient({
                       nodes {
                         
                         locations
-                        menuItems {
+                        menuItems(first: 200) {
                         nodes {  
                         
                         uri
