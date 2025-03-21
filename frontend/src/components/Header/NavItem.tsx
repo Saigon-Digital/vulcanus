@@ -120,7 +120,7 @@ function NavItem({item, index}: any) {
                       "p-4 pr-[34px] text-base uppercase leading-none hover:text-primary-blue-main"
                     )}
                     key={id}
-                    href={ele?.uri || ""}>
+                    href={ele?.uri.replace("drehen-2", "drehen") || ""}>
                     {ele?.label || "Empty label"}
                   </Link>
                 )
