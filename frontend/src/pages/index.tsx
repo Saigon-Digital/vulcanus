@@ -10,3 +10,4 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     ctx,
   });
 };
+//trigger preview
