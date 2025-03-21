@@ -52,7 +52,7 @@ const GalleryFullWidth = ({title, gallery, reverseLayout}: GalleryBlock) => {
     }
   }, [params])
   return (
-    <div ref={ref} className="relative py-14 md:py-20 lg:pb-28">
+    <div ref={ref} className="relative py-14 md:py-20 lg:pb-24">
       <div className="relative">
         <div className="container-fluid grid grid-cols-12 gap-5 gap-y-6 lg:gap-6">
           {title && <div className="relative col-span-full flex justify-start text-left md:justify-start xl:col-span-3 2xl:col-span-3">

@@ -22,6 +22,15 @@ const nextConfig = withFaust({
       }
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/dienstleistungen/drehen',
+        destination: '/dienstleistungen/drehen-2',
+       
+      },
+    ]
+  },
   reactStrictMode: true,
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) =>

@@ -4,7 +4,7 @@ import {motion} from "framer-motion";
 import { ImageContentBlock } from "@/__generated__/graphql";
 function ImageContentFullWidth({image, contentGroup: content, reverse}:ImageContentBlock) {
   return (
-    <div className="relative">
+    <div className="relative mb-10 xl:mb-20">
       <Image
           src={"/shapes/left-shape.svg"}
           width={47}

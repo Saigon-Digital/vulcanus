@@ -6,7 +6,7 @@ const RichText: React.FC<RichTextFragment> = (props) => {
   console.log(props.richText);
 
   return (
-    <section className="container-block  py-14 ">
+    <section className="container-block pb-14 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">
         <div
           className={twMerge(

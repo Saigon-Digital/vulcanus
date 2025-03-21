@@ -70,7 +70,7 @@ const Gallery = ({
       />
     )
   return (
-    <div ref={ref} className="relative py-14 md:py-20 lg:pb-28">
+    <div ref={ref} className="relative py-14 md:py-20 lg:pb-24">
       <div className="relative">
         <Image
           src={"/shapes/left-shape.svg"}
