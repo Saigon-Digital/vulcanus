@@ -18,6 +18,9 @@ fragment ImageContent on PageBuilderDynamicBlocksImageContentLayout_Fields {
       }
     }
     title
+    cta {
+      ...AcfLink
+    }
   }
   blockSettings {
     ...BlockSettings
