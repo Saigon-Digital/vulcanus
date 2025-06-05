@@ -1,60 +1,71 @@
-import {ImageContentBlock} from "@/__generated__/graphql";
-import {useLocaleContext} from "@/context/LocaleContext";
-import {useRatio} from "@/hooks/useRatio";
-import {allLowercase} from "@/utils";
+import {ImageContentBlock} from "@/__generated__/graphql"
+import {useLocaleContext} from "@/context/LocaleContext"
+import {useRatio} from "@/hooks/useRatio"
+import {allLowercase} from "@/utils"
 
-import {motion} from "framer-motion";
+import {motion} from "framer-motion"
 
-import Image from "next/image";
+import Image from "next/image"
 
-import {useRouter} from "next/router";
-import {RefObject, useEffect, useLayoutEffect, useRef} from "react";
+import {useRouter} from "next/router"
+import {RefObject, useEffect, useLayoutEffect, useRef} from "react"
+import ImageContentFullWidth from "./ImageContentFullWidth"
+import Link from "next/link"
 const ImageContent = ({
   image,
   contentGroup: content,
   reverse,
+  fullWidthLayout,
 }: ImageContentBlock) => {
-  const params = useRouter().asPath;
-  const ref = useRef<HTMLDivElement>(null);
-
+  console.log("content", content)
+  const params = useRouter().asPath
+  const ref = useRef<HTMLDivElement>(null)
   const scrollTo = (element: RefObject<HTMLDivElement>) => {
-    if (typeof document === undefined || typeof window === undefined) return;
+    if (typeof document === undefined || typeof window === undefined) return
 
     if (element.current) {
       const top =
-        element?.current?.getBoundingClientRect().top + window.pageYOffset - 80;
+        element?.current?.getBoundingClientRect().top + window.pageYOffset - 80
 
-      window.scrollTo({top: top, behavior: "smooth"});
+      window.scrollTo({top: top, behavior: "smooth"})
     }
-  };
+  }
 
   useLayoutEffect(() => {
     if (params) {
-      const pSplit = params.split("#");
-      let id = pSplit.at(pSplit.length - 1)?.toLowerCase();
+      const pSplit = params.split("#")
+      let id = pSplit.at(pSplit.length - 1)?.toLowerCase()
       // console.log(pSplit);
-      var fixedstring;
+      var fixedstring
 
       try {
         // If the string is UTF-8, this will work and not throw an error.
         fixedstring = encodeURIComponent(
           content?.title?.toLocaleLowerCase().replaceAll(" ", "") || ""
-        );
+        )
       } catch (e) {
         // If it isn't, an error will be thrown, and we can assume that we have an ISO string.
-        fixedstring = content?.title?.toLocaleLowerCase().replaceAll(" ", "");
+        fixedstring = content?.title?.toLocaleLowerCase().replaceAll(" ", "")
       }
-      id = allLowercase(id || "");
-      fixedstring = allLowercase(fixedstring || "");
+      id = allLowercase(id || "")
+      fixedstring = allLowercase(fixedstring || "")
 
       if (
         id === fixedstring ||
         (id && fixedstring && fixedstring?.includes(id))
       ) {
-        scrollTo(ref);
+        scrollTo(ref)
       }
     }
-  }, [params]);
+  }, [params])
+  if (fullWidthLayout)
+    return (
+      <ImageContentFullWidth
+        image={image}
+        contentGroup={content}
+        reverse={reverse}
+      />
+    )
   return (
     <div ref={ref} className="container py-10 lg:px-20 lg:py-20">
       <div
@@ -99,6 +110,7 @@ const ImageContent = ({
               dangerouslySetInnerHTML={{__html: content.description}}
               className="xl:[&>*>*]:text-xl [&>*>strong]:!text-primary-blue-main [&>*]:font-normal xl:[&>*]:text-xl [&>strong]:font-bold [&>ul]:list-disc [&>ul]:pl-5 "></div>
           )}
+
           {content?.icons && content?.icons?.length > 0 && (
             <div className="flex  justify-center  gap-4 xl:gap-10 2xl:gap-20">
               {content.icons.map((ele, index) => {
@@ -115,14 +127,23 @@ const ImageContent = ({
                     />
                     <p>{ele?.text}</p>
                   </div>
-                );
+                )
               })}
+            </div>
+          )}
+          {content?.cta?.title && content?.cta?.url && (
+            <div className="flex  justify-center  gap-4 xl:gap-10 2xl:gap-20">
+              <Link
+                className="fit-content mt-8 inline-flex items-center justify-center whitespace-nowrap bg-primary-blue-main px-10 py-[17px] text-center font-bold uppercase leading-[125%] text-secondary-offWhite-white transition-all duration-300 hover:bg-primary-blue-400 lg:px-[60px]"
+                href={content?.cta?.url.replace("https://www.vulcanus-stahl.de", "")}>
+                {content?.cta?.title}
+              </Link>
             </div>
           )}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ImageContent;
+export default ImageContent

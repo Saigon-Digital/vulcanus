@@ -5,7 +5,18 @@
   .heading {
     @apply mb-5 text-2xl leading-[30px] text-secondary-yellow;
   }
-
+  h2 {
+    @apply mb-4 text-2xl text-primary-blue-main font-bold;
+  }
+  h3 {
+    @apply mb-4 text-xl text-primary-blue-main font-bold;
+  }
+  h4 {
+    @apply mb-4 text-lg text-primary-blue-main font-bold;
+  }
+  h5 {
+    @apply mb-4 text-lg text-primary-blue-main font-bold;
+  }
   h2,
   h3,
   h4,

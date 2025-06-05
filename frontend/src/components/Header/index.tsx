@@ -1,16 +1,16 @@
-import { twMerge } from "tailwind-merge"
-import Image from "next/image"
-
-import { useEffect, useState } from "react"
-import dynamic from "next/dynamic"
-import { useMediaQuery } from "@/hooks/useMediaQuery"
-import { TSiteData } from "../Layout"
 import { useLocaleContext } from "@/context/LocaleContext"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+import dynamic from "next/dynamic"
+import { useEffect, useState } from "react"
+import { TSiteData } from "../Layout"
+import NavItem from "./NavItem"
+import buildMenuTree from "@/utils/buildMenuTree"
 
 const Link = dynamic(() => import("next/link"))
 const HamburgerMenu = dynamic(() => import("public/icons/hamburger-menu.svg"))
 const LanguageToggle = dynamic(() => import("./LanguageToggle"))
 const HeaderDialog = dynamic(() => import("./HeaderDialog"))
+
 
 type Props = {
   menu: TSiteData["menus"]
@@ -18,8 +18,9 @@ type Props = {
 }
 
 const Header = (props: Props) => {
+  const menuItems = props?.menu?.menuItems?.nodes ? buildMenuTree(props?.menu?.menuItems?.nodes) : []
   const [navIsOpen, setNavIsOpen] = useState(false)
-  const { locale, asPath, pathname } = useLocaleContext()
+  const {locale, asPath} = useLocaleContext()
 
   // console.log(asPath);
 
@@ -53,7 +54,6 @@ const Header = (props: Props) => {
               <img
                 src="https://holgerk1.sg-host.com/wp-content/uploads/2024/09/combination-logo-shape.svg"
                 alt="logo"
-                
                 width={226}
                 height={65}
                 className="aspect-[226/65] max-w-[50vw] object-contain md:max-w-[150px] xl:max-w-[226px]"
@@ -62,31 +62,18 @@ const Header = (props: Props) => {
 
             {!isMobile && (
               <nav className=" hidden items-center  space-x-2 lg:flex xl:space-x-4">
-                {props.menu &&
-                  props?.menu.menuItems?.nodes?.map((item) => {
-                    const isActive =
-                      asPath !== "/" && item?.uri?.includes(asPath || "")
-                    return (
-                      <Link
-                        key={item?.uri}
-                        locale={locale}
-                        href={item?.uri ?? "#"}
-                        // locale={locale}
-                        className={twMerge(
-                          "text-sm font-semibold uppercase leading-[200%] transition-all duration-300 hover:text-primary-blue-main xl:text-[16px]",
-
-                          isActive && "text-primary-blue-main",
-                          !isActive && "text-secondary-offWhite-white"
-                        )}>
-                        {item?.label}
-                      </Link>
-                    )
-                  })}
+                {menuItems?.map((item, index) => {
+                  const isActive =
+                    asPath !== "/" && item?.uri?.includes(asPath || "")
+                  return (
+                    <NavItem key={item?.uri} item={item} index={index}/>
+                  )
+                })}
               </nav>
             )}
             {!isMobile && (
               <div className="hidden shrink-0 lg:block">
-               {!props?.hideLanguageToggle && <LanguageToggle />}
+                {!props?.hideLanguageToggle && <LanguageToggle />}
               </div>
             )}
             {isMobile && (
@@ -104,7 +91,7 @@ const Header = (props: Props) => {
         </div>
         {isMobile && (
           <HeaderDialog
-            menu={props.menu}
+            menu={menuItems}
             navIsOpen={navIsOpen}
             setNavIsOpen={setNavIsOpen}
           />

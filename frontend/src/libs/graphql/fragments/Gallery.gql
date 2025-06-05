@@ -2,6 +2,7 @@ fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlockLayout_Fields {
   fieldGroupName
   title
   reverseLayout
+  fullWidthLayout
   gallery {
     imageTitle
 
@@ -14,6 +15,10 @@ fragment GalleryBlock on PageBuilderDynamicBlocksGalleryBlockLayout_Fields {
     text {
       content
       title
+      button {
+        url
+        title
+      }
     }
   }
 }

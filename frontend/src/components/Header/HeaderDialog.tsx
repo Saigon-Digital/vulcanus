@@ -1,17 +1,18 @@
-import {MenuItemsQuery} from "@/__generated__/graphql"
-
 import Image from "next/image"
 import Link from "next/link"
+import {motion} from "framer-motion"
 
 import CloseIcon from "public/icons/x-close.svg"
 import LanguageToggle from "./LanguageToggle"
-import {TSiteData} from "../Layout"
 import {useLocaleContext} from "@/context/LocaleContext"
 import {twMerge} from "tailwind-merge"
+import {DownIcon} from "./NavItem"
+import {useState} from "react"
+import { MenuItem, MenuChildItem } from "@/utils/buildMenuTree"
 
 type Props = {
-  menu: TSiteData["menus"]
-  navIsOpen: boolean
+  menu: MenuItem[];
+  navIsOpen: boolean;
   setNavIsOpen: (navIsOpen: boolean) => void
 }
 
@@ -50,26 +51,11 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
 
       <nav className="flex grow flex-col justify-between gap-y-10 overflow-y-auto py-[15%]">
         <ul className="flex flex-col items-center space-y-4">
-          {menu &&
-            menu?.menuItems.nodes.map((item) => {
-              const isActive =
-                asPath !== "/" && item?.uri?.includes(asPath || "")
-              return (
-                <li key={item?.uri}>
-                  <Link
-                    href={item?.uri ?? "#"}
-                    locale={locale}
-                    className={twMerge(
-                      "text-[20px] font-semibold uppercase leading-[200%] transition-all duration-300",
-
-                      isActive && "text-primary-blue-300",
-                      !isActive && "text-secondary-offWhite-white"
-                    )}>
-                    {item?.label}
-                  </Link>
-                </li>
-              )
-            })}
+          {menu?.map((item: MenuItem) => {
+            const isActive =
+              asPath !== "/" && item?.uri?.includes(asPath || "")
+            return <NavItem key={item?.uri} item={item} setNavIsOpen={setNavIsOpen}/>
+          })}
         </ul>
         <div className="flex justify-center">
           <LanguageToggle />
@@ -79,4 +65,89 @@ const HeaderDialog = ({menu, navIsOpen, setNavIsOpen}: Props) => {
   )
 }
 
+const NavItem = ({item, setNavIsOpen}: { item: MenuItem,setNavIsOpen:any }) => {
+  const {locale} = useLocaleContext()
+  const [open, setOpen] = useState<boolean>(false)
+  
+  return (
+    <li key={item?.uri}>
+      <Link
+        href={item?.uri ?? "#"}
+        locale={locale}
+        className={twMerge(
+          "relative flex items-center justify-center gap-x-1 text-[20px] font-semibold uppercase leading-[200%] transition-all duration-300",
+          "text-secondary-offWhite-white",
+          item?.childItems?.nodes && "ml-5"
+        )}>
+        <span  onClick={()=>{setNavIsOpen(false)}}>{item?.label}</span>
+        {item?.childItems?.nodes.length > 0 && (
+          <span
+            onClick={() => {
+              setOpen(!open)
+            }}
+            className={` transition-all duration-300 ${
+                  open ? "rotate-180" : ""
+                }`}
+            >
+            <DownIcon
+              className={
+                `cursor-pointer transition-all ${
+                  open ? "rotate-180" : ""
+                }` as string
+              }
+            />
+          </span>
+        )}
+      </Link>
+      {open && (
+        <motion.div
+          // onMouseEnter={() => setOpen(true)}
+          initial={{ opacity: 0, scale: 0.95, y: -10 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            transition: {
+              type: "spring",
+              stiffness: 200,
+              damping: 25,
+              mass: 1,
+              duration: 0.3
+            }
+          }}
+          exit={{ opacity: 0, scale: 0.95, y: -5 }}
+          transition={{
+            duration: 0.2,
+            ease: "easeOut"
+          }}
+          
+          style={{
+            z: 100,
+            
+            minHeight: "95px",
+            boxShadow: "0px 4px 30px 0px #0F172A66",
+          }}
+          className="rounded-[10px] border-[0.5px] border-none bg-white">
+          <ul className="flex list-none flex-col">
+            {item?.childItems?.nodes &&
+              item?.childItems?.nodes?.map((ele: MenuChildItem, id: number) => {
+                return (
+                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+                  <li key={id} onClick={()=>{setNavIsOpen(false)}} className="p-4 pb-0 pr-[34px] inline">
+                    <Link
+                      className={twMerge(
+                      "text-base uppercase leading-none text-primary-midBlue-main"
+                      )}
+                      href={ele?.uri || ""}>
+                      {ele?.label || "Empty label"}
+                    </Link>
+                  </li>
+                )
+              })}
+          </ul>
+        </motion.div>
+      )}
+    </li>
+  )
+}
 export default HeaderDialog
