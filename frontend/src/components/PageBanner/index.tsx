@@ -64,6 +64,9 @@ const PageBanner: React.FC<PageBannerFragment> = ({
                       controls: true,
                       vimeo_logo: false,
                       play_button_position: "center",
+                      playsinline: true,
+                      byline: true,
+                      portrait: false,
                     },
                   },
                 }}
