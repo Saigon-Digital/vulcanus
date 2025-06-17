@@ -37,6 +37,9 @@ const Video: React.FC<VideoBlock> = (props) => {
                 quality: "720p",
                 vimeo_logo: false,
                 play_button_position: "center",
+                playsinline: true,
+                byline: true,
+                portrait: false,
               },
             },
           }}
