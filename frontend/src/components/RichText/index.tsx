@@ -3,8 +3,6 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 
 const RichText: React.FC<RichTextFragment> = (props) => {
-  console.log(props.richText);
-
   return (
     <section className="container-block pb-14 ">
       <div className="grid grid-cols-12 gap-y-10 px-5">

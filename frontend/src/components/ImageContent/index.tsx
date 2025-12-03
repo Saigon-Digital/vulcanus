@@ -17,7 +17,6 @@ const ImageContent = ({
   reverse,
   fullWidthLayout,
 }: ImageContentBlock) => {
-  console.log("content", content)
   const params = useRouter().asPath
   const ref = useRef<HTMLDivElement>(null)
   const scrollTo = (element: RefObject<HTMLDivElement>) => {

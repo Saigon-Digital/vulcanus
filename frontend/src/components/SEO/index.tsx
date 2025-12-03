@@ -10,8 +10,11 @@ export type TSEO = {
   defaultSEO?: SiteSettingFragment | null | undefined
   link?: string | null | undefined
   pageTitle?: string
+  slug: string
+  canonical: string
 }
 const SEO = (props: TSEO) => {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ""
   const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props
   const favicon = defaultSEO?.favicon?.node?.sourceUrl
 
@@ -21,9 +24,10 @@ const SEO = (props: TSEO) => {
     image:
       onPageSeo?.socialGraphImage?.node?.sourceUrl ||
       defaultSEO?.openGraphImage?.node.sourceUrl,
-    seoCanonical: onPageSeo?.canonicalUrl || link?.replace("homepage/", ""),
-    url: link?.replace("homepage/", ""),
+    seoCanonical: props.canonical,
+    url: props.canonical,
   }
+  console.log('canonical', seo?.seoCanonical)
 
   return (
     <Head>
