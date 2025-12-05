@@ -10,6 +10,7 @@ import SEO from "@/components/SEO"
 
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
+  const router = useRouter()
   if (props.loading) {
     return <>Loading...</>
   }
@@ -26,16 +27,22 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
   let socialLink =
     process.env.NEXT_PUBLIC_SITE_URL +
     (props?.data?.page?.translation?.uri ?? "")
-  // console.log(socialLink)
+
+const slug = router.asPath === "/" ? "" : router.asPath
+    const enUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}/en${slug}`
+    const deUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}${slug}`
+    const locale = router.locale
 
   return (
     <>
       <SEO
-        DEUri={props?.data?.page?.translation?.DELang?.link}
-        ENUri={props.data?.page?.translation?.ENLang?.link}
+        DEUri={deUrl}
+        ENUri={enUrl}
         seo={props?.data?.page?.translation?.pagesSetting}
         defaultSEO={{...siteSetting?.siteSetting, siteTitle: siteTitle}}
         link={socialLink}
+        slug={slug}
+        canonical={locale === "de" ? deUrl : enUrl}
       />
 
       <BlockViewer dynamicBlocks={dynamicBlocks} />

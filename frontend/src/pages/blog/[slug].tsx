@@ -23,8 +23,9 @@ type Props = {
     siteSetting: SiteSettingFragment;
   };
   host?: string;
+  slug: string;
 };
-const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
+const index = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) => {
   const event = new Date(blog.dateGmt || new Date().getTime());
   const localeStr =
     locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
@@ -32,16 +33,20 @@ const index = ({blog, relatedBlog, locale, host, siteSettings}: Props) => {
       : "de-DE";
   let siteTitle = blog.title + " | Vulcanus Stahl";
   let link = host + `/${locale}` + "/blog" + blog.uri;
-  let DEUri = host + `/de` + "/blog" + blog.uri;
-  let ENUri = host + `/en` + "/blog" + blog.uri;
+
+    const enUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}/en${slug}`
+    const deUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}${slug}`
+
   return (
     <>
       <SEO
         link={link}
-        DEUri={DEUri}
-        ENUri={ENUri}
+        DEUri={deUrl}
+        ENUri={enUrl}
         defaultSEO={{...siteSettings.siteSetting, siteTitle: siteTitle}}
         seo={blog.pagesSetting}
+        slug={slug}
+        canonical={locale === "de" ? deUrl : enUrl}
       />
       <main className="  py-20 pb-10 lg:py-0 lg:pb-0">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 px-5 lg:mb-20">
@@ -98,6 +103,7 @@ export const getServerSideProps = (async (context) => {
       host,
       siteSettings: siteSettings,
       hideLanguageToggle:true,
+      slug: `/blog/${slug}`,
     },
   };
 }) satisfies GetServerSideProps<{

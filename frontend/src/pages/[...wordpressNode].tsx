@@ -7,10 +7,8 @@ export default function Page(props: WordPressTemplateProps) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
- 
   return getWordPressProps({
     ctx,
-   
   });
 };
 
