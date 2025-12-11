@@ -190,8 +190,8 @@ export const SUBMIT_FORM = gql(`
 export async function getPostThumb(lang: LanguageCodeFilterEnum) {
   return await client.query({
     query: gql(`
-    query GetPostsThumb($lang:LanguageCodeFilterEnum!) {
-      posts(where:{language:$lang}) {
+    query GetPostsThumb($lang:LanguageCodeFilterEnum!, $first: Int = 1000) {
+      posts(where:{language:$lang}, first: $first) {
         nodes {
           language {
             code

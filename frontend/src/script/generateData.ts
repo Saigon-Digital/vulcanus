@@ -68,7 +68,7 @@ const client = new ApolloClient({
         const localePart =
           ele.language?.code?.toLocaleLowerCase() === "en"
             ? "en/blog/"
-            : "weblog/";
+            : "blog/";
         return {...ele, uri: `/${localePart}${ele.slug}`};
       })
     );
