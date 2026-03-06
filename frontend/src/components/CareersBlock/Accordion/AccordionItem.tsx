@@ -78,7 +78,7 @@ const AccordionItem = (props: Props) => {
             !expanded && "lg:pb-[28px]",
             expanded && "pb-[22px]"
           )}>
-          <div className="-tracking-0.04 flex max-w-[450px] flex-col text-left text-2xl font-bold capitalize leading-[38px]  text-primary-blue-main lg:max-w-none">
+          <div className="-tracking-0.04 flex max-w-[450px] flex-col text-left text-2xl font-bold leading-[38px]text-primary-blue-main lg:max-w-none">
             {item?.title}
             <span className="text-xl font-normal text-white">
               {languages(locale)?.location}: {item?.location}
