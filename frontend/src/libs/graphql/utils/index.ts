@@ -63,7 +63,7 @@ export async function getPageType(language: LanguageCodeFilterEnum) {
           }
           title
           slug
-          
+
         }
       }
     }
@@ -103,10 +103,10 @@ export const GET_FORM = gql(`
           ...NameField
         }
       }
-      
+
 
     }
-    
+
   }
   fragment EmailField on EmailField {
     isRequired
@@ -120,7 +120,7 @@ export const GET_FORM = gql(`
     isRequired
     label
     adminLabel
-    
+
     adminLabel
     hasAutocomplete
   }
@@ -128,13 +128,13 @@ export const GET_FORM = gql(`
     isRequired
     adminLabel
     checkboxLabel
- 
+
     errorMessage
   }
   fragment PhoneField on PhoneField {
     isRequired
     adminLabel
-    
+
     label
     placeholder
     hasAutocomplete
@@ -144,7 +144,7 @@ export const GET_FORM = gql(`
     isRequired
     label
     adminLabel
-   
+
     placeholder
     maxLength
   }
@@ -152,14 +152,14 @@ export const GET_FORM = gql(`
     isRequired
     label
     adminLabel
-    
+
     placeholder
     autocompleteAttribute
     hasAutocomplete
     errorMessage
     maxLength
   }
-  
+
 `)
 
 export const SUBMIT_FORM = gql(`
@@ -202,6 +202,8 @@ export async function getPostThumb(lang: LanguageCodeFilterEnum) {
             }
           }
           title
+          isSticky
+          date
           slug
           blogDescription {
             blogDescription
