@@ -35,8 +35,8 @@ const PAGE_SIZE = 3
 
 const BlogsBlock = (props: Props) => {
   const [blockListing, setBlockListing] =
-    useState<GetPostsThumbQuery["posts"]>()
-  const { locale } = useLocaleContext()
+    useState<GetPostsThumbQuery["posts"]>();
+  const { locale } = useLocaleContext();
   useEffect(() => {
     ; (async () => {
       const { data } = await getPostThumb(
@@ -51,7 +51,7 @@ const BlogsBlock = (props: Props) => {
   const max_page = blockListing
     ? Math.floor(blockListing?.nodes?.length / PAGE_SIZE)
     : 0
-  
+
   const totalPosts = blockListing?.nodes?.length || 0
   const currentlyShowing = Math.min((page + 1) * PAGE_SIZE, totalPosts)
   const hasMorePosts = currentlyShowing < totalPosts
@@ -77,7 +77,11 @@ const BlogsBlock = (props: Props) => {
             </div>
           )}
           {blockListing &&
-            blockListing.nodes
+            [...blockListing.nodes]
+              .sort((a, b) => {
+                if (a.isSticky !== b.isSticky) return a.isSticky ? -1 : 1
+                return new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime()
+              })
               .slice(
                 0,
                 (page + 1) * PAGE_SIZE > sizes ? sizes : (page + 1) * PAGE_SIZE
