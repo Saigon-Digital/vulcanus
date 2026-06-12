@@ -36,6 +36,7 @@ const PAGE_SIZE = 3
 const BlogsBlock = (props: Props) => {
   const [blockListing, setBlockListing] =
     useState<GetPostsThumbQuery["posts"]>();
+  console.log("blockListing=>", blockListing)
   const { locale } = useLocaleContext();
   useEffect(() => {
     ; (async () => {
