@@ -224,6 +224,51 @@ export async function getPostThumb(lang: LanguageCodeFilterEnum) {
   })
 }
 
+export async function getPostThumbPaginated(lang: LanguageCodeFilterEnum, size: number, offset: number) {
+  return await client.query<{
+    posts: {
+      nodes: Array<{
+        language?: { code?: string } | null
+        featuredImage?: { node?: { sourceUrl?: string } | null } | null
+        title?: string | null
+        isSticky?: boolean | null
+        date?: string | null
+        slug?: string | null
+        blogDescription?: { blogDescription?: string | null } | null
+      }>
+      pageInfo: {
+        offsetPagination?: { hasMore?: boolean | null; hasPrevious?: boolean | null; total?: number | null } | null
+      }
+    }
+  }>({
+    // @ts-ignore - types will be generated after codegen
+    query: gql(`
+    query GetPostsThumbPaginated($lang: LanguageCodeFilterEnum!, $size: Int!, $offset: Int!) {
+      posts(where: { language: $lang, offsetPagination: { size: $size, offset: $offset } }) {
+        nodes {
+          language { code }
+          featuredImage { node { sourceUrl } }
+          title
+          isSticky
+          date
+          slug
+          blogDescription { blogDescription }
+        }
+        pageInfo {
+          offsetPagination {
+            hasMore
+            hasPrevious
+            total
+          }
+        }
+      }
+    }
+    `),
+    variables: { lang, size, offset },
+    fetchPolicy: "no-cache",
+  })
+}
+
 export async function getAllPost() {
   return await client.query({
     //@ts-ignore
@@ -335,10 +380,12 @@ export async function getPost(slug: string) {
     DELang: translation(language: DE) {
       uri
       link
+      slug
     }
     ENLang: translation(language: EN) {
       uri
       link
+      slug
     }
   }
   siteSettings {
