@@ -39,39 +39,38 @@ function BlogDePage() {
     },
   }
   const blogMockData = {
-    fieldGroupName: "PageBuilderDynamicBlocksBlogsLayout",
-    tittle: null,
-    ctaBlocks: [
-      {
-        title: "Kontakt ",
-        ctaButton: {
-          fieldGroupName: "BlogsCtaBlocksCtaButton",
-          text: "Kontaktiere uns",
-          link: {
-            title: "Kontakt",
-            url: "https://vulcanus-stahl.netlify.app/kontakt#form",
-            target: "",
-          },
+    
+    "fieldGroupName": "PageBuilderDynamicBlocksBlogsLayout",
+    "tittle": null,
+    "ctaBlocks": [
+        {
+            "title": "Get in touch",
+            "ctaButton": {
+                "fieldGroupName": "BlogsCtaBlocksCtaButton",
+                "text": "contact us",
+                "link": {
+                    "title": "Contact",
+                    "url": "https://holgerk1.sg-host.comen/contact/",
+                    "target": ""
+                }
+            },
+            "contactInfo": "<p>We are your partner for CNC manufacturing of individual parts and series, custom designs, and repair work.</p>\n"
         },
-        contactInfo:
-          "<p>Wir sind Ihr Partner für die CNC-Fertigung von Einzelteilen und Serien, Sonderkonstruktionen und Reparaturarbeiten.</p>\n",
-      },
-      {
-        title: "Jetzt Deinen Ausbildungsplatz sichern ",
-        ctaButton: {
-          fieldGroupName: "BlogsCtaBlocksCtaButton",
-          text: "arbeite mit uns",
-          link: {
-            title: "Jetzt Bewerben",
-            url: "https://vulcanus-stahl.netlify.app/kontakt#form",
-            target: "",
-          },
-        },
-        contactInfo:
-          '<p>Bitte bewerben Sie sich schriftlich, vorzugsweise per E-Mail, an: <a href="mailto:bewerbung@vulcanus-stahl.de" target="_blank" rel="noopener">bewerbung@vulcanus-stahl.de</a> Wir freuen uns auf Ihre Bewerbungen.</p>\n',
-      },
-    ],
-  }
+        {
+            "title": "Workplace training offers!",
+            "ctaButton": {
+                "fieldGroupName": "BlogsCtaBlocksCtaButton",
+                "text": "work with us",
+                "link": {
+                    "title": "Contact",
+                    "url": "https://holgerk1.sg-host.comen/contact/",
+                    "target": ""
+                }
+            },
+            "contactInfo": "<p>Please apply in writing, preferably by e-mail, to: <a href=\"mailto:bewerbung@vulcanus-stahl.de\">bewerbung@vulcanus-stahl.de</a> We look forward to receiving your applications.</p>\n"
+        }
+    ]
+}
   return (
     <div>
       <Hero {...heroProps} />
