@@ -7,7 +7,7 @@ import {GET_FORM} from "./gql";
 loadEnvConfig(process.cwd());
 const DATA_DIR = "./src/data";
 
-const endpointUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL;
+const endpointUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || "https://holgerk1.sg-host.com";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -37,7 +37,7 @@ const client = new ApolloClient({
       EN:translation(language:EN)
       {
         uri
-        language 
+        language
         {
           locale
           code
@@ -46,7 +46,7 @@ const client = new ApolloClient({
      	 DE:translation(language:DE)
       {
         uri
-        language 
+        language
         {
           locale
           code
@@ -99,7 +99,7 @@ const client = new ApolloClient({
 
             footerTextDe
             footerTextEn
-            
+
             footerLinkEn {
               url
             }
@@ -121,7 +121,7 @@ const client = new ApolloClient({
             xing {
               url
             }
-           
+
             officeLocationText
             locationLink {
             url
@@ -155,13 +155,13 @@ const client = new ApolloClient({
       query: gql(`
       query GetMenus {
         menus {
-          
+
                       nodes {
-                        
+
                         locations
                         menuItems(first: 200) {
-                        nodes {  
-                        
+                        nodes {
+
                         uri
                         label
                         title
@@ -178,7 +178,7 @@ const client = new ApolloClient({
                         }
                         }
                       }
-                      
+
                     }
             }
         `),

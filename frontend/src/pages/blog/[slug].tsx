@@ -102,8 +102,20 @@ export const getServerSideProps = (async (context) => {
       locale: locale,
       host,
       siteSettings: siteSettings,
-      hideLanguageToggle:true,
+      hideLanguageToggle: false,
       slug: `/blog/${slug}`,
+      __TEMPLATE_QUERY_DATA__: {
+        page: {
+          translation: {
+            DELang: {
+              link: `/de/blog/${blog.DELang?.slug}`,
+            },
+            ENLang: {
+              link: `/en/blog/${blog.ENLang?.slug}`,
+            },
+          },
+        },
+      },
     },
   };
 }) satisfies GetServerSideProps<{
