@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Button from "../Button"
 import { useRouter } from "next/router"
-import { getPostThumbPaginated } from "@/libs/graphql/utils"
+import { getPostThumb } from "@/libs/graphql/utils"
 import { languages } from "@/utils/language"
 import { getAcfLinkProps } from "@/utils"
 import dynamic from "next/dynamic"
@@ -48,7 +48,7 @@ const BlogsBlock = (props: Props) => {
   const router = useRouter()
   const currentPage = parseInt((router.query.page as string) || "1") || 1
 
-  const [posts, setPosts] = useState<Post[]>([])
+  const [posts, setPosts] = useState<any[]>([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
   const sectionRef = useRef<HTMLElement>(null)
@@ -62,13 +62,13 @@ const BlogsBlock = (props: Props) => {
     setLoading(true)
     const lang = locale === "en" ? LanguageCodeFilterEnum.En : LanguageCodeFilterEnum.De
     const offset = (currentPage - 1) * PAGE_SIZE
-    getPostThumbPaginated(lang, PAGE_SIZE, offset).then(({ data }) => {
+    getPostThumb(lang).then(({ data }) => {
       const sorted = [...(data.posts?.nodes ?? [])].sort((a, b) => {
         if (a.isSticky !== b.isSticky) return a.isSticky ? -1 : 1
         return new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime()
       })
-      setPosts(sorted)
-      setTotal(data.posts?.pageInfo?.offsetPagination?.total ?? 0)
+      setPosts(sorted.slice(offset, offset + PAGE_SIZE))
+      setTotal(sorted.length)
       setLoading(false)
     })
   }, [locale, currentPage])
