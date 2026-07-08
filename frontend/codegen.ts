@@ -6,7 +6,13 @@ const endpointUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || "https://holgerk1.s
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: `${endpointUrl}/graphql`,
+  schema: [
+      {
+         [`https://holgerk1.sg-host.com/graphql`]: {
+            headers: { 'User-Agent': 'vulcanus-codegen' },
+         },
+      },
+   ],
   documents: [
     "src/**/**/*.{tsx,ts,graphql,gql}",
 
