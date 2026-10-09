@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {GetStaticProps, GetServerSideProps} from "next";
 import {
   ImageBlock as TImageBlock,
@@ -38,7 +38,17 @@ const index = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) => 
   const b = blog as any;
   const enUrl = b.ENLang?.slug ? `${site}/en/blog/${b.ENLang.slug}` : null;
   const deUrl = b.DELang?.slug ? `${site}/blog/${b.DELang.slug}` : null;
-  const selfUrl = `${site}${locale === "en" ? "/en" : ""}${slug}`;
+  const selfPath = `${locale === "en" ? "/en" : ""}${slug}`;
+  const selfUrl = `${site}${selfPath}`;
+
+  // Catch-all for variants the server never sees (Netlify collapses "//" and Next
+  // strips the default "/de" prefix before getServerSideProps runs).
+  useEffect(() => {
+    const {pathname, search, hash} = window.location;
+    if (decodeURIComponent(pathname) !== decodeURIComponent(selfPath)) {
+      window.location.replace(selfPath + search + hash);
+    }
+  }, [selfPath]);
 
   return (
     <>
