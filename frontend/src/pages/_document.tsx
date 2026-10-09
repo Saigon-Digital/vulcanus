@@ -4,7 +4,15 @@ import Script from "next/script"
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        {/* Netlify serves "//blog///x" as "/blog/x" but the address bar keeps the
+            slashes, and Next's client router crashes on them. Collapse before it boots. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(l){var p=l.pathname.replace(/\\/{2,}/g,"/");if(p!==l.pathname)l.replace(p+l.search+l.hash)})(location)`,
+          }}
+        />
+      </Head>
       <body>
         <Main />
         <NextScript />
