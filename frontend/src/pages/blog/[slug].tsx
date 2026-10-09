@@ -34,8 +34,11 @@ const index = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) => 
   let siteTitle = blog.title + " | Vulcanus Stahl";
   let link = host + `/${locale}` + "/blog" + blog.uri;
 
-    const enUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}/en${slug}`
-    const deUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}${slug}`
+  const site = process.env.NEXT_PUBLIC_SITE_URL || "";
+  const b = blog as any;
+  const enUrl = b.ENLang?.slug ? `${site}/en/blog/${b.ENLang.slug}` : null;
+  const deUrl = b.DELang?.slug ? `${site}/blog/${b.DELang.slug}` : null;
+  const selfUrl = `${site}${locale === "en" ? "/en" : ""}${slug}`;
 
   return (
     <>
@@ -46,7 +49,7 @@ const index = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) => 
         defaultSEO={{...siteSettings.siteSetting, siteTitle: siteTitle}}
         seo={blog.pagesSetting}
         slug={slug}
-        canonical={locale === "de" ? deUrl : enUrl}
+        canonical={selfUrl}
       />
       <main className="  py-20 pb-10 lg:py-0 lg:pb-0">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 px-5 lg:mb-20">
@@ -95,6 +98,19 @@ export const getServerSideProps = (async (context) => {
   // );
   const blog = data?.post;
   if (!blog) return {notFound: true};
+
+  // Canonical form: EN -> /en/blog/<slug>, DE -> /blog/<slug> (no /de prefix).
+  // Redirect wrong locale or wrong slug. Next strips the default /de prefix before we see it,
+  // so /de/blog/* is redirected at the Netlify edge (public/_redirects).
+  const postLang = blog.language?.code === "EN" ? "en" : "de";
+  const canonical = `${postLang === "en" ? "/en" : ""}/blog/${blog.slug}`;
+  if (
+    postLang !== locale ||
+    decodeURIComponent(slug) !== decodeURIComponent(blog.slug)
+  ) {
+    return {redirect: {destination: canonical, permanent: true}};
+  }
+
   return {
     props: {
       // relatedBlog: relatedBLog,
@@ -103,7 +119,7 @@ export const getServerSideProps = (async (context) => {
       host,
       siteSettings: siteSettings,
       hideLanguageToggle: false,
-      slug: `/blog/${slug}`,
+      slug: `/blog/${blog.slug}`,
       __TEMPLATE_QUERY_DATA__: {
         page: {
           translation: {

@@ -98,7 +98,7 @@ const BlogsBlock = (props: Props) => {
           {posts.map((ele, id) => (
             <div key={id} className="flex flex-wrap gap-5 lg:min-h-[350px]">
               <div className="relative min-h-[250px] w-full md:w-[45%]">
-                <Link href={`/${locale}/blog/${ele.slug}` as string}>
+                <Link href={`/blog/${ele.slug}` as string}>
                   <Image
                     fill
                     className="max-h-[400px] w-full object-cover"
@@ -113,7 +113,7 @@ const BlogsBlock = (props: Props) => {
                 </h2>
                 <h3 className="text-3xl font-bold xl:text-4xl xl:leading-[48px]">
                   <Link
-                    href={`/${locale}/blog/${ele.slug}` as string}
+                    href={`/blog/${ele.slug}` as string}
                     className="group hover:text-primary-blue-main">
                     {ele.title}
                   </Link>

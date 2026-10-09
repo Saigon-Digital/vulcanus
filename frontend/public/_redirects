@@ -1,0 +1,2 @@
+# Default locale (de) has no prefix; Next.js cannot see /de, so redirect it at the edge.
+/de/blog/*  /blog/:splat  301!
