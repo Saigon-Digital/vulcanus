@@ -25,7 +25,7 @@ type Props = {
   host?: string;
   slug: string;
 };
-const index = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) => {
+const BlogPost = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) => {
   const event = new Date(blog.dateGmt || new Date().getTime());
   const localeStr =
     locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
@@ -148,4 +148,4 @@ export const getServerSideProps = (async (context) => {
   blog: Props;
 }>;
 
-export default index;
+export default BlogPost;
