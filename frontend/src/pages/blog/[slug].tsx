@@ -13,10 +13,14 @@ import ImageBlock from "@/components/ImageBlock";
 
 import RelatedPosts from "@/components/RelatedPost";
 import SEO from "@/components/SEO";
+import TableOfContents from "@/components/TableOfContents";
 
 import {languages} from "@/utils/language";
+import {buildToc, TocItem} from "@/utils/toc";
 type Props = {
   blog: PostFragmentFragment;
+  content: string;
+  toc: TocItem[];
   locale: string;
   relatedBlog: PostFragmentFragment[];
   siteSettings: {
@@ -25,7 +29,7 @@ type Props = {
   host?: string;
   slug: string;
 };
-const BlogPost = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) => {
+const BlogPost = ({blog, content, toc, relatedBlog, locale, host, siteSettings, slug}: Props) => {
   const event = new Date(blog.dateGmt || new Date().getTime());
   const localeStr =
     locale?.toLocaleUpperCase() === LanguageCodeFilterEnum.En
@@ -83,9 +87,13 @@ const BlogPost = ({blog, relatedBlog, locale, host, siteSettings, slug}: Props) 
           className="px-5"
           imageSrc={blog.featuredImage?.node?.sourceUrl || "/blogs/blog-3.png"}
         />
-        {blog?.content && (
+        <TableOfContents
+          items={toc}
+          title={languages(locale)?.tableOfContents || "Table of contents"}
+        />
+        {content && (
           <div
-            dangerouslySetInnerHTML={{__html: blog.content}}
+            dangerouslySetInnerHTML={{__html: content}}
             className="post-content mx-auto mb-20 mt-20 flex max-w-[912px] flex-col px-5  xl:mb-[140px] [&>*>strong]:mt-8 [&>*>strong]:inline-block [&>*>strong]:text-2xl [&>*>strong]:font-bold [&>p]:mt-4 [&>p]:text-base [&>ul]:mt-2 [&>ul]:list-disc [&>ul]:pl-5 [&>a]:underline [&>a]:text-[#004594] 
         "></div>
         )}
@@ -120,10 +128,14 @@ export const getServerSideProps = (async (context) => {
     return {redirect: {destination: canonical, permanent: true}};
   }
 
+  const {html: content, toc} = buildToc(blog.content || "");
+
   return {
     props: {
       // relatedBlog: relatedBLog,
       blog: blog,
+      content,
+      toc,
       locale: locale,
       host,
       siteSettings: siteSettings,
