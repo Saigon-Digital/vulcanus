@@ -225,9 +225,62 @@ p {
 }
 
 .post-content {
+  // The container is a flex column, so margins don't collapse: a heading's
+  // bottom margin and the next block's top margin add up. Keep headings close
+  // to the text they introduce and far from the text before them.
   h2,h3,h4,h5,h6 {
-    @apply text-4xl;
-    @apply my-2
+    @apply mb-2
+  }
+  h2 {
+    @apply mt-14 text-3xl font-bold lg:text-4xl;
+  }
+  h3 {
+    @apply mt-10 text-2xl font-semibold lg:text-3xl;
+  }
+  h4 {
+    @apply mt-8 text-xl font-semibold lg:text-2xl;
+  }
+  h5,
+  h6 {
+    @apply mt-6 text-lg font-medium;
+  }
+  // Sub-heading straight after a heading: no extra gap.
+  h2 + h3,
+  h2 + h4,
+  h3 + h4 {
+    @apply mt-4;
+  }
+  h2 + p,
+  h3 + p,
+  h4 + p,
+  h5 + p,
+  h6 + p {
+    @apply mt-0;
+  }
+
+  // Tables: real grid with visible cell lines. Rows are grids so the number of
+  // columns doesn't matter; the table scrolls sideways on narrow screens.
+  table {
+    @apply mb-6 mt-6 grid w-full overflow-x-auto border-l border-t border-white/20;
+  }
+  thead,
+  tbody {
+    display: contents;
+  }
+  tr {
+    @apply grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(9rem, 1fr);
+  }
+  th,
+  td {
+    @apply border-b border-r border-white/20 px-4 py-3 text-left text-base;
+  }
+  th {
+    @apply bg-white/10 font-bold;
+  }
+  tbody tr:nth-child(even) td {
+    @apply bg-white/5;
   }
 }
 .post-content img {
