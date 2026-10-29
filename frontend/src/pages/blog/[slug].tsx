@@ -145,10 +145,10 @@ export const getServerSideProps = (async (context) => {
         page: {
           translation: {
             DELang: {
-              link: `/de/blog/${blog.DELang?.slug}`,
+              uri: `/de/blog/${blog.DELang?.slug}`,
             },
             ENLang: {
-              link: `/en/blog/${blog.ENLang?.slug}`,
+              uri: `/en/blog/${blog.ENLang?.slug}`,
             },
           },
         },
