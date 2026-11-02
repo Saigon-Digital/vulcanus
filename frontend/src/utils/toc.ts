@@ -21,17 +21,36 @@ const slugify = (text: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
+const NAMED_ENTITIES: Record<string, string> = {
+  nbsp: " ",
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  lsquo: "‘",
+  rsquo: "’",
+  ldquo: "“",
+  rdquo: "”",
+  ndash: "–",
+  mdash: "—",
+  hellip: "…",
+};
+
+// Heading text is rendered as plain text in the ToC, so entities must be decoded.
+const decodeEntities = (text: string) =>
+  text
+    .replace(/&#(\d+);|&#x([0-9a-f]+);/gi, (match, dec, hex) => {
+      const code = dec ? parseInt(dec, 10) : parseInt(hex, 16);
+      return code > 0 && code <= 0x10ffff ? String.fromCodePoint(code) : match;
+    })
+    .replace(/&([a-z]+);/gi, (match, name: string) =>
+      name in NAMED_ENTITIES ? NAMED_ENTITIES[name] : match
+    )
+    // last, so "&amp;lt;" is not decoded twice
+    .replace(/&amp;/g, "&");
+
 const stripTags = (html: string) =>
-  html
-    .replace(/<[^>]*>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#0?39;|&#8217;/g, "'")
-    .replace(/\s+/g, " ")
-    .trim();
+  decodeEntities(html.replace(/<[^>]*>/g, "")).replace(/\s+/g, " ").trim();
 
 /**
  * Adds an `id` to every h2/h3 of the post HTML and returns the matching
