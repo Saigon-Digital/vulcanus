@@ -287,6 +287,20 @@ p {
   tbody tr:nth-child(even) td {
     @apply bg-white/5;
   }
+
+  // Yoast FAQ block: one card per question, same look as the careers accordion.
+  .schema-faq {
+    @apply mt-6 flex flex-col gap-4;
+  }
+  .schema-faq-section {
+    @apply rounded-[10px] border border-primary-blue-main bg-[#051028] px-5 py-6 md:px-8;
+  }
+  .schema-faq-question {
+    @apply block text-xl font-bold leading-snug lg:text-2xl;
+  }
+  .schema-faq-answer {
+    @apply mb-0 mt-3 text-base leading-relaxed text-white/80;
+  }
 }
 .post-content img {
   width: 100%;
