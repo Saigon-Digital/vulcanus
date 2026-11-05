@@ -87,6 +87,7 @@ const SEO = (props: TSEO) => {
 
       {seo.seoCanonical && <link rel="canonical" href={seo.seoCanonical} />}
       {DEUri && <link rel="alternate" hrefLang="x-default" href={DEUri} />}
+      {DEUri && <link rel="alternate" hrefLang="de" href={DEUri} />}
       {ENUri && (
         <link
           rel="alternate"

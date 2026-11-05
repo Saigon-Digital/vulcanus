@@ -7,6 +7,7 @@ import Head from "next/head"
 
 import IntroduceBlock from "@/components/IntroduceBlock"
 import SEO from "@/components/SEO"
+import {absoluteUrl} from "@/utils/seoUrls"
 
 const Page: FaustTemplate<GetPageQuery> = (props) => {
   // Loading state for previews
@@ -28,10 +29,18 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
     process.env.NEXT_PUBLIC_SITE_URL +
     (props?.data?.page?.translation?.uri ?? "")
 
-const slug = router.asPath === "/" ? "" : router.asPath
-    const enUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}/en${slug}`
-    const deUrl = `${process.env.NEXT_PUBLIC_SITE_URL || ""}${slug}`
-    const locale = router.locale
+  const slug = router.asPath === "/" ? "" : router.asPath
+  const locale = router.locale
+
+  // hreflang and canonical come from the real translations in WordPress, not
+  // from the current path. Languages with no translation are left out.
+  const translation = props.data?.page?.translation
+  const enUrl = absoluteUrl(translation?.ENLang?.uri)
+  const deUrl = absoluteUrl(translation?.DELang?.uri)
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ""
+  const canonical =
+    absoluteUrl(translation?.uri) ??
+    `${siteUrl}${locale === "en" ? "/en" : ""}${slug}`
 
   return (
     <>
@@ -42,7 +51,7 @@ const slug = router.asPath === "/" ? "" : router.asPath
         defaultSEO={{...siteSetting?.siteSetting, siteTitle: siteTitle}}
         link={socialLink}
         slug={slug}
-        canonical={locale === "de" ? deUrl : enUrl}
+        canonical={canonical}
       />
 
       <BlockViewer dynamicBlocks={dynamicBlocks} />
