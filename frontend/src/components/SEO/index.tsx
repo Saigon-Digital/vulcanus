@@ -27,7 +27,6 @@ const SEO = (props: TSEO) => {
     seoCanonical: props.canonical,
     url: props.canonical,
   }
-  console.log('canonical', seo?.seoCanonical)
 
   return (
     <Head>

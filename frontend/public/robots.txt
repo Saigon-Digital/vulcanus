@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.vulcanus-stahl.de
-
-# Sitemaps
-Sitemap: https://www.vulcanus-stahl.de/sitemap.xml
