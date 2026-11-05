@@ -13,6 +13,7 @@ type Tlang = {
   service: string
   manufacturing: string
   relatedPost: string
+  tableOfContents: string
   poweredBy: string
   contactUs: string
   allowAll: string
@@ -50,6 +51,7 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         followUs: "Follow us on Social Media",
         manufacturing: "Manufacturing",
         relatedPost: "Related Post",
+        tableOfContents: "Table of contents",
         require: "This field is required",
         error: "Something went wrong",
         cookieContent: `
@@ -122,6 +124,7 @@ export const languages = (locale?: string | undefined): Tlang | undefined => {
         service: "Unsere Dienstleistungen",
         policy: "Datenschutzrichtlinie",
         relatedPost: "Verwandter Beitrag",
+        tableOfContents: "Inhaltsverzeichnis",
         introduce: "Datenschutzerklärung",
         poweredBy: "Angetrieben von",
         allowAll: "Alle Zulassen",

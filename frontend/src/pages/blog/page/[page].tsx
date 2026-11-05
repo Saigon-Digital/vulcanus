@@ -89,10 +89,10 @@ export async function getStaticProps() {
         page: {
           translation: {
             DELang: {
-              link: `/blog-de/`,
+              uri: `/blog-de/`,
             },
             ENLang: {
-              link: `/en/blog/`,
+              uri: `/en/blog/`,
             },
           },
         },
