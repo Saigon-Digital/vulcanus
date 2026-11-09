@@ -12,6 +12,7 @@ export type TSEO = {
   pageTitle?: string
   slug: string
   canonical: string
+  schema?: Record<string, unknown>
 }
 const SEO = (props: TSEO) => {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ""
@@ -26,6 +27,35 @@ const SEO = (props: TSEO) => {
       defaultSEO?.openGraphImage?.node.sourceUrl,
     seoCanonical: props.canonical,
     url: props.canonical,
+  }
+
+  // ponytail: sameAs hardcoded from the live footer; read from CMS footerSetting if they start changing
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: "Vulcanus-Stahl & Maschinenbau GmbH",
+        url: siteUrl,
+        logo: `${siteUrl}/logo.png`,
+        sameAs: [
+          "https://www.linkedin.com/company/vulcanus-stahl-und-maschinenbau-gmbh",
+          "https://www.xing.com/pages/vulcanus-stahl-maschinenbau-gmbh",
+          "https://www.facebook.com/vulcanusstahl.de/",
+          "https://www.instagram.com/vulcanusstahl.de/",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "Vulcanus Stahl",
+        publisher: {"@id": `${siteUrl}/#organization`},
+        inLanguage: ["de", "en"],
+      },
+      ...(props.schema ? [props.schema] : []),
+    ],
   }
 
   return (
@@ -95,6 +125,13 @@ const SEO = (props: TSEO) => {
           href={ENUri?.replace("homepage/", "")}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          // escape "<" so CMS text can't close the script tag
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
     </Head>
   )
 }

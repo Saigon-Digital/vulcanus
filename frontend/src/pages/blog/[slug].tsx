@@ -64,6 +64,19 @@ const BlogPost = ({blog, content, toc, relatedBlog, locale, host, siteSettings, 
         seo={blog.pagesSetting}
         slug={slug}
         canonical={selfUrl}
+        schema={{
+          "@type": "BlogPosting",
+          "@id": `${selfUrl}#article`,
+          mainEntityOfPage: selfUrl,
+          headline: blog.title,
+          description: blog.pagesSetting?.description || undefined,
+          image: blog.featuredImage?.node?.sourceUrl || undefined,
+          datePublished: blog.dateGmt ? `${blog.dateGmt}Z` : undefined,
+          inLanguage: locale === "en" ? "en" : "de",
+          // ponytail: org as author; WP author is a CMS account, not a real byline
+          author: {"@id": `${site}/#organization`},
+          publisher: {"@id": `${site}/#organization`},
+        }}
       />
       <main className="  py-20 pb-10 lg:py-0 lg:pb-0">
         <div className="mx-auto mb-10 flex max-w-[912px] flex-col gap-6 px-5 lg:mb-20">
