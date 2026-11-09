@@ -7,6 +7,23 @@ if (!process.env.NEXT_PUBLIC_SITE_URL) {
   )
 }
 
+// WordPress placeholder/thin pages that should not be indexed.
+const EXCLUDED_URIS = [
+  "/bilingual-coming-soon",
+  "/en/coming-soon",
+  "/post", // leftover listing stub
+  "/datencontroller", // empty cookie-tool page
+]
+
+// Same rules as cleanUri() in src/utils/seoUrls.ts, so sitemap URLs match the
+// canonical URLs: no trailing slash, "/en/home-page" is served at "/en".
+function toServedPath(uri) {
+  if (!uri) return undefined
+  const path = uri.replace(/\/+$/, "")
+  if (path === "") return "/"
+  return path === "/en/home-page" ? "/en" : path
+}
+
 module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
   generateRobotsTxt: true,
@@ -24,14 +41,21 @@ module.exports = {
       robotsTxt.replace(/# Host\nHost: .*\n\n?/, ""),
   },
   sitemapSize: 5000,
-  priority: 0.7,
+  // Google ignores priority/changefreq, and a build-time lastmod is a lie.
+  priority: undefined,
+  changefreq: undefined,
+  autoLastmod: false,
+  // auto-discovered Next pages that must not be listed
+  exclude: ["/preview", "/en/preview"],
   additionalPaths: async (config) => {
     const result = []
     for (let path of paths) {
+      const loc = toServedPath(path.uri)
+      if (!loc || EXCLUDED_URIS.includes(loc)) continue
+      // real WordPress modified date (GMT, no zone suffix in WPGraphQL)
       result.push({
-        loc: path.uri,
-        priority: config.priority,
-        lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
+        loc,
+        lastmod: path.modifiedGmt ? `${path.modifiedGmt}Z` : undefined,
       })
     }
 
