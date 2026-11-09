@@ -157,11 +157,13 @@ export const getServerSideProps = (async (context) => {
       __TEMPLATE_QUERY_DATA__: {
         page: {
           translation: {
+            // Canonical paths (German has no /de prefix). Without a translation,
+            // fall back to that language's blog index instead of /blog/undefined.
             DELang: {
-              uri: `/de/blog/${blog.DELang?.slug}`,
+              uri: blog.DELang?.slug ? `/blog/${blog.DELang.slug}` : "/blog-de",
             },
             ENLang: {
-              uri: `/en/blog/${blog.ENLang?.slug}`,
+              uri: blog.ENLang?.slug ? `/en/blog/${blog.ENLang.slug}` : "/en/blog",
             },
           },
         },

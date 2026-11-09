@@ -17,20 +17,34 @@ const client = new ApolloClient({
 (async () => {
   try {
     let paths: any[] = [];
-    const {data} = await client.query({
+    // WPGraphQL caps `first` at 100, so page through posts.
+    // ponytail: pages (38 today) still one request; paginate them too past 100.
+    const posts: any[] = [];
+    let after: string | null | undefined = null;
+    let data: any;
+    do {
+      ({data} = await client.query({
+      fetchPolicy: "no-cache",
+      variables: {after},
       query: gql(`
-    query getSiteMap {
-      pages(first: 1000) {
+    query getSiteMap($after: String) {
+      pages(first: 100) {
     nodes {
       uri
       slug
+      modifiedGmt
     }
   }
-  posts (first:500) {
+  posts (first: 100, after: $after) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
     nodes
     {
     uri
     slug
+    modifiedGmt
     language {
         code
       }
@@ -56,7 +70,10 @@ const client = new ApolloClient({
   }
 }
     `),
-    });
+      }));
+      posts.push(...(data.posts?.nodes ?? []));
+      after = data.posts?.pageInfo.hasNextPage ? data.posts.pageInfo.endCursor : null;
+    } while (after);
     //@ts-ignore
     paths = data.pages?.nodes.map((ele) => ({
       ...ele,
@@ -64,7 +81,7 @@ const client = new ApolloClient({
     }));
 
     const concatPaths = paths.concat(
-      data.posts?.nodes.map((ele: any) => {
+      posts.map((ele: any) => {
         const localePart =
           ele.language?.code?.toLocaleLowerCase() === "en"
             ? "en/blog/"
