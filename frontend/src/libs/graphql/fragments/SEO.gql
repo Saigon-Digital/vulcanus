@@ -1,0 +1,9 @@
+# Yoast SEO fields, the single source for page titles and descriptions.
+fragment YoastSeo on PostTypeSEO {
+  title
+  metaDesc
+  metaRobotsNoindex
+  opengraphImage {
+    sourceUrl
+  }
+}

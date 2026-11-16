@@ -1,11 +1,14 @@
 import {
   PagesSettingFragment,
   SiteSettingFragment,
+  YoastSeoFragment,
 } from "@/__generated__/graphql"
+import {normalizeTitle} from "@/utils/seoTitle"
 import Head from "next/head"
 import {useRouter} from "next/router"
 export type TSEO = {
   seo?: PagesSettingFragment | null | undefined
+  yoast?: YoastSeoFragment | null | undefined
   ENUri?: string | null | undefined
   DEUri?: string | null | undefined
   defaultSEO?: SiteSettingFragment | null | undefined
@@ -17,19 +20,26 @@ export type TSEO = {
 }
 const SEO = (props: TSEO) => {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ""
-  const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props
+  const {seo: onPageSeo, yoast, link, defaultSEO, DEUri, ENUri} = props
   const favicon = defaultSEO?.favicon?.node?.sourceUrl
   const {locale} = useRouter()
 
   const seo = {
-    title: onPageSeo?.title || defaultSEO?.siteTitle,
+    // Yoast is the single source: Yoast, then the older ACF Page Settings, then
+    // the site default. Brand suffixes are normalised so every title ends alike.
+    title:
+      normalizeTitle(yoast?.title) ||
+      normalizeTitle(onPageSeo?.title) ||
+      defaultSEO?.siteTitle,
     // The site-wide default description is German, so it is only a valid
     // fallback on German pages. English pages without their own description
     // get none, rather than a German one.
     description:
+      yoast?.metaDesc?.trim() ||
       onPageSeo?.description ||
       (locale === "en" ? undefined : defaultSEO?.description),
     image:
+      yoast?.opengraphImage?.sourceUrl ||
       onPageSeo?.socialGraphImage?.node?.sourceUrl ||
       defaultSEO?.openGraphImage?.node.sourceUrl,
     seoCanonical: props.canonical,
@@ -118,7 +128,8 @@ const SEO = (props: TSEO) => {
           <meta property="twitter:url" content={seo.url} />
         </>
       )}
-      {props.seo?.noIndexNoFollow && (
+      {(props.seo?.noIndexNoFollow ||
+        yoast?.metaRobotsNoindex === "noindex") && (
         <meta name="robots" content="noindex, nofollow" />
       )}
 

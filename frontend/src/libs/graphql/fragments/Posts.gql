@@ -32,4 +32,7 @@ fragment PostFragment on Post {
   pagesSetting {
     ...pagesSetting
   }
+  seo {
+    ...YoastSeo
+  }
 }

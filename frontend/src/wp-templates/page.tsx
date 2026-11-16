@@ -48,6 +48,7 @@ const Page: FaustTemplate<GetPageQuery> = (props) => {
         DEUri={deUrl}
         ENUri={enUrl}
         seo={props?.data?.page?.translation?.pagesSetting}
+        yoast={props?.data?.page?.translation?.seo}
         defaultSEO={{...siteSetting?.siteSetting, siteTitle: siteTitle}}
         link={socialLink}
         slug={slug}
@@ -113,6 +114,9 @@ Page.query = gql(`
         }
         pagesSetting {
           ...pagesSetting
+        }
+        seo {
+          ...YoastSeo
         }
 
         pageBuilder {
