@@ -62,6 +62,8 @@ const BlogPost = ({blog, content, toc, relatedBlog, locale, host, siteSettings, 
         ENUri={enUrl}
         defaultSEO={{...siteSettings.siteSetting, siteTitle: siteTitle}}
         seo={blog.pagesSetting}
+        yoast={blog.seo}
+        yoastFirst
         slug={slug}
         canonical={selfUrl}
         schema={{

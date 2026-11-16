@@ -366,6 +366,9 @@ export async function getPost(slug: string) {
     }
     content
     title
+    seo {
+      ...YoastSeo
+    }
     pagesSetting {
       title
       description

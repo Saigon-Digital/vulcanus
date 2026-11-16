@@ -1,10 +1,16 @@
 import {
   PagesSettingFragment,
   SiteSettingFragment,
+  YoastSeoFragment,
 } from "@/__generated__/graphql"
 import Head from "next/head"
+import {useRouter} from "next/router"
 export type TSEO = {
   seo?: PagesSettingFragment | null | undefined
+  yoast?: YoastSeoFragment | null | undefined
+  // true for blog posts: Yoast wins over ACF. Pages keep ACF first because their
+  // ACF titles are keyword-written while their Yoast titles are just the page name.
+  yoastFirst?: boolean
   ENUri?: string | null | undefined
   DEUri?: string | null | undefined
   defaultSEO?: SiteSettingFragment | null | undefined
@@ -16,15 +22,31 @@ export type TSEO = {
 }
 const SEO = (props: TSEO) => {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ""
-  const {seo: onPageSeo, link, defaultSEO, DEUri, ENUri} = props
+  const {seo: onPageSeo, yoast, yoastFirst, link, defaultSEO, DEUri, ENUri} = props
   const favicon = defaultSEO?.favicon?.node?.sourceUrl
+  const {locale} = useRouter()
+
+  // Posts: Yoast, then ACF Page Settings. Pages: ACF, then Yoast. Either way the
+  // site default is the last resort. Titles are shown exactly as typed (Yoast
+  // adds its own " - Vulcanus"); the code adds or removes no brand suffix.
+  const pick = <T,>(fromYoast: T, fromAcf: T): T =>
+    (yoastFirst ? fromYoast || fromAcf : fromAcf || fromYoast) as T
 
   const seo = {
-    title: onPageSeo?.title || defaultSEO?.siteTitle,
-    description: onPageSeo?.description || defaultSEO?.description,
+    title:
+      pick(yoast?.title?.trim(), onPageSeo?.title?.trim()) ||
+      defaultSEO?.siteTitle,
+    // The site-wide default description is German, so it is only a valid
+    // fallback on German pages. English pages without their own description
+    // get none, rather than a German one.
+    description:
+      pick(yoast?.metaDesc?.trim(), onPageSeo?.description?.trim()) ||
+      (locale === "en" ? undefined : defaultSEO?.description),
     image:
-      onPageSeo?.socialGraphImage?.node?.sourceUrl ||
-      defaultSEO?.openGraphImage?.node.sourceUrl,
+      pick(
+        yoast?.opengraphImage?.sourceUrl,
+        onPageSeo?.socialGraphImage?.node?.sourceUrl
+      ) || defaultSEO?.openGraphImage?.node.sourceUrl,
     seoCanonical: props.canonical,
     url: props.canonical,
   }
@@ -111,7 +133,8 @@ const SEO = (props: TSEO) => {
           <meta property="twitter:url" content={seo.url} />
         </>
       )}
-      {props.seo?.noIndexNoFollow && (
+      {(props.seo?.noIndexNoFollow ||
+        yoast?.metaRobotsNoindex === "noindex") && (
         <meta name="robots" content="noindex, nofollow" />
       )}
 

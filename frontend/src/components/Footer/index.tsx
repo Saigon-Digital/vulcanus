@@ -123,6 +123,7 @@ const Footer = (props: Props) => {
 
         </div>
         <Link
+          aria-label={locale === "en" ? "Contact us" : "Kontakt aufnehmen"}
           href={`${locale?.toLocaleLowerCase() === "en"
               ? buttonLink?.ENLink?.uri + "#form" || ""
               : buttonLink?.DELink?.uri + "#form" || ""
