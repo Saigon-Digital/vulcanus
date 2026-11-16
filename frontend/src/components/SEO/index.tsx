@@ -3,7 +3,6 @@ import {
   SiteSettingFragment,
   YoastSeoFragment,
 } from "@/__generated__/graphql"
-import {normalizeTitle} from "@/utils/seoTitle"
 import Head from "next/head"
 import {useRouter} from "next/router"
 export type TSEO = {
@@ -28,17 +27,15 @@ const SEO = (props: TSEO) => {
   const {locale} = useRouter()
 
   // Posts: Yoast, then ACF Page Settings. Pages: ACF, then Yoast. Either way the
-  // site default is the last resort. Brand suffixes are normalised so every
-  // title ends alike.
+  // site default is the last resort. Titles are shown exactly as typed (Yoast
+  // adds its own " - Vulcanus"); the code adds or removes no brand suffix.
   const pick = <T,>(fromYoast: T, fromAcf: T): T =>
     (yoastFirst ? fromYoast || fromAcf : fromAcf || fromYoast) as T
 
   const seo = {
     title:
-      pick(
-        normalizeTitle(yoast?.title),
-        normalizeTitle(onPageSeo?.title)
-      ) || defaultSEO?.siteTitle,
+      pick(yoast?.title?.trim(), onPageSeo?.title?.trim()) ||
+      defaultSEO?.siteTitle,
     // The site-wide default description is German, so it is only a valid
     // fallback on German pages. English pages without their own description
     // get none, rather than a German one.
