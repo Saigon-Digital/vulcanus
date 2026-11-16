@@ -9,6 +9,9 @@ import {useRouter} from "next/router"
 export type TSEO = {
   seo?: PagesSettingFragment | null | undefined
   yoast?: YoastSeoFragment | null | undefined
+  // true for blog posts: Yoast wins over ACF. Pages keep ACF first because their
+  // ACF titles are keyword-written while their Yoast titles are just the page name.
+  yoastFirst?: boolean
   ENUri?: string | null | undefined
   DEUri?: string | null | undefined
   defaultSEO?: SiteSettingFragment | null | undefined
@@ -20,28 +23,33 @@ export type TSEO = {
 }
 const SEO = (props: TSEO) => {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || ""
-  const {seo: onPageSeo, yoast, link, defaultSEO, DEUri, ENUri} = props
+  const {seo: onPageSeo, yoast, yoastFirst, link, defaultSEO, DEUri, ENUri} = props
   const favicon = defaultSEO?.favicon?.node?.sourceUrl
   const {locale} = useRouter()
 
+  // Posts: Yoast, then ACF Page Settings. Pages: ACF, then Yoast. Either way the
+  // site default is the last resort. Brand suffixes are normalised so every
+  // title ends alike.
+  const pick = <T,>(fromYoast: T, fromAcf: T): T =>
+    (yoastFirst ? fromYoast || fromAcf : fromAcf || fromYoast) as T
+
   const seo = {
-    // Yoast is the single source: Yoast, then the older ACF Page Settings, then
-    // the site default. Brand suffixes are normalised so every title ends alike.
     title:
-      normalizeTitle(yoast?.title) ||
-      normalizeTitle(onPageSeo?.title) ||
-      defaultSEO?.siteTitle,
+      pick(
+        normalizeTitle(yoast?.title),
+        normalizeTitle(onPageSeo?.title)
+      ) || defaultSEO?.siteTitle,
     // The site-wide default description is German, so it is only a valid
     // fallback on German pages. English pages without their own description
     // get none, rather than a German one.
     description:
-      yoast?.metaDesc?.trim() ||
-      onPageSeo?.description ||
+      pick(yoast?.metaDesc?.trim(), onPageSeo?.description?.trim()) ||
       (locale === "en" ? undefined : defaultSEO?.description),
     image:
-      yoast?.opengraphImage?.sourceUrl ||
-      onPageSeo?.socialGraphImage?.node?.sourceUrl ||
-      defaultSEO?.openGraphImage?.node.sourceUrl,
+      pick(
+        yoast?.opengraphImage?.sourceUrl,
+        onPageSeo?.socialGraphImage?.node?.sourceUrl
+      ) || defaultSEO?.openGraphImage?.node.sourceUrl,
     seoCanonical: props.canonical,
     url: props.canonical,
   }
