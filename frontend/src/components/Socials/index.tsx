@@ -18,21 +18,30 @@ const Socials = ({
   return (
     <div className={className}>
       {footerInfo?.footerSetting.facebook && (
-        <Link target="_blank" href={footerInfo.footerSetting.facebook.url}>
+        <Link
+          target="_blank"
+          aria-label="Facebook"
+          href={footerInfo.footerSetting.facebook.url}>
           <FaceBookIcon
             className={twMerge(isHover && "hover:text-primary-blue-main")}
           />
         </Link>
       )}
       {footerInfo?.footerSetting.instagram && (
-        <Link target="_blank" href={footerInfo.footerSetting.instagram.url}>
+        <Link
+          target="_blank"
+          aria-label="Instagram"
+          href={footerInfo.footerSetting.instagram.url}>
           <InstagramIcon
             className={twMerge(isHover && "hover:text-primary-blue-main")}
           />
         </Link>
       )}
       {footerInfo?.footerSetting.linkedin && (
-        <Link target="_blank" href={footerInfo.footerSetting.linkedin.url}>
+        <Link
+          target="_blank"
+          aria-label="LinkedIn"
+          href={footerInfo.footerSetting.linkedin.url}>
           <LinkedInIcon
             className={twMerge(isHover && "hover:text-primary-blue-main")}
           />
@@ -41,6 +50,7 @@ const Socials = ({
       {footerInfo.footerSetting.xing && (
         <Link
           target="_blank"
+          aria-label="Xing"
           className=""
           href={
             footerInfo?.footerSetting?.xing?.url ||
