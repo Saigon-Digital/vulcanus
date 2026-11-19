@@ -342,7 +342,7 @@ export async function getPost(slug: string) {
     //@ts-ignore
     query: gql(`
       query GetPost($databaseId: ID!) {
-  post(id: $databaseId, idType: URI) {
+  post(id: $databaseId, idType: SLUG) {
     databaseId
     dateGmt
     slug

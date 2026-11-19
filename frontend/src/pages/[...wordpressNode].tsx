@@ -12,6 +12,17 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     ctx,
   });
 
+  // Blog posts used to live at "/<slug>" and "/en/<slug>" (old WordPress
+  // permalinks), and Google still knows those URLs. If nothing exists at the
+  // path but a post with that slug does, 301 to the post.
+  const params = ctx.params?.wordpressNode;
+  if ("notFound" in result && Array.isArray(params) && params.length === 1) {
+    const postUri = await findPostUri(params[0], ctx.locale === "en");
+    if (postUri) {
+      return {redirect: {destination: postUri, permanent: true}, revalidate: 3600};
+    }
+  }
+
   // WordPress resolves a page by uri without checking the language, so e.g.
   // "/en/dienstleistungen/frasen" (a German slug under /en) returns the German
   // page, and the template then shows its English translation. That makes one
@@ -44,6 +55,25 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
   return result;
 };
+
+// Real uri of the post with this slug, preferring the requested language
+// ("/en/fertigungsverfahren" has a German slug, so it falls back to /blog/...).
+async function findPostUri(slug: string, en: boolean): Promise<string | null> {
+  const uris = en ? [`/en/blog/${slug}/`, `/blog/${slug}/`] : [`/blog/${slug}/`, `/en/blog/${slug}/`];
+  const query = `query($a:String!,$b:String!){a:nodeByUri(uri:$a){__typename uri} b:nodeByUri(uri:$b){__typename uri}}`;
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/graphql`, {
+      method: "POST",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify({query, variables: {a: uris[0], b: uris[1]}}),
+    });
+    const {data} = await res.json();
+    const node = [data?.a, data?.b].find((n) => n?.__typename === "Post");
+    return cleanUri(node?.uri) ?? null;
+  } catch {
+    return null; // WordPress unreachable: fall through to the normal 404
+  }
+}
 
 export const getStaticPaths: GetStaticPaths = (ctx) => {
   return {
