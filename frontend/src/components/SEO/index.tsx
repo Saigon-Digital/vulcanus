@@ -133,11 +133,6 @@ const SEO = (props: TSEO) => {
           <meta property="twitter:url" content={seo.url} />
         </>
       )}
-      {(props.seo?.noIndexNoFollow ||
-        yoast?.metaRobotsNoindex === "noindex") && (
-        <meta name="robots" content="noindex, nofollow" />
-      )}
-
       {seo.seoCanonical && <link rel="canonical" href={seo.seoCanonical} />}
       {DEUri && <link rel="alternate" hrefLang="x-default" href={DEUri} />}
       {DEUri && <link rel="alternate" hrefLang="de" href={DEUri} />}
